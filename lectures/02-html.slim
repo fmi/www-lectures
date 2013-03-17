@@ -1,0 +1,50 @@
+= slide 'HTML', 'Hypertext Markup Language' do
+  ul
+    li.action Oсновния език за задаване на структура на уеб страниците.
+    li.action World Wide Web Consortium (W3C)
+    li.action Йерархична структура от елементи.
+    li.action Всеки елемент казва на браузъра какво да покаже на страницата.
+    li.action Елементите се описват с тагове.
+= slide 'Тагове' do
+  p Всеки таг си има "начален таг", "краен таг", някакво съдържание между тях и атрибути.
+  pre
+    ' &lt;tagname attribute="value"&gt;
+        content
+      &lt;/tagname&gt;
+= slide 'HTML файлове' do
+  ul
+    li.action HTML файловете са обикновенни текстови файлове, в които има HTML тагове.
+    li.action Може да ги създаваме с всеки текстов редактор.
+    li.action Добре е да се идентират правилно.
+= slide 'XHTML' do
+  p XHTML (eXtensible HyperText Markup Language) е фамилия от XML езици за маркиране, които копират и разширява HTML.
+= slide 'HTML 5' do
+  ul
+    li.action HTML 5 е най-новата версия на HTML.
+    li.action Той е още в разработка.
+    li.action Не всички части от спецификацията се поддържат от всички браузъри.
+= slide 'Структура на HTML 4 документ' do
+  img src="images/html4.png"
+= slide 'Структура на HTML 5 документ' do
+  img src="images/html5.gif"
+= slide 'Doctype' do
+  p Слага се в началото на документа и указва коя версия на HTML се използва.
+  pre
+    ' &lt;!DOCTYPE html&gt;
+      &lt;html&gt;
+      &lt;/html&gt;
+= slide 'Основни тагове в HTML5' do
+  li.action Системни<br/>html, body, head, title, script, style, meta, link
+  li.action Структурни<br/>header, footer, aside, hgroup, nav, section, article, div, embed, object, param, span, p
+  li.action Форматиращи<br/>b, i, del, ins, em, sub, sup, strong, small, wbr/br 
+  li.action Списъци<br/>ul, li, ol, dd, dl 
+= slide '... и още малко основни тагове' do
+  li.action Форми<br/>form, input, textarea, button, fieldset, label,select, option, optgroup, datalist 
+  li.action Таблици<br/>table, thead, tfoot, tbody, tr, td, th 
+  li.action Други<br/>img, iframe, a
+= slide 'Ресурси за HTML' do
+  list:
+    <a href="http://www.w3schools.com/html/">"Библията" за HTML</a> 
+    <a href="http://www.codecademy.com/tracks/web">Codecademy</a>
+= slide 'Задача' do
+  img src="images/demo.jpg"

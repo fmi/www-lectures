@@ -1,0 +1,137 @@
+= slide 'За курса' do
+  ul
+    li.action Николай Стоицев / nstoitsev AT gmail.com
+    li.action 
+      a href="http://moodle.le.tsdoit.org/course/view.php?id=13" http://moodle.le.tsdoit.org
+    li.action Ключ за записване: www2702
+
+= slide 'Теми' do
+  ul
+    li.action HTTP & HTML syntax
+    li.action HTML & CSS
+    li.action HTML & CSS
+    li.action JavaScript Introduction
+    li.action JavaScript Games
+    li.action JavaScript Patterns
+    li.action PHP Basics
+    li.action PHP OOP
+    li.action PHP design patterns
+    li.action DBMSs
+    li.action SQL
+    li.action PHP & SQL (MySQL)
+    li.action MVC
+
+= slide 'Интернет' do
+  p От <a href="http://bg.wikipedia.org/wiki/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82">Wikipedia</a>: Интернет е глобална система от взаимносвързани компютърни мрежи.
+  ul
+    li.action Компютрите, сървърите, мобилните устройства се наричат крайни точки.
+    li.action Всяка крайна точка си има IP адрес.
+    li.action За да не помним IP адресите на сървърите, ползваме домейн имена.
+
+= slide 'Взаимносвързани мрежи' do
+  img src="images/oo_525031.jpg" style="width: 60%"
+
+= slide 'Протоколи' do
+  p От <a href="http://bg.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D1%83%D0%BD%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B5%D0%BD_%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB">Wikipedia</a>: Мрежов протокол е система от стандартни правила за обмяната на информация между процеси или компютри, които са свързани в една компютърна мрежа, и то по начин, гарантиращ успешната връзка между два или повече комуникационни апарата (крайни устройства).
+
+= slide 'Клинет-сървър' do
+  img src="images/client_net.jpg" style="width: 60%"
+
+= slide 'Демо' do
+  p <a href="http://www.youtube.com/watch?v=PBWhzz_Gn10&feature=share&list=UUwecCf7kkl97hfWparLHYvg">Warriors of the Net</a>
+
+= slide 'HTTP' do
+  p Протокол за трансфер на хипертекст.
+  ul
+    li.action Клиент - Браузър.
+    li.action Сървър - Уеб сървър.
+    li.action Уеб сървъра и браузъра си говорят по HTTP.
+
+= slide 'HTTP заявки' do
+  p Заявка, е съобщение, което се изпраща от уеб браузъра към уеб сървъра.
+  p То може да бъде няколко вида:
+  ul
+    li.action GET
+    li.action POST
+    li.action PUT
+    li.action DELETE
+    li.action HEAD
+    li.action и още три...
+
+= slide 'HTTP комуникация' do
+  p Стандартно зареждане на facebook:
+  ul
+    li.action Браузъра изпраща GET заявка към facebook за получаване на началната страница.
+    li.action Сървъра на facebook отгоравя като изпраща отговор на клиента.
+    li.action Браузъра прочита отговора и го показва на екрана.
+    li.action Потребителя си пише името и парола и натиска бутона за вход.
+    li.action Браузъра изпраща POST заявка с името и паролата на потребителя.
+    li.action Сървъра на facebook проверя дали са коректни.
+    li.action Ако не са коректни, сървъра връща съобщение в което записва грешката.
+    li.action Ако са коректни, сървъра изпраща нова страница с профила на потребителя и news feed-a му.
+
+= slide 'HTML', 'HyperText Markup Language' do
+  p Език за описване на съдържанието на уеб страниците. Пример.
+
+= slide 'Зареждане на страници' do
+  ul
+    li.action Браузъра изпраща заявка към сървъра.
+    li.action Сървъра отговаря с HTML.
+
+= slide 'Как работи браузъра' do
+  example:
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>My title</title>
+    </head>
+    <body>
+      <h1>My header</h1>
+      <a href="http://example.com">My Link</a>
+    </body>
+    </html>
+
+= slide 'Как работи браузъра' do
+  p HTML-a се описва в дървовидна структура. Тя се нарича DOM дърво.    
+  img src='images/htmltree.gif'
+
+= slide 'Как работи браузъра' do
+  img src='images/browser_flow.png'
+
+= slide 'HTML' do
+  p Описва само съдържанието.
+
+= slide 'CSS', 'Cascading Style Sheets' do
+  p Съдържа се в HTML-a. Описва как да изглежда HTML документ. Например:
+  ul
+    li.action Какъв цвят да е даден текст.
+    li.action Кое колко да е голямо.
+    li.action Как да са подредени нещата на екрана.
+    li.action И още много... ще имаме отделни упражнения за него.
+
+= slide 'Пример CSS' do
+  example:
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>My title</title>
+      <link rel="stylesheet" href="style.css" type="text/css" />
+    </head>
+    <body>
+      <h1>My header</h1>
+      <a href="http://example.com">My Link</a>
+    </body>
+    </html>
+
+= slide 'Пак как работи браузъра' do
+  img src='images/webkitflow.png'
+
+= slide 'Интерпретиране на CSS' do
+  img src='images/image023.png'
+
+= slide 'Интерпретиране на CSS' do
+  img src='images/image025.png'
+
+= slide 'Още' do
+  ul
+    li.action <a href="http://taligarsiel.com/Projects/howbrowserswork1.htm">How browsers work</a>

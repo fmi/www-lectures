@@ -1,0 +1,53 @@
+doctype 5
+html lang='bg'
+head
+  meta charset='utf-8'
+  /[ if lt IE 9 ]
+    script src='js/html5shim.js'
+  link rel='stylesheet' href='css/styles.css'
+  link rel='stylesheet' href='css/pygments.css'
+  title = title
+body
+  header
+    h1 = title
+    nav
+      ul
+        li
+          button id='prev-btn' title='Previous slide' Previous Slide
+        li
+          span id='slide-number'
+          '  /
+          span id='slide-total'
+        li
+          button id='next-btn' title='Next Slide' Next Slide
+
+  div#deck
+    section
+      hgroup
+        h1 = title
+        h2 = date
+
+    = slides_html
+
+    section
+      hgroup
+        h1 Въпроси
+
+      ul
+        li
+          a href="http://moodle.le.tsdoit.org/course/view.php?id=13" http://moodle.le.tsdoit.org
+
+  script src="js/jquery-1.5.2.min.js"
+  script src="js/jquery.jswipe-0.1.2.js"
+  script src="js/htmlSlides.js"
+  script src="js/pusher.js"
+  javascript:
+    $(function() {
+      htmlSlides.init({ hideToolbar: true });
+    });
+
+    var pusher = new Pusher('a2024b659f492cab86cc');
+    pusher.subscribe('lectures');
+    pusher.bind('refresh', function(data) {
+      location.reload(true);
+    });

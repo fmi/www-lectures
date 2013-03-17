@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><title>02. HTML</title></head><body><header><h1>02. HTML</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>02. HTML</h1><h2>11 март 2013</h2></hgroup></section><section>
+<hgroup><h1>HTML</h1><h2>Hypertext Markup Language</h2></hgroup>
+<ul><li class="action">Oсновния език за задаване на структура на уеб страниците.</li><li class="action">World Wide Web Consortium (W3C)</li><li class="action">Йерархична структура от елементи.</li><li class="action">Всеки елемент казва на браузъра какво да покаже на страницата.</li><li class="action">Елементите се описват с тагове.</li></ul></section>
+<section>
+<hgroup><h1>Тагове</h1></hgroup>
+<p>Всеки таг си има "начален таг", "краен таг", някакво съдържание между тях и атрибути.</p><pre>&lt;tagname attribute="value"&gt;
+  content
+&lt;/tagname&gt; </pre></section>
+<section>
+<hgroup><h1>HTML файлове</h1></hgroup>
+<ul><li class="action">HTML файловете са обикновенни текстови файлове, в които има HTML тагове.</li><li class="action">Може да ги създаваме с всеки текстов редактор.</li><li class="action">Добре е да се идентират правилно.</li></ul></section>
+<section>
+<hgroup><h1>XHTML</h1></hgroup>
+<p>XHTML (eXtensible HyperText Markup Language) е фамилия от XML езици за маркиране, които копират и разширява HTML.</p></section>
+<section>
+<hgroup><h1>HTML 5</h1></hgroup>
+<ul><li class="action">HTML 5 е най-новата версия на HTML.</li><li class="action">Той е още в разработка.</li><li class="action">Не всички части от спецификацията се поддържат от всички браузъри.</li></ul></section>
+<section>
+<hgroup><h1>Структура на HTML 4 документ</h1></hgroup>
+<img src="images/html4.png" /></section>
+<section>
+<hgroup><h1>Структура на HTML 5 документ</h1></hgroup>
+<img src="images/html5.gif" /></section>
+<section>
+<hgroup><h1>Doctype</h1></hgroup>
+<p>Слага се в началото на документа и указва коя версия на HTML се използва.</p><pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;/html&gt; </pre></section>
+<section>
+<hgroup><h1>Основни тагове в HTML5</h1></hgroup>
+<li class="action">Системни<br/>html, body, head, title, script, style, meta, link</li><li class="action">Структурни<br/>header, footer, aside, hgroup, nav, section, article, div, embed, object, param, span, p</li><li class="action">Форматиращи<br/>b, i, del, ins, em, sub, sup, strong, small, wbr/br </li><li class="action">Списъци<br/>ul, li, ol, dd, dl </li></section>
+<section>
+<hgroup><h1>... и още малко основни тагове</h1></hgroup>
+<li class="action">Форми<br/>form, input, textarea, button, fieldset, label,select, option, optgroup, datalist </li><li class="action">Таблици<br/>table, thead, tfoot, tbody, tr, td, th </li><li class="action">Други<br/>img, iframe, a</li></section>
+<section>
+<hgroup><h1>Ресурси за HTML</h1></hgroup>
+<ul><li class="action"><a href="http://www.w3schools.com/html/">"Библията" за HTML</a> 
+</li><li class="action"><a href="http://www.codecademy.com/tracks/web">Codecademy</a></li></ul></section>
+<section>
+<hgroup><h1>Задача</h1></hgroup>
+<img src="images/demo.jpg" /></section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});</script></body>

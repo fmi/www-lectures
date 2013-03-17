@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><title>04. JavaScript</title></head><body><header><h1>04. JavaScript</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>04. JavaScript</h1><h2>25 март 2013</h2></hgroup></section><section>
+<hgroup><h1>JavaScript</h1></hgroup>
+<ul><li class="action">JavaScript е скриптов език за уеб.
+</li><li class="action">Изпълнява се предимно в браузъра.
+</li><li class="action">Oбектно-ориентиран език e. Числата са обект, масивите са обект, всичко е обект.
+</li><li class="action">Има прототипно базирано наследяване.
+</li><li class="action">Има динамично типизиране.
+</li><li class="action">Има функционални елементи.</li></ul></section>
+<section>
+<hgroup><h1>Лошият JavaScript</h1></hgroup>
+<ul><li class="action">Повечето хора не харесват JavaScript.
+</li><li class="action">Създаден е за 10 дни от Brendan Eich като проект на Netscape.
+</li><li class="action">Променя се бавно и трудно.</li></ul></section>
+<section>
+<hgroup><h1>Добрият JavaScript</h1></hgroup>
+<img height="20%" src="images/klingon.gif" width="20%" /></section>
+<section>
+<hgroup><h1>Добрият JavaScript</h1></hgroup>
+<img height="40%" src="images/klingon.jpg" width="40%" /></section>
+<section>
+<hgroup><h1>Добрият JavaScript</h1></hgroup>
+<img height="40%" src="images/Garnoth264578db983e7b1.jpg" width="40%" /></section>
+<section>
+<hgroup><h1>Добрият JavaScript</h1></hgroup>
+<p>JavaScript е най-популарния език в GitHub.</p><img src="images/github-languages.png" /></section>
+<section>
+<hgroup><h1>Добрият JavaScript</h1></hgroup>
+<ul><li class="action">Супер популярен е.
+</li><li class="action">Има голямо общество, което прави интересни и иновативни проекти.
+</li><li class="action">Работи навсякъде - в браузъра, на сървъра, на мобилни устройства и в бази от данни.
+</li><li class="action">Супер бърз е.</li></ul></section>
+<section>
+<hgroup><h1>JavaScript в HTML</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;file.js&quot;</span> <span class="nt">/&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>JavaScript в HTML</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span><span class="p">...</span><span class="nt">&lt;/script&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Променливи</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">intValue</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">floatValue</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&quot;This is a string\n&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">sqString</span> <span class="o">=</span> <span class="s1">&#39;This is also a string&#39;</span><span class="p">;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Масиви(вектори)</h1></hgroup>
+<p>Последователност от елементи. Индексирана и поредна колекция.</p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">emptyList</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">homogenousList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">heterogenousList</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">];</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Достъп по елементи на масив</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">heterogenousList</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">];</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">heterogenousList</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">//&quot;one&quot;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">heterogenousList</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">//2</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">heterogenousList</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span> <span class="c1">//3.0</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Речници(обекти)</h1></hgroup>
+<p>Или още map, хешове, речници, асоциативни масиви и други. Съдържа двойки ключ стойност.</p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">emptyMap</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="kd">var</span> <span class="nx">homogenousMap</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;one&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">heterogenousMap</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;one&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span><span class="s2">&quot;two&quot;</span><span class="o">:</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span><span class="s2">&quot;three&quot;</span><span class="o">:</span> <span class="mf">3.0</span><span class="p">};</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Достъп до елемент на речник</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">homogenousMap</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;one&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">};</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">homogenousMap</span><span class="p">.</span><span class="nx">one</span><span class="p">);</span>    <span class="c1">//1</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">homogenousMap</span><span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">]);</span> <span class="c1">//1</span>
+</pre>
+</div>
+<p>Първия(с точката) е за предпочитане.</p></section>
+<section>
+<hgroup><h1>Условни оператори</h1></hgroup>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">cond</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Условни оператори</h1></hgroup>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">cond</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Условни оператори</h1></hgroup>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">cond</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">cond</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Switch</h1></hgroup>
+<div class="highlight"><pre><span class="k">switch</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+    <span class="c1">//execute code block 1</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+    <span class="c1">//execute code block 2</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">default</span><span class="o">:</span>
+    <span class="c1">//code to be executed if n is different from case 1 and 2</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Цикъл for</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">cars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Audi&#39;</span><span class="p">,</span> <span class="s1">&#39;BMW&#39;</span><span class="p">,</span> <span class="s1">&#39;Mercedes-Benz&#39;</span><span class="p">,</span> <span class="s1">&#39;Opel&#39;</span><span class="p">,</span> <span class="s1">&#39;Porsche&#39;</span><span class="p">,</span> <span class="s1">&#39;Volkswagen&#39;</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">cars</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">cars</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Цикъл while</h1></hgroup>
+<div class="highlight"><pre><span class="k">while</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//code block to be executed</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Цикъл while</h1></hgroup>
+<div class="highlight"><pre><span class="k">do</span> <span class="p">{</span>
+  <span class="c1">//code block to be executed</span>
+<span class="p">}</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">condition</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Обхождане на речник</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span><span class="nx">first_name</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="nx">last_name</span><span class="o">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">25</span><span class="p">};</span> 
+
+<span class="k">for</span> <span class="p">(</span><span class="nx">x</span> <span class="k">in</span> <span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">txt</span> <span class="o">=</span> <span class="nx">txt</span> <span class="o">+</span> <span class="nx">person</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">txt</span><span class="p">)</span> <span class="c1">//John Doe 25</span>
+</pre>
+</div>
+</section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});</script></body>
