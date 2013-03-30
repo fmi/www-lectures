@@ -1,0 +1,191 @@
+= slide 'DOM' do
+  p HTML-a се описва в дървовидна структура. Тя се нарича DOM дърво.    
+  img src='images/htmltree.gif'
+= slide 'DOM' do
+  p В DOM всичко е елемент. Документа е изграден от елементи (nodes) от различни типове. Елементите могат да се влагат.
+  p Пример: 
+  html:
+    <p class="cool">Text here</p>
+  p <b>Елемент</b> - html тага
+  p <b>Text node</b> Съдържанието на тага. може да бъде текст, може и още елементи.
+  p <b>Атрибути</b> - в случая само 1 - class. Атрибутите описват свойства на елементите.
+= slide 'DOM' do
+  p Всеки елемент има служебна информация.
+  list:
+    nodeName - името на елемента. Примерно p, div, a и т.н.
+    nodeValue - стойноста на елемента. Ако е текстов - връща текста, а ако има value атрибут връща неговата стойност.
+    nodeType - тип на елемента. Цялочислени числа между 1 - 12. <a href="http://www.w3schools.com/dom/dom_nodetype.asp">Типове</a>.
+= slide 'Основни обекти в DOM' do
+  p Има няколко основни обекта в JavaScript, който ни помагат да работим с DOM.
+  list:
+    window (self, top, parent) - window обекта съдържа методи и свойства за прозореца за браузъра
+    screen - обект, чрез който може да се вземе информация за екрана - размери, отстояния и т.н.
+    history - обекта, който контролира история. Чрез него може да се връщаме в предишни страници.
+    location - обекта, който се грижи за текущия адрес. С него може да достъпим информация за адреса или да сменим с нов.
+    navigator - обект който съдържа свойста и методи, описващи браузъра
+    document - съдържа методи и свойства за работа с елементите в html документа.
+= slide 'Обекта window', 'Свойства' do
+  list:
+    document - връща обекта Document за конкретния прозорец.
+    frames - Връща масив със всички фреймове в текущия прозорец.
+    history - Връща History обекта за текущия прозорец
+    innerHeight - Промяна или вземане на вътрешната височина на прозореца.
+    innerWidth - Промяна или вземане на вътрешната ширина на прозореца.
+    length - Връща броя фреймове+iframes в прозореца.
+    location - Връща Location обекта за конкретния прозорец. 
+    navigator - Връща Navigator обекта за конкретния прозорец.
+    opener - Връща референция към прозореца, отворил този прозорец.
+    outerHeight - Пременя или взема външната височина на прозорец, включително тулбари/скролери
+    outerWidth - Пременя или взема външната ширина на прозорец, включително тулбари/скролери
+    pageXOffset - Връща в пиксели текущата преместена част на document от горния ляв ъгъл(хоризонтално).
+    pageYOffset - Връща в пиксели текущата преместена част на document от горния ляв ъгъл(вертикално).
+    screenLeft - Връща x кордината на прозореца спрямо екрана (screen).
+    screenTop - Връща y кордината на прозореца спрямо екрана (screen).
+    screenX - Връща x кордината на прозореца спрямо екрана (screen).
+    screenY - Връща y кордината на прозореца спрямо екрана (screen).
+= slide 'Обекта window', 'Методи' do
+  list:
+    alert(), , prompt(), confirm() - Displays an alert box with a message and an OK button
+    close() - Closes the current window
+    createPopup() - Creates a pop-up window
+    focus(), blur() - Sets focus to the current window
+    moveBy() - Moves a window relative to its current position
+    moveTo() - Moves a window to the specified position
+    open() - Opens a new browser window
+    print() - Prints the content of the current window
+    resizeBy() - Resizes the window by the specified pixels
+    resizeTo() - Resizes the window to the specified width and height
+    scrollBy() - Scrolls the content by the specified number of pixels
+    scrollTo() - Scrolls the content to the specified coordinates
+    setInterval(), clearInterval() - Calls a function or evaluates an expression at specified intervals (in milliseconds)
+    setTimeout(), clearTimeout() - Calls a function or evaluates an expression after a specified number of milliseconds 
+= slide 'Обекта screen', 'Свойства' do
+  list:
+    availHeight - Returns the height of the screen (excluding the Windows Taskbar)
+    availWidth - Returns the width of the screen (excluding the Windows Taskbar)
+    colorDepth - Returns the bit depth of the color palette for displaying images
+    height - Returns the total height of the screen
+    pixelDepth - Returns the color resolution (in bits per pixel) of the screen
+    width - Returns the total width of the screen
+= slide 'Обекта history' do
+  p.action Свойства:
+  list:
+    length - History Object Methods
+  p.action Методи:
+  list:
+    back() - Loads the previous URL in the history list
+    forward() - Loads the next URL in the history list
+    go() - Loads a specific URL from the history list
+= slide 'Обекта location' do
+  p.action Свойства:
+  list:
+    hash - Returns the anchor portion of a URL
+    host - Returns the hostname and port of a URL
+    hostname - Returns the hostname of a URL
+    href - Returns the entire URL
+    pathname - Returns the path name of a URL
+    port - Returns the port number the server uses for a URL
+    protocol - Returns the protocol of a URL
+    search - Returns the query portion of a URL
+  p.action Методи:
+  list:
+    assign() - Loads a new document
+    reload() - Reloads the current document
+    replace() - Replaces the current document with a new one
+= slide 'Обекта document', 'Свойства' do
+  list:
+    cookie - Returns all name/value pairs of cookies in the document
+    documentMode - Returns the mode used by the browser to render the document
+    domain - Returns the domain name of the server that loaded the document
+    lastModified - Returns the date and time the document was last modified
+    readyState - Returns the (loading) status of the document
+    referrer - Returns the URL of the document that loaded the current document
+    title - Sets or returns the title of the document
+    URL - Returns the full URL of the document
+= slide 'Обекта document', 'Методи' do
+  list:
+    close() - Closes the output stream previously opened with document.open()
+    getElementById() - Accesses the first element with the specified id
+    getElementsByName() - Accesses all elements with a specified name
+    getElementsByTagName() - Accesses all elements with a specified tagname
+    open() - Opens an output stream to collect the output from document.write() or document.writeln()
+    write() - Writes HTML expressions or JavaScript code to a document
+    writeln() - Same as write(), but adds a newline character after each statement
+= slide 'Селектиране на елементи по id' do
+  js_example:
+    var element = document.getElementById("example");    
+  p Връща първия елемент с подаденото id.
+  p В примера селектираме елемента с id - <b>example</b> и го записваме в променливата <b>element</b>.
+= slide 'Селектиране на елементи по id' do
+  p Пример.
+  html:
+    <h1 id="myHeader">Latest News</h1>
+
+    <script type="text_javascript">
+      var element = document.getElementById("myHeader");
+      var content = element.innerHTML;
+      alert(content); // Latest News
+    </script>
+= slide 'Селектиране на елементи по име' do
+  js_example:
+    var elements = document.getElementsByTagName('div');
+= slide 'Селектиране на елементи по клас' do
+  js_example:
+    var elements = document.getElementsByClassName('beer');
+= slide 'Селектиране на елементи по CSS селектор' do
+  js_example:
+    var elements = document.querySelectorAll('beer');
+= slide 'CSS Селектори' do
+  html:
+    #nav                // An element with id="nav"
+    div                 // Any <div> element
+    .warning            // Any element with "warning" in its class attribute
+    p[lang="fr"]        // A paragraph written in French: <p lang="fr">
+    *[name="x"]         // Any element with a name="x" attribute
+    #log span           // Any <span> descendant of the element with id="log"
+    #log>span           // Any <span> child of the element with id="log"
+    body>h1:first-child // The first <h1> child of the <body>
+    div, #log           // All <div> elements plus the element with id="log"
+= slide 'Навръзване(chaining) на селектори' do
+  js_example:
+    var allLinks = document.getElementById('main_nav').getElementsByTagName('a');
+= slide 'Съдържание на елементите като текст' do
+  js_example:
+    var para = document.getElementsByTagName("p")[0]; // First <p> in the document
+    var text = para.textContent; // Text is "This is a simple document."
+    para.textContent = "Hello World!"; // Alter paragraph textContent
+= slide 'Съдържание на елементите като html' do
+  p тодо
+= slide 'Създаване на елементи' do
+  js_example:
+    var newnode = document.createTextNode("text node content");
+= slide 'Вмъкване на елементи' do
+  js_example:
+    appendChild() or insertBefore()
+= slide 'Премахване на елементи' do
+  js_example:
+    removeChild(), replaceChild()
+= slide 'Използване на document fragment' do
+  p тодо
+= slide 'Събития' do
+  p тодо
+= slide 'Събития с атрибути' do
+  html:
+    <button onclick="alert('Thank you');">Click Here</button>
+= slide 'Събития с атрибути' do
+  pre
+    ' onafterprint onbeforeprint onbeforeunload onblur
+      onerror      onfocus       onhashchange   onload
+      onmessage    onoffline     ononline       onpagehide
+      onpageshow   onpopstate    onredo         onresize
+      onstorage    onundo        onunload
+= slide 'JavaScript събития' do
+  js_example:
+    var b = document.getElementById("mybutton");
+    b.onclick = function() { alert("Thanks for clicking me!"); };
+    b.addEventListener("click", function() { alert("Thanks again!"); }, false);
+= slide 'JavaScript събития' do
+  js_example:
+    document.removeEventListener("mousemove", handleMouseMove, true);
+    document.removeEventListener("mouseup", handleMouseUp, true);
+
