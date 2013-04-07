@@ -128,13 +128,27 @@
     </script>
 = slide 'Селектиране на елементи по име' do
   js_example:
-    var elements = document.getElementsByTagName('div');
+    var elements = document.getElementsByTagName('p');
+  html:
+    <h1 id="myHeader">Latest News</h1>
+    <h2>First article</h2>
+    <p id="date">08.04.13</p>
+    <p id="content">Article Content</p>
+  p В <b>elements</b> ще бъде записан масив с 2 елемента, които ще са двата параграфа.
 = slide 'Селектиране на елементи по клас' do
   js_example:
-    var elements = document.getElementsByClassName('beer');
+    var elements = document.getElementsByClassName('food');
+  html:
+    <p class="food">Pizza</p>
+    <p class="drink">Water</p>
+    <p class="drink">Wine<p>
+    <p class="food">Burger</p>
+  p В <b>elements</b>b> ще се запише масив, който се съдържа всички елементи по страница с идентификатор <b>food</b>.
 = slide 'Селектиране на елементи по CSS селектор' do
   js_example:
-    var elements = document.querySelectorAll('beer');
+    var foods = document.querySelectorAll('.food');
+    var header = document.querySelectorAll('#myHeader');
+    var paragraphs = document.querySelectorAll('p');
 = slide 'CSS Селектори' do
   html:
     #nav                // An element with id="nav"
@@ -151,24 +165,61 @@
     var allLinks = document.getElementById('main_nav').getElementsByTagName('a');
 = slide 'Съдържание на елементите като текст' do
   js_example:
-    var para = document.getElementsByTagName("p")[0]; // First <p> in the document
-    var text = para.textContent; // Text is "This is a simple document."
-    para.textContent = "Hello World!"; // Alter paragraph textContent
+    var para,
+        text;
+    para = document.getElementsByTagName("p")[0];
+    text = para.textContent;
+    para.textContent = "Hello World!";
 = slide 'Съдържание на елементите като html' do
-  p тодо
+  js_example:
+    var firstDiv,
+        html;
+
+    firstDiv = document.getElementsByTagName("div")[0];
+    html = firstDiv.innerHTML;
+    firstDiv.innerHTML = '<p>Test</p>';
 = slide 'Създаване на елементи' do
   js_example:
     var newnode = document.createTextNode("text node content");
+    var div = document.createElement('div');
 = slide 'Вмъкване на елементи' do
+  p <b>appendChild</b> вмъква елемента подаден като аргумент, като последно дете на елемента, на който извикваме функцията.
   js_example:
-    appendChild() or insertBefore()
+    var p, 
+        t;
+
+    p = document.createElement('p');
+    t = document.createTextNode('first paragraph');
+    p.appendChild(t);
+    document.body.appendChild(p);
+
 = slide 'Премахване на елементи' do
   js_example:
-    removeChild(), replaceChild()
+    var list=document.getElementById("myList");
+    list.removeChild(list.childNodes[0]);
 = slide 'Използване на document fragment' do
-  p тодо
+  p Използваме <b>document fragment</b>, за да избегнем reflow на страницата.
+  js_example:
+    var p, t, frag;
+
+    frag = document.createDocumentFragment();
+    p = document.createElement('p');
+    t = document.createTextNode('first paragraph');
+    p.appendChild(t);
+    frag.appendChild(p);
 = slide 'Събития' do
-  p тодо
+  list:
+    В клиентския JavaScript има асиснхронен event-driven програмен модел.
+    При него браузъра генерира събитие когато се случи нещо интересно.
+= slide 'Събития' do
+  p Браузъра генерира събитие когато:
+  list:
+    Преключи зареждането на страницата
+    Потребителя кликне с мишката някъде
+    Побребителя натисне копче на клавиатурата
+    И много още...
+= slide 'Събития' do
+  p Ако някои събития за интересни за нас, може да имплементираме JavaScript код, който да реагира като извика функция при определено събитие.
 = slide 'Събития с атрибути' do
   html:
     <button onclick="alert('Thank you');">Click Here</button>
@@ -181,11 +232,31 @@
       onstorage    onundo        onunload
 = slide 'JavaScript събития' do
   js_example:
-    var b = document.getElementById("mybutton");
-    b.onclick = function() { alert("Thanks for clicking me!"); };
-    b.addEventListener("click", function() { alert("Thanks again!"); }, false);
+    var b;
+    b = document.getElementById("mybutton");
+    b.onclick = function () { 
+      alert("Thanks for clicking me!"); 
+    };
 = slide 'JavaScript събития' do
   js_example:
+    var b;
+    b = document.getElementById("mybutton");
+    b.addEventListener("click", function() { 
+      alert("Thanks again!"); 
+    }, false);
+= slide 'JavaScript събития' do
+  js_example:
+    var b, 
+        handleMouseMove;
+
+    handleMouseMove = function() { 
+      alert("Thanks again!"); 
+    };  
+
+    b = document.getElementById("mybutton");
+    b.addEventListener("click", handleMouseMove, false);
+= slide 'JavaScript събития' do
+  p Премахване на събития:
+  js_example:
     document.removeEventListener("mousemove", handleMouseMove, true);
-    document.removeEventListener("mouseup", handleMouseUp, true);
 
