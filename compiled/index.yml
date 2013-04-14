@@ -18,3 +18,19 @@
   title: 04. JavaScript
   date: 2013-04-01
   slug: 04-javascript
+5:
+  title: 05. JavaScript в браузъра
+  date: 2013-04-08
+  slug: 05-client-javascript
+6:
+  title: 06. JavaScript шаблони и jQuery
+  date: 2013-04-15
+  slug: 06-javascript-patterns
+7:
+  title: 07. PHP
+  date: 2013-04-22
+  slug: 07-php
+8:
+  title: 08. PHP ООП
+  datе: 2013-04-29
+  slug: 08-php-oop
