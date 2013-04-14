@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><title>06. JavaScript шаблони и jQuery</title></head><body><header><h1>06. JavaScript шаблони и jQuery</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>06. JavaScript шаблони и jQuery</h1><h2>15 април 2013</h2></hgroup></section><section>
+<hgroup><h1>Глобални променливи</h1></hgroup>
+<ul><li class="action">В JavaScript се използват функции за определяне на scope.
+</li><li class="action">Всяка променлива декларирана във функция е видима само във функцията.
+</li><li class="action">Глобални са променливите декларирани извън функция. 
+</li><li class="action">Глобални са и променливите, които не са декларирани с <b>var</b> във функция.</li></ul></section>
+<section>
+<hgroup><h1>Глобални променливи</h1></hgroup>
+<p>Пример:</p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// global</span>
+<span class="nx">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// global</span>
+
+<span class="kd">function</span> <span class="nx">example</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// local</span>
+  <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// local</span>
+  <span class="nx">d</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// global</span>
+  <span class="nx">g</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// global</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Глобален обект</h1></hgroup>
+<ul><li class="action">В JavaScript има един глобален обект, видим навсякъде в кода.
+</li><li class="action">В браузърите този глобален обект е обекта <b>window</b>.
+</li><li class="action">Всяка глобална променлива става property на глобалния обект.
+</li><li class="action">Той може да се достъпи с <b>this</b> извън всяка функция.</li></ul></section>
+<section>
+<hgroup><h1>this</h1></hgroup>
+<p>This винаги сочи към текущия scope.</p><div class="highlight"><pre><span class="k">this</span><span class="p">;</span> <span class="c1">// global object</span>
+<span class="kd">function</span> <span class="nx">example</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">;</span> <span class="c1">// function scope</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Проблем с глобалните променливи</h1></hgroup>
+<ul><li class="action">Те са споделени в целия код. Може да се достъпят от всякъде.
+</li><li class="action">В две различни части на кода може да се дефинира променлива с еднакво име но различна цел.
+</li><li class="action">Често в една страница има код с различен произход, което прави конфликта на имена по-лесен.</li></ul></section>
+<section>
+<hgroup><h1>Замърсяване на глобалното пространство</h1></hgroup>
+<div class="highlight"><pre><span class="nx">myglobal</span> <span class="o">=</span> <span class="s2">&quot;здравейте&quot;</span><span class="p">;</span> 
+<span class="nx">alert</span><span class="p">(</span><span class="nx">myglobal</span><span class="p">);</span> <span class="c1">// &quot;здравейте&quot;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">myglobal</span><span class="p">);</span> <span class="c1">// &quot;здравейте&quot;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nb">window</span><span class="p">[</span><span class="s2">&quot;myglobal&quot;</span><span class="p">]);</span> <span class="c1">// &quot;здравейте&quot;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">myglobal</span><span class="p">);</span> <span class="c1">// &quot;здравейте&quot;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Минизиране на глобалните променливи</h1></hgroup>
+<p>Трябва да се стремим да минимизираме броя на глобалните променливи.</p></section>
+<section>
+<hgroup><h1>Шаблон за дизайн Модул</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">myModule</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">myProperty</span><span class="o">:</span> <span class="s2">&quot;someValue&quot;</span><span class="p">,</span>
+
+  <span class="nx">myMethod</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;So Long, and Thanks for All the Fish&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Шаблон за дизайн Модул</h1></hgroup>
+<div class="highlight"><pre><span class="nx">myModule</span><span class="p">.</span><span class="nx">myProperty</span><span class="p">;</span> <span class="c1">// someValue</span>
+<span class="nx">myModule</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span> <span class="c1">// So Long, and Thanks for All the Fish </span>
+</pre>
+</div>
+<p>Може и по-добре!</p></section>
+<section>
+<hgroup><h1>Истинския шаблон за дизайн Модул</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">basketModule</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}());</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Истинския шаблон за дизайн Модул</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">basketModule</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">basket</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// private</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">addItem</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">basket</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">getItemCount</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">//...</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}());</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Използване на шаблона за дизайн Модул</h1></hgroup>
+<div class="highlight"><pre><span class="nx">basketModule</span><span class="p">.</span><span class="nx">addItem</span><span class="p">({</span>
+  <span class="nx">item</span><span class="o">:</span> <span class="s2">&quot;bread&quot;</span><span class="p">,</span>
+  <span class="nx">price</span><span class="o">:</span> <span class="mf">0.5</span>
+<span class="p">});</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="nx">basketModule</span><span class="p">.</span><span class="nx">getItemCount</span><span class="p">());</span> <span class="c1">// 1</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">basketModule</span><span class="p">.</span><span class="nx">basket</span><span class="p">);</span> <span class="c1">// undefined</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Singleton</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">mySingleton</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">instance</span><span class="p">;</span>
+  <span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">privateVariable</span> <span class="o">=</span> <span class="s2">&quot;I am private&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">publicProperty</span><span class="o">:</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">();</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">getInstance</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">)</span> <span class="nx">instance</span> <span class="o">=</span> <span class="nx">init</span><span class="p">();</span>
+      <span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">})();</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Употреба на Singleton обекти</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">singleA</span> <span class="o">=</span> <span class="nx">mySingleton</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">singleB</span> <span class="o">=</span> <span class="nx">mySingleton</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">singleA</span><span class="p">.</span><span class="nx">publicProperty</span> <span class="o">===</span> <span class="nx">singleB</span><span class="p">.</span><span class="nx">publicProperty</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Още шаблони за дизайн</h1></hgroup>
+<p><a href="http://www.addyosmani.com/resources/essentialjsdesignpatterns/book/">Learning JavaScript Design Patterns</a></p></section>
+<section>
+<hgroup><h1>jQuery</h1><h2>Основни идеи</h2></hgroup>
+<ul><li class="action">Работи във всички модерни браузъри.
+</li><li class="action">Изграден е около CSS селекторите.
+</li><li class="action">Пише се по-лесно от JavaScript.
+</li><li class="action">Дава голямо количество готова функционалност.</li></ul></section>
+<section>
+<hgroup><h1>jQuery</h1><h2>Основни компоненти</h2></hgroup>
+<ul><li class="action">jQuery Core
+</li><li class="action">Selectors
+</li><li class="action">Attributes
+</li><li class="action">Тraversing
+</li><li class="action">Мanipulation
+</li><li class="action">CSS
+</li><li class="action">Events
+</li><li class="action">Effects
+</li><li class="action">Ajax
+</li><li class="action">Utilities
+</li><li class="action">jQuery UI</li></ul></section>
+<section>
+<hgroup><h1>jQuery</h1><h2>Документация</h2></hgroup>
+<p><a href="http://learn.jquery.com/">learn.jquery.com</a></p><p><a href="http://api.jquery.com/">api.jquery.com</a></p></section>
+<section>
+<hgroup><h1>Основна философия</h1></hgroup>
+<p>1. Намери DOM елемент</p><p>2. Направи нещо с него</p><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#loader&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Селектиране на DOM елементи</h1></hgroup>
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myId&#39;</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.myClass&#39;</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:first&#39;</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;tr:odd&#39;</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[target=_blank]&#39;</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div#content ul.productsList li&#39;</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a.myLinks, .yourLinks&#39;</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Работа със селекетираните елементи</h1></hgroup>
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(...).</span><span class="nx">html</span><span class="p">();</span>
+<span class="nx">$</span><span class="p">(...).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;&lt;h1&gt;Fuzzy Wuzzy&lt;/h1&gt;&#39;</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(...).</span><span class="nx">fadeOut</span><span class="p">();</span>
+<span class="nx">$</span><span class="p">(...).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(...).</span><span class="nx">height</span><span class="p">();</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;srt&#39;</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div:first&#39;</span><span class="p">).</span><span class="nx">next</span><span class="p">().</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});</script></body>

@@ -1,0 +1,156 @@
+= slide 'Глобални променливи' do
+  list:
+    В JavaScript се използват функции за определяне на scope.
+    Всяка променлива декларирана във функция е видима само във функцията.
+    Глобални са променливите декларирани извън функция. 
+    Глобални са и променливите, които не са декларирани с <b>var</b> във функция.
+= slide 'Глобални променливи' do
+  p Пример:
+  js_example:
+    var a = 0; // global
+    b = 0; // global
+
+    function example() {
+      var a = []; // local
+      var c = 0; // local
+      d = 0; // global
+      g = 0; // global
+    }
+= slide 'Глобален обект' do
+  list:
+    В JavaScript има един глобален обект, видим навсякъде в кода.
+    В браузърите този глобален обект е обекта <b>window</b>.
+    Всяка глобална променлива става property на глобалния обект.
+    Той може да се достъпи с <b>this</b> извън всяка функция.
+= slide 'this' do
+  p This винаги сочи към текущия scope.
+  js_example:
+    this; // global object
+    function example() {
+      this; // function scope
+    }
+= slide 'Проблем с глобалните променливи' do
+  list:
+    Те са споделени в целия код. Може да се достъпят от всякъде.
+    В две различни части на кода може да се дефинира променлива с еднакво име но различна цел.
+    Често в една страница има код с различен произход, което прави конфликта на имена по-лесен.
+= slide 'Замърсяване на глобалното пространство' do
+  js_example:
+    myglobal = "здравейте"; 
+    alert(myglobal); // "здравейте"
+    alert(window.myglobal); // "здравейте"
+    alert(window["myglobal"]); // "здравейте"
+    alert(this.myglobal); // "здравейте"
+= slide 'Минизиране на глобалните променливи' do
+  p Трябва да се стремим да минимизираме броя на глобалните променливи.
+= slide 'Шаблон за дизайн Модул' do
+  js_example:
+    var myModule = {
+      myProperty: "someValue",
+
+      myMethod: function () {
+        console.log("So Long, and Thanks for All the Fish");
+      }
+    };
+= slide 'Шаблон за дизайн Модул' do
+  js_example:
+    myModule.myProperty; // someValue
+    myModule.myMethod(); // So Long, and Thanks for All the Fish 
+  p Може и по-добре!
+= slide 'Истинския шаблон за дизайн Модул' do
+  js_example:
+    var basketModule = (function () {
+      // ...
+    }());
+= slide 'Истинския шаблон за дизайн Модул' do
+  js_example:
+    var basketModule = (function () {
+      var basket = []; // private
+      return {
+        addItem: function (item) {
+          basket.push(item);
+        },
+        getItemCount: function() {
+          //...
+        }
+      }
+    }());
+= slide 'Използване на шаблона за дизайн Модул' do
+  js_example:
+    basketModule.addItem({
+      item: "bread",
+      price: 0.5
+    });
+
+    alert(basketModule.getItemCount()); // 1
+    alert(basketModule.basket); // undefined
+= slide 'Singleton' do
+  js_example:
+    var mySingleton = (function () {
+      var instance;
+      function init() {
+        var privateVariable = "I am private";
+        return {
+          publicProperty: Math.random();
+        };
+      };
+      return {
+        getInstance: function () {
+          if (!instance) instance = init();
+          return instance;
+        }
+      };
+    })();
+= slide 'Употреба на Singleton обекти' do
+  js_example:
+    var singleA = mySingleton.getInstance();
+    var singleB = mySingleton.getInstance();
+    console.log(singleA.publicProperty === singleB.publicProperty);
+= slide 'Още шаблони за дизайн' do
+  p <a href="http://www.addyosmani.com/resources/essentialjsdesignpatterns/book/">Learning JavaScript Design Patterns</a>
+= slide 'jQuery', 'Основни идеи' do
+  list:
+    Работи във всички модерни браузъри.
+    Изграден е около CSS селекторите.
+    Пише се по-лесно от JavaScript.
+    Дава голямо количество готова функционалност.
+= slide 'jQuery', 'Основни компоненти' do
+  list:
+    jQuery Core
+    Selectors
+    Attributes
+    Тraversing
+    Мanipulation
+    CSS
+    Events
+    Effects
+    Ajax
+    Utilities
+    jQuery UI
+= slide 'jQuery', 'Документация' do
+  p <a href="http://learn.jquery.com/">learn.jquery.com</a>
+  p <a href="http://api.jquery.com/">api.jquery.com</a>
+= slide 'Основна философия' do
+  p 1. Намери DOM елемент
+  p 2. Направи нещо с него
+  js_example:
+    $('#loader').hide();
+= slide 'Селектиране на DOM елементи' do
+  js_example:
+    $('#myId');
+    $('.myClass');
+    $('img');
+    $('li:first');
+    $('tr:odd');
+    $('a[target=_blank]');
+    $('div#content ul.productsList li');
+    $('a.myLinks, .yourLinks');
+= slide 'Работа със селекетираните елементи' do
+  js_example:
+    $(...).html();
+    $(...).html('<h1>Fuzzy Wuzzy</h1>');
+    $(...).fadeOut();
+    $(...).addClass('error');
+    $(...).height();
+    $('a').attr('srt');
+    $('div:first').next().attr('id');
