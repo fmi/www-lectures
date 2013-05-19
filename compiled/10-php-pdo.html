@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><title>10. PHP и PDO</title></head><body><header><h1>10. PHP и PDO</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>10. PHP и PDO</h1><h2>27 май 2013</h2></hgroup></section><section>
+<hgroup><h1>Разширения</h1></hgroup>
+<p>В PHP има разширения(Extensions), които надграждат основната функционалност на езика.</p></section>
+<section>
+<hgroup><h1>PDO</h1></hgroup>
+<p>PHP Data Objects (PDO) е едно такова разширение. </p></section>
+<section>
+<hgroup><h1>PDO</h1></hgroup>
+<p>Дефинира лек, консистентен интерфейс за работа с различни СУБД.</p></section>
+<section>
+<hgroup><h1>PDO</h1></hgroup>
+<p>Предоставя абстрактен слой за работа с данни.</p><p>СУБД която използвате е без значение, защото интерфейса е еднакъв.</p></section>
+<section>
+<hgroup><h1>PDO Поддръжка</h1></hgroup>
+<p>MS SQL Server, DB2, MySQL, Oracle, PostgreSQL, SQLite....</p></section>
+<section>
+<hgroup><h1>PDO Свързване</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$user</span> <span class="o">=</span> <span class="s1">&#39;username&#39;</span><span class="p">;</span>
+  <span class="nv">$pass</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+  <span class="nv">$dbh</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s1">&#39;mysql:host=localhost;dbname=test&#39;</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">);</span>
+  <span class="c1">// use the connection here</span>
+
+
+  <span class="c1">// and now we&#39;re done; close it</span>
+  <span class="nv">$dbh</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>PDO Свързване</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$host</span>   <span class="o">=</span> <span class="s2">&quot;mysql4.000webhost.com&quot;</span><span class="p">;</span>
+  <span class="nv">$db</span>     <span class="o">=</span> <span class="s2">&quot;a1073825_fmi&quot;</span><span class="p">;</span>
+  <span class="nv">$user</span>   <span class="o">=</span> <span class="s2">&quot;a1073825_niki&quot;</span><span class="p">;</span>
+  <span class="nv">$pass</span>   <span class="o">=</span> <span class="s2">&quot;*****************&quot;</span><span class="p">;</span>
+
+  <span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s2">&quot;mysql:host=</span><span class="si">$host</span><span class="s2">;dbname=</span><span class="si">$db</span><span class="s2">&quot;</span><span class="p">,</span><span class="nv">$user</span><span class="p">,</span><span class="nv">$pass</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>PDO Извличане на Данни</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$host</span>   <span class="o">=</span> <span class="s2">&quot;mysql4.000webhost.com&quot;</span><span class="p">;</span>
+  <span class="nv">$db</span>     <span class="o">=</span> <span class="s2">&quot;a1073825_fmi&quot;</span><span class="p">;</span>
+  <span class="nv">$user</span>   <span class="o">=</span> <span class="s2">&quot;a1073825_niki&quot;</span><span class="p">;</span>
+  <span class="nv">$pass</span>   <span class="o">=</span> <span class="s2">&quot;*****************&quot;</span><span class="p">;</span>
+
+  <span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s2">&quot;mysql:host=</span><span class="si">$host</span><span class="s2">;dbname=</span><span class="si">$db</span><span class="s2">&quot;</span><span class="p">,</span><span class="nv">$user</span><span class="p">,</span><span class="nv">$pass</span><span class="p">);</span>
+
+  <span class="nv">$sql</span>     <span class="o">=</span> <span class="s2">&quot;SELECT * FROM MAJORS&quot;</span><span class="p">;</span>
+  <span class="nv">$query</span>   <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span><span class="p">(</span><span class="s2">&quot;failed!&quot;</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">(</span><span class="nx">PDO</span><span class="o">::</span><span class="na">FETCH_ASSOC</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">];</span>
+  <span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>PDO Извличане на Данни</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="o">....</span>
+  <span class="k">echo</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">(</span><span class="nx">PDO</span><span class="o">::</span><span class="na">FETCH_ASSOC</span><span class="p">)){</span>
+    <span class="k">echo</span> <span class="s1">&#39;&lt;li&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">echo</span> <span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Prepared statements</h1></hgroup>
+<p>Заявка, записан в базата от данни и която може да се изпълнява многократно с подаване на различни данни.</p></section>
+<section>
+<hgroup><h1>Prepared statements</h1></hgroup>
+<p>Етапи:</p><ul><li class="action">Заявката се съставя от приложението и се изпраща на базата от данни.
+</li><li class="action">Базата от данни парсва, компилира, оптимизира заявката и я запазва.
+</li><li class="action">В следващ момент, приложението подава данни към тази заявка и тя се изпълнява, като това се повтаря многократно.</li></ul></section>
+<section>
+<hgroup><h1>Prepared statements</h1></hgroup>
+<p>Избягва се постоянното парсване, компилиране и оптимизиране.</p><p>Повишава се бързодействието.</p><p>Повишава се сигурността.</p></section>
+<section>
+<hgroup><h1>Prepared statements</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;</span>
+<span class="s2">      INSERT INTO MAJORS (NAME, ACADEMIC_DEGREE) </span>
+<span class="s2">      VALUES (:name, :academic_degree)&quot;</span><span class="p">);</span>
+  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:name&#39;</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
+  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:academic_degree&#39;</span><span class="p">,</span> <span class="nv">$academic_degree</span><span class="p">);</span>
+
+  <span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;Biology&#39;</span><span class="p">;</span>
+  <span class="nv">$academic_degree</span> <span class="o">=</span> <span class="s1">&#39;bachelor&#39;</span><span class="p">;</span>
+  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+
+  <span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;Management&#39;</span><span class="p">;</span>
+  <span class="nv">$academic_degree</span> <span class="o">=</span> <span class="s1">&#39;master&#39;</span><span class="p">;</span>
+  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Prepared statements</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="k">echo</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
+  <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM MAJORS where ACADEMIC_DEGREE = ?&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;bachelor&#39;</span><span class="p">)))</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">echo</span> <span class="s1">&#39;&lt;li&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s2">&quot;NAME&quot;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">echo</span> <span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">;</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Транзакции</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">beginTransaction</span><span class="p">();</span>
+
+  <span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO fruit (name, calories) VALUES (?, ?)&#39;</span><span class="p">;</span>
+  <span class="nv">$sth</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+
+  <span class="k">foreach</span> <span class="p">(</span><span class="nv">$fruits</span> <span class="k">as</span> <span class="nv">$fruit</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nv">$sth</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+          <span class="nv">$fruit</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span>
+          <span class="nv">$fruit</span><span class="o">-&gt;</span><span class="na">calories</span><span class="p">,</span>
+      <span class="p">));</span>
+  <span class="p">}</span>
+  <span class="nv">$dbh</span><span class="o">-&gt;</span><span class="na">commit</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Транзакции</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">beginTransaction</span><span class="p">();</span>
+
+  <span class="nv">$sth</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">exec</span><span class="p">(</span><span class="s2">&quot;DROP TABLE MAJORS&quot;</span><span class="p">);</span>
+
+  <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">rollBack</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Работа с форми</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;</span>
+<span class="s2">        INSERT INTO MAJORS (NAME, ACADEMIC_DEGREE) </span>
+<span class="s2">        VALUES (:name, :academic_degree)&quot;</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:name&#39;</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:academic_degree&#39;</span><span class="p">,</span> <span class="nv">$academic_degree</span><span class="p">);</span>
+
+    <span class="nv">$name</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
+    <span class="nv">$academic_degree</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;academic_degree&#39;</span><span class="p">];</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+  <span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});</script></body>
