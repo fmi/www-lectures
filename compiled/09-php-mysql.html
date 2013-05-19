@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><title>09. PHP и MySQL</title></head><body><header><h1>09. PHP и MySQL</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>09. PHP и MySQL</h1><h2>20 май 2013</h2></hgroup></section><section>
+<hgroup><h1>Релационни бази от данни</h1></hgroup>
+<p><img src="images/erd.png" /></p></section>
+<section>
+<hgroup><h1>SQL</h1></hgroup>
+<p>Език за работа с данни.</p><p>Той позволява:</p><ul><li class="action">Вмъкване на данни(Insert)
+</li><li class="action">Извличане на данни(Select)
+</li><li class="action">Редактиране на данни(Update)
+</li><li class="action">Изтриване на данни(Delete)</li></ul></section>
+<section>
+<hgroup><h1>Извличане на данни(Select)</h1></hgroup>
+<p><img src="images/erd.png" /></p><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">MAJORS</span>
+<span class="k">SELECT</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">ACADEMIC_DEGREE</span> <span class="k">FROM</span> <span class="n">MAJORS</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">MAJORS</span> <span class="k">WHERE</span> <span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;Software Engineering&#39;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">MAJORS</span> <span class="k">WHERE</span> <span class="n">START_YEAR</span> <span class="o">=</span> <span class="mi">2011</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Вмъкване на данни(Insert)</h1></hgroup>
+<p><img src="images/erd.png" /></p><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">MAJORS</span> <span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">ACADEMIC_DEGREE</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Software Eginnering&#39;</span><span class="p">,</span> <span class="s1">&#39;bachelor&#39;</span><span class="p">)</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>PHP Среда</h1></hgroup>
+<p><a href="http://www.000webhost.com/">http://www.000webhost.com/</a></p></section>
+<section>
+<hgroup><h1>Начало</h1></hgroup>
+<p><img src="images/signup_button.png" /></p></section>
+<section>
+<hgroup><h1>Регистрация</h1></hgroup>
+<p><img src="images/registration_form.png" /></p></section>
+<section>
+<hgroup><h1>Основни Панели</h1></hgroup>
+<p><img src="images/acc_main_menu.png" /></p><p><img src="images/acc_domain_menu.png" /></p></section>
+<section>
+<hgroup><h1>Основни Панели</h1></hgroup>
+<p><img src="images/acc_other_boxes.png" /></p></section>
+<section>
+<hgroup><h1>Файлов Мениджър</h1></hgroup>
+<p><img src="images/acc_file_manager.png" /></p></section>
+<section>
+<hgroup><h1>Работа с Файлов Мениджър</h1></hgroup>
+<p><img src="images/acc_file_manager_inside.png" /></p></section>
+<section>
+<hgroup><h1>Работа с Файлов Мениджър</h1></hgroup>
+<p><img src="images/acc_test_file_manager.png" /></p></section>
+<section>
+<hgroup><h1>Работа с Файлов Мениджър</h1></hgroup>
+<p><img src="images/acc_test_result.png" /></p></section>
+<section>
+<hgroup><h1>MySQL</h1></hgroup>
+<p>[от Уикипедия, свободната енциклопедия] MySQL SQL система за управление на бази данни (СУБД) с повече от шест милиона инсталации.</p></section>
+<section>
+<hgroup><h1>МySQL Настройка</h1></hgroup>
+<p><img src="images/acc_mysql.png" /></p></section>
+<section>
+<hgroup><h1>МySQL Настройка</h1></hgroup>
+<p><img src="images/acc_new_db_and_user.png" /></p></section>
+<section>
+<hgroup><h1>phpMyAdmin</h1></hgroup>
+<p>Инструмент за по-удобна работа с MySQL реализиран на PHP.</p><p><img src="images/acc_phpmyadmin_link.png" /></p></section>
+<section>
+<hgroup><h1>phpMyAdmin Вход</h1></hgroup>
+<p></p><img src="images/acc_start_phpmyadmin.png" /></section>
+<section>
+<hgroup><h1>ERD</h1></hgroup>
+<p><img src="images/erd.png" /></p></section>
+<section>
+<hgroup><h1>Създаване на таблиците</h1></hgroup>
+<p><img src="images/acc_phpmyadmin_1.png" /></p></section>
+<section>
+<hgroup><h1>Създаване на таблиците</h1></hgroup>
+<p><img src="images/acc_phpmyadmin_2.png" /></p></section>
+<section>
+<hgroup><h1>Създаване на таблиците</h1></hgroup>
+<p><img src="images/acc_phpmyadmin_3.png" /></p></section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});</script></body>

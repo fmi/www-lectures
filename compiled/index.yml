@@ -32,5 +32,9 @@
   slug: 07-php
 8:
   title: 08. PHP ООП
-  datе: 2013-04-29
+  date: 2013-04-29
   slug: 08-php-oop
+9:
+  title: НОИТ '13
+  date: 2013-05-15
+  slug: 09-noit
