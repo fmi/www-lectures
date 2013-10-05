@@ -1,94 +1,685 @@
-<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><title>01. HTTP и браузърите</title></head><body><header><h1>01. HTTP и браузърите</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>01. HTTP и браузърите</h1><h2>4 март 2013</h2></hgroup></section><section>
+<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><title>01. Въведение в PHP и HTML</title></head><body><header><h1>01. Въведение в PHP и HTML</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>01. Въведение в PHP и HTML</h1><h2>5 октомври 2013</h2></hgroup></section><section>
 <hgroup><h1>За курса</h1></hgroup>
-<ul><li class="action">Николай Стоицев / nstoitsev AT gmail.com</li><li class="action"><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li><li class="action">Ключ за записване: www2702</li></ul></section>
+<ul><li class="action"><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li><li class="action">Ключ за записване: ...</li></ul></section>
 <section>
 <hgroup><h1>Теми</h1></hgroup>
-<ul><li class="action">HTTP & HTML syntax</li><li class="action">HTML & CSS</li><li class="action">HTML & CSS</li><li class="action">JavaScript Introduction</li><li class="action">JavaScript Games</li><li class="action">JavaScript Patterns</li><li class="action">PHP Basics</li><li class="action">PHP OOP</li><li class="action">PHP design patterns</li><li class="action">DBMSs</li><li class="action">SQL</li><li class="action">PHP & SQL (MySQL)</li><li class="action">MVC</li></ul></section>
-<section>
-<hgroup><h1>Интернет</h1></hgroup>
-<p>От <a href="http://bg.wikipedia.org/wiki/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82">Wikipedia</a>: Интернет е глобална система от взаимносвързани компютърни мрежи.</p><ul><li class="action">Компютрите, сървърите, мобилните устройства се наричат крайни точки.</li><li class="action">Всяка крайна точка си има IP адрес.</li><li class="action">За да не помним IP адресите на сървърите, ползваме домейн имена.</li></ul></section>
-<section>
-<hgroup><h1>Взаимносвързани мрежи</h1></hgroup>
-<img src="images/oo_525031.jpg" style="width: 60%" /></section>
-<section>
-<hgroup><h1>Протоколи</h1></hgroup>
-<p>От <a href="http://bg.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D1%83%D0%BD%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B5%D0%BD_%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB">Wikipedia</a>: Мрежов протокол е система от стандартни правила за обмяната на информация между процеси или компютри, които са свързани в една компютърна мрежа, и то по начин, гарантиращ успешната връзка между два или повече комуникационни апарата (крайни устройства).</p></section>
+<ul><li class="action">Въведение в PHP и HTML</li><li class="action">PHP, SQL & HTML </li><li class="action">Работа с форми и Regex</li><li class="action">ООП с PHP</li><li class="action">HTML & CSS, Част 1</li><li class="action">HTML & CSS, Част 2</li><li class="action">Преговор 1</li><li class="action">PHP MVC</li><li class="action">Аутентикация и ауторизация</li><li class="action">JavaScript & DOM</li><li class="action">jQuery & AJAX</li><li class="action">Преговор 2</li><li class="action">Web tools</li><li class="action">Advanced CSS</li><li class="action">PHP & JS libs</li></ul></section>
 <section>
 <hgroup><h1>Клинет-сървър</h1></hgroup>
 <img src="images/client_net.jpg" style="width: 60%" /></section>
 <section>
-<hgroup><h1>Демо</h1></hgroup>
-<p><a href="http://www.youtube.com/watch?v=PBWhzz_Gn10&feature=share&list=UUwecCf7kkl97hfWparLHYvg">Warriors of the Net</a></p></section>
+<hgroup><h1>PHP</h1></hgroup>
+<img src="images/get-php-file.png" /></section>
 <section>
-<hgroup><h1>HTTP</h1></hgroup>
-<p>Протокол за трансфер на хипертекст.</p><ul><li class="action">Клиент - Браузър.</li><li class="action">Сървър - Уеб сървър.</li><li class="action">Уеб сървъра и браузъра си говорят по HTTP.</li></ul></section>
+<hgroup><h1>PHP</h1></hgroup>
+<ul><li class="action">Браузъра изпраща HTTP заявка към сървъра.</li><li class="action">Сървъря я обработва.</li><li class="action">Той може да прочете информация от база от данни.</li><li class="action">Накрая генерира отговор под формата на HTML документ.</li></ul></section>
 <section>
-<hgroup><h1>HTTP заявки</h1></hgroup>
-<p>Заявка, е съобщение, което се изпраща от уеб браузъра към уеб сървъра.</p><p>То може да бъде няколко вида:</p><ul><li class="action">GET</li><li class="action">POST</li><li class="action">PUT</li><li class="action">DELETE</li><li class="action">HEAD</li><li class="action">и още три...</li></ul></section>
+<hgroup><h1>Пример за HTML страница</h1></hgroup>
+<p>Запишете го във файл index.html и го отворете в браузъра.</p><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;title&gt;</span>My title<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>My header<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://example.com&quot;</span><span class="nt">&gt;</span>My Link<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre>
+</div>
+</section>
 <section>
-<hgroup><h1>HTTP комуникация</h1></hgroup>
-<p>Стандартно зареждане на facebook:</p><ul><li class="action">Браузъра изпраща GET заявка към facebook за получаване на началната страница.</li><li class="action">Сървъра на facebook отгоравя като изпраща отговор на клиента.</li><li class="action">Браузъра прочита отговора и го показва на екрана.</li><li class="action">Потребителя си пише името и парола и натиска бутона за вход.</li><li class="action">Браузъра изпраща POST заявка с името и паролата на потребителя.</li><li class="action">Сървъра на facebook проверя дали са коректни.</li><li class="action">Ако не са коректни, сървъра връща съобщение в което записва грешката.</li><li class="action">Ако са коректни, сървъра изпраща нова страница с профила на потребителя и news feed-a му.</li></ul></section>
+<hgroup><h1>HTML тагове</h1></hgroup>
+<p>Задача: Да запишем следните HTML тагове във файла и да го отворим в браузъра.</p></section>
 <section>
-<hgroup><h1>HTML</h1><h2>HyperText Markup Language</h2></hgroup>
-<p>Език за описване на съдържанието на уеб страниците. Пример.</p></section>
+<hgroup><h1>Заглавия</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>This is heading 1<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;h2&gt;</span>This is heading 2<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;h3&gt;</span>This is heading 3<span class="nt">&lt;/h3&gt;</span>
+<span class="nt">&lt;h4&gt;</span>This is heading 4<span class="nt">&lt;/h4&gt;</span>
+<span class="nt">&lt;h5&gt;</span>This is heading 5<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;h6&gt;</span>This is heading 6<span class="nt">&lt;/h6&gt;</span>
+</pre>
+</div>
+</section>
 <section>
-<hgroup><h1>Зареждане на страници</h1></hgroup>
-<ul><li class="action">Браузъра изпраща заявка към сървъра.</li><li class="action">Сървъра отговаря с HTML.</li></ul></section>
+<hgroup><h1>Параграф</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;p&gt;</span>Paragraph with text.<span class="nt">&lt;/p&gt;</span>
+</pre>
+</div>
+</section>
 <section>
-<hgroup><h1>Как работи браузъра</h1></hgroup>
+<hgroup><h1>Секции в страницата</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;span&gt;</span>Some text here.<span class="nt">&lt;/span&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Секции в страницата</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;div&gt;</span>Some text here.<span class="nt">&lt;/div&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Номериран списък</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;ol&gt;</span>
+    <span class="nt">&lt;li&gt;</span>To learn HTML<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>To show off<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Because I&#39;ve fallen in love with my computer and want to give her some HTML loving.<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ol&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Неномериран Списък</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li&gt;</span>To learn HTML<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>To show off<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Because I&#39;ve fallen in love with my computer and want to give her some HTML loving.<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Хиперлинк</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://example.com&quot;</span> <span class="na">title=</span><span class="s">&quot;Link to example.com&quot;</span><span class="nt">&gt;</span>My Link<span class="nt">&lt;/a&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Изображения</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;http://example.com/image.jpg&quot;</span> <span class="na">alt=</span><span class="s">&quot;Example Image&quot;</span> <span class="nt">/&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Таблица</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;table&gt;</span>
+  <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Row 1, Cell 1<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Row 1, Cell 2<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Row 1, Cell 3<span class="nt">&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Row 2, Cell 1<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Row 2, Cell 2<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Row 2, Cell 3<span class="nt">&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Семантични тагове</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;article&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Internet Explorer 9<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;p&gt;</span>Windows Internet Explorer 9 (abbreviated as IE9) was released to
+  the  public on March 14, 2011 at 21:00 PDT.....<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/article&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Семантични тагове</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;aside&gt;</span>
+  <span class="nt">&lt;h4&gt;</span>Epcot Center<span class="nt">&lt;/h4&gt;</span>
+  <span class="nt">&lt;p&gt;</span>The Epcot Center is a theme park in Disney World, Florida.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/aside&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Семантични тагове</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;footer&gt;</span>
+  <span class="nt">&lt;p&gt;</span>Posted by: Hege Refsnes<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>Contact information: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;mailto:someone@example.com&quot;</span><span class="nt">&gt;</span>
+  someone@example.com<span class="nt">&lt;/a&gt;</span>.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/footer&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Семантични тагове</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;header&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Example title<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;p&gt;</span>Example text.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Семантични тагове</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;nav&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/html/&quot;</span><span class="nt">&gt;</span>HTML<span class="nt">&lt;/a&gt;</span> |
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/css/&quot;</span><span class="nt">&gt;</span>CSS<span class="nt">&lt;/a&gt;</span> |
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/js/&quot;</span><span class="nt">&gt;</span>JavaScript<span class="nt">&lt;/a&gt;</span> |
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/jquery/&quot;</span><span class="nt">&gt;</span>jQuery<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Пример за PHP</h1></hgroup>
 <div class="highlight"><pre><span class="x">&lt;!DOCTYPE html&gt;</span>
-<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
-<span class="x">&lt;head&gt;</span>
-<span class="x">  &lt;title&gt;My title&lt;/title&gt;</span>
-<span class="x">&lt;/head&gt;</span>
-<span class="x">&lt;body&gt;</span>
-<span class="x">  &lt;h1&gt;My header&lt;/h1&gt;</span>
-<span class="x">  &lt;a href=&quot;http://example.com&quot;&gt;My Link&lt;/a&gt;</span>
-<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">  &lt;head&gt;</span>
+<span class="x">    &lt;title&gt;Example&lt;/title&gt;</span>
+<span class="x">  &lt;/head&gt;</span>
+<span class="x">  &lt;body&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+      <span class="k">echo</span> <span class="s2">&quot;Hi, I&#39;m a PHP script!&quot;</span><span class="p">;</span>
+    <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">  &lt;/body&gt;</span>
 <span class="x">&lt;/html&gt;</span>
 </pre>
 </div>
 </section>
 <section>
-<hgroup><h1>Как работи браузъра</h1></hgroup>
-<p>HTML-a се описва в дървовидна структура. Тя се нарича DOM дърво.    </p><img src="images/htmltree.gif" /></section>
+<hgroup><h1>Пример за PHP</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;title&gt;</span>Example<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        Hi, I&#39;m a PHP script!
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre>
+</div>
+</section>
 <section>
-<hgroup><h1>Как работи браузъра</h1></hgroup>
-<img src="images/browser_flow.png" /></section>
-<section>
-<hgroup><h1>HTML</h1></hgroup>
-<p>Описва само съдържанието.</p></section>
-<section>
-<hgroup><h1>CSS</h1><h2>Cascading Style Sheets</h2></hgroup>
-<p>Съдържа се в HTML-a. Описва как да изглежда HTML документ. Например:</p><ul><li class="action">Какъв цвят да е даден текст.</li><li class="action">Кое колко да е голямо.</li><li class="action">Как да са подредени нещата на екрана.</li><li class="action">И още много... ще имаме отделни упражнения за него.</li></ul></section>
-<section>
-<hgroup><h1>Пример CSS</h1></hgroup>
+<hgroup><h1>Пример за PHP</h1></hgroup>
 <div class="highlight"><pre><span class="x">&lt;!DOCTYPE html&gt;</span>
-<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
-<span class="x">&lt;head&gt;</span>
-<span class="x">  &lt;title&gt;My title&lt;/title&gt;</span>
-<span class="x">  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; type=&quot;text/css&quot; /&gt;</span>
-<span class="x">&lt;/head&gt;</span>
-<span class="x">&lt;body&gt;</span>
-<span class="x">  &lt;h1&gt;My header&lt;/h1&gt;</span>
-<span class="x">  &lt;a href=&quot;http://example.com&quot;&gt;My Link&lt;/a&gt;</span>
-<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">  &lt;head&gt;</span>
+<span class="x">    &lt;title&gt;Example&lt;/title&gt;</span>
+<span class="x">  &lt;/head&gt;</span>
+<span class="x">  &lt;body&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+      <span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Hi, I&#39;m a PHP script!&lt;/h2&gt;&quot;</span><span class="p">;</span>
+    <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">  &lt;/body&gt;</span>
 <span class="x">&lt;/html&gt;</span>
 </pre>
 </div>
 </section>
 <section>
-<hgroup><h1>Пак как работи браузъра</h1></hgroup>
-<img src="images/webkitflow.png" /></section>
+<hgroup><h1>Пример за PHP</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;title&gt;</span>Example<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>Hi, I&#39;m a PHP script!<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre>
+</div>
+</section>
 <section>
-<hgroup><h1>Интерпретиране на CSS</h1></hgroup>
-<img src="images/image023.png" /></section>
+<hgroup><h1>Променливи</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$var</span> <span class="o">=</span> <span class="s1">&#39;Bob&#39;</span><span class="p">;</span>
+  <span class="nv">$Var</span> <span class="o">=</span> <span class="s1">&#39;Joe&#39;</span><span class="p">;</span>
+  <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">$var</span><span class="s2">, </span><span class="si">$Var</span><span class="s2">&quot;</span><span class="p">;</span>      <span class="c1">// outputs &quot;Bob, Joe&quot;</span>
+
+  <span class="err">$</span><span class="mi">4</span><span class="nx">site</span> <span class="o">=</span> <span class="s1">&#39;not yet&#39;</span><span class="p">;</span>     <span class="c1">// invalid; starts with a number</span>
+  <span class="nv">$_4site</span> <span class="o">=</span> <span class="s1">&#39;not yet&#39;</span><span class="p">;</span>    <span class="c1">// valid; starts with an underscore</span>
+  <span class="nv">$t</span><span class="err">ä</span><span class="nx">yte</span> <span class="o">=</span> <span class="s1">&#39;mansikka&#39;</span><span class="p">;</span>    <span class="c1">// valid; &#39;ä&#39; is (Extended) ASCII 228.</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
 <section>
-<hgroup><h1>Интерпретиране на CSS</h1></hgroup>
-<img src="images/image025.png" /></section>
+<hgroup><h1>Константи</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="c1">// Valid constant names</span>
+  <span class="nb">define</span><span class="p">(</span><span class="s2">&quot;FOO&quot;</span><span class="p">,</span>     <span class="s2">&quot;something&quot;</span><span class="p">);</span>
+  <span class="nb">define</span><span class="p">(</span><span class="s2">&quot;FOO2&quot;</span><span class="p">,</span>    <span class="s2">&quot;something else&quot;</span><span class="p">);</span>
+  <span class="nb">define</span><span class="p">(</span><span class="s2">&quot;FOO_BAR&quot;</span><span class="p">,</span> <span class="s2">&quot;something more&quot;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
 <section>
-<hgroup><h1>Още</h1></hgroup>
-<ul><li class="action"><a href="http://taligarsiel.com/Projects/howbrowserswork1.htm">How browsers work</a></li></ul></section>
+<hgroup><h1>Типове в PHP</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$myAge</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>                    <span class="c1">// a PHP Integer - always available</span>
+  <span class="nv">$yourAge</span> <span class="o">=</span> <span class="mf">15.5</span><span class="p">;</span>                <span class="c1">// a PHP Float   - always available</span>
+  <span class="nv">$hasHair</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>                <span class="c1">// a PHP Boolean - always available</span>
+  <span class="nv">$greeting</span> <span class="o">=</span> <span class="s2">&quot;Hello World!&quot;</span>      <span class="c1">// a PHP String  - always available</span>
+
+  <span class="nv">$person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>         <span class="c1">// a PHP Person  - available NOW!</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Предефинирани променливи в PHP</h1></hgroup>
+<div class="highlight"><pre><span class="x">$_SERVER // Server and execution environment information</span>
+<span class="x">$_GET // HTTP GET variables</span>
+<span class="x">$_POST // HTTP POST variables</span>
+<span class="x">$_FILES // HTTP File Upload variables</span>
+<span class="x">$_REQUEST // HTTP Request variables</span>
+<span class="x">$_SESSION // Session variables</span>
+<span class="x">$_ENV // Environment variables</span>
+<span class="x">$_COOKIE // HTTP Cookies</span>
+<span class="x">$php_errormsg // The previous error message</span>
+<span class="x">$HTTP_RAW_POST_DATA // Raw POST data</span>
+<span class="x">$http_response_header // HTTP response headers</span>
+<span class="x">$argc // The number of arguments passed to script</span>
+<span class="x">$argv // Array of arguments passed to script</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Оператори за сръвнение</h1></hgroup>
+<table class="doctable table">
+<thead>
+  <tr>
+   <th>Example</th>
+   <th>Name</th>
+   <th>Result</th>
+  </tr>
+</thead>
+
+<tbody class="tbody">
+  <tr>
+   <td>$a == $b</td>
+   <td>Equal</td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is equal to <var class="varname"><var class="varname">$b</var></var> after type juggling.</td>
+  </tr>
+
+  <tr>
+   <td>$a === $b</td>
+   <td>Identical</td>
+   <td>
+    <strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is equal to <var class="varname"><var class="varname">$b</var></var>, and they are of the same
+    type.
+   </td>
+  </tr>
+
+  <tr>
+   <td>$a != $b</td>
+   <td>Not equal</td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is not equal to <var class="varname"><var class="varname">$b</var></var> after type juggling.</td>
+  </tr>
+
+  <tr>
+   <td>$a &lt;&gt; $b</td>
+   <td>Not equal</td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is not equal to <var class="varname"><var class="varname">$b</var></var> after type juggling.</td>
+  </tr>
+
+  <tr>
+   <td>$a !== $b</td>
+   <td>Not identical</td>
+   <td>
+    <strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is not equal to <var class="varname"><var class="varname">$b</var></var>, or they are not of the same
+    type.
+   </td>
+  </tr>
+
+  <tr>
+   <td>$a &lt; $b</td>
+   <td>Less than</td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is strictly less than <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a &gt; $b</td>
+   <td>Greater than</td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is strictly greater than <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a &lt;= $b</td>
+   <td>Less than or equal to </td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is less than or equal to <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a &gt;= $b</td>
+   <td>Greater than or equal to </td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is greater than or equal to <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+</tbody>
+
+</table></section>
+<section>
+<hgroup><h1>Аритметични оператори</h1></hgroup>
+<table class="doctable table">
+  <thead>
+  <tr>
+   <th>Example</th>
+   <th>Name</th>
+   <th>Result</th>
+  </tr>
+
+  </thead>
+
+  <tbody class="tbody">
+  <tr>
+   <td>-$a</td>
+   <td>Negation</td>
+   <td>Opposite of <var class="varname"><var class="varname">$a</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a + $b</td>
+   <td>Addition</td>
+   <td>Sum of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a - $b</td>
+   <td>Subtraction</td>
+   <td>Difference of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a * $b</td>
+   <td>Multiplication</td>
+   <td>Product of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a / $b</td>
+   <td>Division</td>
+   <td>Quotient of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a % $b</td>
+   <td>Modulus</td>
+   <td>Remainder of <var class="varname"><var class="varname">$a</var></var> divided by <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  </tbody>
+
+</table></section>
+<section>
+<hgroup><h1>Аритметика</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="k">echo</span> <span class="p">(</span><span class="mi">5</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>    <span class="c1">// prints 2</span>
+  <span class="k">echo</span> <span class="p">(</span><span class="mi">5</span> <span class="o">%</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>   <span class="c1">// prints 2</span>
+  <span class="k">echo</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>   <span class="c1">// prints -2</span>
+  <span class="k">echo</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span> <span class="o">%</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>  <span class="c1">// prints -2</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>if</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">&gt;</span> <span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">echo</span> <span class="s2">&quot;a is bigger than b&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">==</span> <span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">echo</span> <span class="s2">&quot;a is equal to b&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;a is smaller than b&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Алтернативен If</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">echo</span> <span class="s2">&quot;a equals 5&quot;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">&quot;...&quot;</span><span class="p">;</span>
+  <span class="k">elseif</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">echo</span> <span class="s2">&quot;a equals 6&quot;</span><span class="p">;</span>
+   <span class="k">echo</span> <span class="s2">&quot;!!!&quot;</span><span class="p">;</span>
+  <span class="k">else</span><span class="o">:</span>
+    <span class="k">echo</span> <span class="s2">&quot;a is neither 5 nor 6&quot;</span><span class="p">;</span>
+  <span class="k">endif</span><span class="p">;</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>While</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$i</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">echo</span> <span class="nv">$i</span><span class="p">;</span>
+    <span class="nv">$i</span><span class="o">++</span><span class="p">;</span>
+  <span class="k">endwhile</span><span class="p">;</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>For</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$i</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Масиви</h1></hgroup>
+<p>В PHP има само една структура от данни - масив.</p><div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$array</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bar&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+  <span class="p">);</span>
+
+  <span class="c1">// as of PHP 5.4</span>
+  <span class="nv">$array</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bar&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+  <span class="p">];</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Foreach</h1></hgroup>
+<p>Обхожда последователно елементите на колекция.</p><div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$arr</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+  <span class="k">foreach</span> <span class="p">(</span><span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Foreach</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nv">$a</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">&quot;one&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;two&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;three&quot;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;seventeen&quot;</span> <span class="o">=&gt;</span> <span class="mi">17</span>
+  <span class="p">);</span>
+
+  <span class="k">foreach</span> <span class="p">(</span><span class="nv">$a</span> <span class="k">as</span> <span class="nv">$k</span> <span class="o">=&gt;</span> <span class="nv">$v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">$k</span><span class="s2"> -&gt; </span><span class="si">$v</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Switch</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nv">$i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+      <span class="k">echo</span> <span class="s2">&quot;i equals 0&quot;</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+      <span class="k">echo</span> <span class="s2">&quot;i equals 1&quot;</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+      <span class="k">echo</span> <span class="s2">&quot;i equals 2&quot;</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="k">echo</span> <span class="s2">&quot;i is not equal to 0, 1 or 2&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Среда</h1></hgroup>
+<p><a href="http://codepad.viper-7.com/">http://codepad.viper-7.com/</a></p></section>
+<section>
+<hgroup><h1>Задача 1</h1></hgroup>
+<div class="highlight"><pre><span class="x">$x = 10;</span>
+<span class="x">$y = 7;</span>
+</pre>
+</div>
+<p>Използвайте двете променливи и напишете код, които да принтира следното:</p><div class="highlight"><pre>10 + 7 = 17
+10 - 7 = 3
+10 * 7 = 70
+10 / 7 = 1.4285714285714
+10 % 7 = 3
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача 2</h1></hgroup>
+<p>Напишете цикъл, който да визуализира следното:</p><p>abc abc abc abc abc abc abc abc abc</p><p>xyz xyz xyz xyz xyz xyz xyz xyz xyz</p><p>1 2 3 4 5 6 7 8 9</p><div class="highlight"><pre>1. Item A
+2. Item B
+3. Item C
+4. Item D
+5. Item E
+6. Item F
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача 3</h1></hgroup>
+<p>Отпечатайте квадратите на числата от 1 до 12.</p></section>
+<section>
+<hgroup><h1>Задача 4</h1></hgroup>
+<p>Ползвайте вложени цикли и съставете следната талица за умножение:</p><table style="border-collapse: collapse; border: 1px solid black;background-color: #ffff00"><tbody><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">1</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">2</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">3</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">5</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">7</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">2</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">8</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">10</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">14</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">3</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">9</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">15</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">18</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">21</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">8</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">16</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">20</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">24</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">28</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">5</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">10</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">15</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">20</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">25</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">30</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">35</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">18</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">24</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">30</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">36</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">42</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">7</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">14</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">21</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">28</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">35</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">42</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">49</td>
+  </tr></tbody>
+</table></section>
+<section>
+<hgroup><h1>Задача 5</h1></hgroup>
+<p>Направете масив със следните стойности:</p><p>Tokyo, Mexico City, New York City, Mumbai, Seoul, Shanghai, Lagos, Buenos Aires, Cairo, London</p><p>Отпечатайте ги, разделени със запетая.</p></section>
+<section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$arg_1</span><span class="p">,</span> <span class="nv">$arg_2</span><span class="p">,</span> <span class="cm">/* ..., */</span> <span class="nv">$arg_n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;Example function.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nv">$retval</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="k">function</span> <span class="nf">takes_array</span><span class="p">(</span><span class="nv">$input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">$input[0]</span><span class="s2"> + </span><span class="si">$input[1]</span><span class="s2"> = &quot;</span><span class="p">,</span> <span class="nv">$input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="nv">$input</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="k">function</span> <span class="nf">makecoffee</span><span class="p">(</span><span class="nv">$type</span> <span class="o">=</span> <span class="s2">&quot;cappuccino&quot;</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&quot;Making a cup of </span><span class="si">$type</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">();</span> <span class="c1">//Making a cup of cappuccino.</span>
+  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">(</span><span class="k">null</span><span class="p">);</span> <span class="c1">//Making a cup of . </span>
+  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">(</span><span class="s2">&quot;espresso&quot;</span><span class="p">);</span> <span class="c1">//Making a cup of espresso.</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача 6</h1></hgroup>
+<p>Напишете функция, която приема като аргументи дължина и ширина на правоъгълник и отпечатва "Правоъгълника с височина ... и ширина ... има лице ...".</p></section>
+<section>
+<hgroup><h1>Задача 7</h1></hgroup>
+<p>Напишете функция, която смята факториел, чрез рекурсия.</p></section>
+<section>
+<hgroup><h1>Задача 8</h1></hgroup>
+<p>Напишете функция която генерира вложени html елементи, като приема като аргументи типа на елемента и нивата на влагане.</p><p>Пример: generate_nested_elements('div', 3);</p><div class="highlight"><pre><span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre>
+</div>
+</section>
 <section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
