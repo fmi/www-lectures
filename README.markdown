@@ -27,6 +27,7 @@
 
 Може да използвате syntax highlighting, за примерите, като посочите езика в lang таг. Пример:
 
+```
   example:
     [lang:php]
     <?php //... ?>
@@ -34,6 +35,7 @@
   example:
     [lang:javascript]
     alert('boo');
+```
 
 ## Упътвания за принос
 
