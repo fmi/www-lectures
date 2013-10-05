@@ -16,55 +16,65 @@
   p JavaScript е най-популарния език в GitHub.
   img src="images/github-languages.png"
 = slide 'JavaScript в HTML' do
-  html:
+  example:
+    [lang:html]
     <script type="text/javascript" src="file.js" />
 = slide 'JavaScript в HTML' do
-  html: 
+  example:
+    [lang:html] 
     <script type="text/javascript">...</script>
 = slide 'Променливи' do
-  js_example:
+  example:
+    [lang:javascript]
     var intValue = 1;
     var floatValue = 3.0;
     var stringValue = "This is a string\n";
     var sqString = 'This is also a string';
 = slide 'Масиви(вектори)' do
   p Последователност от елементи. Индексирана и поредна колекция.
-  js_example:
+  example:
+    [lang:javascript]
     var emptyList = [];
     var homogenousList = [1, 2, 3];
     var heterogenousList = ["one", 2, 3.0];
 = slide 'Достъп по елементи на масив' do
-  js_example:
+  example:
+    [lang:javascript]
     var heterogenousList = ["one", 2, 3.0];
     alert(heterogenousList[0]); //"one"
     alert(heterogenousList[1]); //2
     alert(heterogenousList[2]); //3.0
 = slide 'Речници(обекти)' do
   p Или още map, хешове, речници, асоциативни масиви и други. Съдържа двойки ключ стойност.
-  js_example:
+  example:
+    [lang:javascript]
     var emptyMap = {};
     var homogenousMap = {"one": 1, "two": 2, "three": 3};
     var heterogenousMap = {"one": 1,"two": "two","three": 3.0};
 = slide 'Достъп до елемент на речник' do
-  js_example:
+  example:
+    [lang:javascript]
     var homogenousMap = {"one": 1, "two": 2, "three": 3};
     alert(homogenousMap.one);    //1
     alert(homogenousMap["one"]); //1
   p Първия(с точката) е за предпочитане.
 = slide 'Условни оператори' do
-  js_example:
+  example:
+    [lang:javascript]
     if (cond) {
 
     }
 = slide 'Условни оператори' do
-  js_example:
+  example:
+    [lang:javascript]
     if (cond) {
 
     } else {
 
     }
 = slide 'Условни оператори' do
-  js_example:
+  example:
+    [lang:javascript]
     if (cond) {
 
     } else if (cond) {
@@ -73,7 +83,8 @@
     
     }
 = slide 'Switch' do
-  js_example:
+  example:
+    [lang:javascript]
     switch (n) {
       case 1:
         //execute code block 1
@@ -85,23 +96,27 @@
         //code to be executed if n is different from case 1 and 2
     }
 = slide 'Цикъл for' do
-  js_example:
+  example:
+    [lang:javascript]
     var cars = ['Audi', 'BMW', 'Mercedes-Benz', 'Opel', 'Porsche', 'Volkswagen'];
     for (var i=0; i < cars.length; i++) { 
       document.write(cars[i] + "<br>");
     }
 = slide 'Цикъл while' do
-  js_example:
+  example:
+    [lang:javascript]
     while (condition) {
       //code block to be executed
     }
 = slide 'Цикъл while' do
-  js_example:
+  example:
+    [lang:javascript]
     do {
       //code block to be executed
     } while (condition);
 = slide 'Обхождане на речник' do
-  js_example:
+  example:
+    [lang:javascript]
     var person = {first_name: "John", last_name: "Doe", age: 25}; 
     var txt = '';
     for (x in person) {
@@ -111,7 +126,8 @@
     document.write(txt) //John Doe 25
 = slide 'Безопасно обхождане на речник' do
   p При обхождане на речник трябва да финлтрираме прототипните свойства.
-  js_example:
+  example:
+    [lang:javascript]
     Object.prototype.forEach = function () {...};
 
     for (x in person) {
@@ -120,7 +136,8 @@
       }
     }
 = slide 'Функции' do
-  js_example:
+  example:
+    [lang:javascript]
     var callable = function (message) { 
       alert("Callable called with message = " + message);
     };
@@ -131,7 +148,8 @@
 
     callable("Hello World");
 = slide 'Функции' do
-  js_example:
+  example:
+    [lang:javascript]
     // calculate distance between points (x1, y1) and (x2, y2)
     function distance(x1, y1, x2, y2) {
       var dx = x2 - x1;
@@ -141,7 +159,8 @@
   
     distance(0, 0, 1, 1);
 = slide 'Функции' do
-  js_example:
+  example:
+    [lang:javascript]
     function squareProduct(x, y) {
       function square(x) {
         return x * x;
@@ -152,7 +171,8 @@
 
     squareProduct(2, 3); //36
 = slide 'Функция като стойност' do
-  js_example:
+  example:
+    [lang:javascript]
     function square(x) { return x*x; }
 
     var s = square; // s refers to the same function that square does
@@ -243,13 +263,15 @@
     navigator - обект който съдържа свойста и методи, описващи браузъра
     document - съдържа методи и свойства за работа с елементите в html документа.
 = slide 'Селектиране на елементи по id' do
-  js_example:
+  example:
+    [lang:javascript]
     var element = document.getElementById("example");    
   p Връща първия елемент с подаденото id.
   p В примера селектираме елемента с id - <b>example</b> и го записваме в променливата <b>element</b>.
 = slide 'Селектиране на елементи по id' do
   p Пример.
-  html:
+  example:
+    [lang:html]
     <h1 id="myHeader">Latest News</h1>
 
     <script type="text_javascript">
@@ -258,32 +280,38 @@
       alert(content); // Latest News
     </script>
 = slide 'Селектиране на елементи по име' do
-  js_example:
+  example:
+    [lang:javascript]
     var elements = document.getElementsByTagName('p');
-  html:
+  example:
+    [lang:html]
     <h1 id="myHeader">Latest News</h1>
     <h2>First article</h2>
     <p id="date">08.04.13</p>
     <p id="content">Article Content</p>
   p В <b>elements</b> ще бъде записан масив с 2 елемента, които ще са двата параграфа.
 = slide 'Селектиране на елементи по клас' do
-  js_example:
+  example:
+    [lang:javascript]
     var elements = document.getElementsByClassName('food');
-  html:
+  example:
+    [lang:html]
     <p class="food">Pizza</p>
     <p class="drink">Water</p>
     <p class="drink">Wine<p>
     <p class="food">Burger</p>
   p В <b>elements</b>b> ще се запише масив, който се съдържа всички елементи по страница с идентификатор <b>food</b>.
 = slide 'Съдържание на елементите като текст' do
-  js_example:
+  example:
+    [lang:javascript]
     var para,
         text;
     para = document.getElementsByTagName("p")[0];
     text = para.textContent;
     para.textContent = "Hello World!";
 = slide 'Съдържание на елементите като html' do
-  js_example:
+  example:
+    [lang:javascript]
     var firstDiv,
         html;
 
@@ -291,12 +319,14 @@
     html = firstDiv.innerHTML;
     firstDiv.innerHTML = '<p>Test</p>';
 = slide 'Създаване на елементи' do
-  js_example:
+  example:
+    [lang:javascript]
     var newnode = document.createTextNode("text node content");
     var div = document.createElement('div');
 = slide 'Вмъкване на елементи' do
   p <b>appendChild</b> вмъква елемента подаден като аргумент, като последно дете на елемента, на който извикваме функцията.
-  js_example:
+  example:
+    [lang:javascript]
     var p, 
         t;
 
@@ -306,12 +336,14 @@
     document.body.appendChild(p);
 
 = slide 'Премахване на елементи' do
-  js_example:
+  example:
+    [lang:javascript]
     var list=document.getElementById("myList");
     list.removeChild(list.childNodes[0]);
 = slide 'Използване на document fragment' do
   p Използваме <b>document fragment</b>, за да избегнем reflow на страницата.
-  js_example:
+  example:
+    [lang:javascript]
     var p, t, frag;
 
     frag = document.createDocumentFragment();
@@ -333,7 +365,8 @@
 = slide 'Събития' do
   p Ако някои събития за интересни за нас, може да имплементираме JavaScript код, който да реагира като извика функция при определено събитие.
 = slide 'Събития с атрибути' do
-  html:
+  example:
+    [lang:html]
     <button onclick="alert('Thank you');">Click Here</button>
 = slide 'Събития с атрибути' do
   pre
@@ -343,21 +376,24 @@
       onpageshow   onpopstate    onredo         onresize
       onstorage    onundo        onunload
 = slide 'JavaScript събития' do
-  js_example:
+  example:
+    [lang:javascript]
     var b;
     b = document.getElementById("mybutton");
     b.onclick = function () { 
       alert("Thanks for clicking me!"); 
     };
 = slide 'JavaScript събития' do
-  js_example:
+  example:
+    [lang:javascript]
     var b;
     b = document.getElementById("mybutton");
     b.addEventListener("click", function() { 
       alert("Thanks again!"); 
     }, false);
 = slide 'JavaScript събития' do
-  js_example:
+  example:
+    [lang:javascript]
     var b, 
         handleMouseMove;
 
@@ -369,7 +405,8 @@
     b.addEventListener("click", handleMouseMove, false);
 = slide 'JavaScript събития' do
   p Премахване на събития:
-  js_example:
+  example:
+    [lang:javascript]
     document.removeEventListener("mousemove", handleMouseMove, true);
 = slide 'Задача 4' do
   p Реализирайте играта Tic-tac-toe(Морски Шах) в браузъра.
