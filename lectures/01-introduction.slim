@@ -37,7 +37,8 @@
 
 = slide 'Пример за HTML страница' do
   p Запишете го във файл index.html и го отворете в браузъра.
-  html:
+  example:
+    [lang:html]
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -53,7 +54,8 @@
   p Задача: Да запишем следните HTML тагове във файла и да го отворим в браузъра.
 
 = slide 'Заглавия' do
-  html:
+  example:
+    [lang:html]
     <h1>This is heading 1</h1>
     <h2>This is heading 2</h2>
     <h3>This is heading 3</h3>
@@ -62,19 +64,23 @@
     <h6>This is heading 6</h6>
 
 = slide 'Параграф' do
-  html:
+  example:
+    [lang:html]
     <p>Paragraph with text.</p>
 
 = slide 'Секции в страницата' do
-  html:
+  example:
+    [lang:html]
     <span>Some text here.</span>
 
 = slide 'Секции в страницата' do
-  html:
+  example:
+    [lang:html]
     <div>Some text here.</div>
 
 = slide 'Номериран списък' do
-  html:
+  example:
+    [lang:html]
     <ol>
         <li>To learn HTML</li>
         <li>To show off</li>
@@ -82,7 +88,8 @@
     </ol>
 
 = slide 'Неномериран Списък' do
-  html:
+  example:
+    [lang:html]
     <ul>
         <li>To learn HTML</li>
         <li>To show off</li>
@@ -90,15 +97,18 @@
     </ul>
 
 = slide 'Хиперлинк' do
-  html:
+  example:
+    [lang:html]
     <a href="http://example.com" title="Link to example.com">My Link</a>
 
 = slide 'Изображения' do
-  html:
+  example:
+    [lang:html]
     <img src="http://example.com/image.jpg" alt="Example Image" />
 
 = slide 'Таблица' do
-  html:
+  example:
+    [lang:html]
     <table>
       <tr>
           <td>Row 1, Cell 1</td>
@@ -113,7 +123,8 @@
     </table>
 
 = slide 'Семантични тагове' do
-  html:
+  example:
+    [lang:html]
     <article>
       <h1>Internet Explorer 9</h1>
       <p>Windows Internet Explorer 9 (abbreviated as IE9) was released to
@@ -122,14 +133,16 @@
 
 
 = slide 'Семантични тагове' do
-  html:
+  example:
+    [lang:html]
     <aside>
       <h4>Epcot Center</h4>
       <p>The Epcot Center is a theme park in Disney World, Florida.</p>
     </aside>
 
 = slide 'Семантични тагове' do
-  html:
+  example:
+    [lang:html]
     <footer>
       <p>Posted by: Hege Refsnes</p>
       <p>Contact information: <a href="mailto:someone@example.com">
@@ -137,14 +150,16 @@
     </footer>
 
 = slide 'Семантични тагове' do
-  html:
+  example:
+    [lang:html]
     <header>
       <h1>Example title</h1>
       <p>Example text.</p>
     </header>
 
 = slide 'Семантични тагове' do
-  html:
+  example:
+    [lang:html]
     <nav>
       <a href="/html/">HTML</a> |
       <a href="/css/">CSS</a> |
@@ -154,6 +169,7 @@
 
 = slide 'Пример за PHP' do
   example:
+    [lang:php]
     <!DOCTYPE html>
     <html>
       <head>
@@ -166,7 +182,8 @@
       </body>
     </html>
 = slide 'Пример за PHP' do
-  html:
+  example:
+    [lang:html]
     <!DOCTYPE html>
     <html>
         <head>
@@ -178,7 +195,7 @@
     </html>
 = slide 'Пример за PHP' do
   example:
-    <!DOCTYPE html>
+    [lang:php]
     <html>
       <head>
         <title>Example</title>
@@ -190,7 +207,8 @@
       </body>
     </html>
 = slide 'Пример за PHP' do
-  html:
+  example:
+    [lang:html]
     <!DOCTYPE html>
     <html>
         <head>
@@ -485,7 +503,8 @@
     $x = 10;
     $y = 7;
   p Използвайте двете променливи и напишете код, които да принтира следното:
-  html:
+  example:
+    [lang:html]
     10 + 7 = 17
     10 - 7 = 3
     10 * 7 = 70
@@ -496,7 +515,8 @@
   p abc abc abc abc abc abc abc abc abc
   p xyz xyz xyz xyz xyz xyz xyz xyz xyz
   p 1 2 3 4 5 6 7 8 9
-  html:
+  example:
+    [lang:html]
     1. Item A
     2. Item B
     3. Item C
@@ -602,7 +622,8 @@
 = slide 'Задача 8' do
   p Напишете функция която генерира вложени html елементи, като приема като аргументи типа на елемента и нивата на влагане.
   p Пример: generate_nested_elements('div', 3);
-  html:
+  example:
+    [lang:html]
     <div>
         <div>
             <div>

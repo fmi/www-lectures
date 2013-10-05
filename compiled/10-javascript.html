@@ -1,0 +1,481 @@
+<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><title>10. JavaScript и DOM</title></head><body><header><h1>10. JavaScript и DOM</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>10. JavaScript и DOM</h1></hgroup></section><section>
+<hgroup><h1>JavaScript</h1></hgroup>
+<ul><li class="action">JavaScript е скриптов език за уеб.
+</li><li class="action">Изпълнява се предимно в браузъра.
+</li><li class="action">Oбектно-ориентиран език e. Числата са обект, масивите са обект, всичко е обект.
+</li><li class="action">Има прототипно базирано наследяване.
+</li><li class="action">Има динамично типизиране.
+</li><li class="action">Има функционални елементи.</li></ul></section>
+<section>
+<hgroup><h1>Добрият JavaScript</h1></hgroup>
+<img height="20%" src="images/klingon.gif" width="20%" /></section>
+<section>
+<hgroup><h1>Добрият JavaScript</h1></hgroup>
+<img height="40%" src="images/klingon.jpg" width="40%" /></section>
+<section>
+<hgroup><h1>Добрият JavaScript</h1></hgroup>
+<img height="40%" src="images/Garnoth264578db983e7b1.jpg" width="40%" /></section>
+<section>
+<hgroup><h1>Добрият JavaScript</h1></hgroup>
+<p>JavaScript е най-популарния език в GitHub.</p><img src="images/github-languages.png" /></section>
+<section>
+<hgroup><h1>JavaScript в HTML</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;file.js&quot;</span> <span class="nt">/&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>JavaScript в HTML</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span><span class="p">...</span><span class="nt">&lt;/script&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Променливи</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">intValue</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">floatValue</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&quot;This is a string\n&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">sqString</span> <span class="o">=</span> <span class="s1">&#39;This is also a string&#39;</span><span class="p">;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Масиви(вектори)</h1></hgroup>
+<p>Последователност от елементи. Индексирана и поредна колекция.</p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">emptyList</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">homogenousList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">heterogenousList</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">];</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Достъп по елементи на масив</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">heterogenousList</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">];</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">heterogenousList</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">//&quot;one&quot;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">heterogenousList</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">//2</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">heterogenousList</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span> <span class="c1">//3.0</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Речници(обекти)</h1></hgroup>
+<p>Или още map, хешове, речници, асоциативни масиви и други. Съдържа двойки ключ стойност.</p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">emptyMap</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="kd">var</span> <span class="nx">homogenousMap</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;one&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">heterogenousMap</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;one&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span><span class="s2">&quot;two&quot;</span><span class="o">:</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span><span class="s2">&quot;three&quot;</span><span class="o">:</span> <span class="mf">3.0</span><span class="p">};</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Достъп до елемент на речник</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">homogenousMap</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;one&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">};</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">homogenousMap</span><span class="p">.</span><span class="nx">one</span><span class="p">);</span>    <span class="c1">//1</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">homogenousMap</span><span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">]);</span> <span class="c1">//1</span>
+</pre>
+</div>
+<p>Първия(с точката) е за предпочитане.</p></section>
+<section>
+<hgroup><h1>Условни оператори</h1></hgroup>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">cond</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Условни оператори</h1></hgroup>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">cond</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Условни оператори</h1></hgroup>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">cond</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">cond</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Switch</h1></hgroup>
+<div class="highlight"><pre><span class="k">switch</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+    <span class="c1">//execute code block 1</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+    <span class="c1">//execute code block 2</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">default</span><span class="o">:</span>
+    <span class="c1">//code to be executed if n is different from case 1 and 2</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Цикъл for</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">cars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Audi&#39;</span><span class="p">,</span> <span class="s1">&#39;BMW&#39;</span><span class="p">,</span> <span class="s1">&#39;Mercedes-Benz&#39;</span><span class="p">,</span> <span class="s1">&#39;Opel&#39;</span><span class="p">,</span> <span class="s1">&#39;Porsche&#39;</span><span class="p">,</span> <span class="s1">&#39;Volkswagen&#39;</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">cars</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">cars</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Цикъл while</h1></hgroup>
+<div class="highlight"><pre><span class="k">while</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//code block to be executed</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Цикъл while</h1></hgroup>
+<div class="highlight"><pre><span class="k">do</span> <span class="p">{</span>
+  <span class="c1">//code block to be executed</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nx">condition</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Обхождане на речник</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span><span class="nx">first_name</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="nx">last_name</span><span class="o">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">25</span><span class="p">};</span> 
+<span class="kd">var</span> <span class="nx">txt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">x</span> <span class="k">in</span> <span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">txt</span> <span class="o">=</span> <span class="nx">txt</span> <span class="o">+</span> <span class="nx">person</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">txt</span><span class="p">)</span> <span class="c1">//John Doe 25</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Безопасно обхождане на речник</h1></hgroup>
+<p>При обхождане на речник трябва да финлтрираме прототипните свойства.</p><div class="highlight"><pre><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">forEach</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{...};</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nx">x</span> <span class="k">in</span> <span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">man</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// filter</span>
+    <span class="nx">txt</span> <span class="o">=</span> <span class="nx">txt</span> <span class="o">+</span> <span class="nx">person</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">callable</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Callable called with message = &quot;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">callable</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Callable called with message = &quot;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">callable</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span class="c1">// calculate distance between points (x1, y1) and (x2, y2)</span>
+<span class="kd">function</span> <span class="nx">distance</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span> <span class="nx">y1</span><span class="p">,</span> <span class="nx">x2</span><span class="p">,</span> <span class="nx">y2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">dx</span> <span class="o">=</span> <span class="nx">x2</span> <span class="o">-</span> <span class="nx">x1</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">dy</span> <span class="o">=</span> <span class="nx">y2</span> <span class="o">-</span> <span class="nx">y1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">dx</span><span class="o">*</span><span class="nx">dx</span> <span class="o">+</span> <span class="nx">dy</span><span class="o">*</span><span class="nx">dy</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">distance</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">squareProduct</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">*</span> <span class="nx">square</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">squareProduct</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">//36</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Функция като стойност</h1></hgroup>
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span><span class="o">*</span><span class="nx">x</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">square</span><span class="p">;</span> <span class="c1">// s refers to the same function that square does</span>
+<span class="nx">square</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>      <span class="c1">// =&gt; 16</span>
+<span class="nx">s</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>           <span class="c1">// =&gt; 16</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача 1</h1></hgroup>
+<p>Напишете цикъл, който да визуализира следното:</p><pre>1. Item A
+2. Item B
+3. Item C
+4. Item D
+5. Item E
+6. Item F </pre></section>
+<section>
+<hgroup><h1>Задача 2</h1></hgroup>
+<p>Ползвайте вложени цикли и съставете следната талица за умножение:
+<table style="border-collapse: collapse; border: 1px solid black;background-color: #ffff00"><tbody><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">1</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">2</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">3</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">5</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">7</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">2</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">8</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">10</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">14</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">3</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">9</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">15</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">18</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">21</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">8</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">16</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">20</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">24</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">28</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">5</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">10</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">15</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">20</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">25</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">30</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">35</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">18</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">24</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">30</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">36</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">42</td>
+  </tr><tr>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">7</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">14</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">21</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">28</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">35</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">42</td>
+  <td style="width: 2em; text-align:center;border: 1px solid black;">49</td>
+  </tr></tbody>
+</table></p></section>
+<section>
+<hgroup><h1>Задача 3</h1></hgroup>
+<p>Напишете функция, която смята факториел, чрез рекурсия.</p></section>
+<section>
+<hgroup><h1>DOM</h1></hgroup>
+<p>HTML-a се описва в дървовидна структура. Тя се нарича DOM дърво.    </p><img src="images/htmltree.gif" /></section>
+<section>
+<hgroup><h1>Основни обекти в DOM</h1></hgroup>
+<p>Има няколко основни обекта в JavaScript, който ни помагат да работим с DOM.</p><ul><li class="action">window (self, top, parent) - window обекта съдържа методи и свойства за прозореца за браузъра
+</li><li class="action">screen - обект, чрез който може да се вземе информация за екрана - размери, отстояния и т.н.
+</li><li class="action">history - обекта, който контролира история. Чрез него може да се връщаме в предишни страници.
+</li><li class="action">location - обекта, който се грижи за текущия адрес. С него може да достъпим информация за адреса или да сменим с нов.
+</li><li class="action">navigator - обект който съдържа свойста и методи, описващи браузъра
+</li><li class="action">document - съдържа методи и свойства за работа с елементите в html документа.</li></ul></section>
+<section>
+<hgroup><h1>Селектиране на елементи по id</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;example&quot;</span><span class="p">);</span>    
+</pre>
+</div>
+<p>Връща първия елемент с подаденото id.</p><p>В примера селектираме елемента с id - <b>example</b> и го записваме в променливата <b>element</b>.</p></section>
+<section>
+<hgroup><h1>Селектиране на елементи по id</h1></hgroup>
+<p>Пример.</p><div class="highlight"><pre><span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;myHeader&quot;</span><span class="nt">&gt;</span>Latest News<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text_javascript&quot;</span><span class="nt">&gt;</span>
+  <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;myHeader&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">;</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span> <span class="c1">// Latest News</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Селектиране на елементи по име</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">);</span>
+</pre>
+</div>
+<div class="highlight"><pre><span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;myHeader&quot;</span><span class="nt">&gt;</span>Latest News<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;h2&gt;</span>First article<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;date&quot;</span><span class="nt">&gt;</span>08.04.13<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>Article Content<span class="nt">&lt;/p&gt;</span>
+</pre>
+</div>
+<p>В <b>elements</b> ще бъде записан масив с 2 елемента, които ще са двата параграфа.</p></section>
+<section>
+<hgroup><h1>Селектиране на елементи по клас</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;food&#39;</span><span class="p">);</span>
+</pre>
+</div>
+<div class="highlight"><pre><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;food&quot;</span><span class="nt">&gt;</span>Pizza<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;drink&quot;</span><span class="nt">&gt;</span>Water<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;drink&quot;</span><span class="nt">&gt;</span>Wine<span class="nt">&lt;p&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;food&quot;</span><span class="nt">&gt;</span>Burger<span class="nt">&lt;/p&gt;</span>
+</pre>
+</div>
+<p>В <b>elements</b>b> ще се запише масив, който се съдържа всички елементи по страница с идентификатор <b>food</b>.</p></section>
+<section>
+<hgroup><h1>Съдържание на елементите като текст</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">para</span><span class="p">,</span>
+    <span class="nx">text</span><span class="p">;</span>
+<span class="nx">para</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+<span class="nx">text</span> <span class="o">=</span> <span class="nx">para</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span>
+<span class="nx">para</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">&quot;Hello World!&quot;</span><span class="p">;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Съдържание на елементите като html</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">firstDiv</span><span class="p">,</span>
+    <span class="nx">html</span><span class="p">;</span>
+
+<span class="nx">firstDiv</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+<span class="nx">html</span> <span class="o">=</span> <span class="nx">firstDiv</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">;</span>
+<span class="nx">firstDiv</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&lt;p&gt;Test&lt;/p&gt;&#39;</span><span class="p">;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Създаване на елементи</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">newnode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s2">&quot;text node content&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Вмъкване на елементи</h1></hgroup>
+<p><b>appendChild</b> вмъква елемента подаден като аргумент, като последно дете на елемента, на който извикваме функцията.</p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">p</span><span class="p">,</span> 
+    <span class="nx">t</span><span class="p">;</span>
+
+<span class="nx">p</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">);</span>
+<span class="nx">t</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s1">&#39;first paragraph&#39;</span><span class="p">);</span>
+<span class="nx">p</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Премахване на елементи</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">list</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;myList&quot;</span><span class="p">);</span>
+<span class="nx">list</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">list</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Използване на document fragment</h1></hgroup>
+<p>Използваме <b>document fragment</b>, за да избегнем reflow на страницата.</p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">frag</span><span class="p">;</span>
+
+<span class="nx">frag</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createDocumentFragment</span><span class="p">();</span>
+<span class="nx">p</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">);</span>
+<span class="nx">t</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s1">&#39;first paragraph&#39;</span><span class="p">);</span>
+<span class="nx">p</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+<span class="nx">frag</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Събития</h1></hgroup>
+<ul><li class="action">В клиентския JavaScript има асиснхронен event-driven програмен модел.
+</li><li class="action">При него браузъра генерира събитие когато се случи нещо интересно.</li></ul></section>
+<section>
+<hgroup><h1>Събития</h1></hgroup>
+<p>Браузъра генерира събитие когато:</p><ul><li class="action">Преключи зареждането на страницата
+</li><li class="action">Потребителя кликне с мишката някъде
+</li><li class="action">Побребителя натисне копче на клавиатурата
+</li><li class="action">И много още...</li></ul></section>
+<section>
+<hgroup><h1>Събития</h1></hgroup>
+<p>Ако някои събития за интересни за нас, може да имплементираме JavaScript код, който да реагира като извика функция при определено събитие.</p></section>
+<section>
+<hgroup><h1>Събития с атрибути</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;alert(&#39;Thank you&#39;);&quot;</span><span class="nt">&gt;</span>Click Here<span class="nt">&lt;/button&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Събития с атрибути</h1></hgroup>
+<pre>onafterprint onbeforeprint onbeforeunload onblur
+onerror      onfocus       onhashchange   onload
+onmessage    onoffline     ononline       onpagehide
+onpageshow   onpopstate    onredo         onresize
+onstorage    onundo        onunload </pre></section>
+<section>
+<hgroup><h1>JavaScript събития</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">b</span><span class="p">;</span>
+<span class="nx">b</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mybutton&quot;</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> 
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Thanks for clicking me!&quot;</span><span class="p">);</span> 
+<span class="p">};</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>JavaScript събития</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">b</span><span class="p">;</span>
+<span class="nx">b</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mybutton&quot;</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Thanks again!&quot;</span><span class="p">);</span> 
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>JavaScript събития</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">b</span><span class="p">,</span> 
+    <span class="nx">handleMouseMove</span><span class="p">;</span>
+
+<span class="nx">handleMouseMove</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Thanks again!&quot;</span><span class="p">);</span> 
+<span class="p">};</span>  
+
+<span class="nx">b</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mybutton&quot;</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="nx">handleMouseMove</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>JavaScript събития</h1></hgroup>
+<p>Премахване на събития:</p><div class="highlight"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s2">&quot;mousemove&quot;</span><span class="p">,</span> <span class="nx">handleMouseMove</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача 4</h1></hgroup>
+<p>Реализирайте играта Tic-tac-toe(Морски Шах) в браузъра.</p></section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});</script></body>
