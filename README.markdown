@@ -19,7 +19,7 @@
 
 С командата `thor lecture <idnex>` може да прегенерирате лекция номер `<index>`. Например, ако искате да прегенерирате презентация 8, това става със следната команда:
 
-	bundle exec thor lecture 8
+  bundle exec thor lecture 8
 
 Възможно е и да изпълните `thor watch`. Това ще стартира процес, който да стои и да слуша за промени по файловете в папката `lectures/` и ще прегенерира съответната лекция автоматично при промяна на който и да е от `.slim`source-файловете.
 
@@ -27,15 +27,13 @@
 
 Може да използвате syntax highlighting, за примерите, като посочите езика в lang таг. Пример:
 
-`
-example:
-  [lang:php]
-  <?php //... ?>
+  example:
+    [lang:php]
+    <?php //... ?>
 
-example:
-  [lang:javascript]
-  alert('boo');
-`
+  example:
+    [lang:javascript]
+    alert('boo');
 
 ## Упътвания за принос
 
