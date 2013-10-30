@@ -6,6 +6,7 @@ head
     script src='js/html5shim.js'
   link rel='stylesheet' href='css/styles.css'
   link rel='stylesheet' href='css/pygments.css'
+  script src="js/analytics.js"
   title = title
 body
   header
@@ -45,8 +46,17 @@ body
       htmlSlides.init({ hideToolbar: true });
     });
 
+    mixpanel.set_config({debug: true});
+
     var pusher = new Pusher('a2024b659f492cab86cc');
     pusher.subscribe('lectures');
     pusher.bind('refresh', function(data) {
       location.reload(true);
     });
+
+    try {
+      mixpanel.track('Landing Page', {
+        referrer: document.referrer,
+        presentation: document.title
+      });
+    } catch (e) {};

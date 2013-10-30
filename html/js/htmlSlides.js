@@ -95,6 +95,16 @@ var htmlSlides = {
   changeSlide: function(id) {
     var slideID = '#slide' + id;
 
+    try {
+      mixpanel.track('Slide: ' + document.title, {
+        slide: id
+      });
+      mixpanel.track('Slide', {
+        presentation: document.title,
+        slide: id
+      });
+    } catch (e) {};
+
     //Update slide classes
     this.deck.find('.slide-selected').removeClass('slide-selected');
     $(slideID).addClass('slide-selected');
