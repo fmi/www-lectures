@@ -5,16 +5,7 @@
     Oбектно-ориентиран език e. Числата са обект, масивите са обект, всичко е обект.
     Има прототипно базирано наследяване.
     Има динамично типизиране.
-    Има функционални елементи.
-= slide 'Добрият JavaScript' do
-  img src="images/klingon.gif" width="20%" height="20%"
-= slide 'Добрият JavaScript' do
-  img src="images/klingon.jpg" width="40%" height="40%"
-= slide 'Добрият JavaScript' do
-  img src="images/Garnoth264578db983e7b1.jpg" width="40%" height="40%"
-= slide 'Добрият JavaScript' do
-  p JavaScript е най-популарния език в GitHub.
-  img src="images/github-languages.png"
+    Има функционални елементи(first-class functions).
 = slide 'JavaScript в HTML' do
   example:
     [lang:html]
@@ -36,27 +27,27 @@
     [lang:javascript]
     var emptyList = [];
     var homogenousList = [1, 2, 3];
-    var heterogenousList = ["one", 2, 3.0];
+    var heterogenousList = ['one', 2, 3.0];
 = slide 'Достъп по елементи на масив' do
   example:
     [lang:javascript]
-    var heterogenousList = ["one", 2, 3.0];
-    alert(heterogenousList[0]); //"one"
+    var heterogenousList = ['one', 2, 3.0];
+    alert(heterogenousList[0]); //'one'
     alert(heterogenousList[1]); //2
     alert(heterogenousList[2]); //3.0
 = slide 'Речници(обекти)' do
-  p Или още map, хешове, речници, асоциативни масиви и други. Съдържа двойки ключ стойност.
+  p Или още map, хешове, речници, асоциативни масиви и други. Съдържа двойки с ключ и стойност. Ключовете са низове.
   example:
     [lang:javascript]
     var emptyMap = {};
-    var homogenousMap = {"one": 1, "two": 2, "three": 3};
-    var heterogenousMap = {"one": 1,"two": "two","three": 3.0};
+    var homogenousMap = {'one': 1, 'two': 2, 'three': 3};
+    var heterogenousMap = {'one': 1,'two': 'two','three': 3.0};
 = slide 'Достъп до елемент на речник' do
   example:
     [lang:javascript]
-    var homogenousMap = {"one": 1, "two": 2, "three": 3};
+    var homogenousMap = {'one': 1, 'two': 2, 'three': 3};
     alert(homogenousMap.one);    //1
-    alert(homogenousMap["one"]); //1
+    alert(homogenousMap['one']); //1
   p Първия(с точката) е за предпочитане.
 = slide 'Условни оператори' do
   example:
@@ -99,8 +90,8 @@
   example:
     [lang:javascript]
     var cars = ['Audi', 'BMW', 'Mercedes-Benz', 'Opel', 'Porsche', 'Volkswagen'];
-    for (var i=0; i < cars.length; i++) { 
-      document.write(cars[i] + "<br>");
+    for (var i = 0; i < cars.length; i++) { 
+      document.write(cars[i] + '<br>');
     }
 = slide 'Цикъл while' do
   example:
@@ -117,36 +108,25 @@
 = slide 'Обхождане на речник' do
   example:
     [lang:javascript]
-    var person = {first_name: "John", last_name: "Doe", age: 25}; 
+    var person = {first_name: 'John', last_name: 'Doe', age: 25}; 
     var txt = '';
     for (x in person) {
-      txt = txt + person[x] + ' ';
+      txt += person[x] + ' ';
     }
 
     document.write(txt) //John Doe 25
-= slide 'Безопасно обхождане на речник' do
-  p При обхождане на речник трябва да финлтрираме прототипните свойства.
-  example:
-    [lang:javascript]
-    Object.prototype.forEach = function () {...};
-
-    for (x in person) {
-      if (man.hasOwnProperty(i)) { // filter
-        txt = txt + person[x] + ' ';
-      }
-    }
 = slide 'Функции' do
   example:
     [lang:javascript]
     var callable = function (message) { 
-      alert("Callable called with message = " + message);
+      alert('Callable called with message = ' + message);
     };
 
     function callable(message) {
-      alert("Callable called with message = " + message);
+      alert('Callable called with message = ' + message);
     }
 
-    callable("Hello World");
+    callable('Hello World');
 = slide 'Функции' do
   example:
     [lang:javascript]
@@ -154,7 +134,7 @@
     function distance(x1, y1, x2, y2) {
       var dx = x2 - x1;
       var dy = y2 - y1;
-      return Math.sqrt(dx*dx + dy*dy);
+      return Math.sqrt(dx * dx + dy * dy);
     }
   
     distance(0, 0, 1, 1);
@@ -170,86 +150,6 @@
     }
 
     squareProduct(2, 3); //36
-= slide 'Функция като стойност' do
-  example:
-    [lang:javascript]
-    function square(x) { return x*x; }
-
-    var s = square; // s refers to the same function that square does
-    square(4);      // => 16
-    s(4);           // => 16
-
-= slide 'Задача 1' do
-  p Напишете цикъл, който да визуализира следното:
-  pre
-    ' 1. Item A
-      2. Item B
-      3. Item C
-      4. Item D
-      5. Item E
-      6. Item F
-= slide 'Задача 2' do
-  p Ползвайте вложени цикли и съставете следната талица за умножение:
-    <table style="border-collapse: collapse; border: 1px solid black;background-color: #ffff00"><tbody><tr>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">1</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">2</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">3</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">5</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">7</td>
-      </tr><tr>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">2</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">8</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">10</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">14</td>
-      </tr><tr>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">3</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">9</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">15</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">18</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">21</td>
-      </tr><tr>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">8</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">16</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">20</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">24</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">28</td>
-      </tr><tr>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">5</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">10</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">15</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">20</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">25</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">30</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">35</td>
-      </tr><tr>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">18</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">24</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">30</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">36</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">42</td>
-      </tr><tr>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">7</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">14</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">21</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">28</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">35</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">42</td>
-      <td style="width: 2em; text-align:center;border: 1px solid black;">49</td>
-      </tr></tbody>
-    </table>
-= slide 'Задача 3' do
-  p Напишете функция, която смята факториел, чрез рекурсия.
 = slide 'DOM' do
   p HTML-a се описва в дървовидна структура. Тя се нарича DOM дърво.    
   img src='images/htmltree.gif'
@@ -265,7 +165,7 @@
 = slide 'Селектиране на елементи по id' do
   example:
     [lang:javascript]
-    var element = document.getElementById("example");    
+    var element = document.getElementById('example');    
   p Връща първия елемент с подаденото id.
   p В примера селектираме елемента с id - <b>example</b> и го записваме в променливата <b>element</b>.
 = slide 'Селектиране на елементи по id' do
@@ -275,7 +175,7 @@
     <h1 id="myHeader">Latest News</h1>
 
     <script type="text_javascript">
-      var element = document.getElementById("myHeader");
+      var element = document.getElementById('myHeader');
       var content = element.innerHTML;
       alert(content); // Latest News
     </script>
@@ -300,67 +200,57 @@
     <p class="drink">Water</p>
     <p class="drink">Wine<p>
     <p class="food">Burger</p>
-  p В <b>elements</b>b> ще се запише масив, който се съдържа всички елементи по страница с идентификатор <b>food</b>.
+  p В <b>elements</b> ще се запише масив, който се съдържа всички елементи по страница с идентификатор <b>food</b>.
 = slide 'Съдържание на елементите като текст' do
   example:
     [lang:javascript]
-    var para,
+    var paragraph,
         text;
-    para = document.getElementsByTagName("p")[0];
-    text = para.textContent;
-    para.textContent = "Hello World!";
+
+    paragraph = document.getElementsByTagName('p')[0];
+    text = paragraph.textContent;
+    paragraph.textContent = 'Hello World!';
 = slide 'Съдържание на елементите като html' do
   example:
     [lang:javascript]
     var firstDiv,
         html;
 
-    firstDiv = document.getElementsByTagName("div")[0];
+    firstDiv = document.getElementsByTagName('div')[0];
     html = firstDiv.innerHTML;
     firstDiv.innerHTML = '<p>Test</p>';
 = slide 'Създаване на елементи' do
   example:
     [lang:javascript]
-    var newnode = document.createTextNode("text node content");
+    var newnode = document.createTextNode('text node content');
     var div = document.createElement('div');
 = slide 'Вмъкване на елементи' do
   p <b>appendChild</b> вмъква елемента подаден като аргумент, като последно дете на елемента, на който извикваме функцията.
   example:
     [lang:javascript]
-    var p, 
-        t;
+    var paragraph, 
+        text;
 
-    p = document.createElement('p');
-    t = document.createTextNode('first paragraph');
-    p.appendChild(t);
-    document.body.appendChild(p);
+    paragraph = document.createElement('p');
+    text = document.createTextNode('first paragraph');
+    paragraph.appendChild(text);
+    document.body.appendChild(paragraph);
 
 = slide 'Премахване на елементи' do
   example:
     [lang:javascript]
-    var list=document.getElementById("myList");
+    var list = document.getElementById('myList');
     list.removeChild(list.childNodes[0]);
-= slide 'Използване на document fragment' do
-  p Използваме <b>document fragment</b>, за да избегнем reflow на страницата.
-  example:
-    [lang:javascript]
-    var p, t, frag;
-
-    frag = document.createDocumentFragment();
-    p = document.createElement('p');
-    t = document.createTextNode('first paragraph');
-    p.appendChild(t);
-    frag.appendChild(p);
 = slide 'Събития' do
   list:
     В клиентския JavaScript има асиснхронен event-driven програмен модел.
-    При него браузъра генерира събитие когато се случи нещо интересно.
+    При него браузъра генерира събитие, когато се случи нещо интересно.
 = slide 'Събития' do
   p Браузъра генерира събитие когато:
   list:
-    Преключи зареждането на страницата
+    Приключи зареждането на страницата
     Потребителя кликне с мишката някъде
-    Побребителя натисне копче на клавиатурата
+    Потребителя натисне копче на клавиатурата
     И много още...
 = slide 'Събития' do
   p Ако някои събития за интересни за нас, може да имплементираме JavaScript код, който да реагира като извика функция при определено събитие.
@@ -379,17 +269,17 @@
   example:
     [lang:javascript]
     var b;
-    b = document.getElementById("mybutton");
+    b = document.getElementById('mybutton');
     b.onclick = function () { 
-      alert("Thanks for clicking me!"); 
+      alert('Thanks for clicking me!'); 
     };
 = slide 'JavaScript събития' do
   example:
     [lang:javascript]
     var b;
-    b = document.getElementById("mybutton");
-    b.addEventListener("click", function() { 
-      alert("Thanks again!"); 
+    b = document.getElementById('mybutton');
+    b.addEventListener('click', function() { 
+      alert('Thanks again!'); 
     }, false);
 = slide 'JavaScript събития' do
   example:
@@ -398,15 +288,25 @@
         handleMouseMove;
 
     handleMouseMove = function() { 
-      alert("Thanks again!"); 
+      alert('Thanks again!'); 
     };  
 
-    b = document.getElementById("mybutton");
-    b.addEventListener("click", handleMouseMove, false);
+    b = document.getElementById('mybutton');
+    b.addEventListener('click', handleMouseMove, false);
 = slide 'JavaScript събития' do
   p Премахване на събития:
   example:
     [lang:javascript]
-    document.removeEventListener("mousemove", handleMouseMove, true);
-= slide 'Задача 4' do
-  p Реализирайте играта Tic-tac-toe(Морски Шах) в браузъра.
+    document.removeEventListener('mousemove', handleMouseMove, true);
+= slide 'Задача 1' do
+  p Направете HTML страница, която съдържа формуляр, със select поле и един бутон. Целта е да се имплементира играта Rock-paper-scissors-lizard-Spock. 
+  p <a href="http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock">Правила</a>
+  p Във полето като отделн option елементи трябва да се съдържат петте възможности - rock, paper, scissors, lizard и spock. При натискане на бутона, трябва да се стартира скрипт, който да прочита избраната от потребителя опция и да избира ход, при който потребителя печели. Избрания от скрипта ход трябва да се изписва под формата в span елемент.
+  p Функцията се взимане на решение трябва да се казва findOptionToLose. Пример: findOptionToLose('rock'); // scissors
+= slide 'Задача 2' do
+  p Напишете функция count_change, която пресмята броя начини, по които може да развалим парична сума, подадена като аргумент, с монети с номинал 1, 2, 5, 10, 20 или 50.
+  p Пример: 
+  p count_change(4); // връща 3, защото толкова са начините да развалим 4 стотинки с дадените монети
+  p count_chage(100); // 4111
+= slide 'Задача 3' do
+  p Направете HTML страница, която съдържа формуляр, с едно поле за въвеждане на текст и един бутон. При натискане на бутона, числото записано в полето, трябва да се подава на count_changе, от предишната задача и резултата трябва се визуализира под формата, в span елемент.
