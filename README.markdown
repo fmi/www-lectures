@@ -12,6 +12,8 @@
 
 - [Инсталирайте Ruby 1.9.3-p448](https://www.ruby-lang.org/en/downloads/)
 - Клонирате хранилището някъде и сменате текущата си директория да е там
+- `sudo apt-get install python-setuptools`
+- `sudo easy_install pygments`
 - `gem install bundler`
 - `bundle install`
 - `bundle exec thor rebuild`
