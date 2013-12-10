@@ -8,7 +8,7 @@
 </li><li class="action">Има функционални елементи(first-class functions).</li></ul></section>
 <section>
 <hgroup><h1>JavaScript в HTML</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;file.js&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;file.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre>
 </div>
 </section>
@@ -135,7 +135,7 @@
 <hgroup><h1>Обхождане на речник</h1></hgroup>
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span><span class="nx">first_name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">last_name</span><span class="o">:</span> <span class="s1">&#39;Doe&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">25</span><span class="p">};</span> 
 <span class="kd">var</span> <span class="nx">txt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="k">for</span> <span class="p">(</span><span class="nx">x</span> <span class="k">in</span> <span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="k">in</span> <span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">txt</span> <span class="o">+=</span> <span class="nx">person</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -313,9 +313,9 @@ onpageshow   onpopstate    onredo         onresize
 onstorage    onundo        onunload </pre></section>
 <section>
 <hgroup><h1>JavaScript събития</h1></hgroup>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">b</span><span class="p">;</span>
-<span class="nx">b</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mybutton&#39;</span><span class="p">);</span>
-<span class="nx">b</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> 
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">button</span><span class="p">;</span>
+<span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mybutton&#39;</span><span class="p">);</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> 
   <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Thanks for clicking me!&#39;</span><span class="p">);</span> 
 <span class="p">};</span>
 </pre>
@@ -323,9 +323,9 @@ onstorage    onundo        onunload </pre></section>
 </section>
 <section>
 <hgroup><h1>JavaScript събития</h1></hgroup>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">b</span><span class="p">;</span>
-<span class="nx">b</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mybutton&#39;</span><span class="p">);</span>
-<span class="nx">b</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">button</span><span class="p">;</span>
+<span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mybutton&#39;</span><span class="p">);</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
   <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Thanks again!&#39;</span><span class="p">);</span> 
 <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
 </pre>
@@ -333,21 +333,21 @@ onstorage    onundo        onunload </pre></section>
 </section>
 <section>
 <hgroup><h1>JavaScript събития</h1></hgroup>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">b</span><span class="p">,</span> 
-    <span class="nx">handleMouseMove</span><span class="p">;</span>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">button</span><span class="p">,</span> 
+    <span class="nx">handleMouseClick</span><span class="p">;</span>
 
-<span class="nx">handleMouseMove</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+<span class="nx">handleMouseClick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
   <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Thanks again!&#39;</span><span class="p">);</span> 
 <span class="p">};</span>  
 
-<span class="nx">b</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mybutton&#39;</span><span class="p">);</span>
-<span class="nx">b</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">handleMouseMove</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mybutton&#39;</span><span class="p">);</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">handleMouseClick</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 </pre>
 </div>
 </section>
 <section>
 <hgroup><h1>JavaScript събития</h1></hgroup>
-<p>Премахване на събития:</p><div class="highlight"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;mousemove&#39;</span><span class="p">,</span> <span class="nx">handleMouseMove</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<p>Премахване на събития:</p><div class="highlight"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;mousemove&#39;</span><span class="p">,</span> <span class="nx">handleMouseClick</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 </pre>
 </div>
 </section>
@@ -356,7 +356,7 @@ onstorage    onundo        onunload </pre></section>
 <p>Направете HTML страница, която съдържа формуляр, със select поле и един бутон. Целта е да се имплементира играта Rock-paper-scissors-lizard-Spock. </p><p><a href="http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock">Правила</a></p><p>Във полето като отделн option елементи трябва да се съдържат петте възможности - rock, paper, scissors, lizard и spock. При натискане на бутона, трябва да се стартира скрипт, който да прочита избраната от потребителя опция и да избира ход, при който потребителя печели. Избрания от скрипта ход трябва да се изписва под формата в span елемент.</p><p>Функцията се взимане на решение трябва да се казва findOptionToLose. Пример: findOptionToLose('rock'); // scissors</p></section>
 <section>
 <hgroup><h1>Задача 2</h1></hgroup>
-<p>Напишете функция count_change, която пресмята броя начини, по които може да развалим парична сума, подадена като аргумент, с монети с номинал 1, 2, 5, 10, 20 или 50.</p><p>Пример: </p><p>count_change(4); // връща 3, защото толкова са начините да развалим 4 стотинки с дадените монети</p><p>count_chage(100); // 4111</p></section>
+<p>Напишете функция count_change, която пресмята броя начини, по които може да развалим парична сума, подадена като аргумент, с монети с номинал 1, 2, 5, 10, 20 или 50.</p><p>Пример: </p><p>count_change(4); // връща 3, защото толкова са начините да развалим 4 стотинки с дадените монети</p><p>count_chage(100); // 4562</p></section>
 <section>
 <hgroup><h1>Задача 3</h1></hgroup>
 <p>Направете HTML страница, която съдържа формуляр, с едно поле за въвеждане на текст и един бутон. При натискане на бутона, числото записано в полето, трябва да се подава на count_changе, от предишната задача и резултата трябва се визуализира под формата, в span елемент.</p></section>

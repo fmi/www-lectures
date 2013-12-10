@@ -9,7 +9,7 @@
 = slide 'JavaScript в HTML' do
   example:
     [lang:html]
-    <script type="text/javascript" src="file.js" />
+    <script type="text/javascript" src="file.js"></script>
 = slide 'JavaScript в HTML' do
   example:
     [lang:html] 
@@ -110,7 +110,7 @@
     [lang:javascript]
     var person = {first_name: 'John', last_name: 'Doe', age: 25}; 
     var txt = '';
-    for (x in person) {
+    for (var x in person) {
       txt += person[x] + ' ';
     }
 
@@ -268,36 +268,36 @@
 = slide 'JavaScript събития' do
   example:
     [lang:javascript]
-    var b;
-    b = document.getElementById('mybutton');
-    b.onclick = function () { 
+    var button;
+    button = document.getElementById('mybutton');
+    button.onclick = function () { 
       alert('Thanks for clicking me!'); 
     };
 = slide 'JavaScript събития' do
   example:
     [lang:javascript]
-    var b;
-    b = document.getElementById('mybutton');
-    b.addEventListener('click', function() { 
+    var button;
+    button = document.getElementById('mybutton');
+    button.addEventListener('click', function() { 
       alert('Thanks again!'); 
     }, false);
 = slide 'JavaScript събития' do
   example:
     [lang:javascript]
-    var b, 
-        handleMouseMove;
+    var button, 
+        handleMouseClick;
 
-    handleMouseMove = function() { 
+    handleMouseClick = function() { 
       alert('Thanks again!'); 
     };  
 
-    b = document.getElementById('mybutton');
-    b.addEventListener('click', handleMouseMove, false);
+    button = document.getElementById('mybutton');
+    button.addEventListener('click', handleMouseClick, false);
 = slide 'JavaScript събития' do
   p Премахване на събития:
   example:
     [lang:javascript]
-    document.removeEventListener('mousemove', handleMouseMove, true);
+    document.removeEventListener('mousemove', handleMouseClick, true);
 = slide 'Задача 1' do
   p Направете HTML страница, която съдържа формуляр, със select поле и един бутон. Целта е да се имплементира играта Rock-paper-scissors-lizard-Spock. 
   p <a href="http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock">Правила</a>
@@ -307,6 +307,6 @@
   p Напишете функция count_change, която пресмята броя начини, по които може да развалим парична сума, подадена като аргумент, с монети с номинал 1, 2, 5, 10, 20 или 50.
   p Пример: 
   p count_change(4); // връща 3, защото толкова са начините да развалим 4 стотинки с дадените монети
-  p count_chage(100); // 4111
+  p count_chage(100); // 4562
 = slide 'Задача 3' do
   p Направете HTML страница, която съдържа формуляр, с едно поле за въвеждане на текст и един бутон. При натискане на бутона, числото записано в полето, трябва да се подава на count_changе, от предишната задача и резултата трябва се визуализира под формата, в span елемент.
