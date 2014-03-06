@@ -1,10 +1,4 @@
-<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>01. Въведение в PHP и HTML</title></head><body><header><h1>01. Въведение в PHP и HTML</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>01. Въведение в PHP и HTML</h1></hgroup></section><section>
-<hgroup><h1>За курса</h1></hgroup>
-<ul><li class="action"><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li><li class="action">Ключ за записване: www2013kn</li></ul></section>
-<section>
-<hgroup><h1>Теми</h1></hgroup>
-<ul><li class="action">Въведение в PHP и HTML</li><li class="action">PHP, SQL & HTML </li><li class="action">Работа с форми и Regex</li><li class="action">ООП с PHP</li><li class="action">HTML & CSS, Част 1</li><li class="action">HTML & CSS, Част 2</li><li class="action">Преговор 1</li><li class="action">PHP MVC</li><li class="action">Аутентикация и ауторизация</li><li class="action">JavaScript & DOM</li><li class="action">jQuery & AJAX</li><li class="action">Преговор 2</li><li class="action">Web tools</li><li class="action">Advanced CSS</li><li class="action">PHP & JS libs</li></ul></section>
-<section>
+<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>01. Динамично генериране на уеб съдържание</title></head><body><header><h1>01. Динамично генериране на уеб съдържание</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>01. Динамично генериране на уеб съдържание</h1></hgroup></section><section>
 <hgroup><h1>Клинет-сървър</h1></hgroup>
 <img src="images/client_net.jpg" style="width: 60%" /></section>
 <section>
@@ -252,24 +246,6 @@
 
   <span class="nv">$person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>         <span class="c1">// a PHP Person  - available NOW!</span>
 <span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Предефинирани променливи в PHP</h1></hgroup>
-<div class="highlight"><pre><span class="x">$_SERVER // Server and execution environment information</span>
-<span class="x">$_GET // HTTP GET variables</span>
-<span class="x">$_POST // HTTP POST variables</span>
-<span class="x">$_FILES // HTTP File Upload variables</span>
-<span class="x">$_REQUEST // HTTP Request variables</span>
-<span class="x">$_SESSION // Session variables</span>
-<span class="x">$_ENV // Environment variables</span>
-<span class="x">$_COOKIE // HTTP Cookies</span>
-<span class="x">$php_errormsg // The previous error message</span>
-<span class="x">$HTTP_RAW_POST_DATA // Raw POST data</span>
-<span class="x">$http_response_header // HTTP response headers</span>
-<span class="x">$argc // The number of arguments passed to script</span>
-<span class="x">$argv // Array of arguments passed to script</span>
 </pre>
 </div>
 </section>
@@ -534,25 +510,22 @@
 </div>
 </section>
 <section>
-<hgroup><h1>Среда</h1></hgroup>
-<p><a href="http://codepad.viper-7.com/">http://codepad.viper-7.com/</a></p></section>
-<section>
 <hgroup><h1>Задача 1</h1></hgroup>
 <div class="highlight"><pre><span class="x">$x = 10;</span>
 <span class="x">$y = 7;</span>
 </pre>
 </div>
-<p>Използвайте двете променливи и напишете код, който да принтира следното:</p><div class="highlight"><pre>10 + 7 = 17
+<p>Използвайте двете променливи и напишете код, който да визуализират следното:</p><div class="highlight"><pre>10 + 7 = 17
 10 - 7 = 3
 10 * 7 = 70
 10 / 7 = 1.4285714285714
 10 % 7 = 3
 </pre>
 </div>
-</section>
+<p>Не може да използвате други цифри, освен тези, използвани в инициализирането на $x и $y.</p></section>
 <section>
 <hgroup><h1>Задача 2</h1></hgroup>
-<p>Напишете цикъл, който да визуализира следното:</p><p>abc abc abc abc abc abc abc abc abc</p><p>xyz xyz xyz xyz xyz xyz xyz xyz xyz</p><p>1 2 3 4 5 6 7 8 9</p><div class="highlight"><pre>1. Item A
+<p>Напишете четири цикъла, които да визуализират следното:</p><p>abc abc abc abc abc abc abc abc abc</p><p>xyz xyz xyz xyz xyz xyz xyz xyz xyz</p><p>1 2 3 4 5 6 7 8 9</p><div class="highlight"><pre>1. Item A
 2. Item B
 3. Item C
 4. Item D
@@ -560,13 +533,13 @@
 6. Item F
 </pre>
 </div>
-</section>
+<p>След последния елемент не трябва да има интервал.</p></section>
 <section>
 <hgroup><h1>Задача 3</h1></hgroup>
-<p>Отпечатайте квадратите на числата от 1 до 12.</p></section>
+<p>Отпечатайте квадратите на числата от 1 до 12. След последния елемент не трябва да има интервал.</p></section>
 <section>
 <hgroup><h1>Задача 4</h1></hgroup>
-<p>Ползвайте вложени цикли и съставете следната талица за умножение:</p><table style="border-collapse: collapse; border: 1px solid black;background-color: #ffff00"><tbody><tr>
+<p>Ползвайте вложени цикли и съставете следната талица за умножение, използвайки HTML таблица:</p><table style="border-collapse: collapse; border: 1px solid black;background-color: #ffff00"><tbody><tr>
   <td style="width: 2em; text-align:center;border: 1px solid black;">1</td>
   <td style="width: 2em; text-align:center;border: 1px solid black;">2</td>
   <td style="width: 2em; text-align:center;border: 1px solid black;">3</td>
@@ -626,7 +599,7 @@
 </table></section>
 <section>
 <hgroup><h1>Задача 5</h1></hgroup>
-<p>Направете масив със следните стойности:</p><p>Tokyo, Mexico City, New York City, Mumbai, Seoul, Shanghai, Lagos, Buenos Aires, Cairo, London</p><p>Отпечатайте ги, разделени със запетая.</p></section>
+<p>Направете масив със следните стойности:</p><p>Tokyo, Mexico City, New York City, Mumbai, Seoul, Shanghai, Lagos, Buenos Aires, Cairo, London</p><p>Отпечатайте ги, разделени със запетая. След последния елемент не трябва да има интервал.</p></section>
 <section>
 <hgroup><h1>Функции</h1></hgroup>
 <div class="highlight"><pre><span class="cp">&lt;?php</span>
@@ -664,13 +637,13 @@
 </section>
 <section>
 <hgroup><h1>Задача 6</h1></hgroup>
-<p>Напишете функция, която приема като аргументи дължина и ширина на правоъгълник и отпечатва "Правоъгълника с височина ... и ширина ... има лице ...".</p></section>
+<p>Напишете функция get_area, която приема като аргументи дължина и ширина на правоъгълник и отпечатва "Правоъгълника с височина ... и ширина ... има лице ...".</p></section>
 <section>
 <hgroup><h1>Задача 7</h1></hgroup>
-<p>Напишете функция, която смята факториел, чрез рекурсия.</p></section>
+<p>Напишете функция factorial, която смята факториел, чрез рекурсия.</p></section>
 <section>
 <hgroup><h1>Задача 8</h1></hgroup>
-<p>Напишете функция която генерира вложени html елементи, като приема като аргументи типа на елемента и нивата на влагане.</p><p>Пример: generate_nested_elements('div', 3);</p><div class="highlight"><pre><span class="nt">&lt;div&gt;</span>
+<p>Напишете функция generate_nested_elements, която генерира вложени html елементи, като приема като аргументи типа на елемента и нивата на влагане.</p><p>Пример: generate_nested_elements('div', 3);</p><div class="highlight"><pre><span class="nt">&lt;div&gt;</span>
     <span class="nt">&lt;div&gt;</span>
         <span class="nt">&lt;div&gt;</span>
         <span class="nt">&lt;/div&gt;</span>

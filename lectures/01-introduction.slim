@@ -1,27 +1,3 @@
-= slide 'За курса' do
-  ul
-    li.action 
-      a href="http://moodle.le.tsdoit.org/course/view.php?id=13" http://moodle.le.tsdoit.org
-    li.action Ключ за записване: www2013kn
-
-= slide 'Теми' do
-  ul
-    li.action Въведение в PHP и HTML
-    li.action PHP, SQL & HTML 
-    li.action Работа с форми и Regex
-    li.action ООП с PHP
-    li.action HTML & CSS, Част 1
-    li.action HTML & CSS, Част 2
-    li.action Преговор 1
-    li.action PHP MVC
-    li.action Аутентикация и ауторизация
-    li.action JavaScript & DOM
-    li.action jQuery & AJAX
-    li.action Преговор 2
-    li.action Web tools
-    li.action Advanced CSS
-    li.action PHP & JS libs
-
 = slide 'Клинет-сървър' do
   img src="images/client_net.jpg" style="width: 60%"
 
@@ -238,6 +214,7 @@
       define("FOO2",    "something else");
       define("FOO_BAR", "something more");
     ?>
+
 = slide 'Типове в PHP' do
   example:
     <?php
@@ -248,21 +225,7 @@
 
       $person = new Person();         // a PHP Person  - available NOW!
     ?>
-= slide 'Предефинирани променливи в PHP' do
-  example:
-    $_SERVER // Server and execution environment information
-    $_GET // HTTP GET variables
-    $_POST // HTTP POST variables
-    $_FILES // HTTP File Upload variables
-    $_REQUEST // HTTP Request variables
-    $_SESSION // Session variables
-    $_ENV // Environment variables
-    $_COOKIE // HTTP Cookies
-    $php_errormsg // The previous error message
-    $HTTP_RAW_POST_DATA // Raw POST data
-    $http_response_header // HTTP response headers
-    $argc // The number of arguments passed to script
-    $argv // Array of arguments passed to script
+
 = slide 'Оператори за сравнение' do
   | <table class="doctable table">
     <thead>
@@ -496,13 +459,12 @@
           echo "i is not equal to 0, 1 or 2";
       }
     ?>
-= slide 'Среда' do
-  p <a href="http://codepad.viper-7.com/">http://codepad.viper-7.com/</a>
+
 = slide 'Задача 1' do
   example:
     $x = 10;
     $y = 7;
-  p Използвайте двете променливи и напишете код, който да принтира следното:
+  p Използвайте двете променливи и напишете код, който да визуализират следното:
   example:
     [lang:html]
     10 + 7 = 17
@@ -510,8 +472,9 @@
     10 * 7 = 70
     10 / 7 = 1.4285714285714
     10 % 7 = 3
+  p Не може да използвате други цифри, освен тези, използвани в инициализирането на $x и $y.
 = slide 'Задача 2' do
-  p Напишете цикъл, който да визуализира следното:
+  p Напишете четири цикъла, които да визуализират следното:
   p abc abc abc abc abc abc abc abc abc
   p xyz xyz xyz xyz xyz xyz xyz xyz xyz
   p 1 2 3 4 5 6 7 8 9
@@ -523,10 +486,11 @@
     4. Item D
     5. Item E
     6. Item F
+  p След последния елемент не трябва да има интервал.
 = slide 'Задача 3' do
-  p Отпечатайте квадратите на числата от 1 до 12.
+  p Отпечатайте квадратите на числата от 1 до 12. След последния елемент не трябва да има интервал.
 = slide 'Задача 4' do
-  p Ползвайте вложени цикли и съставете следната талица за умножение:
+  p Ползвайте вложени цикли и съставете следната талица за умножение, използвайки HTML таблица:
   | <table style="border-collapse: collapse; border: 1px solid black;background-color: #ffff00"><tbody><tr>
       <td style="width: 2em; text-align:center;border: 1px solid black;">1</td>
       <td style="width: 2em; text-align:center;border: 1px solid black;">2</td>
@@ -588,7 +552,7 @@
 = slide 'Задача 5' do
   p Направете масив със следните стойности:
   p Tokyo, Mexico City, New York City, Mumbai, Seoul, Shanghai, Lagos, Buenos Aires, Cairo, London
-  p Отпечатайте ги, разделени със запетая.
+  p Отпечатайте ги, разделени със запетая. След последния елемент не трябва да има интервал.
 = slide 'Функции' do
   example:
     <?php
@@ -616,11 +580,11 @@
       echo makecoffee("espresso"); //Making a cup of espresso.
     ?>
 = slide 'Задача 6' do
-  p Напишете функция, която приема като аргументи дължина и ширина на правоъгълник и отпечатва "Правоъгълника с височина ... и ширина ... има лице ...".
+  p Напишете функция get_area, която приема като аргументи дължина и ширина на правоъгълник и отпечатва "Правоъгълника с височина ... и ширина ... има лице ...".
 = slide 'Задача 7' do
-  p Напишете функция, която смята факториел, чрез рекурсия.
+  p Напишете функция factorial, която смята факториел, чрез рекурсия.
 = slide 'Задача 8' do
-  p Напишете функция която генерира вложени html елементи, като приема като аргументи типа на елемента и нивата на влагане.
+  p Напишете функция generate_nested_elements, която генерира вложени html елементи, като приема като аргументи типа на елемента и нивата на влагане.
   p Пример: generate_nested_elements('div', 3);
   example:
     [lang:html]
