@@ -10,9 +10,6 @@
   example:
     [lang:html]
     <script type="text/javascript" src="file.js"></script>
-= slide 'JavaScript в HTML' do
-  example:
-    [lang:html] 
     <script type="text/javascript">...</script>
 = slide 'Променливи' do
   example:
@@ -28,24 +25,16 @@
     var emptyList = [];
     var homogenousList = [1, 2, 3];
     var heterogenousList = ['one', 2, 3.0];
-= slide 'Достъп по елементи на масив' do
-  example:
-    [lang:javascript]
-    var heterogenousList = ['one', 2, 3.0];
     alert(heterogenousList[0]); //'one'
     alert(heterogenousList[1]); //2
     alert(heterogenousList[2]); //3.0
-= slide 'Речници(обекти)' do
+= slide 'Обекти(речници)' do
   p Или още map, хешове, речници, асоциативни масиви и други. Съдържа двойки с ключ и стойност. Ключовете са низове.
   example:
     [lang:javascript]
     var emptyMap = {};
     var homogenousMap = {'one': 1, 'two': 2, 'three': 3};
     var heterogenousMap = {'one': 1,'two': 'two','three': 3.0};
-= slide 'Достъп до елемент на речник' do
-  example:
-    [lang:javascript]
-    var homogenousMap = {'one': 1, 'two': 2, 'three': 3};
     alert(homogenousMap.one);    //1
     alert(homogenousMap['one']); //1
   p Първия(с точката) е за предпочитане.
@@ -127,29 +116,6 @@
     }
 
     callable('Hello World');
-= slide 'Функции' do
-  example:
-    [lang:javascript]
-    // calculate distance between points (x1, y1) and (x2, y2)
-    function distance(x1, y1, x2, y2) {
-      var dx = x2 - x1;
-      var dy = y2 - y1;
-      return Math.sqrt(dx * dx + dy * dy);
-    }
-  
-    distance(0, 0, 1, 1);
-= slide 'Функции' do
-  example:
-    [lang:javascript]
-    function squareProduct(x, y) {
-      function square(x) {
-        return x * x;
-      }
-
-      return square(x) * square(y);
-    }
-
-    squareProduct(2, 3); //36
 = slide 'DOM' do
   p HTML-a се описва в дървовидна структура. Тя се нарича DOM дърво.    
   img src='images/htmltree.gif'
@@ -254,33 +220,6 @@
     И много още...
 = slide 'Събития' do
   p Ако някои събития за интересни за нас, може да имплементираме JavaScript код, който да реагира като извика функция при определено събитие.
-= slide 'Събития с атрибути' do
-  example:
-    [lang:html]
-    <button onclick="alert('Thank you');">Click Here</button>
-= slide 'Събития с атрибути' do
-  pre
-    ' onafterprint onbeforeprint onbeforeunload onblur
-      onerror      onfocus       onhashchange   onload
-      onmessage    onoffline     ononline       onpagehide
-      onpageshow   onpopstate    onredo         onresize
-      onstorage    onundo        onunload
-= slide 'JavaScript събития' do
-  example:
-    [lang:javascript]
-    var button;
-    button = document.getElementById('mybutton');
-    button.onclick = function () { 
-      alert('Thanks for clicking me!'); 
-    };
-= slide 'JavaScript събития' do
-  example:
-    [lang:javascript]
-    var button;
-    button = document.getElementById('mybutton');
-    button.addEventListener('click', function() { 
-      alert('Thanks again!'); 
-    }, false);
 = slide 'JavaScript събития' do
   example:
     [lang:javascript]
@@ -299,14 +238,13 @@
     [lang:javascript]
     document.removeEventListener('mousemove', handleMouseClick, true);
 = slide 'Задача 1' do
-  p Направете HTML страница, която съдържа формуляр, със select поле и един бутон. Целта е да се имплементира играта Rock-paper-scissors-lizard-Spock. 
-  p <a href="http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock">Правила</a>
-  p Във полето като отделн option елементи трябва да се съдържат петте възможности - rock, paper, scissors, lizard и spock. При натискане на бутона, трябва да се стартира скрипт, който да прочита избраната от потребителя опция и да избира ход, при който потребителя печели. Избрания от скрипта ход трябва да се изписва под формата в span елемент.
-  p Функцията се взимане на решение трябва да се казва findOptionToLose. Пример: findOptionToLose('rock'); // scissors
+  p Имплементирайте играта Морски шах(Tic-tac-toe) в браузъра посредством JavaScript.
+  p Потребителския интерфейс трябва да включва игрално поле, върху което потребителя прави ходове, кликайки на празните клетки.
+  p Срещу потребителя, трябва да играе опонент, който е достатъчно да избира произволни валидни ходове.
+  p
+    a href="http://stoitsev.com/fmi/wwwtech_se2014_examples/tictactoe" Пример
 = slide 'Задача 2' do
   p Напишете функция count_change, която пресмята броя начини, по които може да развалим парична сума, подадена като аргумент, с монети с номинал 1, 2, 5, 10, 20 или 50.
   p Пример: 
   p count_change(4); // връща 3, защото толкова са начините да развалим 4 стотинки с дадените монети
   p count_chage(100); // 4562
-= slide 'Задача 3' do
-  p Направете HTML страница, която съдържа формуляр, с едно поле за въвеждане на текст и един бутон. При натискане на бутона, числото записано в полето, трябва да се подава на count_changе, от предишната задача и резултата трябва се визуализира под формата, в span елемент.

@@ -3,14 +3,10 @@
   date: 2012-10-03
   url: http://moodle.le.tsdoit.org/pluginfile.php/846/mod_resource/content/4/Lecture_00_MP.BG.pdf
 1:
-  title: 01. Въведение в PHP и HTML
-  date: 2013-10-05
+  title: 01. Динамично генериране на уеб съдържание
+  date: 2014-03-06
   slug: 01-introduction
 2:
-  title: 04. ООП с PHP
-  date: 2013-10-05
-  slug: 04-php-oop
-3:
-  title: 10. JavaScript и DOM
-  date: 2013-10-05
-  slug: 10-javascript
+  title: 05. JavaScript и DOM
+  date: 2014-28-04
+  slug: 05-javascript

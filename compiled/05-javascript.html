@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>10. JavaScript и DOM</title></head><body><header><h1>10. JavaScript и DOM</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>10. JavaScript и DOM</h1></hgroup></section><section>
+<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>05. JavaScript и DOM</title></head><body><header><h1>05. JavaScript и DOM</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>05. JavaScript и DOM</h1></hgroup></section><section>
 <hgroup><h1>JavaScript</h1></hgroup>
 <ul><li class="action">JavaScript е скриптов език за уеб.
 </li><li class="action">Изпълнява се предимно в браузъра.
@@ -9,12 +9,6 @@
 <section>
 <hgroup><h1>JavaScript в HTML</h1></hgroup>
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;file.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>JavaScript в HTML</h1></hgroup>
-<div class="highlight"><pre> 
 <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span><span class="p">...</span><span class="nt">&lt;/script&gt;</span>
 </pre>
 </div>
@@ -33,12 +27,6 @@
 <p>Последователност от елементи. Индексирана и поредна колекция.</p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">emptyList</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="kd">var</span> <span class="nx">homogenousList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="kd">var</span> <span class="nx">heterogenousList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">];</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Достъп по елементи на масив</h1></hgroup>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">heterogenousList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">];</span>
 <span class="nx">alert</span><span class="p">(</span><span class="nx">heterogenousList</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">//&#39;one&#39;</span>
 <span class="nx">alert</span><span class="p">(</span><span class="nx">heterogenousList</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">//2</span>
 <span class="nx">alert</span><span class="p">(</span><span class="nx">heterogenousList</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span> <span class="c1">//3.0</span>
@@ -46,16 +34,10 @@
 </div>
 </section>
 <section>
-<hgroup><h1>Речници(обекти)</h1></hgroup>
+<hgroup><h1>Обекти(речници)</h1></hgroup>
 <p>Или още map, хешове, речници, асоциативни масиви и други. Съдържа двойки с ключ и стойност. Ключовете са низове.</p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">emptyMap</span> <span class="o">=</span> <span class="p">{};</span>
 <span class="kd">var</span> <span class="nx">homogenousMap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="o">:</span> <span class="mi">3</span><span class="p">};</span>
 <span class="kd">var</span> <span class="nx">heterogenousMap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span><span class="s1">&#39;two&#39;</span><span class="o">:</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="o">:</span> <span class="mf">3.0</span><span class="p">};</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Достъп до елемент на речник</h1></hgroup>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">homogenousMap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="o">:</span> <span class="mi">3</span><span class="p">};</span>
 <span class="nx">alert</span><span class="p">(</span><span class="nx">homogenousMap</span><span class="p">.</span><span class="nx">one</span><span class="p">);</span>    <span class="c1">//1</span>
 <span class="nx">alert</span><span class="p">(</span><span class="nx">homogenousMap</span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">]);</span> <span class="c1">//1</span>
 </pre>
@@ -154,33 +136,6 @@
 <span class="p">}</span>
 
 <span class="nx">callable</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Функции</h1></hgroup>
-<div class="highlight"><pre><span class="c1">// calculate distance between points (x1, y1) and (x2, y2)</span>
-<span class="kd">function</span> <span class="nx">distance</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span> <span class="nx">y1</span><span class="p">,</span> <span class="nx">x2</span><span class="p">,</span> <span class="nx">y2</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">dx</span> <span class="o">=</span> <span class="nx">x2</span> <span class="o">-</span> <span class="nx">x1</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">dy</span> <span class="o">=</span> <span class="nx">y2</span> <span class="o">-</span> <span class="nx">y1</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">dx</span> <span class="o">*</span> <span class="nx">dx</span> <span class="o">+</span> <span class="nx">dy</span> <span class="o">*</span> <span class="nx">dy</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">distance</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Функции</h1></hgroup>
-<div class="highlight"><pre><span class="kd">function</span> <span class="nx">squareProduct</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="k">return</span> <span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">*</span> <span class="nx">square</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">squareProduct</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">//36</span>
 </pre>
 </div>
 </section>
@@ -299,39 +254,6 @@
 <hgroup><h1>Събития</h1></hgroup>
 <p>Ако някои събития за интересни за нас, може да имплементираме JavaScript код, който да реагира като извика функция при определено събитие.</p></section>
 <section>
-<hgroup><h1>Събития с атрибути</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;alert(&#39;Thank you&#39;);&quot;</span><span class="nt">&gt;</span>Click Here<span class="nt">&lt;/button&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Събития с атрибути</h1></hgroup>
-<pre>onafterprint onbeforeprint onbeforeunload onblur
-onerror      onfocus       onhashchange   onload
-onmessage    onoffline     ononline       onpagehide
-onpageshow   onpopstate    onredo         onresize
-onstorage    onundo        onunload </pre></section>
-<section>
-<hgroup><h1>JavaScript събития</h1></hgroup>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">button</span><span class="p">;</span>
-<span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mybutton&#39;</span><span class="p">);</span>
-<span class="nx">button</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> 
-  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Thanks for clicking me!&#39;</span><span class="p">);</span> 
-<span class="p">};</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>JavaScript събития</h1></hgroup>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">button</span><span class="p">;</span>
-<span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mybutton&#39;</span><span class="p">);</span>
-<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Thanks again!&#39;</span><span class="p">);</span> 
-<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
-</pre>
-</div>
-</section>
-<section>
 <hgroup><h1>JavaScript събития</h1></hgroup>
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">button</span><span class="p">,</span> 
     <span class="nx">handleMouseClick</span><span class="p">;</span>
@@ -353,13 +275,10 @@ onstorage    onundo        onunload </pre></section>
 </section>
 <section>
 <hgroup><h1>Задача 1</h1></hgroup>
-<p>Направете HTML страница, която съдържа формуляр, със select поле и един бутон. Целта е да се имплементира играта Rock-paper-scissors-lizard-Spock. </p><p><a href="http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock">Правила</a></p><p>Във полето като отделн option елементи трябва да се съдържат петте възможности - rock, paper, scissors, lizard и spock. При натискане на бутона, трябва да се стартира скрипт, който да прочита избраната от потребителя опция и да избира ход, при който потребителя печели. Избрания от скрипта ход трябва да се изписва под формата в span елемент.</p><p>Функцията се взимане на решение трябва да се казва findOptionToLose. Пример: findOptionToLose('rock'); // scissors</p></section>
+<p>Имплементирайте играта Морски шах(Tic-tac-toe) в браузъра посредством JavaScript.</p><p>Потребителския интерфейс трябва да включва игрално поле, върху което потребителя прави ходове, кликайки на празните клетки.</p><p>Срещу потребителя, трябва да играе опонент, който е достатъчно да избира произволни валидни ходове.</p><p><a href="http://stoitsev.com/fmi/wwwtech_se2014_examples/tictactoe">Пример</a></p></section>
 <section>
 <hgroup><h1>Задача 2</h1></hgroup>
 <p>Напишете функция count_change, която пресмята броя начини, по които може да развалим парична сума, подадена като аргумент, с монети с номинал 1, 2, 5, 10, 20 или 50.</p><p>Пример: </p><p>count_change(4); // връща 3, защото толкова са начините да развалим 4 стотинки с дадените монети</p><p>count_chage(100); // 4562</p></section>
-<section>
-<hgroup><h1>Задача 3</h1></hgroup>
-<p>Направете HTML страница, която съдържа формуляр, с едно поле за въвеждане на текст и един бутон. При натискане на бутона, числото записано в полето, трябва да се подава на count_changе, от предишната задача и резултата трябва се визуализира под формата, в span елемент.</p></section>
 <section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
