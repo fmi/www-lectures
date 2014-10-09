@@ -407,7 +407,16 @@
 <ul><li>var_dump($var, $var2...)</li><li>print_r($var, true|false)</li><li>exit()/die()</li><li><a href="http://xdebug.org/docs/" target="_blank">XDEBUG	</a></li></ul></section>
 <section>
 <hgroup><h1>Задача - прост календар</h1></hgroup>
-<p>Създайте календар с PHP, който да показва текущия месец. Календара трябва да може да сменя месеците си посредством връзка към предишен/следващ месец.</p><p>Използвайте примера по-долу като основа за календара. За референция как да вземете първи ден от седмица, брой дни от седмицата и т.н. използвайте <a href="http://php.net/manual/bg/function.date.php" target="_blank"> date()</a></p><p>При подаването на параметрите по GET използвайте year и month като параметри.</p><div class="highlight"><pre><span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<p>Създайте календар с PHP, който да показва текущия месец. Календара трябва да може да сменя месеците си посредством връзка към предишен/следващ месец.</p><p>Поставете този style таг в head тага на документа ви:</p><div class="highlight"><pre>  <span class="nt">&lt;style&gt;</span>
+  <span class="nt">table</span><span class="o">,</span> <span class="nt">td</span> <span class="p">{</span>
+    <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#000</span><span class="p">;</span>
+    <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+    <span class="k">border-collapse</span><span class="o">:</span> <span class="k">collapse</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+</pre>
+</div>
+<p>Използвайте примера по-долу като основа за календара. За референция как да вземете първи ден от седмица, брой дни от седмицата и т.н. използвайте <a href="http://php.net/manual/bg/function.date.php" target="_blank"> date()</a></p><p>При подаването на параметрите по GET използвайте year и month като параметри.</p><div class="highlight"><pre><span class="nt">&lt;table&gt;</span>
   <span class="nt">&lt;tr</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Септември<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
     <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>Октомври 2014<span class="nt">&lt;/td&gt;</span>
