@@ -7,7 +7,7 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline}:focus{outline:0}body{line-height:1;color:black;background:white}ol,ul{list-style:none}table{border-collapse:separate;border-spacing:0}caption,th,td{text-align:left;font-weight:normal}blockquote:before,blockquote:after,q:before,q:after{content:""}blockquote,q{quotes:""""}
 
 /* Core Styles */
-html{ font-size:100%; overflow: hidden; }
+html{ font-size:100%; }
 body { font-size: 62.5%; line-height: 1.5; font-family: "Helvetica Neue", Helvetica, Arial, Sans-serif; color: #333; }
 input, select, textarea { font-family: "Helvetica Neue", Helvetica, Arial, Sans-serif; font-size: 1em; }
 :focus { outline: 1px; }
@@ -33,9 +33,9 @@ span.highlight { background-color: #ffdeb8; font-weight: bold; color: #5a0b05; }
 
 /* Slider App Styles */
 section { padding: 0 30px 30px; display: none; }
-header { color: #000; background-image: -moz-linear-gradient(top, #c5c5c5, #b0b0b0); background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #c5c5c5),color-stop(1, #b0b0b0)); background-image: -o-linear-gradient(top, #c5c5c5, #b0b0b0); border-top:1px solid #dcdcdc; border-bottom: 1px solid rgb(105, 105, 105); text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5); font-family: "Lucida Grande"; padding: 1px 10px; overflow:hidden; z-index: 10000; position: relative; }
+header { color: #000; background-image: -moz-linear-gradient(top, #c5c5c5, #b0b0b0); background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #c5c5c5),color-stop(1, #b0b0b0)); background-image: -o-linear-gradient(top, #c5c5c5, #b0b0b0); border-top:1px solid #dcdcdc; border-bottom: 1px solid rgb(105, 105, 105); text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5); font-family: "Lucida Grande"; text-indent: 10px; overflow:hidden; z-index: 10000; position: fixed; width: 100%;}
 header h1 { float: left; font-size: 18px;  line-height: 32px;}
-.slide-selected { display: block; }
+.slide-selected { display: block;}
 .action, .action-on  { display: none; }
 
 /* Slider Nav */

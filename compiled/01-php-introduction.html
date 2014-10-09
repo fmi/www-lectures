@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="bg"></html><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>01. Динамично генериране на уеб съдържание</title></head><body><header><h1>01. Динамично генериране на уеб съдържание</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>01. Динамично генериране на уеб съдържание</h1></hgroup></section><section>
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>01. PHP основи и динамично генериране на съдържание</title></head><body><header><h1>01. PHP основи и динамично генериране на съдържание</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>01. PHP основи и динамично генериране на съдържание</h1></hgroup></section><section>
 <hgroup><h1>Клинет-сървър</h1></hgroup>
 <img src="images/client_net.jpg" style="width: 60%" /></section>
 <section>
@@ -7,151 +7,6 @@
 <section>
 <hgroup><h1>PHP</h1></hgroup>
 <ul><li class="action">Браузъра изпраща HTTP заявка към сървъра.</li><li class="action">Сървъря я обработва.</li><li class="action">Той може да прочете информация от база от данни.</li><li class="action">Накрая генерира отговор под формата на HTML документ.</li></ul></section>
-<section>
-<hgroup><h1>Пример за HTML страница</h1></hgroup>
-<p>Запишете го във файл index.html и го отворете в браузъра.</p><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-  <span class="nt">&lt;title&gt;</span>My title<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-  <span class="nt">&lt;h1&gt;</span>My header<span class="nt">&lt;/h1&gt;</span>
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://example.com&quot;</span><span class="nt">&gt;</span>My Link<span class="nt">&lt;/a&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>HTML тагове</h1></hgroup>
-<p>Задача: Да запишем следните HTML тагове във файла и да го отворим в браузъра.</p></section>
-<section>
-<hgroup><h1>Заглавия</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>This is heading 1<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;h2&gt;</span>This is heading 2<span class="nt">&lt;/h2&gt;</span>
-<span class="nt">&lt;h3&gt;</span>This is heading 3<span class="nt">&lt;/h3&gt;</span>
-<span class="nt">&lt;h4&gt;</span>This is heading 4<span class="nt">&lt;/h4&gt;</span>
-<span class="nt">&lt;h5&gt;</span>This is heading 5<span class="nt">&lt;/h5&gt;</span>
-<span class="nt">&lt;h6&gt;</span>This is heading 6<span class="nt">&lt;/h6&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Параграф</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;p&gt;</span>Paragraph with text.<span class="nt">&lt;/p&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Секции в страницата</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;span&gt;</span>Some text here.<span class="nt">&lt;/span&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Секции в страницата</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;div&gt;</span>Some text here.<span class="nt">&lt;/div&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Номериран списък</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;ol&gt;</span>
-    <span class="nt">&lt;li&gt;</span>To learn HTML<span class="nt">&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;</span>To show off<span class="nt">&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;</span>Because I&#39;ve fallen in love with my computer and want to give her some HTML loving.<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ol&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Неномериран Списък</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;ul&gt;</span>
-    <span class="nt">&lt;li&gt;</span>To learn HTML<span class="nt">&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;</span>To show off<span class="nt">&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;</span>Because I&#39;ve fallen in love with my computer and want to give her some HTML loving.<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Хиперлинк</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://example.com&quot;</span> <span class="na">title=</span><span class="s">&quot;Link to example.com&quot;</span><span class="nt">&gt;</span>My Link<span class="nt">&lt;/a&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Изображения</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;http://example.com/image.jpg&quot;</span> <span class="na">alt=</span><span class="s">&quot;Example Image&quot;</span> <span class="nt">/&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Таблица</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;table&gt;</span>
-  <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;td&gt;</span>Row 1, Cell 1<span class="nt">&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>Row 1, Cell 2<span class="nt">&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>Row 1, Cell 3<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;/tr&gt;</span>
-  <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;td&gt;</span>Row 2, Cell 1<span class="nt">&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>Row 2, Cell 2<span class="nt">&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>Row 2, Cell 3<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;/tr&gt;</span>
-<span class="nt">&lt;/table&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Семантични тагове</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;article&gt;</span>
-  <span class="nt">&lt;h1&gt;</span>Internet Explorer 9<span class="nt">&lt;/h1&gt;</span>
-  <span class="nt">&lt;p&gt;</span>Windows Internet Explorer 9 (abbreviated as IE9) was released to
-  the  public on March 14, 2011 at 21:00 PDT.....<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/article&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Семантични тагове</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;aside&gt;</span>
-  <span class="nt">&lt;h4&gt;</span>Epcot Center<span class="nt">&lt;/h4&gt;</span>
-  <span class="nt">&lt;p&gt;</span>The Epcot Center is a theme park in Disney World, Florida.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/aside&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Семантични тагове</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;footer&gt;</span>
-  <span class="nt">&lt;p&gt;</span>Posted by: Hege Refsnes<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;p&gt;</span>Contact information: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;mailto:someone@example.com&quot;</span><span class="nt">&gt;</span>
-  someone@example.com<span class="nt">&lt;/a&gt;</span>.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/footer&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Семантични тагове</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;header&gt;</span>
-  <span class="nt">&lt;h1&gt;</span>Example title<span class="nt">&lt;/h1&gt;</span>
-  <span class="nt">&lt;p&gt;</span>Example text.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/header&gt;</span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Семантични тагове</h1></hgroup>
-<div class="highlight"><pre><span class="nt">&lt;nav&gt;</span>
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/html/&quot;</span><span class="nt">&gt;</span>HTML<span class="nt">&lt;/a&gt;</span> |
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/css/&quot;</span><span class="nt">&gt;</span>CSS<span class="nt">&lt;/a&gt;</span> |
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/js/&quot;</span><span class="nt">&gt;</span>JavaScript<span class="nt">&lt;/a&gt;</span> |
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/jquery/&quot;</span><span class="nt">&gt;</span>jQuery<span class="nt">&lt;/a&gt;</span>
-<span class="nt">&lt;/nav&gt;</span>
-</pre>
-</div>
-</section>
 <section>
 <hgroup><h1>Пример за PHP</h1></hgroup>
 <div class="highlight"><pre><span class="x">&lt;!DOCTYPE html&gt;</span>
@@ -510,97 +365,6 @@
 </div>
 </section>
 <section>
-<hgroup><h1>Задача 1</h1></hgroup>
-<div class="highlight"><pre><span class="x">$x = 10;</span>
-<span class="x">$y = 7;</span>
-</pre>
-</div>
-<p>Използвайте двете променливи и напишете код, който да визуализират следното:</p><div class="highlight"><pre>10 + 7 = 17
-10 - 7 = 3
-10 * 7 = 70
-10 / 7 = 1.4285714285714
-10 % 7 = 3
-</pre>
-</div>
-<p>Не може да използвате други цифри, освен тези, използвани в инициализирането на $x и $y.</p></section>
-<section>
-<hgroup><h1>Задача 2</h1></hgroup>
-<p>Напишете четири цикъла, които да визуализират следното:</p><p>abc abc abc abc abc abc abc abc abc</p><p>xyz xyz xyz xyz xyz xyz xyz xyz xyz</p><p>1 2 3 4 5 6 7 8 9</p><div class="highlight"><pre>1. Item A
-2. Item B
-3. Item C
-4. Item D
-5. Item E
-6. Item F
-</pre>
-</div>
-<p>След последния елемент не трябва да има интервал.</p></section>
-<section>
-<hgroup><h1>Задача 3</h1></hgroup>
-<p>Отпечатайте квадратите на числата от 1 до 12. След последния елемент не трябва да има интервал.</p></section>
-<section>
-<hgroup><h1>Задача 4</h1></hgroup>
-<p>Ползвайте вложени цикли и съставете следната талица за умножение, използвайки HTML таблица:</p><table style="border-collapse: collapse; border: 1px solid black;background-color: #ffff00"><tbody><tr>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">1</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">2</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">3</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">5</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">7</td>
-  </tr><tr>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">2</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">8</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">10</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">14</td>
-  </tr><tr>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">3</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">9</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">15</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">18</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">21</td>
-  </tr><tr>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">4</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">8</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">16</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">20</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">24</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">28</td>
-  </tr><tr>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">5</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">10</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">15</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">20</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">25</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">30</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">35</td>
-  </tr><tr>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">6</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">12</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">18</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">24</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">30</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">36</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">42</td>
-  </tr><tr>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">7</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">14</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">21</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">28</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">35</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">42</td>
-  <td style="width: 2em; text-align:center;border: 1px solid black;">49</td>
-  </tr></tbody>
-</table></section>
-<section>
-<hgroup><h1>Задача 5</h1></hgroup>
-<p>Направете масив със следните стойности:</p><p>Tokyo, Mexico City, New York City, Mumbai, Seoul, Shanghai, Lagos, Buenos Aires, Cairo, London</p><p>Отпечатайте ги, разделени със запетая. След последния елемент не трябва да има интервал.</p></section>
-<section>
 <hgroup><h1>Функции</h1></hgroup>
 <div class="highlight"><pre><span class="cp">&lt;?php</span>
   <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$arg_1</span><span class="p">,</span> <span class="nv">$arg_2</span><span class="p">,</span> <span class="cm">/* ..., */</span> <span class="nv">$arg_n</span><span class="p">)</span> <span class="p">{</span>
@@ -636,23 +400,42 @@
 </div>
 </section>
 <section>
-<hgroup><h1>Задача 6</h1></hgroup>
-<p>Напишете функция get_area, която приема като аргументи дължина и ширина на правоъгълник и отпечатва "Правоъгълника с височина ... и ширина ... има лице ...".</p></section>
+<hgroup><h1>Глобални променливи (масиви)</h1></hgroup>
+<ul><li>$_SERVER</li><li>$_REQUEST</li><li>$_POST</li><li>$_GET</li><li>$_FILES</li><li>$_ENV</li><li>$_COOKIE</li><li>$_SESSION</li></ul></section>
 <section>
-<hgroup><h1>Задача 7</h1></hgroup>
-<p>Напишете функция factorial, която смята факториел, чрез рекурсия.</p></section>
+<hgroup><h1>Дебъгване в php</h1></hgroup>
+<ul><li>var_dump($var, $var2...)</li><li>print_r($var, true|false)</li><li>exit()/die()</li><li><a href="http://xdebug.org/docs/" target="_blank">XDEBUG	</a></li></ul></section>
 <section>
-<hgroup><h1>Задача 8</h1></hgroup>
-<p>Напишете функция generate_nested_elements, която генерира вложени html елементи, като приема като аргументи типа на елемента и нивата на влагане.</p><p>Пример: generate_nested_elements('div', 3);</p><div class="highlight"><pre><span class="nt">&lt;div&gt;</span>
-    <span class="nt">&lt;div&gt;</span>
-        <span class="nt">&lt;div&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
+<hgroup><h1>Задача - прост календар</h1></hgroup>
+<p>Създайте календар с PHP, който да показва текущия месец. Календара трябва да може да сменя месеците си посредством връзка към предишен/следващ месец.</p><p>Използвайте примера по-долу като основа за календара. За референция как да вземете първи ден от седмица, брой дни от седмицата и т.н. използвайте <a href="http://php.net/manual/bg/function.date.php" target="_blank"> date()</a></p><p>При подаването на параметрите по GET използвайте year и month като параметри.</p><div class="highlight"><pre><span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;tr</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Септември<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>Октомври 2014<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Ноември<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;tr</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;td&gt;</span>Понеделник<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>Вторник<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>Сряда<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>Четвъртък<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>Петък<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>Събота<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>Неделя<span class="nt">&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;tr</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;td&gt;&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>1<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>2<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>3<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>4<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>5<span class="nt">&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
 </pre>
 </div>
-</section>
-<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.le.tsdoit.org/course/view.php?id=13">http://moodle.le.tsdoit.org</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+<p><b>Предайте решението в формата [FN].php</b></p></section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=989">http://moodle.openfmi.net/course/view.php?id=989</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
 
@@ -669,4 +452,4 @@ try {
     referrer: document.referrer,
     presentation: document.title
   });
-} catch (e) {};</script></body>
+} catch (e) {};</script></body></html>
