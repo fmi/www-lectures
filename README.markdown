@@ -18,6 +18,18 @@
 - `bundle install`
 - `bundle exec thor rebuild`
 
+### За Windows:
+- [Инсталирайте Ruby 1.9.3-p551] (http://rubyinstaller.org/downloads/) = RUBY_PATH
+- [Инсталирайте DEVELOPMENT KIT] (http://rubyinstaller.org/downloads/) DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe = DEV_TOOLS_PATH
+- cd DEV_TOOLS_PATH
+- `ruby dk.rb init`
+- `ruby dk.rb install`
+- Клонирате хранилището = YOUR_REPO_PATH
+- cd YOUR_REPO_PATH
+- `gem install bundler`
+- `bundle install`
+- `bundle exec rebuild`
+
 ## Генериране на една лекция
 
 С командата `thor lecture <idnex>` може да прегенерирате лекция номер `<index>`. Например, ако искате да прегенерирате презентация 8, това става със следната команда:
