@@ -28,7 +28,7 @@
 - cd YOUR_REPO_PATH
 - `gem install bundler`
 - `bundle install`
-- `bundle exec rebuild`
+- `bundle exec thor rebuild`
 
 ## Генериране на една лекция
 
