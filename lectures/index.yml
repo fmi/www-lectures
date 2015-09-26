@@ -1,12 +1,4 @@
 0:
   title: 00. Основи на HTML
-  date: 2014-10-02
+  date: 2015-10-01
   slug: 00-html-basics
-1:
-  title: 01. PHP основи и динамично генериране на съдържание
-  date: 2014-10-09
-  slug: 01-php-introduction
-2:
-  title: 02. Обектно ориентирано PHP и работа с MySQL
-  date: 2014-28-04
-  slug: 02-php-oop-mysql
