@@ -1,6 +1,91 @@
-<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>00. Основи на HTML</title></head><body><header><h1>00. Основи на HTML</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>00. Основи на HTML</h1></hgroup></section><section>
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>00. Основи на HTML и за курса</title></head><body><header><h1>00. Основи на HTML и за курса</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>00. Основи на HTML и за курса</h1></hgroup></section><section>
 <hgroup><h1>За курса</h1></hgroup>
-<h1>Теми:</h1><ol><li>...</li><li>...</li></ol></section>
+<h1>Теми:</h1><ol><li>Основи на HTML</li><li>Динамично генериране на HTML</li><li>Работа с MySQL</li><li>Работа с Форми</li><li>CSS част 1</li><li>CSS част 2</li><li>JavaScript част 1</li><li>JavaScript част 2</li><li>Authentication & Authorization</li><li>REST</li><li>JavaScript Single Page Apps</li><li>Консултация за проекти</li></ol></section>
+<section>
+<hgroup><h1>Moodle</h1></hgroup>
+<p><a href="http://moodle.openfmi.net/course/view.php?id=1911" target="_blank">World-Wide Web технологии (2015-16КН)</a></p></section>
+<section>
+<hgroup><h1>Оценяване</h1></hgroup>
+<p>40% - реферат по време на лекции</p><p>40% - курсов проект</p><p>20% - домашни</p></section>
+<section>
+<hgroup><h1>Пример за HTML страница</h1></hgroup>
+<p>Запишете го във файл index.html и го отворете в браузъра.</p><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;title&gt;</span>My title<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>My header<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://example.com&quot;</span><span class="nt">&gt;</span>My Link<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Заглавия</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>This is heading 1<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;h2&gt;</span>This is heading 2<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;h3&gt;</span>This is heading 3<span class="nt">&lt;/h3&gt;</span>
+<span class="nt">&lt;h4&gt;</span>This is heading 4<span class="nt">&lt;/h4&gt;</span>
+<span class="nt">&lt;h5&gt;</span>This is heading 5<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;h6&gt;</span>This is heading 6<span class="nt">&lt;/h6&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Параграф</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;p&gt;</span>Paragraph with text.<span class="nt">&lt;/p&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Секции в страницата</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;span&gt;</span>Some text here.<span class="nt">&lt;/span&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Секции в страницата</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;div&gt;</span>Some text here.<span class="nt">&lt;/div&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Номериран списък</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;ol&gt;</span>
+    <span class="nt">&lt;li&gt;</span>First list item<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Second list item<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Third list item<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ol&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Неномериран Списък</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li&gt;</span>One list item<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Some list item<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Another list item<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Хиперлинк</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://example.com&quot;</span> <span class="na">title=</span><span class="s">&quot;Link to example.com&quot;</span><span class="nt">&gt;</span>My Link<span class="nt">&lt;/a&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Изображения</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;http://example.com/image.jpg&quot;</span> <span class="na">alt=</span><span class="s">&quot;Example Image&quot;</span> <span class="nt">/&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача: Проста HTML страница</h1></hgroup>
+<p>Създайте файл с разширение .html. Създайте базовата структура (html, head, title, body) и сложете h1 таг с Вашето имe и ФН.</p><p>Добавете параграф с няколко думи. </p><p>Добавете номериран списък с 5 любими неща за ядене.</p><p>Добавете линк към facebook, който да се отваря в нова страница</p><p><b>Предайте файл с име в формат [FN].html</b></p></section>
 <section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=989">http://moodle.openfmi.net/course/view.php?id=989</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
