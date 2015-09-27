@@ -1,0 +1,339 @@
+= slide 'Клинет-сървър' do
+  img src="images/client_net.jpg" style="width: 60%"
+
+= slide 'PHP' do
+  img src="images/get-php-file.png"
+
+= slide 'PHP' do
+  ul
+    li.action Браузъра изпраща HTTP заявка към сървъра.
+    li.action Сървъря я обработва.
+    li.action Той може да прочете информация от база от данни.
+    li.action Накрая генерира отговор под формата на HTML документ.
+
+= slide 'Пример за PHP' do
+  example:
+    [lang:php]
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Example</title>
+      </head>
+      <body>
+        <?php
+          echo "Hi, I'm a PHP script!";
+        ?>
+      </body>
+    </html>
+
+= slide 'Пример за PHP' do
+  example:
+    [lang:html]
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Example</title>
+        </head>
+        <body>
+            Hi, I'm a PHP script!
+        </body>
+    </html>
+
+= slide 'Пример за PHP' do
+  example:
+    [lang:php]
+    <html>
+      <head>
+        <title>Example</title>
+      </head>
+      <body>
+        <?php
+          echo "<h2>Hi, I'm a PHP script!</h2>";
+        ?>
+      </body>
+    </html>
+
+= slide 'Пример за PHP' do
+  example:
+    [lang:html]
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Example</title>
+        </head>
+        <body>
+            <h2>Hi, I'm a PHP script!</h2>
+        </body>
+    </html>
+
+= slide 'Променливи' do
+  example:
+    <?php
+      $var = 'Bob';
+      $Var = 'Joe';
+      echo "$var, $Var";      // outputs "Bob, Joe"
+    ?>
+
+= slide 'Типове в PHP' do
+  example:
+    <?php
+      $myAge = 16;                    // a PHP Integer - always available
+      $yourAge = 15.5;                // a PHP Float   - always available
+      $hasHair = true;                // a PHP Boolean - always available
+      $greeting = "Hello World!"      // a PHP String  - always available
+
+      $person = new Person();         // a PHP Person  - available NOW!
+    ?>
+
+= slide 'Оператори за сравнение' do
+  | <table class="doctable table">
+    <thead>
+      <tr>
+       <th>Example</th>
+       <th>Name</th>
+       <th>Result</th>
+      </tr>
+    </thead>
+
+    <tbody class="tbody">
+      <tr>
+       <td>$a == $b</td>
+       <td>Equal</td>
+       <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is equal to <var class="varname"><var class="varname">$b</var></var> after type juggling.</td>
+      </tr>
+
+      <tr>
+       <td>$a === $b</td>
+       <td>Identical</td>
+       <td>
+        <strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is equal to <var class="varname"><var class="varname">$b</var></var>, and they are of the same
+        type.
+       </td>
+      </tr>
+
+      <tr>
+       <td>$a != $b</td>
+       <td>Not equal</td>
+       <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is not equal to <var class="varname"><var class="varname">$b</var></var> after type juggling.</td>
+      </tr>
+
+      <tr>
+       <td>$a &lt;&gt; $b</td>
+       <td>Not equal</td>
+       <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is not equal to <var class="varname"><var class="varname">$b</var></var> after type juggling.</td>
+      </tr>
+
+      <tr>
+       <td>$a !== $b</td>
+       <td>Not identical</td>
+       <td>
+        <strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is not equal to <var class="varname"><var class="varname">$b</var></var>, or they are not of the same
+        type.
+       </td>
+      </tr>
+
+      <tr>
+       <td>$a &lt; $b</td>
+       <td>Less than</td>
+       <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is strictly less than <var class="varname"><var class="varname">$b</var></var>.</td>
+      </tr>
+
+      <tr>
+       <td>$a &gt; $b</td>
+       <td>Greater than</td>
+       <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is strictly greater than <var class="varname"><var class="varname">$b</var></var>.</td>
+      </tr>
+
+      <tr>
+       <td>$a &lt;= $b</td>
+       <td>Less than or equal to </td>
+       <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is less than or equal to <var class="varname"><var class="varname">$b</var></var>.</td>
+      </tr>
+
+      <tr>
+       <td>$a &gt;= $b</td>
+       <td>Greater than or equal to </td>
+       <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is greater than or equal to <var class="varname"><var class="varname">$b</var></var>.</td>
+      </tr>
+
+    </tbody>
+
+    </table>
+
+= slide 'Аритметични оператори' do
+  | <table class="doctable table">
+      <thead>
+      <tr>
+       <th>Example</th>
+       <th>Name</th>
+       <th>Result</th>
+      </tr>
+
+      </thead>
+
+      <tbody class="tbody">
+      <tr>
+       <td>-$a</td>
+       <td>Negation</td>
+       <td>Opposite of <var class="varname"><var class="varname">$a</var></var>.</td>
+      </tr>
+
+      <tr>
+       <td>$a + $b</td>
+       <td>Addition</td>
+       <td>Sum of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+      </tr>
+
+      <tr>
+       <td>$a - $b</td>
+       <td>Subtraction</td>
+       <td>Difference of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+      </tr>
+
+      <tr>
+       <td>$a * $b</td>
+       <td>Multiplication</td>
+       <td>Product of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+      </tr>
+
+      <tr>
+       <td>$a / $b</td>
+       <td>Division</td>
+       <td>Quotient of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+      </tr>
+
+      <tr>
+       <td>$a % $b</td>
+       <td>Modulus</td>
+       <td>Remainder of <var class="varname"><var class="varname">$a</var></var> divided by <var class="varname"><var class="varname">$b</var></var>.</td>
+      </tr>
+
+      </tbody>
+
+    </table>
+
+= slide 'Аритметика' do
+  example:
+    <?php
+      echo (5 % 3)."\n";    // prints 2
+      echo (5 % -3)."\n";   // prints 2
+      echo (-5 % 3)."\n";   // prints -2
+      echo (-5 % -3)."\n";  // prints -2
+    ?>
+
+= slide 'if' do
+  example:
+    <?php
+      if ($a > $b) {
+       echo "a is bigger than b";
+      } elseif ($a == $b) {
+       echo "a is equal to b";
+      } else {
+        echo "a is smaller than b";
+      }
+    ?>
+
+= slide 'While' do 
+  example:
+    <?php
+      $i = 1;
+      while ($i <= 10) {
+        echo $i++;
+      }
+    ?>
+
+= slide 'For' do 
+  example:
+    <?php
+      for ($i = 1; $i <= 10; $i++) {
+        echo $i;
+      }
+    ?>
+
+= slide 'Масиви' do 
+  p В PHP има само една структура от данни - масив.
+  example:
+    <?php
+      $array = array(
+        "foo" => "bar",
+        "bar" => "foo",
+      );
+    ?>
+
+= slide 'Foreach' do 
+  p Обхожда последователно елементите на колекция.
+  example:
+    <?php
+      $arr = array(1, 2, 3, 4);
+      foreach ($arr as $value) {
+        echo $value;
+      }
+    ?>
+
+= slide 'Foreach' do 
+  example:
+    <?php
+      $a = array(
+        "one" => 1,
+        "two" => 2,
+        "three" => 3,
+        "seventeen" => 17
+      );
+
+      foreach ($a as $k => $v) {
+        echo "$k -> $v\n";
+      }
+    ?>
+
+= slide 'Функции' do
+  example:
+    <?php
+      function foo($arg_1, $arg_2, /* ..., */ $arg_n) {
+        echo "Example function.\n";
+        return $retval;
+      }
+    ?>
+
+= slide 'Функции' do
+  example:
+    <?php
+      function takes_array($input) {
+        echo "$input[0] + $input[1] = ", $input[0] + $input[1];
+      }
+      takes_array(array(1, 2)); // 1 + 2 = 3
+    ?>
+
+= slide 'Функции' do
+  example:
+    <?php
+      function makecoffee($type = "cappuccino")
+      {
+        return "Making a cup of $type.\n";
+      }
+      echo makecoffee(); //Making a cup of cappuccino.
+      echo makecoffee(null); //Making a cup of . 
+      echo makecoffee("espresso"); //Making a cup of espresso.
+    ?>
+
+= slide 'Дебъгване в php' do
+  ul
+    li var_dump($var, $var2...)
+    li print_r($var)
+    li exit()/die()
+    li 
+      a href="http://xdebug.org/docs/" target="_blank" XDEBUG 
+
+= slide 'Задача' do
+  ul
+    li.action Система за събиране на мнения за избираеми дисциплини.
+    li.action Всяка избираема дисциплина си има страница.
+    li.action На страницата има информация за дисциплината и коментари за нея.
+    li.action През семестъра ще създадем такава система от начало до край.
+    li.action Всяко упражнение ще подобрява системата.
+
+= slide 'Задача' do
+  p Имплементирайте функцията showPage, която показва информацията за даден избираем курс. Тя приема един аргумент - pageId, който е идентификатора на курса който искаме да покажем.
+  p Информацията за курсовете се пази в следния масив:
+  example:
+    <?php
+    $courses = array();
