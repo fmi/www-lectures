@@ -83,3 +83,8 @@ body{ background:#f5f6f6; }
 #deck blockquote { font-style: italic; }
 
 #test {border: 0}
+
+@media print {
+  body { overflow: auto } 
+  section { border: 2px solid #ccc; margin: 0 5px 100px; display: block; page-break-after: always; }
+}
