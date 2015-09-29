@@ -344,12 +344,52 @@
 <hgroup><h1>Задача</h1></hgroup>
 <ul><li class="action">Система за събиране на мнения за избираеми дисциплини.</li><li class="action">Всяка избираема дисциплина си има страница.</li><li class="action">На страницата има информация за дисциплината и коментари за нея.</li><li class="action">През семестъра ще създадем такава система от начало до край.</li><li class="action">Всяко упражнение ще подобрява системата.</li></ul></section>
 <section>
-<hgroup><h1>Задача</h1></hgroup>
-<p>Имплементирайте функцията showPage, която показва информацията за даден избираем курс. Тя приема един аргумент - pageId, който е идентификатора на курса който искаме да покажем.</p><p>Информацията за курсовете се пази в следния масив:</p><div class="highlight"><pre><span class="cp">&lt;?php</span>
-<span class="nv">$courses</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+<hgroup><h1>Задача 1</h1></hgroup>
+<p>Имплементирайте функцията show_page, която показва информацията за даден избираем курс. Тя приема два аргумента. Първия е pageId, който е идентификатора на курса който искаме да покажем. Втория е масив с информация за курсовете.</p><p>Информацията за курсовете се пази в следния масив:</p><div class="highlight"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">&#39;webgl&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Компютърна графика с WebGL&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lecturer&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;доц. П. Бойчев&#39;</span><span class="p">,</span>
+  <span class="p">),</span>
+  <span class="s1">&#39;go&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Програмиране с Go&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lecturer&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Николай Бачийски&#39;</span><span class="p">,</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span>
 </pre>
 </div>
 </section>
+<section>
+<hgroup><h1>Задача 1</h1></hgroup>
+<p>Пример, следното извикване:</p><div class="highlight"><pre><span class="cp">&lt;?php</span>
+  <span class="nx">show_page</span><span class="p">(</span><span class="s1">&#39;webgl&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre>
+</div>
+<p>Тя трябва да върне(не да изпринтира) следния низ:</p><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Компютърна графика с WebGL<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;h2&gt;</span>доц. П. Бойчев<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;p&gt;</span>...<span class="nt">&lt;/p&gt;</span>
+</pre>
+</div>
+<p>Като в h1 залгавие се намира 'title' информацията, в h2 заглавие се намира 'lecturer' информацията, а в параграф се показва 'description' информацията за курса с ключ, съвпадащ с параметъра $pageId.</p><p>В предаденото решение не трябва да има нов ред или празно място между html таговете.</p><p><a href="http://stoitsev.com/fmi/example/">Пример за краен резултат</a></p></section>
+<section>
+<hgroup><h1>Задача 2</h1></hgroup>
+<p>Имплементирайте функцията show_nav, която показва меню за навигация между отделните курсове. Тя приема два аргумента. Първия е масив с информация за курсовете. Той е същия, като в предишната задача. Втория аргумент е текущия курс, който се преглежда в момента. </p><p><a href="http://stoitsev.com/fmi/example/">Пример за краен резултат</a></p></section>
+<section>
+<hgroup><h1>Задача 2</h1></hgroup>
+<p>Ако извикаме функцията по следния начин:</p><div class="highlight"><pre><span class="cp">&lt;?php</span>
+<span class="nx">show_nav</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="s1">&#39;webgl&#39;</span><span class="p">);</span>
+</pre>
+</div>
+<p>Тя трябва да върне(не да изпринтира) следния низ:</p><div class="highlight"><pre><span class="nt">&lt;nav&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;?page=webgl&quot;</span> <span class="na">class=</span><span class="s">&quot;selected&quot;</span><span class="nt">&gt;</span>Компютърна графика с WebGL<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;?page=go&quot;</span><span class="nt">&gt;</span>Програмиране с Go<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+</pre>
+</div>
+<p>Хиперлинковете към кусовете трябва да се съдържат в nav секция. Всеки хиперлинк трябва да води към съответната страница на курс и за текст на хиперлинка трябва да се изписва името на курса.</p><p>Ако адреса на хиперлинка съвпада с текущо отворения курс, подаден като втори параметър, към хиперлинка трябва да се добави клас selected, както е показано в примера.</p><p>В предаденото решение не трябва да има нов ред или празно място между html таговете.</p></section>
 <section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=1911">http://moodle.openfmi.net/course/view.php?id=1911</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
