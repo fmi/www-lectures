@@ -88,4 +88,5 @@ body{ background:#f5f6f6; }
   @page {size: landscape}
   html,body { overflow: auto } 
   section { border: 2px solid #ccc; margin: 0 5px 100px; display: block; page-break-after: always; }
+  .slide ul li.action { display:list-item }
 }
