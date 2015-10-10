@@ -1,0 +1,205 @@
+= slide 'Scope' do
+  p Това е наборът от променливи (обектите и функциите също са променливи), до които имаме достъп на дадено място в кода.
+  ul
+    li
+      span Видимостта на променливите се ограничава до ФУНКЦИЯТА, която я съдържа.
+      ul
+        li Конструкции като if, for, while и подобни НЯМАТ собствен scope.
+    li Променливи се декларират с ключовата дума var.
+    li Ако пропуснем var, използваме променливата с това име в най-близкия по-горен scope, където е дефинирана.
+    li Променлива, която е декларирана извън функция или пък не е дефинирана никъде, е глобална.
+= slide 'this в JavaScript' do
+  list:
+    Едно от странните неща за някои начинаещи JavaScript developer-и.
+    За целта трябва да се замислим за това какво въобще е функция / метод и как ги викаме.
+    В JavaScript функциите могат да се изпълняват в контекста на различни обекти. this е референция към обекта, от който се извиква функцията при самото изпълнение.
+    li Затова нищо не ни пречи да дефинираме функция за един обект, а после да я закачим за друг и тя ще работи нормално.
+= slide 'this в JavaScript' do
+  p Можем да сменим какво е this в една функция по 3 начина (не че 2 и 3 са препоръчителни):
+  ol
+    li Като просто закачим функцията към друг обект a.func = b.func
+    li Като я извикаме с call a.call(b, arg1, arg2, arg3) - подаваме кое ще е this и после всички аргументи.
+    li Като я извикаме с apply a.apply(b, [arg1, arg2, arg3]) - пак подаваме контекста и после масив със всички аргументи.
+= slide 'This in action' do
+  example:
+    [lang:javascript]
+    window.name = "Super Window";
+    var pesho = { age: 22, name: "Pesho" };
+    var gosho = { age: 21, name: "Gosho" };
+    var ivan = { age: 23, name: "Ivan" };
+
+    var sayHi = function () {
+    return "Hi, I am " + this.name;
+    };
+
+    pesho.sayHi = sayHi;
+    pesho.sayHi.toString(); // function () { return "Hi, I am " + this.name; }
+    sayHi(); // Hi, I am Super Window
+    pesho.sayHi(); // Hi, I am Pesho
+    sayHi.call(gosho); // Hi, I am Gosho
+    pesho.sayHi.call(gosho); // the same
+    sayHi.apply(ivan); // Hi, I am Ivan
+= slide 'Design patterns' do
+  list:
+    Както във много други езици винаги е добре да не замърсявате глобалния scope с много глобални променливи и функции.
+    Namespace или модул може да се направи като просто имаме обект и в него държим релевантни променливи и функции.
+    Друго решение на проблема е като просто направим анонимна функция и я извикаме и така тя си има собствен scope.
+    Можем и да ги комбинираме и така можем да получим нещо като обект с private променливи.
+    Още design patterns, които няма да разглеждаме, но можете да разгледате сами може да намерите <a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/">тук</a>.
+= slide 'Design patterns demo' do
+  example:
+    [lang:javascript]
+    // Namespace
+    var ns = {
+      property: "someValue",
+      method: function () {
+        alert("So Long, and Thanks for All the Fish");
+      }
+    };
+= slide 'Design patterns demo' do
+  example:
+    [lang:javascript]
+    // Self Invoking Anonymous Function (siaf)
+    (function() {
+      for (var i = 0; i < 10; i++) {
+        console.log(i);
+      }
+    })();
+= slide 'Design patterns demo' do
+  example:
+    [lang:javascript]
+    // Namespace with 'private' vars
+    var basketModule = (function () {
+      var basket = []; // 'private‘
+      return {
+        addItem: function (item) {
+          basket.push(item);
+        },
+        getItemCount: function() {
+          return basket.length;
+        }
+      };
+    })();
+= slide 'Полезни JavaScript библиотеки' do
+  p <a href="http://underscorejs.org">Underscore.js</a> - функционален стил на програмиране.
+  example:
+    [lang:javascript]
+    _.each([1, 2, 3], alert); // alerts each of the numbers
+    _.map([1, 2, 3], function(e) { return e * e; }); // [1, 4, 9]
+    _.template("<b><%- value %></b>")({value: '<script>'}); // <b>&lt;script&gt;</b>
+  p <a href="htto://jquery.com">jQuery</a> - акцентира върху: DOM селекции и манипулации, event-и, AJAX и други.
+  example:
+    [lang:javascript]
+    $('#my-id'); // by id
+    $('p'); // by tag
+    $('.my-class'); // by class
+= slide 'UnderscoreJS и JQuery' do
+  list:
+    Underscore ни предоставя доста полезни функции, от които има полза в почти всеки език.
+    JQuery взима елементи от underscore, но акцентира върху DOM селекции и манипулации, event-и, AJAX и други
+    Освен това JQuery има доста приятно API. С него доста бързо и лесно можем да напишем доста приятен код.
+    Идеята за chaining от underscore е доразширена и е de facto стандарт за начин на писане. Почти всеки метод прави нещо и после връща самия обект.
+    Освен това JQuery 1.x работи на всички браузъри (IE 6+) с пълната си функционалност, където съответно иначе би било трудно да се пише нормален код.
+    В JQuery 2.0 е обявено, че се drop-ва съпорта на IE 6-8... чудо голямо.
+= slide 'jQuery пример за chaining и манипулация на DOM елементи' do
+  example:
+    [lang:javascript]
+    $('#my-id')
+      //.val() // returns element.value (for input tags)
+      //.text() // returns element.innerText or textContent
+      //.html() // returns element.innerHTML
+      .html('test') // same as element.innerHTML = value
+      //.css('font-size') // returns pixels for example
+      .css('font-size', '20px')
+      .css({color: 'lime', background: 'midnightblue'})
+      //.attr('class') // gets the attribute
+      .attr('class', 'my-class') // sets the attribute
+      .hide().show().slideUp(2000).slideDown(2000).fadeOut(1000).fadeIn(1000);
+    
+    $(".inner").append( "<p>Test</p>" );
+= slide 'jQuery пример за event-и' do
+  example:
+    [lang:javascript]
+    // some events have default actions that happen when they trigger
+    // form is sent on submit, page goes to id on clicked a link with #id
+    // the following functions prevent them
+    var no = function(){ return false; }; // currently works everywhere
+    var no2 = function(e){ e.preventDefault(); }; // standard (doesn't work under old IE)
+    var logMe = function() { console.log(this); }; // 'this' is the clicked element
+    $('#other-id').on('click', logMe); // onclick event - adds an event listener
+    // hashchange, mouseenter, mouseexit, keypress and many others have aliases
+    // that can be called directly $(selector).eventname(function)
+    $('a[href="#"]').click(no); // same as $('a[href="#"]').on('click', no);
+    $('form').submit(no); // same as $('form').on('submit', no);
+    // we can bind a handler to the root that activates only when selector is the target
+    $(document).on('click', 'button', logMe); // will work even on buttons created later
+= slide 'AJAX' do
+  list:
+    Следва малко отклонение от JQuery:
+    AJAX = Asynchronous JavaScript and XML
+    Под ajax се разбира правенето на XML HTTP Request чрез  JavaScript.
+    Или просто - възможността с js да получим данни от сървъра, без да се налага да се презарежда самата страница.
+    Изпращането на заявката и обработването на данните става асинхронно, тоест при изпращането на заявката се задава callback функция, която да обработи данните, когато те пристигнат.
+= slide 'JSON' do
+  list:
+    JSON = JavaScript Object Notation
+    Тоест JSON е стринг, който изглежда почти идентично на JS обект. Има само малко ограничения:
+    Ключовете и стринговете задължително трябва да са в double quotes
+    Стойностите могат да са само string, number, object, array или true, false, null
+    JSON.stringify(obj) връща json и JSON.parse(json) връща обект
+= slide 'JSON' do
+  example:
+    [lang:javascript]
+    // Object
+    {
+      key: 'string',
+      num: 1024,
+      arr: [1, 2, 3],
+      obj: {
+        naughty: null,
+        nice: true
+      },
+      func: function () {
+        return true;
+      }
+    }
+    // JSON
+    {
+      "key":"string",
+      "num":1024,
+      "arr":[1, 2, 3],
+      "obj":{"naughty":null, nice:true}
+    }
+= slide 'JQuery - AJAX' do
+  p Имплементацията на AJAX в jQuery е чрез функцията $.ajax. Използва се за асинхронно зареждане на данни или дори HTML на страницата, без това да прекъсва работата на потребителя с други части от документа.
+  example:
+    [lang:javascript]
+    $.ajax({
+      type: "GET" || "POST", // HTTP method
+      url: url, // URL where the request goes
+      data: data, // data to send
+      success: successCallback, // callback function after success
+      dataType: "json" // what type of data to expect
+    });
+= slide 'jQuery AJAX пример' do
+  example:
+    [lang:javascript]
+    var loadNewComments = function(course_id) {
+      $.ajax({
+        type: "GET",
+        url: "http://myurl.com/cources/comments",
+        data: {
+          course_id: course_id
+        },
+        dataType: "json",
+        success: function(response) {
+          response.forEach(function(comment) {
+            $(".comments").append("<div id=" + comment_id + ">" + comment.text +
+              "</div>");
+          });
+        },
+        error: function(response) {
+          alert("Something went wrong");
+        }
+      });
+    };

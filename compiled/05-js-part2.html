@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>05. JavaScript - част 2</title></head><body><header><h1>05. JavaScript - част 2</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>05. JavaScript - част 2</h1></hgroup></section><section>
+<hgroup><h1>Scope</h1></hgroup>
+<p>Това е наборът от променливи (обектите и функциите също са променливи), до които имаме достъп на дадено място в кода.</p><ul><li><span>Видимостта на променливите се ограничава до ФУНКЦИЯТА, която я съдържа.</span><ul><li>Конструкции като if, for, while и подобни НЯМАТ собствен scope.</li></ul></li><li>Променливи се декларират с ключовата дума var.</li><li>Ако пропуснем var, използваме променливата с това име в най-близкия по-горен scope, където е дефинирана.</li><li>Променлива, която е декларирана извън функция или пък не е дефинирана никъде, е глобална.</li></ul></section>
+<section>
+<hgroup><h1>this в JavaScript</h1></hgroup>
+<ul><li class="action">Едно от странните неща за някои начинаещи JavaScript developer-и.
+</li><li class="action">За целта трябва да се замислим за това какво въобще е функция / метод и как ги викаме.
+</li><li class="action">В JavaScript функциите могат да се изпълняват в контекста на различни обекти. this е референция към обекта, от който се извиква функцията при самото изпълнение.
+</li><li class="action">li Затова нищо не ни пречи да дефинираме функция за един обект, а после да я закачим за друг и тя ще работи нормално.</li></ul></section>
+<section>
+<hgroup><h1>this в JavaScript</h1></hgroup>
+<p>Можем да сменим какво е this в една функция по 3 начина (не че 2 и 3 са препоръчителни):</p><ol><li>Като просто закачим функцията към друг обект a.func = b.func</li><li>Като я извикаме с call a.call(b, arg1, arg2, arg3) - подаваме кое ще е this и после всички аргументи.</li><li>Като я извикаме с apply a.apply(b, [arg1, arg2, arg3]) - пак подаваме контекста и после масив със всички аргументи.</li></ol></section>
+<section>
+<hgroup><h1>This in action</h1></hgroup>
+<div class="highlight"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Super Window&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">pesho</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">22</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Pesho&quot;</span> <span class="p">};</span>
+<span class="kd">var</span> <span class="nx">gosho</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">21</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Gosho&quot;</span> <span class="p">};</span>
+<span class="kd">var</span> <span class="nx">ivan</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">23</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Ivan&quot;</span> <span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="k">return</span> <span class="s2">&quot;Hi, I am &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">pesho</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="nx">sayHi</span><span class="p">;</span>
+<span class="nx">pesho</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// function () { return &quot;Hi, I am &quot; + this.name; }</span>
+<span class="nx">sayHi</span><span class="p">();</span> <span class="c1">// Hi, I am Super Window</span>
+<span class="nx">pesho</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">// Hi, I am Pesho</span>
+<span class="nx">sayHi</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">gosho</span><span class="p">);</span> <span class="c1">// Hi, I am Gosho</span>
+<span class="nx">pesho</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">gosho</span><span class="p">);</span> <span class="c1">// the same</span>
+<span class="nx">sayHi</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">ivan</span><span class="p">);</span> <span class="c1">// Hi, I am Ivan</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Design patterns</h1></hgroup>
+<ul><li class="action">Както във много други езици винаги е добре да не замърсявате глобалния scope с много глобални променливи и функции.
+</li><li class="action">Namespace или модул може да се направи като просто имаме обект и в него държим релевантни променливи и функции.
+</li><li class="action">Друго решение на проблема е като просто направим анонимна функция и я извикаме и така тя си има собствен scope.
+</li><li class="action">Можем и да ги комбинираме и така можем да получим нещо като обект с private променливи.
+</li><li class="action">Още design patterns, които няма да разглеждаме, но можете да разгледате сами може да намерите <a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/">тук</a>.</li></ul></section>
+<section>
+<hgroup><h1>Design patterns demo</h1></hgroup>
+<div class="highlight"><pre><span class="c1">// Namespace</span>
+<span class="kd">var</span> <span class="nx">ns</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">property</span><span class="o">:</span> <span class="s2">&quot;someValue&quot;</span><span class="p">,</span>
+  <span class="nx">method</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;So Long, and Thanks for All the Fish&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Design patterns demo</h1></hgroup>
+<div class="highlight"><pre><span class="c1">// Self Invoking Anonymous Function (siaf)</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">})();</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Design patterns demo</h1></hgroup>
+<div class="highlight"><pre><span class="c1">// Namespace with &#39;private&#39; vars</span>
+<span class="kd">var</span> <span class="nx">basketModule</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">basket</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// &#39;private‘</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">addItem</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">basket</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">getItemCount</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">basket</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">})();</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Полезни JavaScript библиотеки</h1></hgroup>
+<p><a href="http://underscorejs.org">Underscore.js</a> - функционален стил на програмиране.</p><div class="highlight"><pre><span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nx">alert</span><span class="p">);</span> <span class="c1">// alerts each of the numbers</span>
+<span class="nx">_</span><span class="p">.</span><span class="nx">map</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">e</span> <span class="o">*</span> <span class="nx">e</span><span class="p">;</span> <span class="p">});</span> <span class="c1">// [1, 4, 9]</span>
+<span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s2">&quot;&lt;b&gt;&lt;%- value %&gt;&lt;/b&gt;&quot;</span><span class="p">)({</span><span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&lt;script&gt;&#39;</span><span class="p">});</span> <span class="c1">// &lt;b&gt;&amp;lt;script&amp;gt;&lt;/b&gt;</span>
+</pre>
+</div>
+<p><a href="htto://jquery.com">jQuery</a> - акцентира върху: DOM селекции и манипулации, event-и, AJAX и други.</p><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#my-id&#39;</span><span class="p">);</span> <span class="c1">// by id</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">);</span> <span class="c1">// by tag</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.my-class&#39;</span><span class="p">);</span> <span class="c1">// by class</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>UnderscoreJS и JQuery</h1></hgroup>
+<ul><li class="action">Underscore ни предоставя доста полезни функции, от които има полза в почти всеки език.
+</li><li class="action">JQuery взима елементи от underscore, но акцентира върху DOM селекции и манипулации, event-и, AJAX и други
+</li><li class="action">Освен това JQuery има доста приятно API. С него доста бързо и лесно можем да напишем доста приятен код.
+</li><li class="action">Идеята за chaining от underscore е доразширена и е de facto стандарт за начин на писане. Почти всеки метод прави нещо и после връща самия обект.
+</li><li class="action">Освен това JQuery 1.x работи на всички браузъри (IE 6+) с пълната си функционалност, където съответно иначе би било трудно да се пише нормален код.
+</li><li class="action">В JQuery 2.0 е обявено, че се drop-ва съпорта на IE 6-8... чудо голямо.</li></ul></section>
+<section>
+<hgroup><h1>jQuery пример за chaining и манипулация на DOM елементи</h1></hgroup>
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#my-id&#39;</span><span class="p">)</span>
+  <span class="c1">//.val() // returns element.value (for input tags)</span>
+  <span class="c1">//.text() // returns element.innerText or textContent</span>
+  <span class="c1">//.html() // returns element.innerHTML</span>
+  <span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span> <span class="c1">// same as element.innerHTML = value</span>
+  <span class="c1">//.css(&#39;font-size&#39;) // returns pixels for example</span>
+  <span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;20px&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">css</span><span class="p">({</span><span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;midnightblue&#39;</span><span class="p">})</span>
+  <span class="c1">//.attr(&#39;class&#39;) // gets the attribute</span>
+  <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;my-class&#39;</span><span class="p">)</span> <span class="c1">// sets the attribute</span>
+  <span class="p">.</span><span class="nx">hide</span><span class="p">().</span><span class="nx">show</span><span class="p">().</span><span class="nx">slideUp</span><span class="p">(</span><span class="mi">2000</span><span class="p">).</span><span class="nx">slideDown</span><span class="p">(</span><span class="mi">2000</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">(</span><span class="mi">1000</span><span class="p">).</span><span class="nx">fadeIn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.inner&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span> <span class="s2">&quot;&lt;p&gt;Test&lt;/p&gt;&quot;</span> <span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>jQuery пример за event-и</h1></hgroup>
+<div class="highlight"><pre><span class="c1">// some events have default actions that happen when they trigger</span>
+<span class="c1">// form is sent on submit, page goes to id on clicked a link with #id</span>
+<span class="c1">// the following functions prevent them</span>
+<span class="kd">var</span> <span class="nx">no</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="p">};</span> <span class="c1">// currently works everywhere</span>
+<span class="kd">var</span> <span class="nx">no2</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> <span class="p">};</span> <span class="c1">// standard (doesn&#39;t work under old IE)</span>
+<span class="kd">var</span> <span class="nx">logMe</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="p">};</span> <span class="c1">// &#39;this&#39; is the clicked element</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#other-id&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">logMe</span><span class="p">);</span> <span class="c1">// onclick event - adds an event listener</span>
+<span class="c1">// hashchange, mouseenter, mouseexit, keypress and many others have aliases</span>
+<span class="c1">// that can be called directly $(selector).eventname(function)</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[href=&quot;#&quot;]&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="nx">no</span><span class="p">);</span> <span class="c1">// same as $(&#39;a[href=&quot;#&quot;]&#39;).on(&#39;click&#39;, no);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="nx">no</span><span class="p">);</span> <span class="c1">// same as $(&#39;form&#39;).on(&#39;submit&#39;, no);</span>
+<span class="c1">// we can bind a handler to the root that activates only when selector is the target</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="nx">logMe</span><span class="p">);</span> <span class="c1">// will work even on buttons created later</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>AJAX</h1></hgroup>
+<ul><li class="action">Следва малко отклонение от JQuery:
+</li><li class="action">AJAX = Asynchronous JavaScript and XML
+</li><li class="action">Под ajax се разбира правенето на XML HTTP Request чрез  JavaScript.
+</li><li class="action">Или просто - възможността с js да получим данни от сървъра, без да се налага да се презарежда самата страница.
+</li><li class="action">Изпращането на заявката и обработването на данните става асинхронно, тоест при изпращането на заявката се задава callback функция, която да обработи данните, когато те пристигнат.</li></ul></section>
+<section>
+<hgroup><h1>JSON</h1></hgroup>
+<ul><li class="action">JSON = JavaScript Object Notation
+</li><li class="action">Тоест JSON е стринг, който изглежда почти идентично на JS обект. Има само малко ограничения:
+</li><li class="action">Ключовете и стринговете задължително трябва да са в double quotes
+</li><li class="action">Стойностите могат да са само string, number, object, array или true, false, null
+</li><li class="action">JSON.stringify(obj) връща json и JSON.parse(json) връща обект</li></ul></section>
+<section>
+<hgroup><h1>JSON</h1></hgroup>
+<div class="highlight"><pre><span class="c1">// Object</span>
+<span class="p">{</span>
+  <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span>
+  <span class="nx">num</span><span class="o">:</span> <span class="mi">1024</span><span class="p">,</span>
+  <span class="nx">arr</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+  <span class="nx">obj</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">naughty</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">nice</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="p">},</span>
+  <span class="nx">func</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// JSON</span>
+<span class="p">{</span>
+  <span class="s2">&quot;key&quot;</span><span class="o">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;num&quot;</span><span class="o">:</span><span class="mi">1024</span><span class="p">,</span>
+  <span class="s2">&quot;arr&quot;</span><span class="o">:</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+  <span class="s2">&quot;obj&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;naughty&quot;</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span> <span class="nx">nice</span><span class="o">:</span><span class="kc">true</span><span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>JQuery - AJAX</h1></hgroup>
+<p>Имплементацията на AJAX в jQuery е чрез функцията $.ajax. Използва се за асинхронно зареждане на данни или дори HTML на страницата, без това да прекъсва работата на потребителя с други части от документа.</p><div class="highlight"><pre><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;GET&quot;</span> <span class="o">||</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="c1">// HTTP method</span>
+  <span class="nx">url</span><span class="o">:</span> <span class="nx">url</span><span class="p">,</span> <span class="c1">// URL where the request goes</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="nx">data</span><span class="p">,</span> <span class="c1">// data to send</span>
+  <span class="nx">success</span><span class="o">:</span> <span class="nx">successCallback</span><span class="p">,</span> <span class="c1">// callback function after success</span>
+  <span class="nx">dataType</span><span class="o">:</span> <span class="s2">&quot;json&quot;</span> <span class="c1">// what type of data to expect</span>
+<span class="p">});</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>jQuery AJAX пример</h1></hgroup>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">loadNewComments</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">course_id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://myurl.com/cources/comments&quot;</span><span class="p">,</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">course_id</span><span class="o">:</span> <span class="nx">course_id</span>
+    <span class="p">},</span>
+    <span class="nx">dataType</span><span class="o">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>
+    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">comment</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.comments&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;&lt;div id=&quot;</span> <span class="o">+</span> <span class="nx">comment_id</span> <span class="o">+</span> <span class="s2">&quot;&gt;&quot;</span> <span class="o">+</span> <span class="nx">comment</span><span class="p">.</span><span class="nx">text</span> <span class="o">+</span>
+          <span class="s2">&quot;&lt;/div&gt;&quot;</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">},</span>
+    <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Something went wrong&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</pre>
+</div>
+</section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=1911">http://moodle.openfmi.net/course/view.php?id=1911</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+mixpanel.set_config({debug: true});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});
+
+try {
+  mixpanel.track('Landing Page', {
+    referrer: document.referrer,
+    presentation: document.title
+  });
+} catch (e) {};</script></body></html>

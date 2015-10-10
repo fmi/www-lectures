@@ -1,0 +1,188 @@
+= slide 'Що е то JavaScript и има ли почва у нас?' do
+  ul
+    li JavaScript е скриптов език за уеб.
+    li Изпълнява се предимно в браузъра.
+    li 
+      span Обектно-ориентиран език e, но:
+      ul
+        li С прототипно базирано наследяване.
+        li Динамично типизиран.
+        li Има функционални елементи (first-class functions).
+= slide 'JavaScript в HTML' do
+  p Къде стои?
+  ul
+    li в &lt;head&gt;
+    li в &lt;body&gt;
+  p Откъде се зарежда?
+  ul
+    li Външен файл
+    li Директно в HTML-а
+  example:
+    [lang:html]
+    <script type="text/javascript" src="file.js"></script>
+    <script type="text/javascript">...</script>
+= slide 'Променливи' do
+  example:
+    [lang:javascript]
+    var intValue = 1;
+    var floatValue = 3.0;
+    var stringValue = "This is a string\n";
+    var sqString = 'This is also a string';
+= slide 'Масиви(вектори)' do
+  p Последователност от елементи. Индексирана и поредна колекция.
+  example:
+    [lang:javascript]
+    var emptyList = [];
+    var homogenousList = [1, 2, 3];
+    var heterogenousList = ['one', 2, 3.0];
+    alert(heterogenousList[0]); //'one'
+    alert(heterogenousList[1]); //2
+    alert(heterogenousList[2]); //3.0
+= slide 'Обекти(речници)' do
+  p Или още map, хешове, речници, асоциативни масиви и други. Съдържа двойки с ключ и стойност. Ключовете са низове.
+  example:
+    [lang:javascript]
+    var emptyMap = {};
+    var homogenousMap = {'one': 1, 'two': 2, 'three': 3};
+    var heterogenousMap = {'one': 1,'two': 'two','three': 3.0};
+    alert(homogenousMap.one);    //1
+    alert(homogenousMap['one']); //1
+  p Първия(с точката) е за предпочитане.
+= slide 'Условни оператори' do
+  example:
+    [lang:javascript]
+    if (cond) {
+
+    } else if (cond) {
+
+    } else {
+    
+    }
+= slide 'Switch' do
+  example:
+    [lang:javascript]
+    switch (n) {
+      case 1:
+        //execute code block 1
+        break;
+      case 2:
+        //execute code block 2
+        break;
+      default:
+        //code to be executed if n is different from case 1 and 2
+    }
+= slide 'Цикъл for' do
+  example:
+    [lang:javascript]
+    var cars = ['Audi', 'BMW', 'Mercedes-Benz', 'Opel', 'Porsche', 'Volkswagen'];
+    for (var i = 0; i < cars.length; i++) { 
+      document.write(cars[i] + '<br>');
+    }
+= slide 'Цикъл while' do
+  example:
+    [lang:javascript]
+    while (condition) {
+      //code block to be executed
+    }
+= slide 'Цикъл while' do
+  example:
+    [lang:javascript]
+    do {
+      //code block to be executed
+    } while (condition);
+= slide 'Обхождане на полета на обект' do
+  example:
+    [lang:javascript]
+    var person = {first_name: 'John', last_name: 'Doe', age: 25}; 
+    var output = '';
+    for (var field in person) {
+      output += person[field] + ' ';
+    }
+
+    document.write(output) //John Doe 25
+= slide 'Функции' do
+  example:
+    [lang:javascript]
+    var callable = function (message) { 
+      alert('Callable called with message = ' + message);
+    };
+
+    function callable(message) {
+      alert('Callable called with message = ' + message);
+    }
+
+    callable('Hello World');
+  p Операторът () извиква изпълнението на функцията. Опитайте без него.
+= slide 'Глобални обекти за браузъра (често използвани)' do
+  list:
+    window (self, top, parent) - window обекта съдържа методи и свойства за прозореца за браузъра
+    screen - обект, чрез който може да се вземе информация за екрана - размери, отстояния и т.н.
+    history - обекта, който контролира история. Чрез него може да се връщаме в предишни страници.
+    location - обекта, който се грижи за текущия адрес. С него може да достъпим информация за адреса или да сменим с нов.
+    navigator - обект който съдържа свойста и методи, описващи браузъра
+    document - съдържа методи и свойства за работа с елементите в html документа.
+= slide 'DOM' do
+  p HTML-a се описва в дървовидна структура. Тя се нарича DOM дърво.    
+  img src='images/htmltree.gif'
+= slide 'Селектиране на елементи' do
+  example:
+    [lang:html]
+    <h1 id="page-title">Selecting elements <em>example</em></h1>
+    <h2>First article</h2>
+    <p id="content">Article Content</p>
+    <ul>
+      <li class="food">Pizza</li>
+      <li class="drink">Water</li>
+      <li class="drink">Wine<li>
+      <li class="food">Burger</li>
+    </ul>
+    <script type=“text/javascript”>
+      var title = document.getElementById('page-title'); // HTMLElement - only 1 element!
+      var items = document.getElementsByTagName('li'); // HTMLCollection
+      var foods = document.getElementsByClassName('food'); // HTMLCollection
+      element.innerHTML += '<em>example</em>';
+      console.log(element.innerHTML); // <em>example</em>
+      console.log(element.textContent); // example
+      console.log(foods[0].textContent); // Pizza
+      foods[0].textContent += 'Hut'; // Pizza Hut
+    </script>
+= slide 'Манипулация на DOM елементи' do
+  example:
+    [lang:javascript]
+    // Create
+    var text = document.createTextNode('text node content');
+    var div = document.createElement('div');
+
+    // Add
+    div.appendChild(text);
+    document.body.appendChild(div);
+
+    // Delete
+    var list = document.getElementById('myList');
+    list.removeChild(list.childNodes[0]);
+= slide 'Events' do
+  ul
+    li.action В клиентския JavaScript има асинхронен event-driven програмен модел.
+    li.action
+      span При него браузърът генерира събитие, когато:
+      ul
+        li Приключи зареждането на страницата
+        li Потребителят кликне с мишката някъде
+        li Потребителят натисне копче на клавиатурата
+        li И много още...
+    li.action Ако някои събития за интересни за нас, може да имплементираме JavaScript код, който да реагира, като извика функция при определено събитие.
+= slide 'Event handling' do
+  example:
+    [lang:javascript]
+    // Create handler
+    var handleMouseClick = function(event) {
+      console.log(event); // See what you get in the console
+      alert('Thanks again!');
+    };
+    
+    var button = document.getElementById('mybutton');
+    button.addEventListener('click', handleMouseClick);
+    button.removeEventListener('click', handleMouseClick);
+
+    // Alternative - not recommended
+    button.onclick = handleMouseClick; // this way we can have only one handler
