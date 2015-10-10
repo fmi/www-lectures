@@ -1,2 +1,133 @@
 = slide 'Съдържание' do
   ul
+    li Псевдо селектори
+    li Advanced CSS селектори
+    li Opacity/ Visibility
+    li Още правила за текст
+    li Render Engines
+    li CSS Sprite
+    li CSS3 Gradients
+    li CSS box-sizing
+    li Други CSS3 ефекти
+    li Какво е риспонсив дизайн
+    li CSS3 Media Queries
+= slide 'Псевдо селектори' do
+  ul
+    li :active, :hover, :focus, :visited, :link
+    li :nth-child(n), :first-child, :last-child
+    li :first-of-type, :last-of-type
+    li :only-child (елементът, който е единствено дете на своя родител)
+    li :only-of-type (елемент, който няма братовчеди(siblings) от своя тип)
+    li :empty (елементът няма деца)
+    li ::after (вмъква съдържание след елемента)
+    li ::after (вмъква съдържание преди елемента)
+    li ::first-letter (първа буква от елемента)
+    li ::first-line (първи ред от елемента)
+    li ::selection (маркираното от потребителя съдържание)
+= slide 'Opacity' do
+  ul
+    li Зaдава прозрачност на елемента.
+    li Число в интервала [0.0,1.0].
+  example:
+    [lang:css]
+    img {
+      opacity: 0.4;
+      filter: alpha(opacity=40); /* For IE8 and earlier */
+    }
+= slide 'Visibility' do
+  p Възможните стойности са visible/hidden.
+  p Разликата между използването на visibility: hidden и display: none e, че за елемент с display: none не се заделя място в страницата, докато за елемнт с visibility: hidden се заделя място.
+= slide 'Още правила за текст' do
+  p Със CSS е възможно също да конкролираме дали текста да е с главни, малки букви, или всяка дума да започва с главна буква:
+  example:
+    [lang:css]
+    p.uppercase {
+      text-transform: uppercase;
+    }
+    p.lowercase {
+      text-transform: lowercase;
+    }
+    p.capitalize {
+      text-transform: capitalize;
+    }
+= slide 'CSS Sprite' do
+  ul
+    li С цел оптимизация при писането на CSS се прилагат някои практики. Една от най важните е използването на CSS Sprite
+    li Той намялява броя на request-ите за картинки
+    li Много картинки се сливат в една. После чрез background-position се достъпва оригиналната картинка.
+= slide 'CSS3 Gradients' do
+  ul
+    li background: -moz-linear-gradient(black, white); /* FF 3.6+ */
+    li background: -webkit-linear-gradient(black, white); /* Safari 5.1+, Chrome 10+ */
+    li background: -o-linear-gradient(black, white); /* Opera 11.10 */
+    li filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff'); /* IE6 - IE9 */
+    li background: linear-gradient(black, white); /* the standard */
+= slide 'Заоблени ъгли' do
+  example:
+    [lang:css]
+    .square{
+      border-radius: 25px;
+    }
+  p Възможно е да се изплозва заобляне само на определен ъгъл:
+  ul
+    li border-top-left-radius
+    li border-top-right-radius
+    li border-bottom-right-radius 
+    li border-bottom-left-radius
+= slide 'Shadows' do
+  p text-shadow
+  example:
+    [lang:css]
+    h1 {
+      color: #fff;
+      text-shadow: 2px 2px 4px #000000;
+    }
+  p box-shadow
+  example:
+    [lang:css]
+    div {
+      box-shadow: 10px 10px 5px grey;
+    }
+= slide 'Box Sizing' do
+  p Възможните стойности са content-box/border-box
+  ul
+    li content-box – по подразбиране. Широчината и височината на елемента не включват неговия padding, border или margin
+    li border-box – широчината и височината на елемента включват padding и border /default box model на стари версии на IE/
+= slide 'Responsive design' do
+  p Риспонсив дизайна прави страницата да изглежда добре на всички устройства – десктоп, таблет, телефон.
+  p Риспонсив дизайна вкючва промяна на големината на елементи, скриване на елементи, намаляване, увеличаване или преместване на съдържание с цел страницата да изглежда добре и да е удобна за използване на различните устройства.
+= slide 'CSS3 Media Queries' do
+  p Чрез Media Queries можем да задаваме правила, които да се изпълняват на различни условия
+  example:
+    [lang:css]
+    @media screen and (min-width: 480px) {
+      body {
+        background-color: lightgreen;
+      }
+    }
+= slide 'CSS3 Media Queries' do
+  example:
+    [lang:css]
+    @media not|only mediatype and (media feature) {
+        CSS-Code;
+    }
+  p Mediatypes
+  ul
+    li all 
+    li screen – за екрани на компютри, таблети, смартфони и др
+    li print – за принтиране
+= slide 'Media Features' do
+  ul
+    li width – широчината на viewport- a
+    li height – височината на viewport- a
+    li max-width
+    li max-height 
+    li min-width
+    li min-height
+= slide 'CSS3 Media Queries' do
+  p Използване на @media за риспонсив дизайн:
+  example:
+    [lang:css]
+    @media only screen and (max-width: 500px) {
+      .gridmenu { width:100%; }
+    }
