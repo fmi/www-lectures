@@ -1,0 +1,237 @@
+= slide 'Съдържание' do
+  ul
+    li Какво е CSS?
+    li Как работи CSS?
+    li CSS синтаксис
+    li Използване на CSS
+    li Основни селектори
+    li CSS мерни единици
+    li CSS правила за презентация/ декорация
+    li CSS правила за позициониране и изглед
+= slide 'CSS' do
+  p HTML описва съдържанието, CSS описва визуализацията. 
+  p Тоест:
+  ul
+    li Как да са подредени нещата на екрана.
+    li Кое колко да е голямо.
+    li Какъв цвят да е даден текст, фон и тн.
+= slide 'Как работи CSS?' do
+  p За да можем лесно да стилизираме дадена страница избираме компонентите, които искаме да стилизираме (чрез някакъв селектор) и задаваме стойности на property-тата, които искаме да променим. Съответно браузъра ще ги промени на всички елементи, които е match-нат даденият селектор.
+= slide 'CSS reset' do
+  ul
+    li.action Браузърите имат свои стилове по default.
+    li.action За да избегнем разлики от резултатът, който искаме да постигнем, трябва да ресетнем тези стойности
+    li.action 
+      a href="http://cssreset.com/" target="_blank" http://cssreset.com/
+= slide 'CSS синтаксис' do
+  img src="images/css-selectors-lrg.png"
+= slide 'Използване на CSS' do
+  p Има 3 начина на използване на CSS
+= slide 'Използване на CSS' do
+  p Първия е като стойност на style атрибута на html елемент.
+  example:
+    [lang:html]
+    <a href="http://google.com/" style="color:red">Click Here</a>
+= slide 'Използване на CSS' do
+  p Втория е като добавим style tag в HTML-a (обикновено в head частта).
+  example:
+    [lang:html]
+    <style type="text/css"> 
+      a { color: red } 
+    </style>
+= slide 'Използване на CSS' do
+  p Третия е да изнесете CSS дефинициите във външен файл и го свържете с HTML документа.
+  example:
+    [lang:html]
+    <link href="style.css" rel="stylesheet">
+  p Добра практика е да се използва третия начин.
+= slide 'Основни CSS селектори' do
+  dl
+    dt *
+    dd Избира всички елементи - не се препоръчва.
+    dt foo
+    dd Избира елементи с таг foo
+    dt .bar
+    dd Избира елементи с атрибут клас = bar
+    dt #baz
+    dd Избира елементи с атрибут id = baz
+    dt foo bar
+    dd Избира елементи bar, наследници на елементи foo
+    dt foo, bar
+    dd Може да се изброят няколко селектора и ще избере обединението им
+= slide 'CSS мерни единици' do
+  ul
+    li Pixels (px): px са фиксирана мерна единица. Всеки екран има точно определен брой пиксели на дадена резолюция.
+    li Points (pt): pt е мерна единица обикновено използвана при неща за принтиране.
+    li “Ems” (em): em e мерна единица с променлив размер. 1em = конкретния размер на шрифта за дадения елемент.
+    li Percent (%): % има различен смисъл за различен контекст. Когато се задава размер на шрифта тя е подобна на em - 100% = 1em = конкретния размер на шрифта. В останалите случаи 100% се пада съответния размер на даден родител, когато размер с проценти въобще е валиден.
+= slide 'Правила, свързани с текста' do
+  dl
+    dt color
+    dd Определя цвета на текста
+    dt font-size
+    dd Определя размера на текста. Може да бъде някоя от стойностите: xx-small, x-small, small, medium, large, x-large, xx-large, smaller, larger или числова стойност
+    dt font-family
+    dd Име на шрифта. Изброяват се със запетая (verdana, sans-serif, etc)
+    dt font-weight
+    dd Може да бъде normal, bold, bolder, lighter или числова стойност в интервала [100 … 900]
+= slide 'Правила, свързани с текста' do
+  dl
+    dt font-style
+    dd normal, italic, oblique
+    dt text-decoration
+    dd none, underline, line-trough, overline, blink
+    dt text-align 
+    dd left, right, center, justify
+    dt text-shadow 
+    dd "text-shadow: <horizontal-distance> <vertical-distance> <blur-radius> <shadow-color>. Например text-shadow: 2px 2px 7px #000000;"
+= slide 'Правила, свързани с текста' do
+  p За определяне едновременно на няколко правила за шрифта може да се използва краткия запис (Shorthand):
+  example:
+    [lang:css]
+    { font: italic normal bold 12px verdana; }
+  p Той е еквивалентен на:
+  example:
+    [lang:css]
+    {
+      font-style: italic;
+      font-variant: normal;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 16px;
+      font-family: verdana;
+    }
+= slide 'Правила, свързани с текста' do
+  p Декларацията на нов шрифт става посредством @font-face
+  example:
+    [lang:css]
+    @font-face {
+      font-family: Dosis;
+      src: url("dosis.ttf");
+    }
+    .my-class {
+      font-family: Dosis;
+      font-size: 3.2em;
+    }
+= slide 'Правила, свързани с текста' do
+  p Text Overflow - определя какво да се случи, когато един текст излиза извън размера на родителския му елемент. Възможноте стойности са:
+  ul
+    li ellipsis – отрязва текста, който излиза извън рамката на родителския елемент и слага три точки
+    li clip – просто отрязва текста
+= slide 'Цветове' do
+  dl
+    dt HEX 
+    dd color: #f1a2ff
+    dt RGB (red, green, blue)  
+    dd color: rgb(241, 162, 255)
+    dt RGBA (red, green, blue, alpha)  
+    dd color: rgba(241, 162, 255, 0.1). Последната стойност в скобите указва прозрачността. Нейната стойност може да бъде в интервала 0.0 – 1.0
+    dt HSL (hue-saturation-light)  
+    dd color: hsl(291, 85%, 89%);
+    dt HSLA (hue-saturation-light-alpha) 
+    dd color: hsla(291, 85%, 89%, 0.1);
+= slide 'Background' do
+  dl
+    dt background-image  
+    dd Пример: background-image:url("example.png");
+    dt background-color  
+    dd Указва цвета на бекграунда
+    dt background-repeat 
+    dd Възможни стойности: repeat-x, repeat-y, repeat, no-repeat
+    dt background-attachment 
+    dd Възможни стойности: fixed / scroll
+    dt background-position 
+    dd Указва вертикалната и хоризонталната позиция на бекграунд картинката. Примери:  background-position: top left; background-position: -20px 50%;" 
+= slide 'Border' do
+  dl 
+    dt border-width
+    ddВъзможни стойности: thin, medium, thick или числова стойност (например 1px)
+    dt border-color  
+    dd Указва цвета на рамката
+    dt border-style  
+    dd Възможни стойности: none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset
+  p Краткият запис за указване на няколко border стойности едновременно е:
+  example:
+    [lang:css]
+    { border: 1px solid #000; }
+= slide 'Box Model' do
+  img src="images/boxmodel.png"
+= slide 'Display' do
+  ul
+    li display:none - елементът е скрит и страницата се рендерира все едно той въобще не съществува
+    li display:inline - елементът се разглежда като обикновен текст и следващите го елементи продължават непосредствено след него (вдясно от последния символ)
+    li display:block - елементът се разглежда като правоъгълник - той има width и height property-та и елементите след него продължават на долния ред
+    li display:inline-block - средно аритметично между първите 2. Елементът има височина и ширина, но откъм гледна точка на следващите елементи е все едно, че е бил inline и те продължават вдясно от него
+    li display:table, display:table-row, display:table-cell - показват се както биха се показвали съответните елементи на таблица
+= slide 'Width' do
+  dl
+    dt width
+    dd
+      ul
+        li определя широчината на елемента
+        li прилага се само върху блокови елементи
+        li широчината на inline елементите винаги е широчината на тяхното съдържание
+    dt min-width
+    dd определя минималната широчина на елемента. Има по-голяма сила от width. Тоест, ако width &lt; min-width, широчината на елемента ще бъде стойността на min-width
+    dt max-width
+    dd определя максималната широчина на елемента. Отново има по-голяма сила от width.
+= slide 'Height' do
+  dl
+    dt height
+    ul
+      li определя височината на елемента
+      li прилага се само върху блокови елементи
+      li височината на inline елементите винаги е височината на тяхното съдържание
+    dt min-height
+    dd определя минималната височина на елемента. Има по-голяма сила от height. 
+    dt max-height
+    dd определя максималната височина на елемента. Отново има по-голяма сила от height.
+= slide 'Margin and Padding' do
+  ul
+    li Определят разстоянието около елемента
+    li Могат да бъдат посочени отделно за различните страни: margin-top, margin-left и тн.
+    li Margin e растоянието след border-а на елемента
+    li Padding е разстоянието межде border-а и съдържанието на елемента
+    li Collapsing margins – когато вертикалните margin- и на два съседни елемента се допрат, само margin-a на елемента с по-голям margin се показва
+= slide 'Margin and Padding' do
+  ul
+    li margin: 25px - указване едновременно margin 25px на четирите страни
+    li margin: 10px 20px – указване margin-top и margin-bottom по 10px и margin-left и margin-right по 20px
+    li margin: 5px 3px 8px – top 5px, left и right – 3px, bottom - 8px
+    li margin: 1px 3px 5px 7px - top, right, bottom, left. По часовниковата стрелка, започвайки с top
+    li Кратките записи за padding са същите
+= slide 'Float' do
+  ul
+    li float позифионира елемента в ляво или в дясно
+    li float:left – разполага елемента в ляво, а останалото съдържание в дясно
+    li float:right – позиционира елемента в дясно, а останалото съдържание в ляво
+    li Margins на елементи с float не се колапсват
+= slide 'Clear' do
+  ul
+    li Clear указва от коя страна на елемента не са позволени елементи с float
+    li Възможни стойности: left, right, both
+  p Как да го използваме:
+  example:
+    [lang:css]
+    .clearfix:after {
+      content: ""; 
+      visibility: hidden; 
+      display: block; 
+      height: 0; 
+      clear: both; 
+    }
+= slide 'Position' do
+  p Position определя позиционирането на елемента в страницата
+  p Възможни стойности:
+  ul
+    li static – default. Елементът не е позициониран по специален начин.
+    li relative – елементът се позиционира релативно, спрямо нормалното си разположение
+    li absolute – релативно спрямо най-близкия родителски елемент с релативна позиция
+    li fixed – винаги е разположен на едно и също място и не се отмества при скрол на страницата
+
+
+
+
+
+
+

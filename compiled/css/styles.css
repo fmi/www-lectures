@@ -90,3 +90,7 @@ body{ background:#f5f6f6; }
   section { border: 2px solid #ccc; margin: 0 5px 100px; display: block; page-break-after: always; }
   .slide ul li.action { display:list-item }
 }
+
+#deck pre,xmp,dl { font-size:16px }
+#deck dt { font-size:20px; font-weight:bold; margin-top:5px }
+#deck dd { padding-left:30px }
