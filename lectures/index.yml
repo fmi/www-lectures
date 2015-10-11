@@ -2,3 +2,7 @@
   title: 00. Интро. HTTP и HTML
   date: 2015-10-05
   slug: 00-intro-http-html
+1:
+  title: 01. Ruby. Rack. MVC. Динамично генериране на HTML
+  date: 2015-10-12
+  slug: 01-ruby-rack-mvc-erb

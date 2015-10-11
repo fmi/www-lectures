@@ -1,0 +1,436 @@
+= slide 'Няколко неща' do
+  list:
+    напомняме за домашно 1
+    срокът е до събота вечер
+
+= slide 'Vox populi, vox Dei' do
+  div.left
+    img src='images/uncle-sam.jpg' height=300
+
+
+  div.left
+    list:
+      очаквайте анкета
+      с удобни за нас часове
+      изберете удобните и за вас
+      ще изберем оптималното решение
+
+= slide 'Flashback' do
+  list:
+    За курса
+    HTTP
+    HTML
+
+= slide 'Flashback', 'HTTP' do
+  list:
+    Hypertext Transfer Protocol
+    Stateless (не пази състояние)
+    Комуникация между разпределени системи (distributed systems)
+    Основите на съвременния уеб
+    Request/Response
+    URLs
+    Verbs/Methods - GET, POST, UPDATE, DELETE
+
+= slide 'Flashback', 'HTML' do
+  list:
+    HyperText Markup Language
+    Implemented by the browser
+    Основата на всяка уеб страница
+    Задава структура
+
+= slide 'Flashback', 'HTML pt. 2' do
+  example:
+    [lang:html]
+    <!DOCTYPE html>
+      <html>
+      <head>
+        <title>My title</title>
+      </head>
+      <body>
+        <h1>My header</h1>
+        <a href="http://example.com">My Link</a>
+      </body>
+    </html>
+
+= slide 'Flashback', 'HTML - изграждащи единици' do
+  p тагове, атрибути, елементи
+
+  example:
+    [lang:html]
+    <tag> - отварящ таг
+    </tag> - затварящ таг
+    <tag attribute="value"> - атрибут на таг
+    <tag attribute="value">tag content</tag> - елемент
+
+  p Атрибутите дават допълнителна информация за HTML елементите.
+
+= slide 'Flashback', 'HTML - структура' do
+  example:
+    [lang:html]
+    <!DOCTYPE html> - Декларира HTML версията на документа (в случая HTML 5)
+    <head> - Съдържа заглавие, скриптове, стилове, мета информация и други.
+    <title> - Заглавие на страницата. Съдържа се в <head>.
+    <body> - Дефинира съдържанието на документа.
+
+
+= slide 'Днес' do
+  list:
+    Ruby
+    Rack
+    MVC
+    ERB
+
+= slide 'Ruby' do
+  list:
+    Програмите в Ruby са текстови файлове
+    Няма компилация като в C или Java
+    Скриптов език
+    Изпълняват се в терминал/конзола/command prompt с `ruby име_на_файл`
+
+= slide 'Малко ресурси', 'за любознателните' do
+
+  list:
+   <a href='http://fmi.ruby.bg/'>Курса по ruby във ФМИ</a>
+   <a href='http://learnxinyminutes.com/docs/ruby/'>Learn ruby in Y minutes</a>
+   <a href='https://www.codecademy.com/tracks/ruby'>CodeCademy</a>
+   <a href='https://www.bloc.io/ruby-warrior/'>Ruby Warrior</a>
+
+
+= slide 'Ruby', 'Здравей свят' do
+  example:
+    [lang:ruby]
+    puts "Hello world"
+    puts "The answer of life is ", 6 * 7
+
+  p Изпълнява се с `ruby hello.rb`
+
+= slide 'Конзола' do
+  list:
+    Мястото където ще стартираме програмите
+    И някои други неща
+    Използваем Windows terminal <a href='http://fmi.ruby.bg/topics/2'>тук</a>
+
+= slide 'irb', 'интерактивна конзола' do
+  list:
+    `irb` – Interactive Ruby
+    REPL — Read-Eval-Print Loop
+    Тук ще прекарваме доста време - и ние, и вие
+    Стартирате я с `irb` (трябва да ви е в "пътя")
+    Самото irb е конзола в конзолата
+    Излизате в конзолата с `exit` или с `Ctrl + D` (под UNIX)
+
+= slide 'irb', 'интерактивна конзола' do
+  pre
+    ' $ irb
+      >> 6 * 9
+      54
+      >> "Ruby! " * 4
+      "Ruby! Ruby! Ruby! Ruby!"
+      >> -10.abs
+      10
+
+= slide 'Ruby', 'всичко е обект' do
+  p Всичко в ruby обект!
+
+  example:
+    [lang:ruby]
+    3.class #=> Fixnum
+    3.to_s #=> "3"
+
+= slide 'Ruby', 'базова аритметика' do
+  example:
+    [lang:ruby]
+    1 + 1 #=> 2
+    8 - 1 #=> 7
+    10 * 2 #=> 20
+    35 / 5 #=> 7
+    2**5 #=> 32
+
+= slide 'Ruby', '... и понеже всичко е обект' do
+  p Аритметиката е просто syntax sugar за извикване на метод на обект.
+
+  example:
+    [lang:ruby]
+    1.+(3) #=> 4
+    10.* 5 #=> 50
+
+= slide 'Ruby', 'както вече споменахме...' do
+  p Дори и специалните стойности са обекти.
+
+  example:
+    [lang:ruby]
+    nil # Nothing to see here
+    true # truth
+    false # falsehood
+
+    nil.class #=> NilClass
+    true.class #=> TrueClass
+    false.class #=> FalseClass
+
+= slide 'Ruby', 'равенство' do
+  example:
+    1 == 1 #=> true
+    2 == 1 #=> false
+
+    1 != 1 #=> false
+    2 != 1 #=> true
+
+  p Всъщност в ruby има <a href="http://stackoverflow.com/questions/7156955/whats-the-difference-between-equal-eql-and">4 равенства</a>.
+
+= slide 'Ruby', 'къде е истината' do
+  p Точно две неща в ruby се оценяват на лъжа:
+  list:
+    `nil`
+    `false`
+
+  example:
+    [lang:ruby]
+    !nil   #=> true
+    !false #=> true
+    !0     #=> false
+
+= slide 'Ruby', 'сравнения' do
+  example:
+    [lang:ruby]
+    1 < 10 #=> true
+    1 > 10 #=> false
+    2 <= 2 #=> true
+    2 >= 2 #=> true
+
+= slide 'Ruby', 'логически оператори' do
+  example:
+    [lang:ruby]
+    true && false #=> false
+    true || false #=> true
+    !true #=> false
+
+= slide 'Ruby', 'стринговете като... обекти' do
+  example:
+    [lang:ruby]
+
+    'I am a string'.class #=> String
+    "I am a string too".class #=> String
+
+    placeholder = 'use string interpolation'
+    "I can #{placeholder} when using double quoted strings"
+
+= slide 'Ruby', 'променливи' do
+  example:
+    [lang:ruby]
+    x = 25 #=> 25
+    x #=> 25
+
+  p Забележете, че присвояването връща стойността. Следователно:
+
+  example:
+    [lang:ruby]
+    x = y = 10 #=> 10
+    x #=> 10
+    y #=> 10
+
+= slide 'Ruby', 'именуване' do
+  list:
+    имената се изписват в `snake_case`
+    трябва да бъдат дескриптивни
+
+  example:
+    [lang:ruby]
+    snake_case = true
+
+    path_to_project_root = '/good/name/'
+    path = '/bad/name/'
+
+= slide 'Ruby', 'символи' do
+  list:
+    immutable, reusable constants
+    вътрешно се представят чрез целочислена стойност
+    използват се вместо стрингове с цел ефективност
+    например ключове на хеш таблици
+
+  example:
+    [lang:ruby]
+    :pending.class #=> Symbol
+
+    status = :pending
+
+    status == :pending #=> true
+
+    status == 'pending' #=> false
+
+    status == :approved #=> false
+
+= slide 'Ruby', 'масиви' do
+  p Масивите в ruby са хетерогенни!
+  example:
+    [lang:ruby]
+    [1, 'hello', false] #=> [1, "hello", false]
+
+    array[0] #=> 1
+    array[12] #=> nil
+
+  p И понеже са обекти...
+  example:
+    [lang:ruby]
+    array.[] 0 #=> 1
+    array.[] 12 #=> nil
+
+= slide 'Ruby', '...още масиви' do
+  example:
+    [lang:ruby]
+    # From the end
+    array[-1] #=> 5
+
+    # With a start index and length
+    array[2, 3] #=> [3, 4, 5]
+
+    # Reverse an Array
+    a=[1,2,3]
+    a.reverse! #=> [3,2,1]
+
+    # Or with a range
+    array[1..3] #=> [2, 3, 4]
+
+    # Add to an array like this
+    array << 6 #=> [1, 2, 3, 4, 5, 6]
+    # Or like this
+    array.push(6) #=> [1, 2, 3, 4, 5, 6]
+
+    # Check if an item exists in an array
+    array.include?(1) #=> true
+
+= slide 'Ruby', 'хешове 1/3' do
+  p Хешовете са:
+  list:
+    речници
+    хеш таблици
+    асоциативни масиви
+    ...както там го наричате
+
+= slide 'Ruby', 'хешове 2/3' do
+  example:
+    [lang:ruby]
+    hash = { 'color' => 'green', 'number' => 5 }
+
+    hash.keys #=> ['color', 'number']
+
+    # Hashes can be quickly looked up by key:
+    hash['color'] #=> 'green'
+    hash['number'] #=> 5
+
+    # Asking a hash for a key that doesn't exist returns nil:
+    hash['nothing here'] #=> nil
+
+= slide 'Ruby', 'хешове 3/3' do
+  p След версия 1.9 има syntax sugar за символни ключове:
+  example:
+    [lang:ruby]
+    new_hash = { defcon: 3, action: true }
+
+    new_hash.keys #=> [:defcon, :action]
+
+    # Check existence of keys and values in hash
+    new_hash.has_key?(:defcon) #=> true
+    new_hash.has_value?(3) #=> true
+
+= slide 'Ruby', 'if-else' do
+  example:
+    [lang:ruby]
+    if true
+      'if statement'
+    elsif false
+      'else if, optional'
+    else
+      'else, also optional'
+    end
+
+= slide 'Ruby', 'for' do
+  list:
+    В ruby има `for`
+    Не го ползвайте
+    НИКОГА!!!
+    !!!1!!1!
+  list:
+    Курсът по ruby е под наслов
+    'Всеки `for` пирон в ковчега на добрата оценка.'
+
+= slide 'Ruby', 'вместо това' do
+  p `each`
+  list:
+    обхожда дадена колекция по елементите ѝ
+    подобно на `foreach`, `for (T elem : collection)` в Java
+    схванахте идеята
+
+  example:
+    [lang:ruby]
+    (1..5).each do |counter|
+      puts "iteration #{counter}"
+    end
+    #=> iteration 1
+    #=> iteration 2
+    #=> iteration 3
+    #=> iteration 4
+    #=> iteration 5
+
+= slide 'Ruby', 'each' do
+  example:
+    [lang:ruby]
+    (1..5).each { |counter| puts "iteration #{counter}" }
+
+    # arrays
+    array.each do |element|
+      puts "#{element} is part of the array"
+    end
+    # hashes
+    hash.each do |key, value|
+      puts "#{key} is #{value}"
+    end
+
+= slide 'Ruby', 'map, reduce' do
+  p Учили сте ги по функционално!
+  p `map`, `reduce`, `inject`
+  example:
+    [lang:ruby]
+    array = [1,2,3,4,5]
+    doubled = array.map do |element|
+      element * 2
+    end
+    puts doubled
+    #=> [2,4,6,8,10]
+    puts array
+    #=> [1,2,3,4,5]
+
+= slide 'Ruby', 'функции 1/2' do
+  list:
+    дефинират се с `def`
+    няма нужда да се ползва `return`
+    връщат последния оценен израз
+    при извикване скобите могат да се изпускат
+    аргументите се разделят със запетая
+
+    example:
+      [lang:ruby]
+      def double(x)
+        x * 2
+      end
+
+      # Functions (and all blocks) implicitly return the value of the last statement
+      double(2) #=> 4
+
+      # Parentheses are optional where the result is unambiguous
+      double 3 #=> 6
+      double double 3 #=> 12
+
+= slide 'Ruby', 'функции 2/2' do
+  example:
+    [lang:ruby]
+    def sum(x, y)
+      x + y
+    end
+
+    # Method arguments are separated by a comma
+    sum 3, 4 #=> 7
+
+    sum sum(3, 4), 5 #=> 12
+
+= slide 'MVC', 'Що е то?' do
+ p to be continued...
