@@ -432,5 +432,165 @@
 
     sum sum(3, 4), 5 #=> 12
 
-= slide 'MVC', 'Що е то?' do
- p to be continued...
+= slide 'Ruby', 'класове' do
+  list:
+    дефинират се с ключовата дума `class`
+    конструктур е метода `initialize`
+
+  example:
+    [lang:ruby]
+    class Human
+      def initialize
+      end
+    end
+
+slide = 'Ruby', 'променливи' do
+  list:
+    променливите в ruby се определят от префикса
+    `$var` - глобална променлива
+    `@var` - инстанционна променлива
+    `@@var` - класова (статична) променлива
+    `Var` - константа
+    може да проверим от какъв тип е дадена променлива с `defined?`
+
+  example:
+    [lang:ruby]
+    # Variables that start with $ have global scope
+    $var = "I'm a global var"
+    defined? $var #=> "global-variable"
+
+    # Variables that start with @ have instance scope
+    @var = "I'm an instance var"
+    defined? @var #=> "instance-variable"
+
+    # Variables that start with @@ have class scope
+    @@var = "I'm a class var"
+    defined? @@var #=> "class variable"
+
+    # Variables that start with a capital letter are constants
+    Var = "I'm a constant"
+    defined? Var #=> "constant"
+
+= slide 'Ruby', 'класове' do
+  example:
+    [lang:ruby]
+    # Define a class with the class keyword
+    class Human
+
+      # A class variable. It is shared by all instances of this class.
+      @@species = 'H. sapiens'
+
+      # Basic initializer
+      def initialize(name, age = 0)
+        # Assign the argument to the "name" instance variable for the instance
+        @name = name
+        # If no age given, we will fall back to the default in the arguments list.
+        @age = age
+      end
+
+      # Basic setter method
+      def name=(name)
+        @name = name
+      end
+
+      # Basic getter method
+      def name
+        @name
+      end
+    end
+
+= slide 'Ruby', 'гетъри и сетъри' do
+  list:
+    в ruby гетъри и сетъри могат да се генерират автоматично
+    `attr_reader :variable` - генерира гетър за `@variable`
+    `attr_reader :variable` - генерира сетър за `@variable`
+    `attr_accessor :variable` - генерира гетър и сетър
+
+  example:
+    [lang:ruby]
+    attr_accessor :name
+
+    # Getter/setter methods can also be created individually like this
+    attr_reader :name
+    attr_writer :name
+
+  example:
+    [lang:ruby]
+    class Human
+      attr_accessor :name, :age
+
+      @@species = 'H. sapiens'
+
+      def initialize(name, age = 0)
+        @name = name
+        @age = age
+      end
+    end
+
+= slide 'Ruby', 'класови методи' do
+  list:
+    Слагаме `self.` преди името на метода.
+    Класови е синоним на статични за класа.
+    Следователно могат да се викат и без конкретна инстанция.
+
+  example:
+    [lang:ruby]
+    def self.say(msg)
+      puts msg
+    end
+
+= slide 'Ruby', 'класове' do
+  example:
+    [lang:ruby]
+
+    class Human
+      attr_accessor :name, :age
+
+      @@species = 'H. sapiens'
+
+      def initialize(name, age = 0)
+        @name = name
+        @age = age
+      end
+
+      def self.say(msg)
+        puts msg
+      end
+
+      def species
+        @@species
+      end
+    end
+
+= slide 'Ruby', 'малко примери' do
+  example:
+    [lang:ruby]
+    # Instantiate a class
+    jim = Human.new('Jim Halpert')
+
+    dwight = Human.new('Dwight K. Schrute')
+
+    # Let's call a couple of methods
+    jim.species #=> "H. sapiens"
+    jim.name #=> "Jim Halpert"
+    jim.name = "Jim Halpert II" #=> "Jim Halpert II"
+    jim.name #=> "Jim Halpert II"
+    dwight.species #=> "H. sapiens"
+    dwight.name #=> "Dwight K. Schrute"
+
+    # Call the class method
+    Human.say('Hi') #=> "Hi"
+
+= slide 'MVC', 'що е то?' do
+  list:
+    Model-view-controller
+    design (architectural) pattern за потребителски интерфейс
+    разделя приложението ни на 3 независими части
+    тяхната роля е да разграничат начина, по който се съхранява и обработва информацията
+    ...от начина, по който се показва на потребителя
+    започнала като архитектура за десктоп приложения
+    днес е изключително популярна във веба
+    Всеки уважаващ себе си фреймвърк за уеб приложения я използва
+
+= slide 'MVC', 'overview' do
+  img src="images/mvc-rails.png' height=400
