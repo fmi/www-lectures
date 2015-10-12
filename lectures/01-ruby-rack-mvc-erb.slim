@@ -444,7 +444,7 @@
       end
     end
 
-slide = 'Ruby', 'променливи' do
+= slide 'Ruby', 'променливи' do
   list:
     променливите в ruby се определят от префикса
     `$var` - глобална променлива
@@ -593,4 +593,163 @@ slide = 'Ruby', 'променливи' do
     Всеки уважаващ себе си фреймвърк за уеб приложения я използва
 
 = slide 'MVC', 'overview' do
-  img src="images/mvc-rails.png' height=400
+  img src='images/mvc-rails.png' height=400
+
+= slide 'Практика' do
+  list:
+    По време на упражненията ще направим Twitter clone
+    Няма да покрива цялата функционалност на Twitter
+    Паралелно ще направим и базов MVC framework
+
+= slide 'Twitter clone', 'Началото...' do
+  list:
+    Почваме още днес
+    Baby steps
+    3 страници: профилна, followers, following
+    1 controller: `UserController`
+    3 view-та: `show.html.erb`, `followers.html.erb`, `following.html.erb`
+    `.erb`? Embedded Ruby. Така ще правим template-и.
+    No routers today ;(
+
+= slide 'Twitter clone', 'Файлова структура' do
+  example:
+    .
+    |- views
+    |- controllers
+    |- models
+
+= slide 'Моделиране', 'на потребители (част 1)' do
+  list:
+    Models?
+    Намират се в директорията `models`
+    Псевдоним, email, местоположение, имена, цяло име
+    Нищо особено на този етап
+
+= slide 'Моделиране', 'на потребители (кодът)' do
+  example:
+    [lang:ruby]
+    class User
+      attr_accessor :username, :email, :first_name, :last_name, :location
+
+      def initialize(username, email, first_name, last_name, location)
+        @username = username
+        @email = email
+        @first_name = first_name
+        @last_name = last_name
+        @location = location
+      end
+
+      def full_name
+        "#{first_name} #{last_name}"
+      end
+    end
+
+= slide 'Контролиране', 'или по-скоро изпълняване на желания (част 1)' do
+  list:
+    Controllers?
+    Намират се в директорията 'controllers'
+    Всеки request се map-ва към controller и действие (`Controller#method`)
+    Трябват ни действия за показване на профил, followers и following
+    `UserController#show`, `UserController#followers`, `UserController#following`
+    Игнорирайте метода `render` на този етап (намира се на следващия слайд)
+    Нищо особено на този етап
+
+= slide 'Контролиране', 'или по-скоро изпълняване на желания (кодът)' do
+  example:
+    [lang:ruby]
+    require 'erb'
+    require 'sample_users'
+
+    class UserController
+      def show
+        @user = USERS[params[:id]]
+        render :show
+      end
+
+      def followers
+        @followers = []
+        render :followers
+      end
+
+      def following
+        @following = []
+        render :following
+      end
+
+      private
+
+      def params
+        {id: 1}
+      end
+
+      def render(view_path)
+        ERB.new("views/#{view_path}.html.erb").result(binding)
+      end
+    end
+
+= slide 'Примерни данни' do
+  list:
+    `require 'sample_users'`, anyone?
+    Временно, докато не стигнем БД
+
+  example:
+    [lang:ruby]
+    USERS = {
+      1 => User.new('foo', 'foo@example.com', 'Foo', 'Yeah', 'Fooland'),
+      2 => User.new('bar', 'bar@example.com', 'Bar', 'Yeah', 'Barland'),
+      3 => User.new('larodi', 'larodi@example.com', 'Larodi', 'The Great', 'Larodiland'),
+      4 => User.new('lorem', 'lorem@example.com', 'Lorem', 'Text', 'Loremland'),
+      5 => User.new('ipsum', 'ipsum@example.com', 'Ipsum', 'Text', 'Ipsumland'),
+      6 => User.new('xyz', 'xyz@example.com', 'Xyz', 'abc', 'Xyzland'),
+    }
+
+    USER_FOLLOWERS = {
+      1 => [2, 3, 5],
+    }
+
+    USER_FOLLOWING = {
+      1 => [2, 4, 5, 6]
+    }
+
+= slide 'Router', 'Маршрутизатор' do
+  list:
+    Следващия път
+    `users/42` -> `UsersController#show`
+    `users/42/followers` -> `UsersController#followers`
+    `users/42/following` -> `UsersController#following`
+    Подават се и параметрите: `params: {id: 42}`
+
+= slide 'Представяне', 'на данните, ама красиво' do
+  list:
+    Views?
+    Обвиват данните, така че да бъдат представяни
+    Обвивката може да бъде `html`, `json`, `xml`, и тн
+    Днес ни интересува `html`
+    Шаблони, в които се изпълнява Ruby код
+    Embedded Ruby
+
+= slide 'Embedded Ruby', 'ERB' do
+  list:
+    DEMO
+
+= slide 'Методът render', '...черна магия' do
+  list:
+    Подаваме на `ERB` шаблон, съдържащ html и ruby код
+    `ERB` изпълнява ruby код-а и генерира чист html
+    Какъв е тоя `binding`?
+
+  example:
+    [lang:ruby]
+    class UserController
+      ...
+
+      def render(view_path)
+        ERB.new("views/#{view_path}.html.erb").result(binding)
+      end
+    end
+
+= slide 'Представяне', 'на данните, ама красиво (кодът)' do
+  p Вие сте!
+
+= slide 'Домашното' do
+  p Soon!

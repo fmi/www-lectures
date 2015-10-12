@@ -395,8 +395,312 @@
 </div>
 </section>
 <section>
-<hgroup><h1>MVC</h1><h2>Що е то?</h2></hgroup>
-<p>to be continued...</p></section>
+<hgroup><h1>Ruby</h1><h2>класове</h2></hgroup>
+<ul><li class="action">дефинират се с ключовата дума <code>class</code>
+</li><li class="action">конструктур е метода <code>initialize</code></li></ul><div class="highlight"><pre><span class="k">class</span> <span class="nc">Human</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>променливи</h2></hgroup>
+<ul><li class="action">променливите в ruby се определят от префикса
+</li><li class="action"><code>$var</code> - глобална променлива
+</li><li class="action"><code>@var</code> - инстанционна променлива
+</li><li class="action"><code>@@var</code> - класова (статична) променлива
+</li><li class="action"><code>Var</code> - константа
+</li><li class="action">може да проверим от какъв тип е дадена променлива с <code>defined?</code></li></ul><div class="highlight"><pre><span class="c1"># Variables that start with $ have global scope</span>
+<span class="vg">$var</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m a global var&quot;</span>
+<span class="n">defined?</span> <span class="vg">$var</span> <span class="c1">#=&gt; &quot;global-variable&quot;</span>
+
+<span class="c1"># Variables that start with @ have instance scope</span>
+<span class="vi">@var</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m an instance var&quot;</span>
+<span class="n">defined?</span> <span class="vi">@var</span> <span class="c1">#=&gt; &quot;instance-variable&quot;</span>
+
+<span class="c1"># Variables that start with @@ have class scope</span>
+<span class="vc">@@var</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m a class var&quot;</span>
+<span class="n">defined?</span> <span class="vc">@@var</span> <span class="c1">#=&gt; &quot;class variable&quot;</span>
+
+<span class="c1"># Variables that start with a capital letter are constants</span>
+<span class="no">Var</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m a constant&quot;</span>
+<span class="n">defined?</span> <span class="no">Var</span> <span class="c1">#=&gt; &quot;constant&quot;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>класове</h2></hgroup>
+<div class="highlight"><pre><span class="c1"># Define a class with the class keyword</span>
+<span class="k">class</span> <span class="nc">Human</span>
+
+  <span class="c1"># A class variable. It is shared by all instances of this class.</span>
+  <span class="vc">@@species</span> <span class="o">=</span> <span class="s1">&#39;H. sapiens&#39;</span>
+
+  <span class="c1"># Basic initializer</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Assign the argument to the &quot;name&quot; instance variable for the instance</span>
+    <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+    <span class="c1"># If no age given, we will fall back to the default in the arguments list.</span>
+    <span class="vi">@age</span> <span class="o">=</span> <span class="n">age</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Basic setter method</span>
+  <span class="k">def</span> <span class="nf">name</span><span class="o">=</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Basic getter method</span>
+  <span class="k">def</span> <span class="nf">name</span>
+    <span class="vi">@name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>гетъри и сетъри</h2></hgroup>
+<ul><li class="action">в ruby гетъри и сетъри могат да се генерират автоматично
+</li><li class="action"><code>attr_reader :variable</code> - генерира гетър за <code>@variable</code>
+</li><li class="action"><code>attr_reader :variable</code> - генерира сетър за <code>@variable</code>
+</li><li class="action"><code>attr_accessor :variable</code> - генерира гетър и сетър</li></ul><div class="highlight"><pre><span class="kp">attr_accessor</span> <span class="ss">:name</span>
+
+<span class="c1"># Getter/setter methods can also be created individually like this</span>
+<span class="kp">attr_reader</span> <span class="ss">:name</span>
+<span class="kp">attr_writer</span> <span class="ss">:name</span>
+</pre>
+</div>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Human</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:age</span>
+
+  <span class="vc">@@species</span> <span class="o">=</span> <span class="s1">&#39;H. sapiens&#39;</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+    <span class="vi">@age</span> <span class="o">=</span> <span class="n">age</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>класови методи</h2></hgroup>
+<ul><li class="action">Слагаме <code>self.</code> преди името на метода.
+</li><li class="action">Класови е синоним на статични за класа.
+</li><li class="action">Следователно могат да се викат и без конкретна инстанция.</li></ul><div class="highlight"><pre><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">say</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="n">msg</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>класове</h2></hgroup>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Human</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:age</span>
+
+  <span class="vc">@@species</span> <span class="o">=</span> <span class="s1">&#39;H. sapiens&#39;</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+    <span class="vi">@age</span> <span class="o">=</span> <span class="n">age</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">say</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="n">msg</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">species</span>
+    <span class="vc">@@species</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>малко примери</h2></hgroup>
+<div class="highlight"><pre><span class="c1"># Instantiate a class</span>
+<span class="n">jim</span> <span class="o">=</span> <span class="no">Human</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;Jim Halpert&#39;</span><span class="p">)</span>
+
+<span class="n">dwight</span> <span class="o">=</span> <span class="no">Human</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;Dwight K. Schrute&#39;</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s call a couple of methods</span>
+<span class="n">jim</span><span class="o">.</span><span class="n">species</span> <span class="c1">#=&gt; &quot;H. sapiens&quot;</span>
+<span class="n">jim</span><span class="o">.</span><span class="n">name</span> <span class="c1">#=&gt; &quot;Jim Halpert&quot;</span>
+<span class="n">jim</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Jim Halpert II&quot;</span> <span class="c1">#=&gt; &quot;Jim Halpert II&quot;</span>
+<span class="n">jim</span><span class="o">.</span><span class="n">name</span> <span class="c1">#=&gt; &quot;Jim Halpert II&quot;</span>
+<span class="n">dwight</span><span class="o">.</span><span class="n">species</span> <span class="c1">#=&gt; &quot;H. sapiens&quot;</span>
+<span class="n">dwight</span><span class="o">.</span><span class="n">name</span> <span class="c1">#=&gt; &quot;Dwight K. Schrute&quot;</span>
+
+<span class="c1"># Call the class method</span>
+<span class="no">Human</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">)</span> <span class="c1">#=&gt; &quot;Hi&quot;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>MVC</h1><h2>що е то?</h2></hgroup>
+<ul><li class="action">Model-view-controller
+</li><li class="action">design (architectural) pattern за потребителски интерфейс
+</li><li class="action">разделя приложението ни на 3 независими части
+</li><li class="action">тяхната роля е да разграничат начина, по който се съхранява и обработва информацията
+</li><li class="action">...от начина, по който се показва на потребителя
+</li><li class="action">започнала като архитектура за десктоп приложения
+</li><li class="action">днес е изключително популярна във веба
+</li><li class="action">Всеки уважаващ себе си фреймвърк за уеб приложения я използва</li></ul></section>
+<section>
+<hgroup><h1>MVC</h1><h2>overview</h2></hgroup>
+<img height="400" src="images/mvc-rails.png" /></section>
+<section>
+<hgroup><h1>Практика</h1></hgroup>
+<ul><li class="action">По време на упражненията ще направим Twitter clone
+</li><li class="action">Няма да покрива цялата функционалност на Twitter
+</li><li class="action">Паралелно ще направим и базов MVC framework</li></ul></section>
+<section>
+<hgroup><h1>Twitter clone</h1><h2>Началото...</h2></hgroup>
+<ul><li class="action">Почваме още днес
+</li><li class="action">Baby steps
+</li><li class="action">3 страници: профилна, followers, following
+</li><li class="action">1 controller: <code>UserController</code>
+</li><li class="action">3 view-та: <code>show.html.erb</code>, <code>followers.html.erb</code>, <code>following.html.erb</code>
+</li><li class="action"><code>.erb</code>? Embedded Ruby. Така ще правим template-и.
+</li><li class="action">No routers today ;(</li></ul></section>
+<section>
+<hgroup><h1>Twitter clone</h1><h2>Файлова структура</h2></hgroup>
+<div class="highlight"><pre><span class="x">.</span>
+<span class="x">|- views</span>
+<span class="x">|- controllers</span>
+<span class="x">|- models</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Моделиране</h1><h2>на потребители (част 1)</h2></hgroup>
+<ul><li class="action">Models?
+</li><li class="action">Намират се в директорията <code>models</code>
+</li><li class="action">Псевдоним, email, местоположение, имена, цяло име
+</li><li class="action">Нищо особено на този етап</li></ul></section>
+<section>
+<hgroup><h1>Моделиране</h1><h2>на потребители (кодът)</h2></hgroup>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:first_name</span><span class="p">,</span> <span class="ss">:last_name</span><span class="p">,</span> <span class="ss">:location</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+    <span class="vi">@username</span> <span class="o">=</span> <span class="n">username</span>
+    <span class="vi">@email</span> <span class="o">=</span> <span class="n">email</span>
+    <span class="vi">@first_name</span> <span class="o">=</span> <span class="n">first_name</span>
+    <span class="vi">@last_name</span> <span class="o">=</span> <span class="n">last_name</span>
+    <span class="vi">@location</span> <span class="o">=</span> <span class="n">location</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">full_name</span>
+    <span class="s2">&quot;</span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Контролиране</h1><h2>или по-скоро изпълняване на желания (част 1)</h2></hgroup>
+<ul><li class="action">Controllers?
+</li><li class="action">Намират се в директорията 'controllers'
+</li><li class="action">Всеки request се map-ва към controller и действие (<code>Controller#method</code>)
+</li><li class="action">Трябват ни действия за показване на профил, followers и following
+</li><li class="action"><code>UserController#show</code>, <code>UserController#followers</code>, <code>UserController#following</code>
+</li><li class="action">Игнорирайте метода <code>render</code> на този етап (намира се на следващия слайд)
+</li><li class="action">Нищо особено на този етап</li></ul></section>
+<section>
+<hgroup><h1>Контролиране</h1><h2>или по-скоро изпълняване на желания (кодът)</h2></hgroup>
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;erb&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;sample_users&#39;</span>
+
+<span class="k">class</span> <span class="nc">UserController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">USERS</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]]</span>
+    <span class="n">render</span> <span class="ss">:show</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">followers</span>
+    <span class="vi">@followers</span> <span class="o">=</span> <span class="o">[]</span>
+    <span class="n">render</span> <span class="ss">:followers</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">following</span>
+    <span class="vi">@following</span> <span class="o">=</span> <span class="o">[]</span>
+    <span class="n">render</span> <span class="ss">:following</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">params</span>
+    <span class="p">{</span><span class="nb">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">view_path</span><span class="p">)</span>
+    <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;views/</span><span class="si">#{</span><span class="n">view_path</span><span class="si">}</span><span class="s2">.html.erb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Примерни данни</h1></hgroup>
+<ul><li class="action"><code>require 'sample_users'</code>, anyone?
+</li><li class="action">Временно, докато не стигнем БД</li></ul><div class="highlight"><pre><span class="no">USERS</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">1</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;foo@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Foo&#39;</span><span class="p">,</span> <span class="s1">&#39;Yeah&#39;</span><span class="p">,</span> <span class="s1">&#39;Fooland&#39;</span><span class="p">),</span>
+  <span class="mi">2</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Bar&#39;</span><span class="p">,</span> <span class="s1">&#39;Yeah&#39;</span><span class="p">,</span> <span class="s1">&#39;Barland&#39;</span><span class="p">),</span>
+  <span class="mi">3</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;larodi&#39;</span><span class="p">,</span> <span class="s1">&#39;larodi@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Larodi&#39;</span><span class="p">,</span> <span class="s1">&#39;The Great&#39;</span><span class="p">,</span> <span class="s1">&#39;Larodiland&#39;</span><span class="p">),</span>
+  <span class="mi">4</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;lorem@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;Text&#39;</span><span class="p">,</span> <span class="s1">&#39;Loremland&#39;</span><span class="p">),</span>
+  <span class="mi">5</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;Text&#39;</span><span class="p">,</span> <span class="s1">&#39;Ipsumland&#39;</span><span class="p">),</span>
+  <span class="mi">6</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;xyz&#39;</span><span class="p">,</span> <span class="s1">&#39;xyz@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Xyz&#39;</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;Xyzland&#39;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="no">USER_FOLLOWERS</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">1</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="no">USER_FOLLOWING</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">1</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="o">]</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Router</h1><h2>Маршрутизатор</h2></hgroup>
+<ul><li class="action">Следващия път
+</li><li class="action"><code>users/42</code> -> <code>UsersController#show</code>
+</li><li class="action"><code>users/42/followers</code> -> <code>UsersController#followers</code>
+</li><li class="action"><code>users/42/following</code> -> <code>UsersController#following</code>
+</li><li class="action">Подават се и параметрите: <code>params: {id: 42}</code></li></ul></section>
+<section>
+<hgroup><h1>Представяне</h1><h2>на данните, ама красиво</h2></hgroup>
+<ul><li class="action">Views?
+</li><li class="action">Обвиват данните, така че да бъдат представяни
+</li><li class="action">Обвивката може да бъде <code>html</code>, <code>json</code>, <code>xml</code>, и тн
+</li><li class="action">Днес ни интересува <code>html</code>
+</li><li class="action">Шаблони, в които се изпълнява Ruby код
+</li><li class="action">Embedded Ruby</li></ul></section>
+<section>
+<hgroup><h1>Embedded Ruby</h1><h2>ERB</h2></hgroup>
+<ul><li class="action">DEMO</li></ul></section>
+<section>
+<hgroup><h1>Методът render</h1><h2>...черна магия</h2></hgroup>
+<ul><li class="action">Подаваме на <code>ERB</code> шаблон, съдържащ html и ruby код
+</li><li class="action"><code>ERB</code> изпълнява ruby код-а и генерира чист html
+</li><li class="action">Какъв е тоя <code>binding</code>?</li></ul><div class="highlight"><pre><span class="k">class</span> <span class="nc">UserController</span>
+  <span class="o">...</span>
+
+  <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">view_path</span><span class="p">)</span>
+    <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;views/</span><span class="si">#{</span><span class="n">view_path</span><span class="si">}</span><span class="s2">.html.erb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Представяне</h1><h2>на данните, ама красиво (кодът)</h2></hgroup>
+<p>Вие сте!</p></section>
+<section>
+<hgroup><h1>Домашното</h1></hgroup>
+<p>Soon!</p></section>
 <section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=1911">http://moodle.openfmi.net/course/view.php?id=1911</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
