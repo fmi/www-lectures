@@ -407,18 +407,18 @@
     при извикване скобите могат да се изпускат
     аргументите се разделят със запетая
 
-    example:
-      [lang:ruby]
-      def double(x)
-        x * 2
-      end
+  example:
+    [lang:ruby]
+    def double(x)
+      x * 2
+    end
 
-      # Functions (and all blocks) implicitly return the value of the last statement
-      double(2) #=> 4
+    # Functions (and all blocks) implicitly return the value of the last statement
+    double(2) #=> 4
 
-      # Parentheses are optional where the result is unambiguous
-      double 3 #=> 6
-      double double 3 #=> 12
+    # Parentheses are optional where the result is unambiguous
+    double 3 #=> 6
+    double double 3 #=> 12
 
 = slide 'Ruby', 'функции 2/2' do
   example:

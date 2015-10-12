@@ -1,0 +1,417 @@
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>01. Ruby. Rack. MVC. Динамично генериране на HTML</title></head><body><header><h1>01. Ruby. Rack. MVC. Динамично генериране на HTML</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>01. Ruby. Rack. MVC. Динамично генериране на HTML</h1></hgroup></section><section>
+<hgroup><h1>Няколко неща</h1></hgroup>
+<ul><li class="action">напомняме за домашно 1
+</li><li class="action">срокът е до събота вечер</li></ul></section>
+<section>
+<hgroup><h1>Vox populi, vox Dei</h1></hgroup>
+<div class="left"><img height="300" src="images/uncle-sam.jpg" /></div><div class="left"><ul><li class="action">очаквайте анкета
+</li><li class="action">с удобни за нас часове
+</li><li class="action">изберете удобните и за вас
+</li><li class="action">ще изберем оптималното решение</li></ul></div></section>
+<section>
+<hgroup><h1>Flashback</h1></hgroup>
+<ul><li class="action">За курса
+</li><li class="action">HTTP
+</li><li class="action">HTML</li></ul></section>
+<section>
+<hgroup><h1>Flashback</h1><h2>HTTP</h2></hgroup>
+<ul><li class="action">Hypertext Transfer Protocol
+</li><li class="action">Stateless (не пази състояние)
+</li><li class="action">Комуникация между разпределени системи (distributed systems)
+</li><li class="action">Основите на съвременния уеб
+</li><li class="action">Request/Response
+</li><li class="action">URLs
+</li><li class="action">Verbs/Methods - GET, POST, UPDATE, DELETE</li></ul></section>
+<section>
+<hgroup><h1>Flashback</h1><h2>HTML</h2></hgroup>
+<ul><li class="action">HyperText Markup Language
+</li><li class="action">Implemented by the browser
+</li><li class="action">Основата на всяка уеб страница
+</li><li class="action">Задава структура</li></ul></section>
+<section>
+<hgroup><h1>Flashback</h1><h2>HTML pt. 2</h2></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+  <span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>My title<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>My header<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://example.com&quot;</span><span class="nt">&gt;</span>My Link<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Flashback</h1><h2>HTML - изграждащи единици</h2></hgroup>
+<p>тагове, атрибути, елементи</p><div class="highlight"><pre><span class="nt">&lt;tag&gt;</span> - отварящ таг
+<span class="nt">&lt;/tag&gt;</span> - затварящ таг
+<span class="nt">&lt;tag</span> <span class="na">attribute=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span> - атрибут на таг
+<span class="nt">&lt;tag</span> <span class="na">attribute=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>tag content<span class="nt">&lt;/tag&gt;</span> - елемент
+</pre>
+</div>
+<p>Атрибутите дават допълнителна информация за HTML елементите.</p></section>
+<section>
+<hgroup><h1>Flashback</h1><h2>HTML - структура</h2></hgroup>
+<div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span> - Декларира HTML версията на документа (в случая HTML 5)
+<span class="nt">&lt;head&gt;</span> - Съдържа заглавие, скриптове, стилове, мета информация и други.
+<span class="nt">&lt;title&gt;</span> - Заглавие на страницата. Съдържа се в <span class="nt">&lt;head&gt;</span>.
+<span class="nt">&lt;body&gt;</span> - Дефинира съдържанието на документа.
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Днес</h1></hgroup>
+<ul><li class="action">Ruby
+</li><li class="action">Rack
+</li><li class="action">MVC
+</li><li class="action">ERB</li></ul></section>
+<section>
+<hgroup><h1>Ruby</h1></hgroup>
+<ul><li class="action">Програмите в Ruby са текстови файлове
+</li><li class="action">Няма компилация като в C или Java
+</li><li class="action">Скриптов език
+</li><li class="action">Изпълняват се в терминал/конзола/command prompt с <code>ruby име_на_файл</code></li></ul></section>
+<section>
+<hgroup><h1>Малко ресурси</h1><h2>за любознателните</h2></hgroup>
+<ul><li class="action"><a href='http://fmi.ruby.bg/'>Курса по ruby във ФМИ</a>
+</li><li class="action"><a href='http://learnxinyminutes.com/docs/ruby/'>Learn ruby in Y minutes</a>
+</li><li class="action"><a href='https://www.codecademy.com/tracks/ruby'>CodeCademy</a>
+</li><li class="action"><a href='https://www.bloc.io/ruby-warrior/'>Ruby Warrior</a></li></ul></section>
+<section>
+<hgroup><h1>Ruby</h1><h2>Здравей свят</h2></hgroup>
+<div class="highlight"><pre><span class="nb">puts</span> <span class="s2">&quot;Hello world&quot;</span>
+<span class="nb">puts</span> <span class="s2">&quot;The answer of life is &quot;</span><span class="p">,</span> <span class="mi">6</span> <span class="o">*</span> <span class="mi">7</span>
+</pre>
+</div>
+<p>Изпълнява се с `ruby hello.rb`</p></section>
+<section>
+<hgroup><h1>Конзола</h1></hgroup>
+<ul><li class="action">Мястото където ще стартираме програмите
+</li><li class="action">И някои други неща
+</li><li class="action">Използваем Windows terminal <a href='http://fmi.ruby.bg/topics/2'>тук</a></li></ul></section>
+<section>
+<hgroup><h1>irb</h1><h2>интерактивна конзола</h2></hgroup>
+<ul><li class="action"><code>irb</code> – Interactive Ruby
+</li><li class="action">REPL — Read-Eval-Print Loop
+</li><li class="action">Тук ще прекарваме доста време - и ние, и вие
+</li><li class="action">Стартирате я с <code>irb</code> (трябва да ви е в "пътя")
+</li><li class="action">Самото irb е конзола в конзолата
+</li><li class="action">Излизате в конзолата с <code>exit</code> или с <code>Ctrl + D</code> (под UNIX)</li></ul></section>
+<section>
+<hgroup><h1>irb</h1><h2>интерактивна конзола</h2></hgroup>
+<pre>$ irb
+>> 6 * 9
+54
+>> "Ruby! " * 4
+"Ruby! Ruby! Ruby! Ruby!"
+>> -10.abs
+10 </pre></section>
+<section>
+<hgroup><h1>Ruby</h1><h2>всичко е обект</h2></hgroup>
+<p>Всичко в ruby обект!</p><div class="highlight"><pre><span class="mi">3</span><span class="o">.</span><span class="n">class</span> <span class="c1">#=&gt; Fixnum</span>
+<span class="mi">3</span><span class="o">.</span><span class="n">to_s</span> <span class="c1">#=&gt; &quot;3&quot;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>базова аритметика</h2></hgroup>
+<div class="highlight"><pre><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1">#=&gt; 2</span>
+<span class="mi">8</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1">#=&gt; 7</span>
+<span class="mi">10</span> <span class="o">*</span> <span class="mi">2</span> <span class="c1">#=&gt; 20</span>
+<span class="mi">35</span> <span class="o">/</span> <span class="mi">5</span> <span class="c1">#=&gt; 7</span>
+<span class="mi">2</span><span class="o">**</span><span class="mi">5</span> <span class="c1">#=&gt; 32</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>... и понеже всичко е обект</h2></hgroup>
+<p>Аритметиката е просто syntax sugar за извикване на метод на обект.</p><div class="highlight"><pre><span class="mi">1</span><span class="o">.</span><span class="n-Operator">+</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#=&gt; 4</span>
+<span class="mi">10</span><span class="o">.</span><span class="n-Operator">*</span> <span class="mi">5</span> <span class="c1">#=&gt; 50</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>както вече споменахме...</h2></hgroup>
+<p>Дори и специалните стойности са обекти.</p><div class="highlight"><pre><span class="kp">nil</span> <span class="c1"># Nothing to see here</span>
+<span class="kp">true</span> <span class="c1"># truth</span>
+<span class="kp">false</span> <span class="c1"># falsehood</span>
+
+<span class="kp">nil</span><span class="o">.</span><span class="n">class</span> <span class="c1">#=&gt; NilClass</span>
+<span class="kp">true</span><span class="o">.</span><span class="n">class</span> <span class="c1">#=&gt; TrueClass</span>
+<span class="kp">false</span><span class="o">.</span><span class="n">class</span> <span class="c1">#=&gt; FalseClass</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>равенство</h2></hgroup>
+<div class="highlight"><pre><span class="x">1 == 1 #=&gt; true</span>
+<span class="x">2 == 1 #=&gt; false</span>
+
+<span class="x">1 != 1 #=&gt; false</span>
+<span class="x">2 != 1 #=&gt; true</span>
+</pre>
+</div>
+<p>Всъщност в ruby има <a href="http://stackoverflow.com/questions/7156955/whats-the-difference-between-equal-eql-and">4 равенства</a>.</p></section>
+<section>
+<hgroup><h1>Ruby</h1><h2>къде е истината</h2></hgroup>
+<p>Точно две неща в ruby се оценяват на лъжа:</p><ul><li class="action"><code>nil</code>
+</li><li class="action"><code>false</code></li></ul><div class="highlight"><pre><span class="o">!</span><span class="kp">nil</span>   <span class="c1">#=&gt; true</span>
+<span class="o">!</span><span class="kp">false</span> <span class="c1">#=&gt; true</span>
+<span class="o">!</span><span class="mi">0</span>     <span class="c1">#=&gt; false</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>сравнения</h2></hgroup>
+<div class="highlight"><pre><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="c1">#=&gt; true</span>
+<span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="c1">#=&gt; false</span>
+<span class="mi">2</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="c1">#=&gt; true</span>
+<span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="c1">#=&gt; true</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>логически оператори</h2></hgroup>
+<div class="highlight"><pre><span class="kp">true</span> <span class="o">&amp;&amp;</span> <span class="kp">false</span> <span class="c1">#=&gt; false</span>
+<span class="kp">true</span> <span class="o">||</span> <span class="kp">false</span> <span class="c1">#=&gt; true</span>
+<span class="o">!</span><span class="kp">true</span> <span class="c1">#=&gt; false</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>стринговете като... обекти</h2></hgroup>
+<div class="highlight"><pre><span class="s1">&#39;I am a string&#39;</span><span class="o">.</span><span class="n">class</span> <span class="c1">#=&gt; String</span>
+<span class="s2">&quot;I am a string too&quot;</span><span class="o">.</span><span class="n">class</span> <span class="c1">#=&gt; String</span>
+
+<span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;use string interpolation&#39;</span>
+<span class="s2">&quot;I can </span><span class="si">#{</span><span class="n">placeholder</span><span class="si">}</span><span class="s2"> when using double quoted strings&quot;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>променливи</h2></hgroup>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">25</span> <span class="c1">#=&gt; 25</span>
+<span class="n">x</span> <span class="c1">#=&gt; 25</span>
+</pre>
+</div>
+<p>Забележете, че присвояването връща стойността. Следователно:</p><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#=&gt; 10</span>
+<span class="n">x</span> <span class="c1">#=&gt; 10</span>
+<span class="n">y</span> <span class="c1">#=&gt; 10</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>именуване</h2></hgroup>
+<ul><li class="action">имената се изписват в <code>snake_case</code>
+</li><li class="action">трябва да бъдат дескриптивни</li></ul><div class="highlight"><pre><span class="n">snake_case</span> <span class="o">=</span> <span class="kp">true</span>
+
+<span class="n">path_to_project_root</span> <span class="o">=</span> <span class="s1">&#39;/good/name/&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/bad/name/&#39;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>символи</h2></hgroup>
+<ul><li class="action">immutable, reusable constants
+</li><li class="action">вътрешно се представят чрез целочислена стойност
+</li><li class="action">използват се вместо стрингове с цел ефективност
+</li><li class="action">например ключове на хеш таблици</li></ul><div class="highlight"><pre><span class="ss">:pending</span><span class="o">.</span><span class="n">class</span> <span class="c1">#=&gt; Symbol</span>
+
+<span class="n">status</span> <span class="o">=</span> <span class="ss">:pending</span>
+
+<span class="n">status</span> <span class="o">==</span> <span class="ss">:pending</span> <span class="c1">#=&gt; true</span>
+
+<span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;pending&#39;</span> <span class="c1">#=&gt; false</span>
+
+<span class="n">status</span> <span class="o">==</span> <span class="ss">:approved</span> <span class="c1">#=&gt; false</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>масиви</h2></hgroup>
+<p>Масивите в ruby са хетерогенни!</p><div class="highlight"><pre><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="kp">false</span><span class="o">]</span> <span class="c1">#=&gt; [1, &quot;hello&quot;, false]</span>
+
+<span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="c1">#=&gt; 1</span>
+<span class="n">array</span><span class="o">[</span><span class="mi">12</span><span class="o">]</span> <span class="c1">#=&gt; nil</span>
+</pre>
+</div>
+<p>И понеже са обекти...</p><div class="highlight"><pre><span class="n">array</span><span class="o">.</span><span class="n-Operator">[]</span> <span class="mi">0</span> <span class="c1">#=&gt; 1</span>
+<span class="n">array</span><span class="o">.</span><span class="n-Operator">[]</span> <span class="mi">12</span> <span class="c1">#=&gt; nil</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>...още масиви</h2></hgroup>
+<div class="highlight"><pre><span class="c1"># From the end</span>
+<span class="n">array</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span> <span class="c1">#=&gt; 5</span>
+
+<span class="c1"># With a start index and length</span>
+<span class="n">array</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span> <span class="c1">#=&gt; [3, 4, 5]</span>
+
+<span class="c1"># Reverse an Array</span>
+<span class="n">a</span><span class="o">=[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">reverse!</span> <span class="c1">#=&gt; [3,2,1]</span>
+
+<span class="c1"># Or with a range</span>
+<span class="n">array</span><span class="o">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">3</span><span class="o">]</span> <span class="c1">#=&gt; [2, 3, 4]</span>
+
+<span class="c1"># Add to an array like this</span>
+<span class="n">array</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span> <span class="c1">#=&gt; [1, 2, 3, 4, 5, 6]</span>
+<span class="c1"># Or like this</span>
+<span class="n">array</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="c1">#=&gt; [1, 2, 3, 4, 5, 6]</span>
+
+<span class="c1"># Check if an item exists in an array</span>
+<span class="n">array</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#=&gt; true</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>хешове 1&#47;3</h2></hgroup>
+<p>Хешовете са:</p><ul><li class="action">речници
+</li><li class="action">хеш таблици
+</li><li class="action">асоциативни масиви
+</li><li class="action">...както там го наричате</li></ul></section>
+<section>
+<hgroup><h1>Ruby</h1><h2>хешове 2&#47;3</h2></hgroup>
+<div class="highlight"><pre><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;color&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span> <span class="o">=&gt;</span> <span class="mi">5</span> <span class="p">}</span>
+
+<span class="nb">hash</span><span class="o">.</span><span class="n">keys</span> <span class="c1">#=&gt; [&#39;color&#39;, &#39;number&#39;]</span>
+
+<span class="c1"># Hashes can be quickly looked up by key:</span>
+<span class="nb">hash</span><span class="o">[</span><span class="s1">&#39;color&#39;</span><span class="o">]</span> <span class="c1">#=&gt; &#39;green&#39;</span>
+<span class="nb">hash</span><span class="o">[</span><span class="s1">&#39;number&#39;</span><span class="o">]</span> <span class="c1">#=&gt; 5</span>
+
+<span class="c1"># Asking a hash for a key that doesn&#39;t exist returns nil:</span>
+<span class="nb">hash</span><span class="o">[</span><span class="s1">&#39;nothing here&#39;</span><span class="o">]</span> <span class="c1">#=&gt; nil</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>хешове 3&#47;3</h2></hgroup>
+<p>След версия 1.9 има syntax sugar за символни ключове:</p><div class="highlight"><pre><span class="n">new_hash</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">defcon</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="ss">action</span><span class="p">:</span> <span class="kp">true</span> <span class="p">}</span>
+
+<span class="n">new_hash</span><span class="o">.</span><span class="n">keys</span> <span class="c1">#=&gt; [:defcon, :action]</span>
+
+<span class="c1"># Check existence of keys and values in hash</span>
+<span class="n">new_hash</span><span class="o">.</span><span class="n">has_key?</span><span class="p">(</span><span class="ss">:defcon</span><span class="p">)</span> <span class="c1">#=&gt; true</span>
+<span class="n">new_hash</span><span class="o">.</span><span class="n">has_value?</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#=&gt; true</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>if-else</h2></hgroup>
+<div class="highlight"><pre><span class="k">if</span> <span class="kp">true</span>
+  <span class="s1">&#39;if statement&#39;</span>
+<span class="k">elsif</span> <span class="kp">false</span>
+  <span class="s1">&#39;else if, optional&#39;</span>
+<span class="k">else</span>
+  <span class="s1">&#39;else, also optional&#39;</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>for</h2></hgroup>
+<ul><li class="action">В ruby има <code>for</code>
+</li><li class="action">Не го ползвайте
+</li><li class="action">НИКОГА!!!
+</li><li class="action">!!!1!!1!</li></ul><ul><li class="action">Курсът по ruby е под наслов
+</li><li class="action">'Всеки <code>for</code> пирон в ковчега на добрата оценка.'</li></ul></section>
+<section>
+<hgroup><h1>Ruby</h1><h2>вместо това</h2></hgroup>
+<p>`each`</p><ul><li class="action">обхожда дадена колекция по елементите ѝ
+</li><li class="action">подобно на <code>foreach</code>, <code>for (T elem : collection)</code> в Java
+</li><li class="action">схванахте идеята</li></ul><div class="highlight"><pre><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">counter</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">&quot;iteration </span><span class="si">#{</span><span class="n">counter</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">end</span>
+<span class="c1">#=&gt; iteration 1</span>
+<span class="c1">#=&gt; iteration 2</span>
+<span class="c1">#=&gt; iteration 3</span>
+<span class="c1">#=&gt; iteration 4</span>
+<span class="c1">#=&gt; iteration 5</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>each</h2></hgroup>
+<div class="highlight"><pre><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">counter</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">&quot;iteration </span><span class="si">#{</span><span class="n">counter</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
+
+<span class="c1"># arrays</span>
+<span class="n">array</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">element</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">element</span><span class="si">}</span><span class="s2"> is part of the array&quot;</span>
+<span class="k">end</span>
+<span class="c1"># hashes</span>
+<span class="nb">hash</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="s2"> is </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>map, reduce</h2></hgroup>
+<p>Учили сте ги по функционално!</p><p>`map`, `reduce`, `inject`</p><div class="highlight"><pre><span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">]</span>
+<span class="n">doubled</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">element</span><span class="o">|</span>
+  <span class="n">element</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">end</span>
+<span class="nb">puts</span> <span class="n">doubled</span>
+<span class="c1">#=&gt; [2,4,6,8,10]</span>
+<span class="nb">puts</span> <span class="n">array</span>
+<span class="c1">#=&gt; [1,2,3,4,5]</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>функции 1&#47;2</h2></hgroup>
+<ul><li class="action">дефинират се с <code>def</code>
+</li><li class="action">няма нужда да се ползва <code>return</code>
+</li><li class="action">връщат последния оценен израз
+</li><li class="action">при извикване скобите могат да се изпускат
+</li><li class="action">аргументите се разделят със запетая</li></ul><div class="highlight"><pre><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">end</span>
+
+<span class="c1"># Functions (and all blocks) implicitly return the value of the last statement</span>
+<span class="n">double</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#=&gt; 4</span>
+
+<span class="c1"># Parentheses are optional where the result is unambiguous</span>
+<span class="n">double</span> <span class="mi">3</span> <span class="c1">#=&gt; 6</span>
+<span class="n">double</span> <span class="n">double</span> <span class="mi">3</span> <span class="c1">#=&gt; 12</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Ruby</h1><h2>функции 2&#47;2</h2></hgroup>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="k">end</span>
+
+<span class="c1"># Method arguments are separated by a comma</span>
+<span class="n">sum</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="c1">#=&gt; 7</span>
+
+<span class="n">sum</span> <span class="n">sum</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">5</span> <span class="c1">#=&gt; 12</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>MVC</h1><h2>Що е то?</h2></hgroup>
+<p>to be continued...</p></section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=1911">http://moodle.openfmi.net/course/view.php?id=1911</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+mixpanel.set_config({debug: true});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});
+
+try {
+  mixpanel.track('Landing Page', {
+    referrer: document.referrer,
+    presentation: document.title
+  });
+} catch (e) {};</script></body></html>
