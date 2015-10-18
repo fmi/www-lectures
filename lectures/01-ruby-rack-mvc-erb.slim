@@ -76,7 +76,6 @@
 = slide 'Днес' do
   list:
     Ruby
-    Rack
     MVC
     ERB
 
@@ -658,11 +657,10 @@
   example:
     [lang:ruby]
     require 'erb'
-    require 'sample_users'
 
     class UserController
       def show
-        @user = USERS[params[:id]]
+        @user = []
         render :show
       end
 
@@ -683,17 +681,21 @@
       end
 
       def render(view_path)
-        ERB.new("views/#{view_path}.html.erb").result(binding)
+        view_content = File.read("./views/#{view_path}.html.erb")
+        ERB.new(view_content).result(binding)
       end
     end
 
 = slide 'Примерни данни' do
   list:
-    `require 'sample_users'`, anyone?
     Временно, докато не стигнем БД
 
   example:
     [lang:ruby]
+    require 'erb'
+
+    require './models/user'
+
     USERS = {
       1 => User.new('foo', 'foo@example.com', 'Foo', 'Yeah', 'Fooland'),
       2 => User.new('bar', 'bar@example.com', 'Bar', 'Yeah', 'Barland'),
@@ -710,6 +712,23 @@
     USER_FOLLOWING = {
       1 => [2, 4, 5, 6]
     }
+
+    class UserController
+      def show
+        @user = USERS[params[:id]]
+        render :show
+      end
+
+      def followers
+        @followers = USER_FOLLOWERS[params[:id]].map { |follower_id| USERS[follower_id] }
+        render :followers
+      end
+
+      def following
+        @following = USER_FOLLOWING[params[:id]].map { |following_id| USERS[following_id] }
+        render :following
+      end
+    end
 
 = slide 'Router', 'Маршрутизатор' do
   list:
@@ -744,12 +763,16 @@
       ...
 
       def render(view_path)
-        ERB.new("views/#{view_path}.html.erb").result(binding)
+        view_content = File.read("./views/#{view_path}.html.erb")
+        ERB.new(view_content).result(binding)
       end
     end
 
 = slide 'Представяне', 'на данните, ама красиво (кодът)' do
   p Вие сте!
+
+= slide 'Кодът' do
+  p <a href="https://github.com/fmi/www-projects/tree/tweeter">тук</a>.
 
 = slide 'Домашното' do
   p Soon!
