@@ -660,17 +660,17 @@
 
     class UserController
       def show
-        @user = []
+        @user = get_user # pseudo code
         render :show
       end
 
       def followers
-        @followers = []
+        @followers = get_followers # pseudo code
         render :followers
       end
 
       def following
-        @following = []
+        @following = get_following # pseudo code
         render :following
       end
 
@@ -705,13 +705,8 @@
       6 => User.new('xyz', 'xyz@example.com', 'Xyz', 'abc', 'Xyzland'),
     }
 
-    USER_FOLLOWERS = {
-      1 => [2, 3, 5],
-    }
-
-    USER_FOLLOWING = {
-      1 => [2, 4, 5, 6]
-    }
+    USER_FOLLOWERS = {1 => [2, 3, 5]}
+    USER_FOLLOWING = {1 => [2, 4, 5, 6]}
 
     class UserController
       def show
@@ -728,6 +723,8 @@
         @following = USER_FOLLOWING[params[:id]].map { |following_id| USERS[following_id] }
         render :following
       end
+
+      ...
     end
 
 = slide 'Router', 'Маршрутизатор' do
@@ -738,7 +735,7 @@
     `users/42/following` -> `UsersController#following`
     Подават се и параметрите: `params: {id: 42}`
 
-= slide 'Представяне', 'на данните, ама красиво' do
+= slide 'Представяне', 'на данните' do
   list:
     Views?
     Обвиват данните, така че да бъдат представяни
@@ -768,7 +765,7 @@
       end
     end
 
-= slide 'Представяне', 'на данните, ама красиво (кодът)' do
+= slide 'Представяне', 'на данните (кодът)' do
   p Вие сте!
 
 = slide 'Кодът' do
