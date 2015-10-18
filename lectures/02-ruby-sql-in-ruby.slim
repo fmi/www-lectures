@@ -2,3 +2,246 @@
   list:
     Ruby, ruby, ruby
     SQL в Ruby
+
+= slide 'Drama time', '...again...' do
+  p <a href="https://docs.google.com/spreadsheets/d/1mvuFpcBFpTV03UcQ6-2UOcnuLpISBeGGcDPfBRXsrTM/edit#gid=0">Анкетата</a> реши:
+  list:
+    2 групи - А и Б
+    2 часа
+    list:
+      Сряда: - 8:00 - 10:00
+      Четвъртък: 19:00 - 21:00
+    Остава да намерим стая!
+    'оптимално решение' - remember?
+
+= slide 'Flashback', 'Ruby' do
+  list:
+    Програмите в Ruby са текстови файлове
+    Няма компилация като в C или Java
+    Скриптов език
+    Изпълняват се в терминал/конзола/command prompt с `ruby име_на_файл`
+
+= slide 'Flashback', 'irb' do
+  list:
+    `irb` – Interactive Ruby
+    REPL — Read-Eval-Print Loop
+    Тук ще прекарваме доста време - и ние, и вие
+    Стартирате я с `irb` (трябва да ви е в "пътя")
+    Самото irb е конзола в конзолата
+    Излизате в конзолата с `exit` или с `Ctrl + D` (под UNIX)
+
+= slide 'Flashback', 'syntax 1/2' do
+  example:
+    [lang:ruby]
+      class User
+        attr_accessor :username, :email, :first_name, :last_name, :location
+
+        def initialize(username, email, first_name, last_name, location)
+          @username = username
+          @email = email
+          @first_name = first_name
+          @last_name = last_name
+          @location = location
+        end
+
+        def full_name
+          "#{first_name} #{last_name}"
+        end
+      end
+
+= slide 'Flashback', 'syntax 2/2' do
+  example:
+    [lang:ruby]
+    require 'erb'
+
+    require './models/user'
+
+    USERS = {
+      1 => User.new('foo', 'foo@example.com', 'Foo', 'Yeah', 'Fooland'),
+      2 => User.new('bar', 'bar@example.com', 'Bar', 'Yeah', 'Barland'),
+      3 => User.new('larodi', 'larodi@example.com', 'Larodi', 'The Great', 'Larodiland'),
+      4 => User.new('lorem', 'lorem@example.com', 'Lorem', 'Text', 'Loremland'),
+      5 => User.new('ipsum', 'ipsum@example.com', 'Ipsum', 'Text', 'Ipsumland'),
+      6 => User.new('xyz', 'xyz@example.com', 'Xyz', 'abc', 'Xyzland'),
+    }
+
+    USER_FOLLOWERS = {
+      1 => [2, 3, 5],
+    }
+
+    USER_FOLLOWING = {
+      1 => [2, 4, 5, 6]
+    }
+
+    class UserController
+      def show
+        @user = USERS[params[:id]]
+        render :show
+      end
+
+      def followers
+        @followers = USER_FOLLOWERS[params[:id]].map { |follower_id| USERS[follower_id] }
+        render :followers
+      end
+
+      def following
+        @following = USER_FOLLOWING[params[:id]].map { |following_id| USERS[following_id] }
+        render :following
+      end
+
+      private
+
+      def params
+        {id: 1}
+      end
+
+      def render(view_path)
+        view_content = File.read("./views/#{view_path}.html.erb")
+        ERB.new(view_content).result(binding)
+      end
+    end
+
+= slide 'Flashback', 'MVC' do
+  img src='images/mvc-rails.png' height=400
+
+= slide 'Ta', 'днес' do
+  list:
+    Ruby, ruby, ruby
+    SQL в Ruby
+
+= slide 'Какво пропуснахме?', 'предният път' do
+  list:
+    наследяване
+    gem-ове
+    bundler
+
+= slide 'Наследяване' do
+  p Нищо сложно!
+  example:
+    [lang:ruby]
+    # base class
+    class Human
+      @@foo = 0
+
+      def self.foo
+        @@foo
+      end
+
+      def self.foo=(value)
+        @@foo = value
+      end
+    end
+
+    # derived class
+    class Worker < Human
+    end
+
+    Human.foo # 0
+    Worker.foo # 0
+
+    Human.foo = 2 # 2
+    Worker.foo # 2
+
+= slide 'Наследяване', 'instance vs. class variables' do
+  example:
+    [lang:ruby]
+    class Human
+      @bar = 0
+
+      def self.bar
+        @bar
+      end
+
+      def self.bar=(value)
+       @bar = value
+      end
+    end
+
+    class Doctor < Human
+    end
+
+    Human.bar # 0
+    Doctor.bar # nil
+
+= slide 'Gems' do
+  list:
+    библиотеки за ruby
+    ruby има пакетен мениджър за тях - RubyGems
+    инсталират се с `gem install gem-name`
+    голямо разнообразие разнообразни
+    често обновявани
+    Но как да държим нашият проект в час?
+    А какво става, когато работим по няколко проекта?
+
+= slide 'Bundler', 'basiscs' do
+  list:
+    bundler е gem
+    за менеджиране на gem-ове
+    предоставя ruby среда за всеки проект
+    ...който го ползва
+
+= slide 'Bundler', 'Gemfile' do
+  list:
+    съдържа информация за gem-овете на даде проект
+    изглежда така:
+  example:
+    [lang:ruby]
+    source 'https://rubygems.org'
+
+    ruby '2.0.0'
+
+    gem 'sequel', '~>4.3'
+    gem 'sinatra', '~>1.4'
+    gem 'sinatra-contrib', '~>1.4'
+
+    group :development do
+      gem 'sqlite3', '~>1.3', require: false
+      gem 'awesome_print',    require: false
+      gem 'rerun',            require: false
+      gem 'pry',              require: false
+    end
+
+    group :production do
+      gem 'pg', require: false
+    end
+
+= slide 'Bundler', 'начин на работа' do
+  list:
+    първо го инсталираме, ако го няма - `gem install bundler`
+    `bundler install` - инсталира пакетите опоменати в Genfile
+    `bundle exec` - стартира приложението ни в среда с тези пакети
+
+= slide 'SQL', 'в Ruby' do
+  list:
+    няма да преподаваме SQL
+    а как да го вържете към приложението си
+    ...къдърно
+
+= slide 'SQL', 'началото' do
+  list:
+    ще инсталираме gem
+    той ще се връзва с базата от данни
+    и ще изпълнява plain/raw заявки
+    `gem install sequel`
+
+= slide 'Sequel', 'що е то?' do
+  list:
+    gem
+    както вече казахме
+    позволяващ работа с бази от данни в ruby
+    все по-популярен в ruby средите
+    към момента има адптери за: ADO, Amalgalite, CUBRID, DataObjects, IBM_DB, JDBC, MySQL, Mysql2, ODBC, Oracle, PostgreSQL, SQLAnywhere, SQLite3, Swift, and TinyTDS
+
+= slide 'Sequel', 'свръзване с базата' do
+  example:
+    [lang:ruby]
+    require 'sequel'
+
+    # memory database
+    DB = Sequel.sqlite
+
+    # local SQLite database
+    DB = Sequel.connect('sqlite://tweeter.db')
+
+    # remote PostgreSQL database
+    DB = Sequel.connect('postgres://user:password@host:port/database_name')
