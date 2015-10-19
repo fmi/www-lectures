@@ -7,12 +7,9 @@
   p <a href="https://docs.google.com/spreadsheets/d/1mvuFpcBFpTV03UcQ6-2UOcnuLpISBeGGcDPfBRXsrTM/edit#gid=0">Анкетата</a> реши:
   list:
     2 групи - А и Б
-    2 часа
-    list:
-      Сряда: - 8:00 - 10:00
-      Четвъртък: 19:00 - 21:00
+    Група А - сряда, 08:00 - 10:00
+    Група Б - четвъртък, 19:00 - 21:00
     Остава да намерим стая!
-    'оптимално решение' - remember?
 
 = slide 'Flashback', 'Ruby' do
   list:
@@ -28,7 +25,7 @@
     Тук ще прекарваме доста време - и ние, и вие
     Стартирате я с `irb` (трябва да ви е в "пътя")
     Самото irb е конзола в конзолата
-    Излизате в конзолата с `exit` или с `Ctrl + D` (под UNIX)
+    Излизате от конзолата с `exit` или с `Ctrl + D` (под UNIX)
 
 = slide 'Flashback', 'syntax 1/2' do
   example:
@@ -104,86 +101,26 @@
 = slide 'Flashback', 'MVC' do
   img src='images/mvc-rails.png' height=400
 
-= slide 'Ta', 'днес' do
-  list:
-    Ruby, ruby, ruby
-    SQL в Ruby
-
-= slide 'Какво пропуснахме?', 'предният път' do
-  list:
-    наследяване
-    gem-ове
-    bundler
-
-= slide 'Наследяване' do
-  p Нищо сложно!
-  example:
-    [lang:ruby]
-    # base class
-    class Human
-      @@foo = 0
-
-      def self.foo
-        @@foo
-      end
-
-      def self.foo=(value)
-        @@foo = value
-      end
-    end
-
-    # derived class
-    class Worker < Human
-    end
-
-    Human.foo # 0
-    Worker.foo # 0
-
-    Human.foo = 2 # 2
-    Worker.foo # 2
-
-= slide 'Наследяване', 'instance vs. class variables' do
-  example:
-    [lang:ruby]
-    class Human
-      @bar = 0
-
-      def self.bar
-        @bar
-      end
-
-      def self.bar=(value)
-       @bar = value
-      end
-    end
-
-    class Doctor < Human
-    end
-
-    Human.bar # 0
-    Doctor.bar # nil
-
 = slide 'Gems' do
   list:
-    библиотеки за ruby
-    ruby има пакетен мениджър за тях - RubyGems
-    инсталират се с `gem install gem-name`
-    голямо разнообразие разнообразни
-    често обновявани
+    Библиотеки за ruby
+    Ruby има пакетен мениджър за тях - RubyGems
+    Инсталират се с `gem install gem-name`
+    Голямо разнообразие разнообразни
+    Често обновявани
     Но как да държим нашият проект в час?
     А какво става, когато работим по няколко проекта?
 
-= slide 'Bundler', 'basiscs' do
+= slide 'Bundler', 'basics' do
   list:
-    bundler е gem
-    за менеджиране на gem-ове
-    предоставя ruby среда за всеки проект
-    ...който го ползва
+    Bundler е gem
+    За управление на gem-ове
+    Предоставя ruby среда за всеки проект
 
 = slide 'Bundler', 'Gemfile' do
-  list:
-    съдържа информация за gem-овете на даде проект
-    изглежда така:
+  ul
+    li Съдържа информация за gem-овете на даден проект
+    li Изглежда така:
   example:
     [lang:ruby]
     source 'https://rubygems.org'
@@ -194,54 +131,265 @@
     gem 'sinatra', '~>1.4'
     gem 'sinatra-contrib', '~>1.4'
 
-    group :development do
-      gem 'sqlite3', '~>1.3', require: false
-      gem 'awesome_print',    require: false
-      gem 'rerun',            require: false
-      gem 'pry',              require: false
-    end
-
-    group :production do
-      gem 'pg', require: false
-    end
-
 = slide 'Bundler', 'начин на работа' do
   list:
-    първо го инсталираме, ако го няма - `gem install bundler`
-    `bundler install` - инсталира пакетите опоменати в Genfile
+    Първо го инсталираме, ако го няма - `gem install bundler`
+    `bundler install` - инсталира пакетите опоменати в Gemfile
     `bundle exec` - стартира приложението ни в среда с тези пакети
 
 = slide 'SQL', 'в Ruby' do
   list:
-    няма да преподаваме SQL
-    а как да го вържете към приложението си
-    ...къдърно
+    Няма да преподаваме SQL
+    Ще говорим за SQL в Ruby
+    Ще говорим за SQL и ролята му в едно уеб приложение
 
-= slide 'SQL', 'началото' do
+= slide 'SQL', 'какво ще ползваме' do
   list:
-    ще инсталираме gem
-    той ще се връзва с базата от данни
-    и ще изпълнява plain/raw заявки
-    `gem install sequel`
+    SQLite - SQL Database Engine
+    SQLite3 - Ruby gem
+    SQLite3 е интерфейс за SQLite
 
-= slide 'Sequel', 'що е то?' do
-  list:
-    gem
-    както вече казахме
-    позволяващ работа с бази от данни в ruby
-    все по-популярен в ruby средите
-    към момента има адптери за: ADO, Amalgalite, CUBRID, DataObjects, IBM_DB, JDBC, MySQL, Mysql2, ODBC, Oracle, PostgreSQL, SQLAnywhere, SQLite3, Swift, and TinyTDS
+= slide 'SQLite', 'създаване на база данни' do
+  ul
+    li Създава база (или се свързва, ако вече съществува)
+    li Отваря REPL
+    li В REPL-то пишем SQL
+    li Създадената база е просто файл във файловата система
 
-= slide 'Sequel', 'свръзване с базата' do
+  example:
+    sqlite3 database_name.sqlite3 # Създава база данни (или се свързва, ако съществува)
+    sqlite3 database_name.sqlite3 < dump.sql # Така import-ваме SQL (ако не съществува, ще се създаде)
+
+= slide 'Файлова структура', 'update' do
+  example:
+    .
+    |- db
+    |  |- database.sqlite3
+    |  |- structure.sql
+    |
+    |- app
+    |  |- views
+    |  |- controllers
+    |  |- models
+    |  |- repositories
+    |
+    |- Gemfile
+
+= slide 'Файлова структура', 'structure.sql' do
+  example:
+    [lang:sql]
+    CREATE TABLE users (
+      id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      first_name TEXT NOT NULL,
+      last_name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      username TEXT NOT NULL,
+      location TEXT
+    );
+
+= slide 'SQLite', 'таблица users' do
+  ul
+    li Ще пазим заявките за създаване на таблици в <code>structure.sql</code>
+    li Така лесно можем да създадем база с готова, за приложението ни, структура
+    li Долното се изпълнява от root директорията на проекта
+
+  p <code>sqlite3 db/database.sqlite3 < db/structure.sql</code>
+
+= slide 'SQLite3', 'свръзване с базата' do
+  ul
+    li Вече имаме база данни и таблица <code>users</code>
+    li Време е да накараме Ruby да комуникира с тях
+
   example:
     [lang:ruby]
-    require 'sequel'
+    require 'sqlite3'
 
-    # memory database
-    DB = Sequel.sqlite
+    DB = SQLite3::Database.new './db/database.sqlite3'
+    DB.execute 'SELECT * FROM users;'
 
-    # local SQLite database
-    DB = Sequel.connect('sqlite://tweeter.db')
+= slide 'Repository класове' do
+  list:
+    Допълнителен слой (няма общо с MVC), който ние въвеждаме
+    Отговорен е за връзката между модел и база данни
+    Днес ще имплементираме такъв за User модела
 
-    # remote PostgreSQL database
-    DB = Sequel.connect('postgres://user:password@host:port/database_name')
+= slide 'CRUD', 'и връзката с HTTP' do
+  example:
+    Operation        | SQL    | HTTP
+    -----------------|--------|----------
+    Create           | INSERT | PUT/POST
+    Read (Retrieve)  | SELECT | GET
+    Update (Modify)  | UPDATE | PUT/PATCH
+    Delete (Destroy) | DELETE | DELETE
+
+= slide 'CRUD', 'create' do
+  example:
+    [lang:ruby]
+    require 'sqlite3'
+
+    DB = SQLite3::Database.new './db/database.sqlite3'
+
+    module UserRepository
+      extend self
+
+      def create(user)
+        DB.execute <<-SQL
+          INSERT INTO users (
+            `username`, `email`, `first_name`, `last_name`, `location`
+          ) VALUES (
+            '#{user.username}', '#{user.email}', '#{user.first_name}', '#{user.last_name}', '#{user.location}'
+          );
+        SQL
+      end
+    end
+
+= slide 'CRUD', 'find, update, delete' do
+  p Идеи?
+
+  example:
+    [lang:ruby]
+    module UserRepository
+      ...
+      
+      def find(id)
+        # ...?
+      end
+
+      def update(user)
+        # ...?
+      end
+
+      def delete(id)
+        # ...?
+      end
+    end
+
+= slide 'CRUD', 'find' do
+  example:
+    [lang:ruby]
+    module UserRepository
+      ...
+      
+      def find(id)
+        columns, row = DB.execute2 "SELECT * FROM users WHERE id = #{id};"
+        return unless row
+
+        user_attributes = columns.zip(row).to_h
+        User.new(
+          user_attributes['email'],
+          user_attributes['username'],
+          user_attributes['first_name'],
+          user_attributes['last_name'],
+          user_attributes['location'],
+        )
+      end
+    end
+
+= slide 'CRUD', 'update' do
+  example:
+    [lang:ruby]
+    module UserRepository
+      ...
+
+      def update(user)
+        DB.execute <<-SQL
+          UPDATE users
+          SET
+            username = '#{user.username}',
+            email = '#{user.email}',
+            first_name = '#{user.first_name}',
+            last_name = '#{user.last_name}',
+            location = '#{user.location}'
+          WHERE id = #{user.id};
+        SQL
+      end
+    end
+
+= slide 'CRUD', 'delete' do
+  example:
+    [lang:ruby]
+    module UserRepository
+      ...
+
+      def delete(id)
+        DB.execute "DELETE FROM users WHERE id = #{id};"
+      end
+    end
+
+= slide 'Join Tables', 'followers/following' do
+  ul
+    li Нека създадем join таблицата <code>users_followers</code>
+    li <code>followed_id</code> е този, който го следят
+    li <code>follower_id</code> е този, който следи
+    li Да си добавим следното в <code>structure.sql</code>
+
+  example:
+    [lang:sql]
+    CREATE TABLE users_followers (
+      id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      followed_id INTEGER NOT NULL,
+      follower_id INTEGER NOT NULL,
+      FOREIGN KEY(followed_id) REFERENCES users(id),
+      FOREIGN KEY(follower_id) REFERENCES users(id)
+    );
+
+= slide 'UserRepository', 'followers/following' do
+  p Идеи?
+
+  example:
+    [lang:ruby]
+    module UserRepository
+      ...
+
+      def followers(id)
+        # ...?
+      end
+
+      def following(id)
+        # ...?
+      end
+    end
+
+= slide 'UserRepository', 'followers/following' do
+  example:
+    [lang:ruby]
+    module UserRepository
+      ...
+
+      def followers(id)
+        columns, *rows = DB.execute2 <<-SQL
+          SELECT email, username, first_name, last_name, location FROM users
+          JOIN users_followers
+          ON users.id = users_followers.follower_id
+          WHERE users_followers.followed_id = #{1};
+        SQL
+
+        return unless rows
+
+        rows.map do |row|
+          user_attributes = columns.zip(row).to_h
+
+          User.new(
+            user_attributes['email'],
+            user_attributes['username'],
+            user_attributes['first_name'],
+            user_attributes['last_name'],
+            user_attributes['location'],
+          )
+        end
+      end
+    end
+
+= slide 'UserRepository', 'followers/following' do
+  example:
+    [lang:ruby]
+    module UserRepository
+      ...
+
+      def following(id)
+        # Можете ли сами?
+      end
+    end
+
+= slide 'UsersController', 'update' do
+  p А сега... Да използваме `UserRepository` в `UsersController`

@@ -64,7 +64,6 @@
 <section>
 <hgroup><h1>Днес</h1></hgroup>
 <ul><li class="action">Ruby
-</li><li class="action">Rack
 </li><li class="action">MVC
 </li><li class="action">ERB</li></ul></section>
 <section>
@@ -610,21 +609,20 @@
 <section>
 <hgroup><h1>Контролиране</h1><h2>или по-скоро изпълняване на желания (кодът)</h2></hgroup>
 <div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;erb&#39;</span>
-<span class="nb">require</span> <span class="s1">&#39;sample_users&#39;</span>
 
 <span class="k">class</span> <span class="nc">UserController</span>
   <span class="k">def</span> <span class="nf">show</span>
-    <span class="vi">@user</span> <span class="o">=</span> <span class="no">USERS</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]]</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="n">get_user</span> <span class="c1"># pseudo code</span>
     <span class="n">render</span> <span class="ss">:show</span>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">followers</span>
-    <span class="vi">@followers</span> <span class="o">=</span> <span class="o">[]</span>
+    <span class="vi">@followers</span> <span class="o">=</span> <span class="n">get_followers</span> <span class="c1"># pseudo code</span>
     <span class="n">render</span> <span class="ss">:followers</span>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">following</span>
-    <span class="vi">@following</span> <span class="o">=</span> <span class="o">[]</span>
+    <span class="vi">@following</span> <span class="o">=</span> <span class="n">get_following</span> <span class="c1"># pseudo code</span>
     <span class="n">render</span> <span class="ss">:following</span>
   <span class="k">end</span>
 
@@ -635,7 +633,8 @@
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">view_path</span><span class="p">)</span>
-    <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;views/</span><span class="si">#{</span><span class="n">view_path</span><span class="si">}</span><span class="s2">.html.erb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
+    <span class="n">view_content</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;./views/</span><span class="si">#{</span><span class="n">view_path</span><span class="si">}</span><span class="s2">.html.erb&quot;</span><span class="p">)</span>
+    <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">view_content</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </pre>
@@ -643,8 +642,11 @@
 </section>
 <section>
 <hgroup><h1>Примерни данни</h1></hgroup>
-<ul><li class="action"><code>require 'sample_users'</code>, anyone?
-</li><li class="action">Временно, докато не стигнем БД</li></ul><div class="highlight"><pre><span class="no">USERS</span> <span class="o">=</span> <span class="p">{</span>
+<ul><li class="action">Временно, докато не стигнем БД</li></ul><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;erb&#39;</span>
+
+<span class="nb">require</span> <span class="s1">&#39;./models/user&#39;</span>
+
+<span class="no">USERS</span> <span class="o">=</span> <span class="p">{</span>
   <span class="mi">1</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;foo@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Foo&#39;</span><span class="p">,</span> <span class="s1">&#39;Yeah&#39;</span><span class="p">,</span> <span class="s1">&#39;Fooland&#39;</span><span class="p">),</span>
   <span class="mi">2</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Bar&#39;</span><span class="p">,</span> <span class="s1">&#39;Yeah&#39;</span><span class="p">,</span> <span class="s1">&#39;Barland&#39;</span><span class="p">),</span>
   <span class="mi">3</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;larodi&#39;</span><span class="p">,</span> <span class="s1">&#39;larodi@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Larodi&#39;</span><span class="p">,</span> <span class="s1">&#39;The Great&#39;</span><span class="p">,</span> <span class="s1">&#39;Larodiland&#39;</span><span class="p">),</span>
@@ -653,13 +655,27 @@
   <span class="mi">6</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;xyz&#39;</span><span class="p">,</span> <span class="s1">&#39;xyz@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Xyz&#39;</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;Xyzland&#39;</span><span class="p">),</span>
 <span class="p">}</span>
 
-<span class="no">USER_FOLLOWERS</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="mi">1</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span><span class="p">,</span>
-<span class="p">}</span>
+<span class="no">USER_FOLLOWERS</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span><span class="p">}</span>
+<span class="no">USER_FOLLOWING</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="o">]</span><span class="p">}</span>
 
-<span class="no">USER_FOLLOWING</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="mi">1</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="o">]</span>
-<span class="p">}</span>
+<span class="k">class</span> <span class="nc">UserController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">USERS</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]]</span>
+    <span class="n">render</span> <span class="ss">:show</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">followers</span>
+    <span class="vi">@followers</span> <span class="o">=</span> <span class="no">USER_FOLLOWERS</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]].</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">follower_id</span><span class="o">|</span> <span class="no">USERS</span><span class="o">[</span><span class="n">follower_id</span><span class="o">]</span> <span class="p">}</span>
+    <span class="n">render</span> <span class="ss">:followers</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">following</span>
+    <span class="vi">@following</span> <span class="o">=</span> <span class="no">USER_FOLLOWING</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]].</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">following_id</span><span class="o">|</span> <span class="no">USERS</span><span class="o">[</span><span class="n">following_id</span><span class="o">]</span> <span class="p">}</span>
+    <span class="n">render</span> <span class="ss">:following</span>
+  <span class="k">end</span>
+
+  <span class="o">...</span>
+<span class="k">end</span>
 </pre>
 </div>
 </section>
@@ -671,7 +687,7 @@
 </li><li class="action"><code>users/42/following</code> -> <code>UsersController#following</code>
 </li><li class="action">Подават се и параметрите: <code>params: {id: 42}</code></li></ul></section>
 <section>
-<hgroup><h1>Представяне</h1><h2>на данните, ама красиво</h2></hgroup>
+<hgroup><h1>Представяне</h1><h2>на данните</h2></hgroup>
 <ul><li class="action">Views?
 </li><li class="action">Обвиват данните, така че да бъдат представяни
 </li><li class="action">Обвивката може да бъде <code>html</code>, <code>json</code>, <code>xml</code>, и тн
@@ -689,15 +705,19 @@
   <span class="o">...</span>
 
   <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">view_path</span><span class="p">)</span>
-    <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;views/</span><span class="si">#{</span><span class="n">view_path</span><span class="si">}</span><span class="s2">.html.erb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
+    <span class="n">view_content</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;./views/</span><span class="si">#{</span><span class="n">view_path</span><span class="si">}</span><span class="s2">.html.erb&quot;</span><span class="p">)</span>
+    <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">view_content</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </pre>
 </div>
 </section>
 <section>
-<hgroup><h1>Представяне</h1><h2>на данните, ама красиво (кодът)</h2></hgroup>
+<hgroup><h1>Представяне</h1><h2>на данните (кодът)</h2></hgroup>
 <p>Вие сте!</p></section>
+<section>
+<hgroup><h1>Кодът</h1></hgroup>
+<p><a href="https://github.com/fmi/www-projects/tree/tweeter">тук</a>.</p></section>
 <section>
 <hgroup><h1>Домашното</h1></hgroup>
 <p>Soon!</p></section>
