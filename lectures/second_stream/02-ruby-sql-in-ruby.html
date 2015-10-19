@@ -1,0 +1,395 @@
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>02. Още Ruby. SQL в Ruby.</title></head><body><header><h1>02. Още Ruby. SQL в Ruby.</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>02. Още Ruby. SQL в Ruby.</h1></hgroup></section><section>
+<hgroup><h1>Днес</h1></hgroup>
+<ul><li class="action">Ruby, ruby, ruby
+</li><li class="action">SQL в Ruby</li></ul></section>
+<section>
+<hgroup><h1>Drama time</h1><h2>...again...</h2></hgroup>
+<p><a href="https://docs.google.com/spreadsheets/d/1mvuFpcBFpTV03UcQ6-2UOcnuLpISBeGGcDPfBRXsrTM/edit#gid=0">Анкетата</a> реши:</p><ul><li class="action">2 групи - А и Б
+</li><li class="action">Група А - сряда, 08:00 - 10:00
+</li><li class="action">Група Б - четвъртък, 19:00 - 21:00
+</li><li class="action">Остава да намерим стая!</li></ul></section>
+<section>
+<hgroup><h1>Flashback</h1><h2>Ruby</h2></hgroup>
+<ul><li class="action">Програмите в Ruby са текстови файлове
+</li><li class="action">Няма компилация като в C или Java
+</li><li class="action">Скриптов език
+</li><li class="action">Изпълняват се в терминал/конзола/command prompt с <code>ruby име_на_файл</code></li></ul></section>
+<section>
+<hgroup><h1>Flashback</h1><h2>irb</h2></hgroup>
+<ul><li class="action"><code>irb</code> – Interactive Ruby
+</li><li class="action">REPL — Read-Eval-Print Loop
+</li><li class="action">Тук ще прекарваме доста време - и ние, и вие
+</li><li class="action">Стартирате я с <code>irb</code> (трябва да ви е в "пътя")
+</li><li class="action">Самото irb е конзола в конзолата
+</li><li class="action">Излизате от конзолата с <code>exit</code> или с <code>Ctrl + D</code> (под UNIX)</li></ul></section>
+<section>
+<hgroup><h1>Flashback</h1><h2>syntax 1&#47;2</h2></hgroup>
+<div class="highlight"><pre>  <span class="k">class</span> <span class="nc">User</span>
+    <span class="kp">attr_accessor</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:first_name</span><span class="p">,</span> <span class="ss">:last_name</span><span class="p">,</span> <span class="ss">:location</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+      <span class="vi">@username</span> <span class="o">=</span> <span class="n">username</span>
+      <span class="vi">@email</span> <span class="o">=</span> <span class="n">email</span>
+      <span class="vi">@first_name</span> <span class="o">=</span> <span class="n">first_name</span>
+      <span class="vi">@last_name</span> <span class="o">=</span> <span class="n">last_name</span>
+      <span class="vi">@location</span> <span class="o">=</span> <span class="n">location</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">full_name</span>
+      <span class="s2">&quot;</span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Flashback</h1><h2>syntax 2&#47;2</h2></hgroup>
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;erb&#39;</span>
+
+<span class="nb">require</span> <span class="s1">&#39;./models/user&#39;</span>
+
+<span class="no">USERS</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">1</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;foo@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Foo&#39;</span><span class="p">,</span> <span class="s1">&#39;Yeah&#39;</span><span class="p">,</span> <span class="s1">&#39;Fooland&#39;</span><span class="p">),</span>
+  <span class="mi">2</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Bar&#39;</span><span class="p">,</span> <span class="s1">&#39;Yeah&#39;</span><span class="p">,</span> <span class="s1">&#39;Barland&#39;</span><span class="p">),</span>
+  <span class="mi">3</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;larodi&#39;</span><span class="p">,</span> <span class="s1">&#39;larodi@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Larodi&#39;</span><span class="p">,</span> <span class="s1">&#39;The Great&#39;</span><span class="p">,</span> <span class="s1">&#39;Larodiland&#39;</span><span class="p">),</span>
+  <span class="mi">4</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;lorem@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;Text&#39;</span><span class="p">,</span> <span class="s1">&#39;Loremland&#39;</span><span class="p">),</span>
+  <span class="mi">5</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;Text&#39;</span><span class="p">,</span> <span class="s1">&#39;Ipsumland&#39;</span><span class="p">),</span>
+  <span class="mi">6</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;xyz&#39;</span><span class="p">,</span> <span class="s1">&#39;xyz@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Xyz&#39;</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;Xyzland&#39;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="no">USER_FOLLOWERS</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">1</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="no">USER_FOLLOWING</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">1</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="o">]</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">UserController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">USERS</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]]</span>
+    <span class="n">render</span> <span class="ss">:show</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">followers</span>
+    <span class="vi">@followers</span> <span class="o">=</span> <span class="no">USER_FOLLOWERS</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]].</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">follower_id</span><span class="o">|</span> <span class="no">USERS</span><span class="o">[</span><span class="n">follower_id</span><span class="o">]</span> <span class="p">}</span>
+    <span class="n">render</span> <span class="ss">:followers</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">following</span>
+    <span class="vi">@following</span> <span class="o">=</span> <span class="no">USER_FOLLOWING</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]].</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">following_id</span><span class="o">|</span> <span class="no">USERS</span><span class="o">[</span><span class="n">following_id</span><span class="o">]</span> <span class="p">}</span>
+    <span class="n">render</span> <span class="ss">:following</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">params</span>
+    <span class="p">{</span><span class="nb">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">view_path</span><span class="p">)</span>
+    <span class="n">view_content</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;./views/</span><span class="si">#{</span><span class="n">view_path</span><span class="si">}</span><span class="s2">.html.erb&quot;</span><span class="p">)</span>
+    <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">view_content</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Flashback</h1><h2>MVC</h2></hgroup>
+<img height="400" src="images/mvc-rails.png" /></section>
+<section>
+<hgroup><h1>Gems</h1></hgroup>
+<ul><li class="action">Библиотеки за ruby
+</li><li class="action">Ruby има пакетен мениджър за тях - RubyGems
+</li><li class="action">Инсталират се с <code>gem install gem-name</code>
+</li><li class="action">Голямо разнообразие разнообразни
+</li><li class="action">Често обновявани
+</li><li class="action">Но как да държим нашият проект в час?
+</li><li class="action">А какво става, когато работим по няколко проекта?</li></ul></section>
+<section>
+<hgroup><h1>Bundler</h1><h2>basics</h2></hgroup>
+<ul><li class="action">Bundler е gem
+</li><li class="action">За управление на gem-ове
+</li><li class="action">Предоставя ruby среда за всеки проект</li></ul></section>
+<section>
+<hgroup><h1>Bundler</h1><h2>Gemfile</h2></hgroup>
+<ul><li>Съдържа информация за gem-овете на даден проект</li><li>Изглежда така:</li></ul><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+
+<span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;sequel&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt;4.3&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;sinatra&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt;1.4&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;sinatra-contrib&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt;1.4&#39;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Bundler</h1><h2>начин на работа</h2></hgroup>
+<ul><li class="action">Първо го инсталираме, ако го няма - <code>gem install bundler</code>
+</li><li class="action"><code>bundler install</code> - инсталира пакетите опоменати в Gemfile
+</li><li class="action"><code>bundle exec</code> - стартира приложението ни в среда с тези пакети</li></ul></section>
+<section>
+<hgroup><h1>SQL</h1><h2>в Ruby</h2></hgroup>
+<ul><li class="action">Няма да преподаваме SQL
+</li><li class="action">Ще говорим за SQL в Ruby
+</li><li class="action">Ще говорим за SQL и ролята му в едно уеб приложение</li></ul></section>
+<section>
+<hgroup><h1>SQL</h1><h2>какво ще ползваме</h2></hgroup>
+<ul><li class="action">SQLite - SQL Database Engine
+</li><li class="action">SQLite3 - Ruby gem
+</li><li class="action">SQLite3 е интерфейс за SQLite</li></ul></section>
+<section>
+<hgroup><h1>SQLite</h1><h2>създаване на база данни</h2></hgroup>
+<ul><li>Създава база (или се свързва, ако вече съществува)</li><li>Отваря REPL</li><li>В REPL-то пишем SQL</li><li>Създадената база е просто файл във файловата система</li></ul><div class="highlight"><pre><span class="x">sqlite3 database_name.sqlite3 # Създава база данни (или се свързва, ако съществува)</span>
+<span class="x">sqlite3 database_name.sqlite3 &lt; dump.sql # Така import-ваме SQL (ако не съществува, ще се създаде)</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Файлова структура</h1><h2>update</h2></hgroup>
+<div class="highlight"><pre><span class="x">.</span>
+<span class="x">|- db</span>
+<span class="x">|  |- database.sqlite3</span>
+<span class="x">|  |- structure.sql</span>
+<span class="x">|</span>
+<span class="x">|- app</span>
+<span class="x">|  |- views</span>
+<span class="x">|  |- controllers</span>
+<span class="x">|  |- models</span>
+<span class="x">|  |- repositories</span>
+<span class="x">|</span>
+<span class="x">|- Gemfile</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Файлова структура</h1><h2>structure.sql</h2></hgroup>
+<div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">users</span> <span class="p">(</span>
+  <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTOINCREMENT</span><span class="p">,</span>
+  <span class="n">first_name</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">last_name</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">email</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">username</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">location</span> <span class="nb">TEXT</span>
+<span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>SQLite</h1><h2>таблица users</h2></hgroup>
+<ul><li>Ще пазим заявките за създаване на таблици в <code>structure.sql</code></li><li>Така лесно можем да създадем база с готова, за приложението ни, структура</li><li>Долното се изпълнява от root директорията на проекта</li></ul><p><code>sqlite3 db/database.sqlite3 < db/structure.sql</code></p></section>
+<section>
+<hgroup><h1>SQLite3</h1><h2>свръзване с базата</h2></hgroup>
+<ul><li>Вече имаме база данни и таблица <code>users</code></li><li>Време е да накараме Ruby да комуникира с тях</li></ul><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;sqlite3&#39;</span>
+
+<span class="no">DB</span> <span class="o">=</span> <span class="no">SQLite3</span><span class="o">::</span><span class="no">Database</span><span class="o">.</span><span class="n">new</span> <span class="s1">&#39;./db/database.sqlite3&#39;</span>
+<span class="no">DB</span><span class="o">.</span><span class="n">execute</span> <span class="s1">&#39;SELECT * FROM users;&#39;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Repository класове</h1></hgroup>
+<ul><li class="action">Допълнителен слой (няма общо с MVC), който ние въвеждаме
+</li><li class="action">Отговорен е за връзката между модел и база данни
+</li><li class="action">Днес ще имплементираме такъв за User модела</li></ul></section>
+<section>
+<hgroup><h1>CRUD</h1><h2>и връзката с HTTP</h2></hgroup>
+<div class="highlight"><pre><span class="x">Operation        | SQL    | HTTP</span>
+<span class="x">-----------------|--------|----------</span>
+<span class="x">Create           | INSERT | PUT/POST</span>
+<span class="x">Read (Retrieve)  | SELECT | GET</span>
+<span class="x">Update (Modify)  | UPDATE | PUT/PATCH</span>
+<span class="x">Delete (Destroy) | DELETE | DELETE</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>CRUD</h1><h2>create</h2></hgroup>
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;sqlite3&#39;</span>
+
+<span class="no">DB</span> <span class="o">=</span> <span class="no">SQLite3</span><span class="o">::</span><span class="no">Database</span><span class="o">.</span><span class="n">new</span> <span class="s1">&#39;./db/database.sqlite3&#39;</span>
+
+<span class="k">module</span> <span class="nn">UserRepository</span>
+  <span class="kp">extend</span> <span class="nb">self</span>
+
+  <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="no">DB</span><span class="o">.</span><span class="n">execute</span> <span class="o">&lt;&lt;-</span><span class="no">SQL</span>
+<span class="sh">      INSERT INTO users (</span>
+<span class="sh">        `username`, `email`, `first_name`, `last_name`, `location`</span>
+<span class="sh">      ) VALUES (</span>
+<span class="sh">        &#39;#{user.username}&#39;, &#39;#{user.email}&#39;, &#39;#{user.first_name}&#39;, &#39;#{user.last_name}&#39;, &#39;#{user.location}&#39;</span>
+<span class="sh">      );</span>
+<span class="no">    SQL</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>CRUD</h1><h2>find, update, delete</h2></hgroup>
+<p>Идеи?</p><div class="highlight"><pre><span class="k">module</span> <span class="nn">UserRepository</span>
+  <span class="o">...</span>
+
+  <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="c1"># ...?</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="c1"># ...?</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="c1"># ...?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>CRUD</h1><h2>find</h2></hgroup>
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">UserRepository</span>
+  <span class="o">...</span>
+
+  <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">columns</span><span class="p">,</span> <span class="n">row</span> <span class="o">=</span> <span class="no">DB</span><span class="o">.</span><span class="n">execute2</span> <span class="s2">&quot;SELECT * FROM users WHERE id = </span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="s2">;&quot;</span>
+    <span class="k">return</span> <span class="k">unless</span> <span class="n">row</span>
+
+    <span class="n">user_attributes</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">zip</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="n">to_h</span>
+    <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+      <span class="n">user_attributes</span><span class="o">[</span><span class="s1">&#39;email&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="n">user_attributes</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="n">user_attributes</span><span class="o">[</span><span class="s1">&#39;first_name&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="n">user_attributes</span><span class="o">[</span><span class="s1">&#39;last_name&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="n">user_attributes</span><span class="o">[</span><span class="s1">&#39;location&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>CRUD</h1><h2>update</h2></hgroup>
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">UserRepository</span>
+  <span class="o">...</span>
+
+  <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="no">DB</span><span class="o">.</span><span class="n">execute</span> <span class="o">&lt;&lt;-</span><span class="no">SQL</span>
+<span class="sh">      UPDATE users</span>
+<span class="sh">      SET</span>
+<span class="sh">        username = &#39;#{user.username}&#39;,</span>
+<span class="sh">        email = &#39;#{user.email}&#39;,</span>
+<span class="sh">        first_name = &#39;#{user.first_name}&#39;,</span>
+<span class="sh">        last_name = &#39;#{user.last_name}&#39;,</span>
+<span class="sh">        location = &#39;#{user.location}&#39;</span>
+<span class="sh">      WHERE id = #{user.id};</span>
+<span class="no">    SQL</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>CRUD</h1><h2>delete</h2></hgroup>
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">UserRepository</span>
+  <span class="o">...</span>
+
+  <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="no">DB</span><span class="o">.</span><span class="n">execute</span> <span class="s2">&quot;DELETE FROM users WHERE id = </span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="s2">;&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Join Tables</h1><h2>followers&#47;following</h2></hgroup>
+<ul><li>Нека създадем join таблицата <code>users_followers</code></li><li><code>followed_id</code> е този, който го следят</li><li><code>follower_id</code> е този, който следи</li><li>Да си добавим следното в <code>structure.sql</code></li></ul><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">users_followers</span> <span class="p">(</span>
+  <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTOINCREMENT</span><span class="p">,</span>
+  <span class="n">followed_id</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">follower_id</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">(</span><span class="n">followed_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">users</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+  <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">(</span><span class="n">follower_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">users</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>UserRepository</h1><h2>followers&#47;following</h2></hgroup>
+<p>Идеи?</p><div class="highlight"><pre><span class="k">module</span> <span class="nn">UserRepository</span>
+  <span class="o">...</span>
+
+  <span class="k">def</span> <span class="nf">followers</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="c1"># ...?</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">following</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="c1"># ...?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>UserRepository</h1><h2>followers&#47;following</h2></hgroup>
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">UserRepository</span>
+  <span class="o">...</span>
+
+  <span class="k">def</span> <span class="nf">followers</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">columns</span><span class="p">,</span> <span class="o">*</span><span class="n">rows</span> <span class="o">=</span> <span class="no">DB</span><span class="o">.</span><span class="n">execute2</span> <span class="o">&lt;&lt;-</span><span class="no">SQL</span>
+<span class="sh">      SELECT email, username, first_name, last_name, location FROM users</span>
+<span class="sh">      JOIN users_followers</span>
+<span class="sh">      ON users.id = users_followers.follower_id</span>
+<span class="sh">      WHERE users_followers.followed_id = #{1};</span>
+<span class="no">    SQL</span>
+
+    <span class="k">return</span> <span class="k">unless</span> <span class="n">rows</span>
+
+    <span class="n">rows</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+      <span class="n">user_attributes</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">zip</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="n">to_h</span>
+
+      <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+        <span class="n">user_attributes</span><span class="o">[</span><span class="s1">&#39;email&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">user_attributes</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">user_attributes</span><span class="o">[</span><span class="s1">&#39;first_name&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">user_attributes</span><span class="o">[</span><span class="s1">&#39;last_name&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">user_attributes</span><span class="o">[</span><span class="s1">&#39;location&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>UserRepository</h1><h2>followers&#47;following</h2></hgroup>
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">UserRepository</span>
+  <span class="o">...</span>
+
+  <span class="k">def</span> <span class="nf">following</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="c1"># Можете ли сами?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>UsersController</h1><h2>update</h2></hgroup>
+<p>А сега... Да използваме `UserRepository` в `UsersController`</p></section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=1911">http://moodle.openfmi.net/course/view.php?id=1911</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+mixpanel.set_config({debug: true});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});
+
+try {
+  mixpanel.track('Landing Page', {
+    referrer: document.referrer,
+    presentation: document.title
+  });
+} catch (e) {};</script></body></html>
