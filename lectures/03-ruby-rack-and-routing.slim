@@ -21,10 +21,9 @@
     Ruby обект, който отговаря на метода `call`
     приема като аргумент хеш с информация за environment-а
     и връща масив с точно 3 стойности:
-    list:
-      status
-      headers
-      body
+    status
+    headers
+    body
 
 = slide 'Ruby lambdas', 'лирическо отклонение' do
   example:
@@ -57,6 +56,25 @@
 = slide 'Rack application', 'малко по-ООП' do
   example:
     [lang:ruby]
+    # config.ru
+    require 'rack'
+
+    module Tweeter
+      class Application
+        def self.call(env)
+          Rack::Response.new env
+        end
+      end
+    end
+
+  list:
+    Но нали имаме контролер!
+    Защо не го използваме?!
+
+
+= slide 'Rack application', 'using controller' do
+  example:
+    [lang:ruby]
     ...
     require './app/controllers/user_controller'
 
@@ -75,6 +93,19 @@
     свързва заявка с двойка <контролер, метод>
     как можем да го направим?
     ще използваме `env`!!1!
+
+= slide 'env', 'под лупа' do
+  list:
+    REQUEST_METHOD: The HTTP verb of the request. This is required.
+    PATH_INFO: The request URL path, relative to the root of the application.
+    QUERY_STRING: Anything that followed ? in the request URL string.
+    SERVER_NAME and SERVER_PORT: The server's address and port.
+    rack.version: The rack version in use.
+    rack.url_scheme: is it http or https?
+    rack.input: an IO-like object that contains the raw HTTP POST data.
+    rack.errors: an object that response to puts, write, and flush.
+    rack.session: A key value store for storing request session data.
+    rack.logger: An object that can log interfaces. It should implement info, debug, warn, error, and fatal methods.
 
 = slide 'Routing', 'проста имплементация' do
   example:
@@ -116,3 +147,6 @@
         end
       end
     end
+
+= slide 'Сега на къде?', 'или как да надградим' do
+  list:
