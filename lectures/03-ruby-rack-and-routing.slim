@@ -1,0 +1,118 @@
+= slide 'Днес' do
+  list:
+    Още малко ruby
+    Rack
+    routing
+
+= slide 'Rack', 'що е то?' do
+  list:
+    основата на всички модерни Ruby уеб феймуърци
+    мидълуеър
+    накратко... обще интерфейс между сървъра и приложението
+
+= slide 'Rack', 'в картинки' do
+  div.left
+    img src='images/intro-rack.jpg' height='400'
+  div.right
+    img src='images/rack-request-response.png' height='400'
+
+= slide 'Rack application', 'що е то?' do
+  list:
+    Ruby обект, който отговаря на метода `call`
+    приема като аргумент хеш с информация за environment-а
+    и връща масив с точно 3 стойности:
+    list:
+      status
+      headers
+      body
+
+= slide 'Ruby lambdas', 'лирическо отклонение' do
+  example:
+    [lang:ruby]
+    twice = lambda {|x| 2 * x }
+    twice.call(5) # => 10
+
+    twice = -> (x) { 2 * x } # 1.9 new syntax
+    twice.call(5) # => 10
+
+= slide 'Rack application', 'Здравей свят!' do
+  p Създайте файл `config.ru` в root директорията.
+  example:
+    [lang:ruby]
+    # config.ru
+    require 'rack'
+
+    run ->(env) { [200, {'ContentType' => 'text/html'}, ['Hello world!']] }
+
+  p Стартира се с `bundle exec rackup`
+
+= slide 'Rack application', 'малки подобрения' do
+  example:
+    [lang:ruby]
+    # config.ru
+    require 'rack'
+
+    run ->(env) { Rack::Response.new('Hello world!') }
+
+= slide 'Rack application', 'малко по-ООП' do
+  example:
+    [lang:ruby]
+    ...
+    require './app/controllers/user_controller'
+
+    module Tweeter
+      class Application
+        def self.call(env)
+          controller = ::UserController.new
+          Rack::Response.new controller.show
+        end
+      end
+    end
+
+= slide 'Routing' do
+  list:
+    накратко...
+    свързва заявка с двойка <контролер, метод>
+    как можем да го направим?
+    ще използваме `env`!!1!
+
+= slide 'Routing', 'проста имплементация' do
+  example:
+    [lang:ruby]
+    ...
+    class Application
+      def self.call(env)
+        controller = ::UserController.new
+        if env['PATH_INFO'] == '/' || env['PATH_INFO'] == '/show'
+          Rack::Response.new controller.show
+        elsif env['PATH_INFO'] == '/following'
+          Rack::Response.new controller.following
+        elsif env['PATH_INFO'] == '/followers'
+          Rack::Response.new controller.followers
+        else
+          Rack::Response.new "Page not found!", 404
+        end
+      end
+    end
+    ...
+
+= slide 'Routing', 'защо да не използваме switch' do
+  example:
+    [lang:ruby]
+    class Application
+      def self.call(env)
+        controller = ::UserController.new
+        case env['PATH_INFO']
+        when '/'
+          Rack::Response.new controller.show
+        when '/show'
+          Rack::Response.new controller.show
+        when '/following'
+          Rack::Response.new controller.following
+        when '/followers'
+          Rack::Response.new controller.followers
+        else
+          Rack::Response.new "Page not found!", 404
+        end
+      end
+    end
