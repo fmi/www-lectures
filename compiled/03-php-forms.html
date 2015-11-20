@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>03. Форми в PHP</title></head><body><header><h1>03. Форми в PHP</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>03. Форми в PHP</h1></hgroup></section><section>
+<hgroup><h1>Форми</h1></hgroup>
+<div class="highlight"><pre><span class="nt">&lt;form&gt;</span>
+  <span class="c">&lt;!--- ... ---&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</pre>
+</div>
+</section>
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=1911">http://moodle.openfmi.net/course/view.php?id=1911</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+mixpanel.set_config({debug: true});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});
+
+try {
+  mixpanel.track('Landing Page', {
+    referrer: document.referrer,
+    presentation: document.title
+  });
+} catch (e) {};</script></body></html>

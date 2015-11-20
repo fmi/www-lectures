@@ -1,0 +1,203 @@
+= slide 'Или още...' do
+  p Authentication and authorization
+= slide 'HTTP сесия' do
+  list:
+    Какво е сесия?
+    На всеки потребител се дава уникален идентификатор.
+    Той се записва или в бисквитка или в URL-а на заявката.
+= slide 'Стартиране на сесия' do
+  list:
+    Автоматично(задава се със параметъра session.auto_start)
+    session_start()
+= slide 'Достъп до данни в сесията' do
+  p Достъпа до данни в сесията става чрез глобалната променлива $_SESSION.
+  p Четене на данни от сесията:
+  example:
+    [lang:php]
+    <?php echo $_SESSION['user_name'];
+  p Писане на данни в сесията:
+  example:
+    [lang:php]
+    <?php $_SESSION['user_name'] = 'admin';
+= slide 'Работа със сесия' do
+  example:
+    [lang:php]
+      <?php
+        session_start();
+
+        if (!isset($_SESSION['count'])) {
+          $_SESSION['count'] = 0;
+        } else {
+          $_SESSION['count']++;
+        }
+      ?>
+= slide 'Удостоверяване' do
+  p Процес при който потребителя удостоверява своята самоличност.
+  p Става по три начина:
+  list:
+    Потребителя знае нещо - парола за достъп
+    Потребителя има нещо - електронен подпис или карта за достъп
+    Потребителя е нещо - проверка на биометрични данни
+= slide 'Удостоверяване' do
+  p Ще имплементираме удостоверяване с парола.
+= slide 'Таблица за потребители' do
+  example:
+    [lang:sql]
+    CREATE TABLE Users (
+      user_id INT NOT NULL AUTO_INCREMENT,
+      email VARCHAR(80) NOT NULL,
+      password CHAR(41) NOT NULL,
+      PRIMARY KEY (user_id),
+      UNIQUE INDEX (email)
+    ) ENGINE=INNODB;
+= slide 'Форма за регистрация' do
+  list:
+    Поле за email
+    Поле за парола
+    Поле за потвърждаване на паролата
+= slide 'Форма за регистрация' do
+  example:
+    [lang:html]
+    <form method="post">
+      <label for="email">Email</label>
+      <input type="email" name="email" required />
+      <label for="password">Password</label>
+      <input type="password" name="password" required />
+      <label for="password">Password Again</label>
+      <input type="password_again" name="password_again" required />
+      <input type="submit" value="Sign up" />
+    </form>
+= slide 'Валидация' do
+  list:
+    Винаги трябва да има валидации.
+    Дали е въведена парола с поне 6 символа.
+    Дали паролата съвпада с повторената парола.
+    И още...
+= slide 'Валидация' do
+  example:
+    [lang:php]
+    <?php
+      if ($_POST) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $password_again = $_POST['password'];
+
+        $errors = validate_registration_form($email, $password, $password_again);
+
+        if (!$errors) {
+          register($email, $password);
+        }
+        // ...
+      }
+= slide 'Задача 1' do
+  p Имплементирайте функцията validate_registration_form. Тя трябва да валидира аргументите и да връща масив с грешки. Функцията трябва да проверява:
+  list:
+    Email е валиден email и ако не отговаря, да добавя низ към масива с грешки - 'Невалиден email'.
+    Паролата е дълга поне 6 символа и ако не е, да добави низ към масива с грешки - 'Паролата трябва да бъде поне 6 символа'.
+    Двете пароли трябва да съвпадат и ако не съвпадат, да добави низ към масива с грешки - 'Паролите трябва да съвпадат точно'.
+= slide 'Съхранение на пароли' do
+  p Никога не трябва да запазваме паролите на потребителите или да ги изпращаме по мрежата(по email например) в чист вид.
+  p За целта използваме функцията за хеширане sha1.
+  example:
+    [lang:php]
+    <?php
+      // ...
+      $hashed_password = sha1($password);
+      // ...
+= slide 'Регистрация' do
+  example:
+    [lang:php]
+    <?php
+      // ...
+      $conn = new PDO("mysql:host=localhost;dbname=electives", 'root', '');
+      $sql = 'INSERT INTO Users (email, password) VALUES (?, ?)';
+      $stmt = $conn->prepare($sql);
+      $result = $stmt->execute(array($email, $hashed_password));
+      // ...
+= slide 'Регистрация' do
+  example:
+    [lang:php]
+    <?php
+      // ...
+      if ($result) {
+        echo 'You sign up successfully.';
+      } else {
+        $error = $stmt->errorInfo();
+        if ($error[1] == 1062) {
+          echo 'Email is already registered';
+        }
+      }      
+= slide 'Форма за удостоверяване в системата' do
+  list:
+    Поле за email.
+    Поле за парола.
+= slide 'Форма за удостоверяване в системата' do
+  example:
+    [lang:html]
+    <form method="post">
+      <label for="email">Email</label>
+      <input type="email" name="email" required />
+      <label for="password">Password</label>
+      <input type="password" name="password" />
+      <input type="submit" value="Sign in" />
+    </form>
+= slide 'Удостоверяване' do
+  example:
+    [lang:php]
+    <?php
+      // ...
+      session_start();
+
+      if ($_POST) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $errors = validate_login_form($email, $password);
+
+        if (!$errors) {
+          login($email, $password);
+        }
+        // ...
+      }
+= slide 'Удостоверяване' do
+  example:
+    [lang:php]
+    <?php
+      // ...
+      $conn = new PDO('mysql:host=localhost;dbname=test1', 'root', '');
+      $sql = 'SELECT * FROM Users WHERE email=? and password = ?';
+      $hashed_password = sha1($password);
+      $stmt = $conn->prepare($sql);
+      $result = $stmt->execute(array($email, $hashed_password));
+      // ...
+= slide 'Удостоверяване' do
+  example:
+    [lang:php]
+    <?php
+      // ...
+      if ($result && $stmt->rowCount() == 1) {
+        $_SESSION['user'] = $email;
+        header('Location: home.php');
+      } else {
+        echo 'Wrong email or password.';
+      }
+      // ...
+= slide 'Базова авторизация' do
+  example:
+    [lang:php]
+    <?php // home.php
+      session_start();
+
+      if ($_SESSION['user']) {
+        // user is authenticated
+      } else {
+        // user is not authenticated
+        header('Location: login.php');
+      }
+      // ...
+= slide 'Задача 2' do
+  p Предайте системата с упълномощяване и авторизация, която създадохме сега. Трябва да предадете архив с 3 файла:
+  ul
+    li signin.php - съдържа функциите за валидация и за работа с базата от данни и HTML формата за регистрация в системата
+    li signup.php - съдържа функциите за валидация и за работа с базата от данни и HTML формата за удостоверяване в системата
+    li home.php - съдържа начална страница за приложението, което показва Email адреса на потребителя влязал в системата и брояч, който се инкрементира при всяко посещение на потребителя нa home.php, започвайки от 1.
