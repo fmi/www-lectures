@@ -1,0 +1,519 @@
+= slide 'ООП в PHP' do
+  list:
+    PHP има пълна поддръжка на ООП
+    Класове, обекти, интерфейси, абстрактни класове, traits
+    Наследяване
+    Енкапсулация
+    Полиморфизъм
+    Dynamic dispatch в последните версии
+= slide 'ООП в PHP' do
+  example:
+    <?php
+      class SimpleClass {
+          // property declaration
+          public $var = 'a default value';
+          // method declaration
+          public function displayVar() {
+              echo $this->var;
+          }
+      }
+    ?>
+= slide 'ООП в PHP' do
+  example:
+    <?php
+      $instance = new SimpleClass();
+      var_dump($instance->var);
+      $instance->displayVar();
+    ?>
+= slide 'ООП в PHP' do
+  example:
+    <?php
+      class Person {
+          private $name;
+          public function setName($name) {
+              $this->name = $name;
+          }
+          public function getName() {
+              return $this->name;
+          }
+      }
+
+      $joe = new Person();
+      $joe->setName('Joe');
+    ?>
+= slide 'ООП в PHP' do
+  p Дефинирането на клас започва с думата class. След нея се поставя името на класа, следвано от двойка къдрави скоби, които указват тялото на класа. В него може да дефинираме методи и свойства, принадлежащи на класа.
+  example:
+    <?php
+      class Person {
+          //properties
+
+          //methods
+      }
+    ?>
+= slide 'Енкапсулация' do
+  list:
+    public - може да се достъпва/модифицира навсякъде
+    private - може да се достъпва/модифицира само от самия клас
+    protected - може да се достъпва/модифицира от класа или от наследниците му
+= slide 'Енкапсулация' do
+  example:
+    <?php
+      class MyClass {
+          public $public = 'Public';
+          protected $protected = 'Protected';
+          private $private = 'Private';
+          function printHello() {
+              echo $this->public;
+              echo $this->protected;
+              echo $this->private;
+          }
+      }
+    ?>
+= slide 'Енкапсулация' do
+  example:
+    <?php
+      $obj = new MyClass();
+      echo $obj->public; // Works
+      echo $obj->protected; // Fatal Error
+      echo $obj->private; // Fatal Error
+      $obj->printHello(); // Shows Public, Protected and Private
+    ?>
+= slide 'Енкапсулация' do
+  example:
+    <?php
+      class MyClass {
+          public $public = 'Public';
+          protected $protected = 'Protected';
+          private $private = 'Private';
+      }
+      class MyClass2 extends MyClass {
+          protected $protected = 'Protected2';
+          function printHello() {
+              echo $this->public;
+              echo $this->protected;
+              echo $this->private;
+          }
+      }
+    ?>
+= slide 'Енкапсулация' do
+  example:
+    <?php
+      $obj2 = new MyClass2();
+      echo $obj2->public; // Works
+      echo $obj2->private; // Undefined
+      echo $obj2->protected; // Fatal Error
+      $obj2->printHello(); // Shows Public, Protected2, Undefined
+    ?>
+= slide 'Енкапсулация' do
+  example:
+    <?php
+      class MyClass {
+          // Declare a public constructor
+          public function __construct() { }
+          // Declare a public method
+          public function MyPublic() { }
+          // Declare a protected method
+          protected function MyProtected() { }
+          // Declare a private method
+          private function MyPrivate() { }
+      }
+    ?>
+= slide 'Енкапсулация' do
+  example:
+    <?php
+      class MyClass2 extends MyClass {
+          // This is public
+          function Foo2() {
+              $this->MyPublic();
+              $this->MyProtected();
+              $this->MyPrivate(); // Fatal Error
+          }
+      }
+    ?>
+= slide 'Енкапсулация' do
+  example:
+    <?php
+      $myclass2 = new MyClass2();
+      $myclass2->MyPublic(); // Works
+      $myclass2->Foo2(); // Public and Protected work, not Private
+    ?>
+
+= slide 'Наследяване' do
+  p Наследяването на клас се задава с ключовата дума extends.
+  p Няма множествено наследяване.
+= slide 'Наследяване' do
+  example:
+    <?php
+      class ExtendClass extends SimpleClass
+      {
+          // Redefine the parent method
+          function displayVar() {
+              echo "Extending class\n";
+              parent::displayVar();
+          }
+      }
+
+      $extended = new ExtendClass();
+      $extended->displayVar();
+    ?>
+= slide 'Наследяване' do
+  example:
+    <?php
+      class Foo {
+          public function printItem($string) {
+              echo 'Foo: ' . $string . PHP_EOL;
+          }
+          public function printPHP() {
+              echo 'PHP is great.' . PHP_EOL;
+          }
+      }
+
+      class Bar extends Foo {
+          public function printItem($string) {
+              echo 'Bar: ' . $string . PHP_EOL;
+          }
+      }
+    ?>
+= slide 'Наследяване' do
+  example:
+    <?php
+      $foo = new Foo();
+      $bar = new Bar();
+      $foo->printItem('baz'); // Output: 'Foo: baz'
+      $foo->printPHP();       // Output: 'PHP is great' 
+      $bar->printItem('baz'); // Output: 'Bar: baz'
+      $bar->printPHP();       // Output: 'PHP is great'
+    ?>
+= slide 'Конструктори' do
+  example:
+    <?php
+      class BaseClass {
+         function __construct() {
+             print "In BaseClass constructor\n";
+         }
+      }
+      class SubClass extends BaseClass {
+         function __construct() {
+             parent::__construct();
+             print "In SubClass constructor\n";
+         }
+      }
+      $obj = new BaseClass();
+      $obj = new SubClass();
+    ?>
+= slide 'Конструктори' do
+  example:
+    <?php
+      class Person {
+          private $first_name;
+          private $last_name;
+          function __construct($first_name, $last_name) {
+             $this->first_name = $first_name;
+             $this->last_name = $last_name;
+          }
+          public function getFullName() {
+             return $this->first_name.' '.$this->last_name;    
+          }
+      }
+      $person = new Person('Ivan', 'Ivanov');
+      echo $person->getFullName();
+    ?>
+= slide 'Деструктури' do
+  example:
+    <?php
+      class MyDestructableClass {
+         function __construct() {
+             print "In constructor\n";
+             $this->name = "MyDestructableClass";
+         }
+
+         function __destruct() {
+             print "Destroying " . $this->name . "\n";
+         }
+      }
+
+      $obj = new MyDestructableClass();
+    ?>
+= slide 'Абстрактни класове' do
+  example:
+    <?php
+      abstract class AbstractClass {
+          // Force Extending class to define this method
+          abstract protected function getValue();
+          abstract protected function prefixValue($prefix);
+          // Common method
+          public function printOut() {
+              print $this->getValue() . "\n";
+          }
+      }
+    ?>
+= slide 'Абстрактни класове' do
+  example:
+    <?php
+      class ConcreteClass extends AbstractClass {
+          protected function getValue() {
+              return "ConcreteClass";
+          }
+          public function prefixValue($prefix) {
+              return "{$prefix}ConcreteClass";
+          }
+      }
+    ?>
+= slide 'Абстрактни класове' do
+  example:
+    <?php
+      $class1 = new ConcreteClass();
+      $class1->printOut();
+      echo $class1->prefixValue('FOO_') ."\n";
+    ?>
+= slide 'Final' do
+  example:
+    <?php
+      class BaseClass {         
+         final public function moreTesting() {
+             echo "BaseClass::moreTesting() called\n";
+         }
+      }
+      class ChildClass extends BaseClass {
+         public function moreTesting() {
+             echo "ChildClass::moreTesting() called\n";
+         }
+      }
+      // Fatal error: Cannot override final method BaseClass::moreTesting()
+    ?>
+= slide 'Релацонна база от данни' do
+  img src="images/erd.png"
+
+= slide 'SQL' do 
+  p Език за работа с данни.
+  p Той позволява:
+  ul
+    li.action Вмъкване на данни(Insert)
+    li.action Извличане на данни(Select)
+    li.action Редактиране на данни(Update)
+    li.action Изтриване на данни(Delete)
+    li.action Създавне на таблици, вюта, бази и други (Create)
+
+= slide 'Извличане на данни(Select)' do
+  img src="images/erd.png"
+
+  example:
+    [lang:sql]
+    SELECT * FROM MAJORS
+    SELECT NAME, ACADEMIC_DEGREE FROM MAJORS
+    SELECT * FROM MAJORS WHERE NAME = 'Software Engineering'
+    SELECT * FROM MAJORS WHERE START_YEAR = 2011
+
+= slide 'Вмъкване на данни(Insert)' do
+  img src="images/erd.png"
+
+  example:
+    [lang:sql]
+    INSERT INTO MAJORS (NAME, ACADEMIC_DEGREE) VALUES ('Software Eginnering', 'bachelor')
+
+= slide 'JOIN заявки' do
+  img src="images/erd.png"
+
+  example:
+    [lang:sql]
+    SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+    FROM Orders
+    INNER JOIN Customers
+    ON Orders.CustomerID=Customers.CustomerID;
+
+  p Типове SQL JOIN:
+
+  ul
+    li INNER JOIN: Връща всички редове за които има поне едно съвпадение и в двете таблици.
+    li LEFT JOIN:  Връща всички редове от лявата таблица и съвпадащите редове в дясната.
+    li RIGHT JOIN:  Връща всички редове от дясната таблица и съвпадатещите редове в лявата.
+    li FULL JOIN:  Връща всички редове когато има съвпадение в една от таблиците.
+
+= slide 'MySQL' do
+  p [от Уикипедия, свободната енциклопедия] MySQL SQL система за управление на бази данни (СУБД) с повече от шест милиона инсталации.
+
+= slide 'Изпълняване на SQL заявки през phpMyAdmin' do
+  img src="images/lecture_3_php-myadmin.png"
+
+= slide 'PDO' do
+  p В PHP има разширения(Extensions), които надграждат основната функционалност на езика. PHP Data Objects (PDO) е едно такова разширение.
+  p Дефинира лек, консистентен интерфейс за работа с различни СУБД.
+  p Предоставя абстрактен слой за работа с данни.
+  p СУБД която използвате е без значение, защото интерфейса е еднакъв - MS SQL Server, DB2, MySQL, Oracle, PostgreSQL, SQLite....
+
+= slide 'PDO Свързване към база' do 
+  example:
+    <?php
+    $user = 'username';
+    $pass = 'password';
+    $dbh = new PDO('mysql:host=localhost;dbname=test', $user, $pass);
+    // use the connection here
+    // and now we're done; close it
+    $dbh = null;
+    ?>
+
+= slide 'PDO Извличане на данни' do
+  example:
+    <?php
+    $host   = "localhost";
+    $db     = "my_db";
+    $user   = "root";
+    $pass   = ""
+
+    $conn = new PDO("mysql:host=$host;dbname=$db",$user,$pass);
+    $sql     = "SELECT * FROM MAJORS";
+    $query   = $conn->query($sql) or die("failed!");
+    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+      echo $row['NAME'];
+    }
+
+= slide 'PDO Извличане на данни' do
+  example:
+    <?php
+    ....
+    echo '<ul>';
+    while($row = $q->fetch(PDO::FETCH_ASSOC)){
+      echo '<li>'.$row['NAME'].'</li>';
+    }
+    echo '</ul>';
+
+= slide 'Prepared statements' do 
+  p Заявка, записан в базата от данни и която може да се изпълнява многократно с подаване на различни данни.
+                   
+= slide 'Prepared statements' do 
+  p Етапи:
+  ul 
+    li.action Заявката се съставя от приложението и се изпраща на базата от данни.
+    li.action Базата от данни парсва, компилира, оптимизира заявката и я запазва.
+    li.action В следващ момент, приложението подава данни към тази заявка и тя се изпълнява, като това се повтаря многократно.
+  p.action  Защо да ги ползваме?
+  ul.action 
+    li Повишава се бързодействието.
+    li Повишава се сигурността.
+
+= slide 'Prepared statements' do
+  example:
+    <?php
+      $stmt = $conn->prepare("
+          INSERT INTO MAJORS (NAME, ACADEMIC_DEGREE) 
+          VALUES (:name, :academic_degree)");
+      $stmt->bindParam(':name', $name);
+      $stmt->bindParam(':academic_degree', $academic_degree);
+
+      $name = 'Biology';
+      $academic_degree = 'bachelor';
+      $stmt->execute();
+
+      $name = 'Management';
+      $academic_degree = 'master';
+      $stmt->execute();
+    ?>
+
+= slide 'Prepared statements' do
+  example:
+    <?php
+      echo '<ul>';
+      $stmt = $conn->prepare("SELECT * FROM MAJORS where ACADEMIC_DEGREE = ?");
+      if ($stmt->execute(array('bachelor'))) {
+        while ($row = $stmt->fetch()) {
+          echo '<li>'.$row["NAME"].'</li>';
+        }
+      }
+      echo '</ul>';
+    ?>
+
+= slide 'Транзакции' do
+  example:
+    <?php
+      $conn->beginTransaction();
+
+      $sql = 'INSERT INTO fruit (name, calories) VALUES (?, ?)';
+      $sth = $conn->prepare($sql);
+
+      foreach ($fruits as $fruit) {
+          $sth->execute(array(
+              $fruit->name,
+              $fruit->calories,
+          ));
+      }
+      $dbh->commit();
+    ?>
+
+= slide 'Транзакции' do
+  example:
+   <?php
+      $conn->beginTransaction();
+
+      $sth = $conn->exec("DROP TABLE MAJORS");
+
+      $conn->rollBack();
+    ?>
+
+= slide 'Задача 1' do
+  p Създайте следните таблици: Student, Course, Comments:
+  
+  p Students
+  ul
+    li id (Primary key, Auto-generated integer)
+    li name(varchar)
+  p Course
+  ul
+    li id (Primary key, Auto-generated integer)
+    li title(varchar)
+    li description(varchar)
+    li lecturer(varchar)
+  p Comments
+  ul
+    li id (Primary key, Auto-generated integer)
+    li courseID(integer)
+    li studentID(integer
+    li comments(varchar)
+
+= slide 'продължение' do
+  p Students
+  ul
+    li Добавете 2-ма студенти
+    li Напишете заявка, който връща броя на записите в таблица "Students"
+  p Courses
+  ul
+    li Добавете курс ("www-tech", "Introduction to the web technologies", "Petrov")
+    li Добавете курс ("artificial intelligence", "Intro to AI", "Koichev")
+    li Добавете курс ("Network programming in java", "Intro to network programming", "Petrov")
+    li Напишете заявка, която да връща имената на преподавателите без повторения
+
+= slide 'Задача 2' do
+  ul
+    li Използвайки таблиците от Задача 1, напишете заявка, която да връща имената(title) на всички курсове, за които има писани коментари подредени по азбучен ред
+    img src="images/lecture_3_dbdiagram.jpg"
+
+= slide 'Задача 3' do
+  p Създайте клас User със:
+  ul 
+    p Свойства:
+    li $id
+    li $username
+    li $password
+  ul
+  p Методи:
+    li __constuct($id, $username, $password)
+    li set/get методи за всяко свойство
+    li getUser(), който да връща низ с член променливите на класа разделени със запетая "$id,$username,$password"
+
+= slide 'продължение' do
+  p Създайте клас Student, който наследява User със:
+  ul 
+    p Свойства:
+    li $name
+    li $course
+  ul
+  p Методи:
+    li __constuct($id, $username, $password, $name, $course)
+    li set/get методи за всяко свойство
+    li getUser(), който да връща низ с член-променливите на класа, разделени със запетая "$id,$username,$password,$name,$course"
+  p Клас Admin, който наследява User
+  p Методи:
+  ul
+    li __constuct($id, $username)
+    li getUser(), който да връща следния низ: "admin"
+
