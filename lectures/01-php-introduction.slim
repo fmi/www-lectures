@@ -491,3 +491,15 @@
   p Хиперлинковете към кусовете трябва да се съдържат в nav секция. Всеки хиперлинк трябва да води към съответната страница на курс и за текст на хиперлинка трябва да се изписва името на курса.
   p Ако адреса на хиперлинка съвпада с текущо отворения курс, подаден като втори параметър, към хиперлинка трябва да се добави клас selected, както е показано в примера.
   p В предаденото решение не трябва да има нов ред или празно място между html таговете.
+
+= slide 'Задача 3' do
+  p Да се имплементира клас на име <strong>Request</strong>, който да улесни работата с <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html" target="_blank">HTTP заявки</a>. За целта, неговия конструктор трябва да приема, като единствен аргумент, масив <a href="http://php.net/manual/en/reserved.variables.server.php" target="_blank">$_SERVER</a>, от който да прочете необходимите данни, за неговата работа. Класа трябва да има следните методи:
+  ul
+    li <strong>getMethod</strong> - връща като низ, състоящ се само от малки букви, метода на завката - get, post, put и т.н.
+    li <strong>getPath</strong> - връща като низ path часта на адреса на заявката.
+    li <strong>getURL</strong> - връща като низ целия адрес на заявката.
+    li <strong>getUserAgent</strong> - връща като низ съдържанието на HTTP Header полето User-Agent.
+  p Да се имплементира клас на име <strong>GetRequest</strong>, който да е наследник на <strong>Request</strong> и да поддържа допълнителен метод <strong>getData</strong>. Този метод трябва да прочита <a href="https://en.wikipedia.org/wiki/Query_string" target="_blank">query string</a> параметрите и да ги връща като <a href="http://www.json.org/" target="_blank">JSON</a> кодиран обект. Например ако имаме query string:
+  p а=1&b=2
+  p При извикване на метода <strong>getData</strong>, трябва да върне низ:
+  p {"a":"1","b":"2"}
