@@ -1,349 +1,4 @@
 <!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>02. Обектно ориентирано PHP и работа с MySQL</title></head><body><header><h1>02. Обектно ориентирано PHP и работа с MySQL</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>02. Обектно ориентирано PHP и работа с MySQL</h1></hgroup></section><section>
-<hgroup><h1>ООП в PHP</h1></hgroup>
-<ul><li class="action">PHP има пълна поддръжка на ООП
-</li><li class="action">Класове, обекти, интерфейси, абстрактни класове, traits
-</li><li class="action">Наследяване
-</li><li class="action">Енкапсулация
-</li><li class="action">Полиморфизъм
-</li><li class="action">Dynamic dispatch в последните версии</li></ul></section>
-<section>
-<hgroup><h1>ООП в PHP</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">SimpleClass</span> <span class="p">{</span>
-      <span class="c1">// property declaration</span>
-      <span class="k">public</span> <span class="nv">$var</span> <span class="o">=</span> <span class="s1">&#39;a default value&#39;</span><span class="p">;</span>
-      <span class="c1">// method declaration</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">displayVar</span><span class="p">()</span> <span class="p">{</span>
-          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">var</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>ООП в PHP</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="nv">$instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SimpleClass</span><span class="p">();</span>
-  <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$instance</span><span class="o">-&gt;</span><span class="na">var</span><span class="p">);</span>
-  <span class="nv">$instance</span><span class="o">-&gt;</span><span class="na">displayVar</span><span class="p">();</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>ООП в PHP</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
-      <span class="k">private</span> <span class="nv">$name</span><span class="p">;</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">setName</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
-      <span class="p">}</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-
-  <span class="nv">$joe</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
-  <span class="nv">$joe</span><span class="o">-&gt;</span><span class="na">setName</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">);</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>ООП в PHP</h1></hgroup>
-<p>Дефинирането на клас започва с думата class. След нея се поставя името на класа, следвано от двойка къдрави скоби, които указват тялото на класа. В него може да дефинираме методи и свойства, принадлежащи на класа.</p><div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
-      <span class="c1">//properties</span>
-
-      <span class="c1">//methods</span>
-  <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Енкапсулация</h1></hgroup>
-<ul><li class="action">public - може да се достъпва/модифицира навсякъде
-</li><li class="action">private - може да се достъпва/модифицира само от самия клас
-</li><li class="action">protected - може да се достъпва/модифицира от класа или от наследниците му</li></ul></section>
-<section>
-<hgroup><h1>Енкапсулация</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
-      <span class="k">public</span> <span class="nv">$public</span> <span class="o">=</span> <span class="s1">&#39;Public&#39;</span><span class="p">;</span>
-      <span class="k">protected</span> <span class="nv">$protected</span> <span class="o">=</span> <span class="s1">&#39;Protected&#39;</span><span class="p">;</span>
-      <span class="k">private</span> <span class="nv">$private</span> <span class="o">=</span> <span class="s1">&#39;Private&#39;</span><span class="p">;</span>
-      <span class="k">function</span> <span class="nf">printHello</span><span class="p">()</span> <span class="p">{</span>
-          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">public</span><span class="p">;</span>
-          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">protected</span><span class="p">;</span>
-          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">private</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Енкапсулация</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">();</span>
-  <span class="k">echo</span> <span class="nv">$obj</span><span class="o">-&gt;</span><span class="na">public</span><span class="p">;</span> <span class="c1">// Works</span>
-  <span class="k">echo</span> <span class="nv">$obj</span><span class="o">-&gt;</span><span class="na">protected</span><span class="p">;</span> <span class="c1">// Fatal Error</span>
-  <span class="k">echo</span> <span class="nv">$obj</span><span class="o">-&gt;</span><span class="na">private</span><span class="p">;</span> <span class="c1">// Fatal Error</span>
-  <span class="nv">$obj</span><span class="o">-&gt;</span><span class="na">printHello</span><span class="p">();</span> <span class="c1">// Shows Public, Protected and Private</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Енкапсулация</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
-      <span class="k">public</span> <span class="nv">$public</span> <span class="o">=</span> <span class="s1">&#39;Public&#39;</span><span class="p">;</span>
-      <span class="k">protected</span> <span class="nv">$protected</span> <span class="o">=</span> <span class="s1">&#39;Protected&#39;</span><span class="p">;</span>
-      <span class="k">private</span> <span class="nv">$private</span> <span class="o">=</span> <span class="s1">&#39;Private&#39;</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">class</span> <span class="nc">MyClass2</span> <span class="k">extends</span> <span class="nx">MyClass</span> <span class="p">{</span>
-      <span class="k">protected</span> <span class="nv">$protected</span> <span class="o">=</span> <span class="s1">&#39;Protected2&#39;</span><span class="p">;</span>
-      <span class="k">function</span> <span class="nf">printHello</span><span class="p">()</span> <span class="p">{</span>
-          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">public</span><span class="p">;</span>
-          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">protected</span><span class="p">;</span>
-          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">private</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Енкапсулация</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="nv">$obj2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass2</span><span class="p">();</span>
-  <span class="k">echo</span> <span class="nv">$obj2</span><span class="o">-&gt;</span><span class="na">public</span><span class="p">;</span> <span class="c1">// Works</span>
-  <span class="k">echo</span> <span class="nv">$obj2</span><span class="o">-&gt;</span><span class="na">private</span><span class="p">;</span> <span class="c1">// Undefined</span>
-  <span class="k">echo</span> <span class="nv">$obj2</span><span class="o">-&gt;</span><span class="na">protected</span><span class="p">;</span> <span class="c1">// Fatal Error</span>
-  <span class="nv">$obj2</span><span class="o">-&gt;</span><span class="na">printHello</span><span class="p">();</span> <span class="c1">// Shows Public, Protected2, Undefined</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Енкапсулация</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
-      <span class="c1">// Declare a public constructor</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-      <span class="c1">// Declare a public method</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">MyPublic</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-      <span class="c1">// Declare a protected method</span>
-      <span class="k">protected</span> <span class="k">function</span> <span class="nf">MyProtected</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-      <span class="c1">// Declare a private method</span>
-      <span class="k">private</span> <span class="k">function</span> <span class="nf">MyPrivate</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-  <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Енкапсулация</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">MyClass2</span> <span class="k">extends</span> <span class="nx">MyClass</span> <span class="p">{</span>
-      <span class="c1">// This is public</span>
-      <span class="k">function</span> <span class="nf">Foo2</span><span class="p">()</span> <span class="p">{</span>
-          <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">MyPublic</span><span class="p">();</span>
-          <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">MyProtected</span><span class="p">();</span>
-          <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">MyPrivate</span><span class="p">();</span> <span class="c1">// Fatal Error</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Енкапсулация</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="nv">$myclass2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass2</span><span class="p">();</span>
-  <span class="nv">$myclass2</span><span class="o">-&gt;</span><span class="na">MyPublic</span><span class="p">();</span> <span class="c1">// Works</span>
-  <span class="nv">$myclass2</span><span class="o">-&gt;</span><span class="na">Foo2</span><span class="p">();</span> <span class="c1">// Public and Protected work, not Private</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Наследяване</h1></hgroup>
-<p>Наследяването на клас се задава с ключовата дума extends.</p><p>Няма множествено наследяване.</p></section>
-<section>
-<hgroup><h1>Наследяване</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">ExtendClass</span> <span class="k">extends</span> <span class="nx">SimpleClass</span>
-  <span class="p">{</span>
-      <span class="c1">// Redefine the parent method</span>
-      <span class="k">function</span> <span class="nf">displayVar</span><span class="p">()</span> <span class="p">{</span>
-          <span class="k">echo</span> <span class="s2">&quot;Extending class</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-          <span class="k">parent</span><span class="o">::</span><span class="na">displayVar</span><span class="p">();</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-
-  <span class="nv">$extended</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExtendClass</span><span class="p">();</span>
-  <span class="nv">$extended</span><span class="o">-&gt;</span><span class="na">displayVar</span><span class="p">();</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Наследяване</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">printItem</span><span class="p">(</span><span class="nv">$string</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">echo</span> <span class="s1">&#39;Foo: &#39;</span> <span class="o">.</span> <span class="nv">$string</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
-      <span class="p">}</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">printPHP</span><span class="p">()</span> <span class="p">{</span>
-          <span class="k">echo</span> <span class="s1">&#39;PHP is great.&#39;</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-
-  <span class="k">class</span> <span class="nc">Bar</span> <span class="k">extends</span> <span class="nx">Foo</span> <span class="p">{</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">printItem</span><span class="p">(</span><span class="nv">$string</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">echo</span> <span class="s1">&#39;Bar: &#39;</span> <span class="o">.</span> <span class="nv">$string</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Наследяване</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="nv">$foo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
-  <span class="nv">$bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Bar</span><span class="p">();</span>
-  <span class="nv">$foo</span><span class="o">-&gt;</span><span class="na">printItem</span><span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">);</span> <span class="c1">// Output: &#39;Foo: baz&#39;</span>
-  <span class="nv">$foo</span><span class="o">-&gt;</span><span class="na">printPHP</span><span class="p">();</span>       <span class="c1">// Output: &#39;PHP is great&#39; </span>
-  <span class="nv">$bar</span><span class="o">-&gt;</span><span class="na">printItem</span><span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">);</span> <span class="c1">// Output: &#39;Bar: baz&#39;</span>
-  <span class="nv">$bar</span><span class="o">-&gt;</span><span class="na">printPHP</span><span class="p">();</span>       <span class="c1">// Output: &#39;PHP is great&#39;</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Конструктори</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">BaseClass</span> <span class="p">{</span>
-     <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
-         <span class="k">print</span> <span class="s2">&quot;In BaseClass constructor</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-     <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">class</span> <span class="nc">SubClass</span> <span class="k">extends</span> <span class="nx">BaseClass</span> <span class="p">{</span>
-     <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
-         <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
-         <span class="k">print</span> <span class="s2">&quot;In SubClass constructor</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-     <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BaseClass</span><span class="p">();</span>
-  <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubClass</span><span class="p">();</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Конструктори</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
-      <span class="k">private</span> <span class="nv">$first_name</span><span class="p">;</span>
-      <span class="k">private</span> <span class="nv">$last_name</span><span class="p">;</span>
-      <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$first_name</span><span class="p">,</span> <span class="nv">$last_name</span><span class="p">)</span> <span class="p">{</span>
-         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">first_name</span> <span class="o">=</span> <span class="nv">$first_name</span><span class="p">;</span>
-         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">last_name</span> <span class="o">=</span> <span class="nv">$last_name</span><span class="p">;</span>
-      <span class="p">}</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">getFullName</span><span class="p">()</span> <span class="p">{</span>
-         <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">first_name</span><span class="o">.</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">last_name</span><span class="p">;</span>    
-      <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="nv">$person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Ivan&#39;</span><span class="p">,</span> <span class="s1">&#39;Ivanov&#39;</span><span class="p">);</span>
-  <span class="k">echo</span> <span class="nv">$person</span><span class="o">-&gt;</span><span class="na">getFullName</span><span class="p">();</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Деструктури</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">MyDestructableClass</span> <span class="p">{</span>
-     <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
-         <span class="k">print</span> <span class="s2">&quot;In constructor</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s2">&quot;MyDestructableClass&quot;</span><span class="p">;</span>
-     <span class="p">}</span>
-
-     <span class="k">function</span> <span class="nf">__destruct</span><span class="p">()</span> <span class="p">{</span>
-         <span class="k">print</span> <span class="s2">&quot;Destroying &quot;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-     <span class="p">}</span>
-  <span class="p">}</span>
-
-  <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyDestructableClass</span><span class="p">();</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Абстрактни класове</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">abstract</span> <span class="k">class</span> <span class="nc">AbstractClass</span> <span class="p">{</span>
-      <span class="c1">// Force Extending class to define this method</span>
-      <span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">();</span>
-      <span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">prefixValue</span><span class="p">(</span><span class="nv">$prefix</span><span class="p">);</span>
-      <span class="c1">// Common method</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">printOut</span><span class="p">()</span> <span class="p">{</span>
-          <span class="k">print</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getValue</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Абстрактни класове</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">ConcreteClass</span> <span class="k">extends</span> <span class="nx">AbstractClass</span> <span class="p">{</span>
-      <span class="k">protected</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">()</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="s2">&quot;ConcreteClass&quot;</span><span class="p">;</span>
-      <span class="p">}</span>
-      <span class="k">public</span> <span class="k">function</span> <span class="nf">prefixValue</span><span class="p">(</span><span class="nv">$prefix</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{</span><span class="nv">$prefix</span><span class="si">}</span><span class="s2">ConcreteClass&quot;</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Абстрактни класове</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="nv">$class1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ConcreteClass</span><span class="p">();</span>
-  <span class="nv">$class1</span><span class="o">-&gt;</span><span class="na">printOut</span><span class="p">();</span>
-  <span class="k">echo</span> <span class="nv">$class1</span><span class="o">-&gt;</span><span class="na">prefixValue</span><span class="p">(</span><span class="s1">&#39;FOO_&#39;</span><span class="p">)</span> <span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Final</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="k">class</span> <span class="nc">BaseClass</span> <span class="p">{</span>         
-     <span class="k">final</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">moreTesting</span><span class="p">()</span> <span class="p">{</span>
-         <span class="k">echo</span> <span class="s2">&quot;BaseClass::moreTesting() called</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-     <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">class</span> <span class="nc">ChildClass</span> <span class="k">extends</span> <span class="nx">BaseClass</span> <span class="p">{</span>
-     <span class="k">public</span> <span class="k">function</span> <span class="nf">moreTesting</span><span class="p">()</span> <span class="p">{</span>
-         <span class="k">echo</span> <span class="s2">&quot;ChildClass::moreTesting() called</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-     <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="c1">// Fatal error: Cannot override final method BaseClass::moreTesting()</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
 <hgroup><h1>Релацонна база от данни</h1></hgroup>
 <img src="images/erd.png" /></section>
 <section>
@@ -351,7 +6,7 @@
 <p>Език за работа с данни.</p><p>Той позволява:</p><ul><li class="action">Вмъкване на данни(Insert)</li><li class="action">Извличане на данни(Select)</li><li class="action">Редактиране на данни(Update)</li><li class="action">Изтриване на данни(Delete)</li><li class="action">Създавне на таблици, вюта, бази и други (Create)</li></ul></section>
 <section>
 <hgroup><h1>Извличане на данни(Select)</h1></hgroup>
-<img src="images/erd.png" /><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">MAJORS</span>
+<img src="images/erd.png" /><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">MAJORS</span>
 <span class="k">SELECT</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">ACADEMIC_DEGREE</span> <span class="k">FROM</span> <span class="n">MAJORS</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">MAJORS</span> <span class="k">WHERE</span> <span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;Software Engineering&#39;</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">MAJORS</span> <span class="k">WHERE</span> <span class="n">START_YEAR</span> <span class="o">=</span> <span class="mi">2011</span>
@@ -360,13 +15,13 @@
 </section>
 <section>
 <hgroup><h1>Вмъкване на данни(Insert)</h1></hgroup>
-<img src="images/erd.png" /><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">MAJORS</span> <span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">ACADEMIC_DEGREE</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Software Eginnering&#39;</span><span class="p">,</span> <span class="s1">&#39;bachelor&#39;</span><span class="p">)</span>
+<img src="images/erd.png" /><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">MAJORS</span> <span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">ACADEMIC_DEGREE</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Software Eginnering&#39;</span><span class="p">,</span> <span class="s1">&#39;bachelor&#39;</span><span class="p">)</span>
 </pre>
 </div>
 </section>
 <section>
 <hgroup><h1>JOIN заявки</h1></hgroup>
-<img src="images/erd.png" /><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span><span class="p">,</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderDate</span>
+<img src="images/erd.png" /><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span><span class="p">,</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderDate</span>
 <span class="k">FROM</span> <span class="n">Orders</span>
 <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Customers</span>
 <span class="k">ON</span> <span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span><span class="o">=</span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">;</span>
@@ -384,7 +39,7 @@
 <p>В PHP има разширения(Extensions), които надграждат основната функционалност на езика. PHP Data Objects (PDO) е едно такова разширение.</p><p>Дефинира лек, консистентен интерфейс за работа с различни СУБД.</p><p>Предоставя абстрактен слой за работа с данни.</p><p>СУБД която използвате е без значение, защото интерфейса е еднакъв - MS SQL Server, DB2, MySQL, Oracle, PostgreSQL, SQLite....</p></section>
 <section>
 <hgroup><h1>PDO Свързване към база</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$user</span> <span class="o">=</span> <span class="s1">&#39;username&#39;</span><span class="p">;</span>
 <span class="nv">$pass</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
 <span class="nv">$dbh</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s1">&#39;mysql:host=localhost;dbname=test&#39;</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">);</span>
@@ -397,7 +52,7 @@
 </section>
 <section>
 <hgroup><h1>PDO Извличане на данни</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$host</span>   <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span><span class="p">;</span>
 <span class="nv">$db</span>     <span class="o">=</span> <span class="s2">&quot;my_db&quot;</span><span class="p">;</span>
 <span class="nv">$user</span>   <span class="o">=</span> <span class="s2">&quot;root&quot;</span><span class="p">;</span>
@@ -414,7 +69,7 @@
 </section>
 <section>
 <hgroup><h1>PDO Извличане на данни</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="o">....</span>
 <span class="k">echo</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
 <span class="k">while</span><span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">(</span><span class="nx">PDO</span><span class="o">::</span><span class="na">FETCH_ASSOC</span><span class="p">)){</span>
@@ -432,9 +87,9 @@
 <p>Етапи:</p><ul><li class="action">Заявката се съставя от приложението и се изпраща на базата от данни.</li><li class="action">Базата от данни парсва, компилира, оптимизира заявката и я запазва.</li><li class="action">В следващ момент, приложението подава данни към тази заявка и тя се изпълнява, като това се повтаря многократно.</li></ul><p class="action"> Защо да ги ползваме?</p><ul class="action"><li>Повишава се бързодействието.</li><li>Повишава се сигурността.</li></ul></section>
 <section>
 <hgroup><h1>Prepared statements</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
   <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;</span>
-<span class="s2">      INSERT INTO MAJORS (NAME, ACADEMIC_DEGREE) </span>
+<span class="s2">      INSERT INTO MAJORS (NAME, ACADEMIC_DEGREE)</span>
 <span class="s2">      VALUES (:name, :academic_degree)&quot;</span><span class="p">);</span>
   <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:name&#39;</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
   <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:academic_degree&#39;</span><span class="p">,</span> <span class="nv">$academic_degree</span><span class="p">);</span>
@@ -452,7 +107,7 @@
 </section>
 <section>
 <hgroup><h1>Prepared statements</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
   <span class="k">echo</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
   <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM MAJORS where ACADEMIC_DEGREE = ?&quot;</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;bachelor&#39;</span><span class="p">)))</span> <span class="p">{</span>
@@ -467,7 +122,7 @@
 </section>
 <section>
 <hgroup><h1>Транзакции</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
   <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">beginTransaction</span><span class="p">();</span>
 
   <span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO fruit (name, calories) VALUES (?, ?)&#39;</span><span class="p">;</span>
@@ -486,7 +141,7 @@
 </section>
 <section>
 <hgroup><h1>Транзакции</h1></hgroup>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
    <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">beginTransaction</span><span class="p">();</span>
 
    <span class="nv">$sth</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">exec</span><span class="p">(</span><span class="s2">&quot;DROP TABLE MAJORS&quot;</span><span class="p">);</span>
@@ -517,7 +172,7 @@ li getUser(), който да връща низ с член променливи
 li __constuct($id, $username, $password, $name, $course)
 li set/get методи за всяко свойство
 li getUser(), който да връща низ с член-променливите на класа, разделени със запетая "$id,$username,$password,$name,$course"</p><p>Клас Admin, който наследява User</p><p>Методи:</p><ul><li>__constuct($id, $username)</li><li>getUser(), който да връща следния низ: "admin"</li></ul></section>
-<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=1911">http://moodle.openfmi.net/course/view.php?id=1911</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=2261">http://moodle.openfmi.net/course/view.php?id=2261</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
 

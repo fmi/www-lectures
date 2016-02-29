@@ -18,21 +18,21 @@
 <p>Има 3 начина на използване на CSS</p></section>
 <section>
 <hgroup><h1>Използване на CSS</h1></hgroup>
-<p>Първия е като стойност на style атрибута на html елемент.</p><div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://google.com/&quot;</span> <span class="na">style=</span><span class="s">&quot;color:red&quot;</span><span class="nt">&gt;</span>Click Here<span class="nt">&lt;/a&gt;</span>
+<p>Първия е като стойност на style атрибута на html елемент.</p><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://google.com/&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color:red&quot;</span><span class="p">&gt;</span>Click Here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </pre>
 </div>
 </section>
 <section>
 <hgroup><h1>Използване на CSS</h1></hgroup>
-<p>Втория е като добавим style tag в HTML-a (обикновено в head частта).</p><div class="highlight"><pre><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span> 
-  <span class="nt">a</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span> <span class="nb">red</span> <span class="p">}</span> 
-<span class="nt">&lt;/style&gt;</span>
+<p>Втория е като добавим style tag в HTML-a (обикновено в head частта).</p><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span> 
+  <span class="nt">a</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span> <span class="p">}</span> 
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </pre>
 </div>
 </section>
 <section>
 <hgroup><h1>Използване на CSS</h1></hgroup>
-<p>Третия е да изнесете CSS дефинициите във външен файл и го свържете с HTML документа.</p><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;style.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">&gt;</span>
+<p>Третия е да изнесете CSS дефинициите във външен файл и го свържете с HTML документа.</p><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;style.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
 </pre>
 </div>
 <p>Добра практика е да се използва третия начин.</p></section>
@@ -50,29 +50,29 @@
 <dl><dt>font-style</dt><dd>normal, italic, oblique</dd><dt>text-decoration</dt><dd>none, underline, line-trough, overline, blink</dd><dt>text-align </dt><dd>left, right, center, justify</dd><dt>text-shadow </dt><dd>"text-shadow: <horizontal-distance> <vertical-distance> <blur-radius> <shadow-color>. Например text-shadow: 2px 2px 7px #000000;"</dd></dl></section>
 <section>
 <hgroup><h1>Правила, свързани с текста</h1></hgroup>
-<p>За определяне едновременно на няколко правила за шрифта може да се използва краткия запис (Shorthand):</p><div class="highlight"><pre><span class="p">{</span> <span class="k">font</span><span class="o">:</span> <span class="k">italic</span> <span class="k">normal</span> <span class="k">bold</span> <span class="m">12px</span> <span class="n">verdana</span><span class="p">;</span> <span class="p">}</span>
+<p>За определяне едновременно на няколко правила за шрифта може да се използва краткия запис (Shorthand):</p><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nb">font</span><span class="o">:</span> <span class="nb">italic</span> <span class="nb">normal</span> <span class="nb">bold</span> <span class="m">12px</span> <span class="n">verdana</span><span class="p">;</span> <span class="p">}</span>
 </pre>
 </div>
-<p>Той е еквивалентен на:</p><div class="highlight"><pre><span class="p">{</span>
-  <span class="k">font-style</span><span class="o">:</span> <span class="k">italic</span><span class="p">;</span>
-  <span class="k">font-variant</span><span class="o">:</span> <span class="k">normal</span><span class="p">;</span>
-  <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
-  <span class="k">font-size</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span>
-  <span class="k">line-height</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="k">font-family</span><span class="o">:</span> <span class="n">verdana</span><span class="p">;</span>
+<p>Той е еквивалентен на:</p><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nb">font-style</span><span class="o">:</span> <span class="nb">italic</span><span class="p">;</span>
+  <span class="nb">font-variant</span><span class="o">:</span> <span class="nb">normal</span><span class="p">;</span>
+  <span class="nb">font-weight</span><span class="o">:</span> <span class="nb">bold</span><span class="p">;</span>
+  <span class="nb">font-size</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span>
+  <span class="nb">line-height</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+  <span class="nb">font-family</span><span class="o">:</span> <span class="n">verdana</span><span class="p">;</span>
 <span class="p">}</span>
 </pre>
 </div>
 </section>
 <section>
 <hgroup><h1>Правила, свързани с текста</h1></hgroup>
-<p>Декларацията на нов шрифт става посредством @font-face</p><div class="highlight"><pre><span class="k">@font-face</span> <span class="p">{</span>
+<p>Декларацията на нов шрифт става посредством @font-face</p><div class="highlight"><pre><span></span><span class="k">@font-face</span> <span class="p">{</span>
   <span class="nt">font-family</span><span class="o">:</span> <span class="nt">Dosis</span><span class="o">;</span>
   <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;dosis.ttf&quot;</span><span class="o">);</span>
 <span class="p">}</span>
 <span class="nc">.my-class</span> <span class="p">{</span>
-  <span class="k">font-family</span><span class="o">:</span> <span class="n">Dosis</span><span class="p">;</span>
-  <span class="k">font-size</span><span class="o">:</span> <span class="m">3.2em</span><span class="p">;</span>
+  <span class="nb">font-family</span><span class="o">:</span> <span class="n">Dosis</span><span class="p">;</span>
+  <span class="nb">font-size</span><span class="o">:</span> <span class="m">3.2em</span><span class="p">;</span>
 <span class="p">}</span>
 </pre>
 </div>
@@ -88,7 +88,7 @@
 <dl><dt>background-image  </dt><dd>Пример: background-image:url("example.png");</dd><dt>background-color  </dt><dd>Указва цвета на бекграунда</dd><dt>background-repeat </dt><dd>Възможни стойности: repeat-x, repeat-y, repeat, no-repeat</dd><dt>background-attachment </dt><dd>Възможни стойности: fixed / scroll</dd><dt>background-position </dt><dd>Указва вертикалната и хоризонталната позиция на бекграунд картинката. Примери:  background-position: top left; background-position: -20px 50%;" </dd></dl></section>
 <section>
 <hgroup><h1>Border</h1></hgroup>
-<dl><dt>border-width</dt><dd>Възможни стойности: thin, medium, thick или числова стойност (например 1px)</dd><dt>border-color  </dt><dd>Указва цвета на рамката</dd><dt>border-style  </dt><dd>Възможни стойности: none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset</dd></dl><p>Краткият запис за указване на няколко border стойности едновременно е:</p><div class="highlight"><pre><span class="p">{</span> <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#000</span><span class="p">;</span> <span class="p">}</span>
+<dl><dt>border-width</dt><dd>Възможни стойности: thin, medium, thick или числова стойност (например 1px)</dd><dt>border-color  </dt><dd>Указва цвета на рамката</dd><dt>border-style  </dt><dd>Възможни стойности: none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset</dd></dl><p>Краткият запис за указване на няколко border стойности едновременно е:</p><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nb">border</span><span class="o">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#000</span><span class="p">;</span> <span class="p">}</span>
 </pre>
 </div>
 </section>
@@ -115,12 +115,12 @@
 <ul><li>float позифионира елемента в ляво или в дясно</li><li>float:left – разполага елемента в ляво, а останалото съдържание в дясно</li><li>float:right – позиционира елемента в дясно, а останалото съдържание в ляво</li><li>Margins на елементи с float не се колапсват</li></ul></section>
 <section>
 <hgroup><h1>Clear</h1></hgroup>
-<ul><li>Clear указва от коя страна на елемента не са позволени елементи с float</li><li>Възможни стойности: left, right, both</li></ul><p>Как да го използваме:</p><div class="highlight"><pre><span class="nc">.clearfix</span><span class="nd">:after</span> <span class="p">{</span>
-  <span class="k">content</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> 
-  <span class="k">visibility</span><span class="o">:</span> <span class="k">hidden</span><span class="p">;</span> 
-  <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span> 
-  <span class="k">height</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span> 
-  <span class="k">clear</span><span class="o">:</span> <span class="k">both</span><span class="p">;</span> 
+<ul><li>Clear указва от коя страна на елемента не са позволени елементи с float</li><li>Възможни стойности: left, right, both</li></ul><p>Как да го използваме:</p><div class="highlight"><pre><span></span><span class="nc">.clearfix</span><span class="nd">:after</span> <span class="p">{</span>
+  <span class="nb">content</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> 
+  <span class="nb">visibility</span><span class="o">:</span> <span class="nb">hidden</span><span class="p">;</span> 
+  <span class="nb">display</span><span class="o">:</span> <span class="nb">block</span><span class="p">;</span> 
+  <span class="nb">height</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span> 
+  <span class="nb">clear</span><span class="o">:</span> <span class="nb">both</span><span class="p">;</span> 
 <span class="p">}</span>
 </pre>
 </div>
@@ -128,7 +128,7 @@
 <section>
 <hgroup><h1>Position</h1></hgroup>
 <p>Position определя позиционирането на елемента в страницата</p><p>Възможни стойности:</p><ul><li>static – default. Елементът не е позициониран по специален начин.</li><li>relative – елементът се позиционира релативно, спрямо нормалното си разположение</li><li>absolute – релативно спрямо най-близкия родителски елемент с релативна позиция</li><li>fixed – винаги е разположен на едно и също място и не се отмества при скрол на страницата</li></ul></section>
-<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=1911">http://moodle.openfmi.net/course/view.php?id=1911</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=2261">http://moodle.openfmi.net/course/view.php?id=2261</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
 

@@ -69,9 +69,11 @@
 = slide 'Променливи' do
   example:
     <?php
-      $var = 'Bob';
-      $Var = 'Joe';
-      echo "$var, $Var";      // outputs "Bob, Joe"
+      $first = 'Bob';
+      $second = 'Joe';
+      echo $first;                 // outputs "Bob"
+      echo "$first, $second";      // outputs "Bob, Joe"
+      echo $first.' '.$second;     // outputs "Bob Joe"
     ?>
 
 = slide 'Типове в PHP' do
@@ -233,7 +235,7 @@
       }
     ?>
 
-= slide 'While' do 
+= slide 'While' do
   example:
     <?php
       $i = 1;
@@ -242,7 +244,7 @@
       }
     ?>
 
-= slide 'For' do 
+= slide 'For' do
   example:
     <?php
       for ($i = 1; $i <= 10; $i++) {
@@ -250,8 +252,8 @@
       }
     ?>
 
-= slide 'Масиви' do 
-  p В PHP има само една структура от данни - масив.
+= slide 'Масиви' do
+  p В PHP има само една структура от данни - array.
   example:
     <?php
       $array = array(
@@ -260,7 +262,7 @@
       );
     ?>
 
-= slide 'Foreach' do 
+= slide 'Foreach' do
   p Обхожда последователно елементите на колекция.
   example:
     <?php
@@ -270,18 +272,18 @@
       }
     ?>
 
-= slide 'Foreach' do 
+= slide 'Foreach' do
   example:
     <?php
-      $a = array(
+      $arr = array(
         "one" => 1,
         "two" => 2,
         "three" => 3,
         "seventeen" => 17
       );
 
-      foreach ($a as $k => $v) {
-        echo "$k -> $v\n";
+      foreach ($arr as $key => $value) {
+        echo "$key -> $value\n";
       }
     ?>
 
@@ -291,6 +293,10 @@
       function foo($arg_1, $arg_2, /* ..., */ $arg_n) {
         echo "Example function.\n";
         return $retval;
+      }
+
+      function sum($first, $second) {
+        return $first + $second;
       }
     ?>
 
@@ -311,8 +317,107 @@
         return "Making a cup of $type.\n";
       }
       echo makecoffee(); //Making a cup of cappuccino.
-      echo makecoffee(null); //Making a cup of . 
+      echo makecoffee(null); //Making a cup of .
       echo makecoffee("espresso"); //Making a cup of espresso.
+    ?>
+
+= slide 'ООП в PHP' do
+  list:
+    PHP има пълна поддръжка на ООП
+    Класове, обекти, интерфейси, абстрактни класове, traits
+    Наследяване
+    Енкапсулация
+    Полиморфизъм
+
+= slide 'ООП в PHP' do
+  example:
+    <?php
+      class SimpleClass {
+          // property declaration
+          public $var = 'a default value';
+          // method declaration
+          public function displayVar() {
+              echo $this->var;
+          }
+      }
+    ?>
+
+= slide 'ООП в PHP' do
+  example:
+    <?php
+      $instance = new SimpleClass();
+      var_dump($instance->var);
+      $instance->displayVar();
+    ?>
+
+= slide 'Енкапсулация' do
+  list:
+    public - може да се достъпва/модифицира навсякъде
+    private - може да се достъпва/модифицира само от самия клас
+    protected - може да се достъпва/модифицира от класа или от наследниците му
+
+= slide 'Енкапсулация' do
+  example:
+    <?php
+      class MyClass {
+          public $public = 'Public';
+          protected $protected = 'Protected';
+          private $private = 'Private';
+          function printHello() {
+              echo $this->public;
+              echo $this->protected;
+              echo $this->private;
+          }
+      }
+    ?>
+
+= slide 'Енкапсулация' do
+  example:
+    <?php
+      $obj = new MyClass();
+      echo $obj->public; // Works
+      echo $obj->protected; // Fatal Error
+      echo $obj->private; // Fatal Error
+      $obj->printHello(); // Shows Public, Protected and Private
+    ?>
+
+= slide 'Наследяване' do
+  list:
+    Наследяването на клас се задава с ключовата дума extends.
+    Няма множествено наследяване.
+
+= slide 'Наследяване' do
+  example:
+    <?php
+      class ExtendClass extends SimpleClass
+      {
+          // Redefine the parent method
+          function displayVar() {
+              echo "Extending class\n";
+              parent::displayVar();
+          }
+      }
+
+      $extended = new ExtendClass();
+      $extended->displayVar();
+    ?>
+
+= slide 'Конструктори' do
+  example:
+    <?php
+      class Person {
+          private $first_name;
+          private $last_name;
+          function __construct($first_name, $last_name) {
+             $this->first_name = $first_name;
+             $this->last_name = $last_name;
+          }
+          public function getFullName() {
+             return $this->first_name.' '.$this->last_name;
+          }
+      }
+      $person = new Person('Ivan', 'Ivanov');
+      echo $person->getFullName();
     ?>
 
 = slide 'Дебъгване в php' do
@@ -320,8 +425,8 @@
     li var_dump($var, $var2...)
     li print_r($var)
     li exit()/die()
-    li 
-      a href="http://xdebug.org/docs/" target="_blank" XDEBUG 
+    li
+      a href="http://xdebug.org/docs/" target="_blank" XDEBUG
 
 = slide 'Задача' do
   ul
@@ -363,12 +468,12 @@
     <p>...</p>
   p Като в h1 залгавие се намира 'title' информацията, в h2 заглавие се намира 'lecturer' информацията, а в параграф се показва 'description' информацията за курса с ключ, съвпадащ с параметъра $pageId.
   p В предаденото решение не трябва да има нов ред или празно място между html таговете.
-  p 
+  p
     a href="http://stoitsev.com/fmi/example/" Пример за краен резултат
 
 = slide 'Задача 2' do
   p Имплементирайте функцията show_nav, която показва меню за навигация между отделните курсове. Тя приема два аргумента. Първият е масив с информация за курсовете. Той е същият, като в предишната задача. Вторият аргумент е текущият курс, който се преглежда в момента.
-  p 
+  p
     a href="http://stoitsev.com/fmi/example/" Пример за краен резултат
 
 = slide 'Задача 2' do
