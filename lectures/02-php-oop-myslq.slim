@@ -11,6 +11,11 @@
     li.action Изтриване на данни(Delete)
     li.action Създавне на таблици, вюта, бази и други (Create)
 
+= slide 'Преди всичко UTF-8' do
+  example:
+    [lang:sql]
+    SET NAMES utf8;
+
 = slide 'Извличане на данни(Select)' do
   img src="images/erd.png"
 
@@ -202,34 +207,4 @@
   ul
     li Използвайки таблиците от Задача 1, напишете заявка, която да връща имената(title) на всички курсове, за които има писани коментари подредени по азбучен ред
     img src="images/lecture_3_dbdiagram.jpg"
-
-= slide 'Задача 3' do
-  p Създайте клас User със:
-  ul
-    p Свойства:
-    li $id
-    li $username
-    li $password
-  ul
-  p Методи:
-    li __constuct($id, $username, $password)
-    li set/get методи за всяко свойство
-    li getUser(), който да връща низ с член променливите на класа разделени със запетая "$id,$username,$password"
-
-= slide 'продължение' do
-  p Създайте клас Student, който наследява User със:
-  ul
-    p Свойства:
-    li $name
-    li $course
-  ul
-  p Методи:
-    li __constuct($id, $username, $password, $name, $course)
-    li set/get методи за всяко свойство
-    li getUser(), който да връща низ с член-променливите на класа, разделени със запетая "$id,$username,$password,$name,$course"
-  p Клас Admin, който наследява User
-  p Методи:
-  ul
-    li __constuct($id, $username)
-    li getUser(), който да връща следния низ: "admin"
 
