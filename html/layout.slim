@@ -29,14 +29,6 @@ html lang='bg'
 
       = slides_html
 
-      section
-        hgroup
-          h1 Въпроси
-
-        ul
-          li
-            a href="http://moodle.openfmi.net/course/view.php?id=2261" http://moodle.openfmi.net/course/view.php?id=2261
-
     script src="js/jquery-1.5.2.min.js"
     script src="js/jquery.jswipe-0.1.2.js"
     script src="js/htmlSlides.js"
@@ -45,8 +37,6 @@ html lang='bg'
       $(function() {
         htmlSlides.init({ hideToolbar: true });
       });
-
-      mixpanel.set_config({debug: true});
 
       var pusher = new Pusher('a2024b659f492cab86cc');
       pusher.subscribe('lectures');

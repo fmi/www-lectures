@@ -133,7 +133,7 @@
     <span class="k">if</span> <span class="p">(</span><span class="nv">$error</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1062</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">echo</span> <span class="s1">&#39;Email is already registered&#39;</span><span class="p">;</span>
     <span class="p">}</span>
-  <span class="p">}</span>      
+  <span class="p">}</span>
 </pre>
 </div>
 </section>
@@ -218,11 +218,9 @@
 <section>
 <hgroup><h1>Задача 2</h1></hgroup>
 <p>Предайте системата с упълномощяване и авторизация, която създадохме сега. Трябва да предадете архив с 3 файла:</p><ul><li>signin.php - съдържа функциите за валидация и за работа с базата от данни и HTML формата за регистрация в системата</li><li>signup.php - съдържа функциите за валидация и за работа с базата от данни и HTML формата за удостоверяване в системата</li><li>home.php - съдържа начална страница за приложението, което показва Email адреса на потребителя влязал в системата и брояч, който се инкрементира при всяко посещение на потребителя нa home.php, започвайки от 1.</li></ul></section>
-<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=2261">http://moodle.openfmi.net/course/view.php?id=2261</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+</div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
-
-mixpanel.set_config({debug: true});
 
 var pusher = new Pusher('a2024b659f492cab86cc');
 pusher.subscribe('lectures');

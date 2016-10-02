@@ -91,11 +91,9 @@
 </li><li class="action">401 Unauthorized - нужна е аутентикация преди, за да се достъпи ресурса.
 </li><li class="action">404 Not Found - ресурсът не е намерен, получава се в случаи, когато заявката към даден URL адрес не връща ресурс, тъй като, той не се намира там.
 </li><li class="action">500 Internal Server Error - обикновено се получава при грешки в сървъра.</li></ul></section>
-<section><hgroup><h1>Въпроси</h1></hgroup><ul><li><a href="http://moodle.openfmi.net/course/view.php?id=2261">http://moodle.openfmi.net/course/view.php?id=2261</a></li></ul></section></div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+</div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
-
-mixpanel.set_config({debug: true});
 
 var pusher = new Pusher('a2024b659f492cab86cc');
 pusher.subscribe('lectures');
