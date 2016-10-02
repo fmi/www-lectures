@@ -1,0 +1,525 @@
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>01. Динамично генериране на HTML</title></head><body><header><h1>01. Динамично генериране на HTML</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>01. Динамично генериране на HTML</h1></hgroup></section><section>
+<hgroup><h1>Клинет-сървър</h1></hgroup>
+<img src="images/client_net.jpg" style="width: 60%" /></section>
+<section>
+<hgroup><h1>PHP</h1></hgroup>
+<img src="images/get-php-file.png" /></section>
+<section>
+<hgroup><h1>PHP</h1></hgroup>
+<ul><li class="action">Браузъра изпраща HTTP заявка към сървъра.</li><li class="action">Сървъря я обработва.</li><li class="action">Той може да прочете информация от база от данни.</li><li class="action">Накрая генерира отговор под формата на HTML документ.</li></ul></section>
+<section>
+<hgroup><h1>Пример за PHP</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">  &lt;head&gt;</span>
+<span class="x">    &lt;title&gt;Example&lt;/title&gt;</span>
+<span class="x">  &lt;/head&gt;</span>
+<span class="x">  &lt;body&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+      <span class="k">echo</span> <span class="s2">&quot;Hi, I&#39;m a PHP script!&quot;</span><span class="p">;</span>
+    <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">  &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Пример за PHP</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        Hi, I&#39;m a PHP script!
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Пример за PHP</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="x">&lt;html&gt;</span>
+<span class="x">  &lt;head&gt;</span>
+<span class="x">    &lt;title&gt;Example&lt;/title&gt;</span>
+<span class="x">  &lt;/head&gt;</span>
+<span class="x">  &lt;body&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+      <span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Hi, I&#39;m a PHP script!&lt;/h2&gt;&quot;</span><span class="p">;</span>
+    <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">  &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Пример за PHP</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Hi, I&#39;m a PHP script!<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Променливи</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nv">$first</span> <span class="o">=</span> <span class="s1">&#39;Bob&#39;</span><span class="p">;</span>
+  <span class="nv">$second</span> <span class="o">=</span> <span class="s1">&#39;Joe&#39;</span><span class="p">;</span>
+  <span class="k">echo</span> <span class="nv">$first</span><span class="p">;</span>                 <span class="c1">// outputs &quot;Bob&quot;</span>
+  <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">$first</span><span class="s2">, </span><span class="si">$second</span><span class="s2">&quot;</span><span class="p">;</span>      <span class="c1">// outputs &quot;Bob, Joe&quot;</span>
+  <span class="k">echo</span> <span class="nv">$first</span><span class="o">.</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="nv">$second</span><span class="p">;</span>     <span class="c1">// outputs &quot;Bob Joe&quot;</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Типове в PHP</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nv">$myAge</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>                    <span class="c1">// a PHP Integer - always available</span>
+  <span class="nv">$yourAge</span> <span class="o">=</span> <span class="mf">15.5</span><span class="p">;</span>                <span class="c1">// a PHP Float   - always available</span>
+  <span class="nv">$hasHair</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>                <span class="c1">// a PHP Boolean - always available</span>
+  <span class="nv">$greeting</span> <span class="o">=</span> <span class="s2">&quot;Hello World!&quot;</span>      <span class="c1">// a PHP String  - always available</span>
+
+  <span class="nv">$person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>         <span class="c1">// a PHP Person  - available NOW!</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Оператори за сравнение</h1></hgroup>
+<table class="doctable table">
+<thead>
+  <tr>
+   <th>Example</th>
+   <th>Name</th>
+   <th>Result</th>
+  </tr>
+</thead>
+
+<tbody class="tbody">
+  <tr>
+   <td>$a == $b</td>
+   <td>Equal</td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is equal to <var class="varname"><var class="varname">$b</var></var> after type juggling.</td>
+  </tr>
+
+  <tr>
+   <td>$a === $b</td>
+   <td>Identical</td>
+   <td>
+    <strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is equal to <var class="varname"><var class="varname">$b</var></var>, and they are of the same
+    type.
+   </td>
+  </tr>
+
+  <tr>
+   <td>$a != $b</td>
+   <td>Not equal</td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is not equal to <var class="varname"><var class="varname">$b</var></var> after type juggling.</td>
+  </tr>
+
+  <tr>
+   <td>$a &lt;&gt; $b</td>
+   <td>Not equal</td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is not equal to <var class="varname"><var class="varname">$b</var></var> after type juggling.</td>
+  </tr>
+
+  <tr>
+   <td>$a !== $b</td>
+   <td>Not identical</td>
+   <td>
+    <strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is not equal to <var class="varname"><var class="varname">$b</var></var>, or they are not of the same
+    type.
+   </td>
+  </tr>
+
+  <tr>
+   <td>$a &lt; $b</td>
+   <td>Less than</td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is strictly less than <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a &gt; $b</td>
+   <td>Greater than</td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is strictly greater than <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a &lt;= $b</td>
+   <td>Less than or equal to </td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is less than or equal to <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a &gt;= $b</td>
+   <td>Greater than or equal to </td>
+   <td><strong><code>TRUE</code></strong> if <var class="varname"><var class="varname">$a</var></var> is greater than or equal to <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+</tbody>
+
+</table></section>
+<section>
+<hgroup><h1>Аритметични оператори</h1></hgroup>
+<table class="doctable table">
+  <thead>
+  <tr>
+   <th>Example</th>
+   <th>Name</th>
+   <th>Result</th>
+  </tr>
+
+  </thead>
+
+  <tbody class="tbody">
+  <tr>
+   <td>-$a</td>
+   <td>Negation</td>
+   <td>Opposite of <var class="varname"><var class="varname">$a</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a + $b</td>
+   <td>Addition</td>
+   <td>Sum of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a - $b</td>
+   <td>Subtraction</td>
+   <td>Difference of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a * $b</td>
+   <td>Multiplication</td>
+   <td>Product of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a / $b</td>
+   <td>Division</td>
+   <td>Quotient of <var class="varname"><var class="varname">$a</var></var> and <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  <tr>
+   <td>$a % $b</td>
+   <td>Modulus</td>
+   <td>Remainder of <var class="varname"><var class="varname">$a</var></var> divided by <var class="varname"><var class="varname">$b</var></var>.</td>
+  </tr>
+
+  </tbody>
+
+</table></section>
+<section>
+<hgroup><h1>Аритметика</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">echo</span> <span class="p">(</span><span class="mi">5</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>    <span class="c1">// prints 2</span>
+  <span class="k">echo</span> <span class="p">(</span><span class="mi">5</span> <span class="o">%</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>   <span class="c1">// prints 2</span>
+  <span class="k">echo</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>   <span class="c1">// prints -2</span>
+  <span class="k">echo</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span> <span class="o">%</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>  <span class="c1">// prints -2</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>if</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">&gt;</span> <span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">echo</span> <span class="s2">&quot;a is bigger than b&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">==</span> <span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">echo</span> <span class="s2">&quot;a is equal to b&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;a is smaller than b&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>While</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$i</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>For</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$i</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Масиви</h1></hgroup>
+<p>В PHP има само една структура от данни - array.</p><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nv">$array</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">&quot;foo&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bar&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+  <span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Foreach</h1></hgroup>
+<p>Обхожда последователно елементите на колекция.</p><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nv">$arr</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+  <span class="k">foreach</span> <span class="p">(</span><span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Foreach</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nv">$arr</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">&quot;one&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;two&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;three&quot;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;seventeen&quot;</span> <span class="o">=&gt;</span> <span class="mi">17</span>
+  <span class="p">);</span>
+
+  <span class="k">foreach</span> <span class="p">(</span><span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">$key</span><span class="s2"> -&gt; </span><span class="si">$value\n</span><span class="s2">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$arg_1</span><span class="p">,</span> <span class="nv">$arg_2</span><span class="p">,</span> <span class="cm">/* ..., */</span> <span class="nv">$arg_n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;Example function.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nv">$retval</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">function</span> <span class="nf">sum</span><span class="p">(</span><span class="nv">$first</span><span class="p">,</span> <span class="nv">$second</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$first</span> <span class="o">+</span> <span class="nv">$second</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">function</span> <span class="nf">takes_array</span><span class="p">(</span><span class="nv">$input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">$input[0]</span><span class="s2"> + </span><span class="si">$input[1]</span><span class="s2"> = &quot;</span><span class="p">,</span> <span class="nv">$input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nv">$input</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="nx">takes_array</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// 1 + 2 = 3</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">function</span> <span class="nf">makecoffee</span><span class="p">(</span><span class="nv">$type</span> <span class="o">=</span> <span class="s2">&quot;cappuccino&quot;</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&quot;Making a cup of </span><span class="si">$type</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">();</span> <span class="c1">//Making a cup of cappuccino.</span>
+  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">(</span><span class="k">null</span><span class="p">);</span> <span class="c1">//Making a cup of .</span>
+  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">(</span><span class="s2">&quot;espresso&quot;</span><span class="p">);</span> <span class="c1">//Making a cup of espresso.</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>ООП в PHP</h1></hgroup>
+<ul><li class="action">PHP има пълна поддръжка на ООП
+</li><li class="action">Класове, обекти, интерфейси, абстрактни класове, traits
+</li><li class="action">Наследяване
+</li><li class="action">Енкапсулация
+</li><li class="action">Полиморфизъм</li></ul></section>
+<section>
+<hgroup><h1>ООП в PHP</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">class</span> <span class="nc">SimpleClass</span> <span class="p">{</span>
+      <span class="c1">// property declaration</span>
+      <span class="k">public</span> <span class="nv">$var</span> <span class="o">=</span> <span class="s1">&#39;a default value&#39;</span><span class="p">;</span>
+      <span class="c1">// method declaration</span>
+      <span class="k">public</span> <span class="k">function</span> <span class="nf">displayVar</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">var</span><span class="p">;</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>ООП в PHP</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nv">$instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SimpleClass</span><span class="p">();</span>
+  <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$instance</span><span class="o">-&gt;</span><span class="na">var</span><span class="p">);</span>
+  <span class="nv">$instance</span><span class="o">-&gt;</span><span class="na">displayVar</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Енкапсулация</h1></hgroup>
+<ul><li class="action">public - може да се достъпва/модифицира навсякъде
+</li><li class="action">private - може да се достъпва/модифицира само от самия клас
+</li><li class="action">protected - може да се достъпва/модифицира от класа или от наследниците му</li></ul></section>
+<section>
+<hgroup><h1>Енкапсулация</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
+      <span class="k">public</span> <span class="nv">$public</span> <span class="o">=</span> <span class="s1">&#39;Public&#39;</span><span class="p">;</span>
+      <span class="k">protected</span> <span class="nv">$protected</span> <span class="o">=</span> <span class="s1">&#39;Protected&#39;</span><span class="p">;</span>
+      <span class="k">private</span> <span class="nv">$private</span> <span class="o">=</span> <span class="s1">&#39;Private&#39;</span><span class="p">;</span>
+      <span class="k">function</span> <span class="nf">printHello</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">public</span><span class="p">;</span>
+          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">protected</span><span class="p">;</span>
+          <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">private</span><span class="p">;</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Енкапсулация</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">();</span>
+  <span class="k">echo</span> <span class="nv">$obj</span><span class="o">-&gt;</span><span class="na">public</span><span class="p">;</span> <span class="c1">// Works</span>
+  <span class="k">echo</span> <span class="nv">$obj</span><span class="o">-&gt;</span><span class="na">protected</span><span class="p">;</span> <span class="c1">// Fatal Error</span>
+  <span class="k">echo</span> <span class="nv">$obj</span><span class="o">-&gt;</span><span class="na">private</span><span class="p">;</span> <span class="c1">// Fatal Error</span>
+  <span class="nv">$obj</span><span class="o">-&gt;</span><span class="na">printHello</span><span class="p">();</span> <span class="c1">// Shows Public, Protected and Private</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Наследяване</h1></hgroup>
+<ul><li class="action">Наследяването на клас се задава с ключовата дума extends.
+</li><li class="action">Няма множествено наследяване.</li></ul></section>
+<section>
+<hgroup><h1>Наследяване</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">class</span> <span class="nc">ExtendClass</span> <span class="k">extends</span> <span class="nx">SimpleClass</span>
+  <span class="p">{</span>
+      <span class="c1">// Redefine the parent method</span>
+      <span class="k">function</span> <span class="nf">displayVar</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">echo</span> <span class="s2">&quot;Extending class</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+          <span class="k">parent</span><span class="o">::</span><span class="na">displayVar</span><span class="p">();</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nv">$extended</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExtendClass</span><span class="p">();</span>
+  <span class="nv">$extended</span><span class="o">-&gt;</span><span class="na">displayVar</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Конструктори</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+      <span class="k">private</span> <span class="nv">$first_name</span><span class="p">;</span>
+      <span class="k">private</span> <span class="nv">$last_name</span><span class="p">;</span>
+      <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$first_name</span><span class="p">,</span> <span class="nv">$last_name</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">first_name</span> <span class="o">=</span> <span class="nv">$first_name</span><span class="p">;</span>
+         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">last_name</span> <span class="o">=</span> <span class="nv">$last_name</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">public</span> <span class="k">function</span> <span class="nf">getFullName</span><span class="p">()</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">first_name</span><span class="o">.</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">last_name</span><span class="p">;</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nv">$person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Ivan&#39;</span><span class="p">,</span> <span class="s1">&#39;Ivanov&#39;</span><span class="p">);</span>
+  <span class="k">echo</span> <span class="nv">$person</span><span class="o">-&gt;</span><span class="na">getFullName</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Дебъгване в php</h1></hgroup>
+<ul><li>var_dump($var, $var2...)</li><li>print_r($var)</li><li>exit()/die()</li><li><a href="http://xdebug.org/docs/" target="_blank">XDEBUG</a></li></ul></section>
+<section>
+<hgroup><h1>Задача</h1></hgroup>
+<ul><li class="action">Система за събиране на мнения за избираеми дисциплини.</li><li class="action">Всяка избираема дисциплина си има страница.</li><li class="action">На страницата има информация за дисциплината и коментари за нея.</li><li class="action">През семестъра ще създадем такава система от начало до край.</li><li class="action">Всяко упражнение ще подобрява системата.</li></ul></section>
+<section>
+<hgroup><h1>Задача 1</h1></hgroup>
+<p>Имплементирайте функцията show_page, която показва информацията за даден избираем курс. Тя приема два аргумента. Първия е pageId, който е идентификатора на курса който искаме да покажем. Втория е масив с информация за курсовете.</p><p>Информацията за курсовете се пази в следния масив:</p><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">&#39;webgl&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Компютърна графика с WebGL&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lecturer&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;доц. П. Бойчев&#39;</span><span class="p">,</span>
+  <span class="p">),</span>
+  <span class="s1">&#39;go&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Програмиране с Go&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lecturer&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Николай Бачийски&#39;</span><span class="p">,</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача 1</h1></hgroup>
+<p>Пример, следното извикване:</p><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nx">show_page</span><span class="p">(</span><span class="s1">&#39;webgl&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre>
+</div>
+<p>Тя трябва да върне(не да изпринтира) следния низ:</p><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Компютърна графика с WebGL<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>доц. П. Бойчев<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre>
+</div>
+<p>Като в h1 залгавие се намира 'title' информацията, в h2 заглавие се намира 'lecturer' информацията, а в параграф се показва 'description' информацията за курса с ключ, съвпадащ с параметъра $pageId.</p><p>В предаденото решение не трябва да има нов ред или празно място между html таговете.</p><p><a href="http://stoitsev.com/fmi/example/">Пример за краен резултат</a></p></section>
+<section>
+<hgroup><h1>Задача 2</h1></hgroup>
+<p>Имплементирайте функцията show_nav, която показва меню за навигация между отделните курсове. Тя приема два аргумента. Първият е масив с информация за курсовете. Той е същият, като в предишната задача. Вторият аргумент е текущият курс, който се преглежда в момента.</p><p><a href="http://stoitsev.com/fmi/example/">Пример за краен резултат</a></p></section>
+<section>
+<hgroup><h1>Задача 2</h1></hgroup>
+<p>Ако извикаме функцията по следния начин:</p><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nx">show_nav</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="s1">&#39;webgl&#39;</span><span class="p">);</span>
+</pre>
+</div>
+<p>Тя трябва да върне(не да изпринтира) следния низ:</p><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;?page=webgl&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;selected&quot;</span><span class="p">&gt;</span>Компютърна графика с WebGL<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;?page=go&quot;</span><span class="p">&gt;</span>Програмиране с Go<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</pre>
+</div>
+<p>Хиперлинковете към кусовете трябва да се съдържат в nav секция. Всеки хиперлинк трябва да води към съответната страница на курс и за текст на хиперлинка трябва да се изписва името на курса.</p><p>Ако адреса на хиперлинка съвпада с текущо отворения курс, подаден като втори параметър, към хиперлинка трябва да се добави клас selected, както е показано в примера.</p><p>В предаденото решение не трябва да има нов ред или празно място между html таговете.</p></section>
+<section>
+<hgroup><h1>Задача 3</h1></hgroup>
+<p>Да се имплементира клас на име <strong>Request</strong>, който да улесни работата с <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html" target="_blank">HTTP заявки</a>. За целта, неговия конструктор трябва да приема, като единствен аргумент, масив <a href="http://php.net/manual/en/reserved.variables.server.php" target="_blank">$_SERVER</a>, от който да прочете необходимите данни, за неговата работа. Класа трябва да има следните методи:</p><ul><li><strong>getMethod</strong> - връща като низ, състоящ се само от малки букви, метода на завката - get, post, put и т.н.</li><li><strong>getPath</strong> - връща като низ path часта на адреса на заявката.</li><li><strong>getURL</strong> - връща като низ целия адрес на заявката.</li><li><strong>getUserAgent</strong> - връща като низ съдържанието на HTTP Header полето User-Agent.</li></ul><p>Да се имплементира клас на име <strong>GetRequest</strong>, който да е наследник на <strong>Request</strong> и да поддържа допълнителен метод <strong>getData</strong>. Този метод трябва да прочита <a href="https://en.wikipedia.org/wiki/Query_string" target="_blank">query string</a> параметрите и да ги връща като <a href="http://www.json.org/" target="_blank">JSON</a> кодиран обект. Например ако имаме query string:</p><p>а=1&b=2</p><p>При извикване на метода <strong>getData</strong>, трябва да върне низ:</p><p>{"a":"1","b":"2"}</p></section>
+</div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});
+
+try {
+  mixpanel.track('Landing Page', {
+    referrer: document.referrer,
+    presentation: document.title
+  });
+} catch (e) {};</script></body></html>

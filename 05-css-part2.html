@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>05. CSS - част 2</title></head><body><header><h1>05. CSS - част 2</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>05. CSS - част 2</h1></hgroup></section><section>
+<hgroup><h1>Съдържание</h1></hgroup>
+<ul><li>Псевдо селектори</li><li>Advanced CSS селектори</li><li>Opacity/ Visibility</li><li>Още правила за текст</li><li>Render Engines</li><li>CSS Sprite</li><li>CSS3 Gradients</li><li>CSS box-sizing</li><li>Други CSS3 ефекти</li><li>Какво е риспонсив дизайн</li><li>CSS3 Media Queries</li></ul></section>
+<section>
+<hgroup><h1>Псевдо селектори</h1></hgroup>
+<ul><li>:active, :hover, :focus, :visited, :link</li><li>:nth-child(n), :first-child, :last-child</li><li>:first-of-type, :last-of-type</li><li>:only-child (елементът, който е единствено дете на своя родител)</li><li>:only-of-type (елемент, който няма братовчеди(siblings) от своя тип)</li><li>:empty (елементът няма деца)</li><li>::after (вмъква съдържание след елемента)</li><li>::after (вмъква съдържание преди елемента)</li><li>::first-letter (първа буква от елемента)</li><li>::first-line (първи ред от елемента)</li><li>::selection (маркираното от потребителя съдържание)</li></ul></section>
+<section>
+<hgroup><h1>Opacity</h1></hgroup>
+<ul><li>Зaдава прозрачност на елемента.</li><li>Число в интервала [0.0,1.0].</li></ul><div class="highlight"><pre><span></span><span class="nt">img</span> <span class="p">{</span>
+  <span class="nb">opacity</span><span class="o">:</span> <span class="m">0</span><span class="o">.</span><span class="m">4</span><span class="p">;</span>
+  <span class="n">filter</span><span class="o">:</span> <span class="n">alpha</span><span class="p">(</span><span class="nb">opacity</span><span class="o">=</span><span class="m">40</span><span class="p">);</span> <span class="c">/* For IE8 and earlier */</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Visibility</h1></hgroup>
+<p>Възможните стойности са visible/hidden.</p><p>Разликата между използването на visibility: hidden и display: none e, че за елемент с display: none не се заделя място в страницата, докато за елемнт с visibility: hidden се заделя място.</p></section>
+<section>
+<hgroup><h1>Още правила за текст</h1></hgroup>
+<p>Със CSS е възможно също да конкролираме дали текста да е с главни, малки букви, или всяка дума да започва с главна буква:</p><div class="highlight"><pre><span></span><span class="nt">p</span><span class="nc">.uppercase</span> <span class="p">{</span>
+  <span class="nb">text-transform</span><span class="o">:</span> <span class="nb">uppercase</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">p</span><span class="nc">.lowercase</span> <span class="p">{</span>
+  <span class="nb">text-transform</span><span class="o">:</span> <span class="nb">lowercase</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">p</span><span class="nc">.capitalize</span> <span class="p">{</span>
+  <span class="nb">text-transform</span><span class="o">:</span> <span class="nb">capitalize</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>CSS Sprite</h1></hgroup>
+<ul><li>С цел оптимизация при писането на CSS се прилагат някои практики. Една от най важните е използването на CSS Sprite</li><li>Той намялява броя на request-ите за картинки</li><li>Много картинки се сливат в една. После чрез background-position се достъпва оригиналната картинка.</li></ul></section>
+<section>
+<hgroup><h1>CSS3 Gradients</h1></hgroup>
+<ul><li>background: -moz-linear-gradient(black, white); /* FF 3.6+ */</li><li>background: -webkit-linear-gradient(black, white); /* Safari 5.1+, Chrome 10+ */</li><li>background: -o-linear-gradient(black, white); /* Opera 11.10 */</li><li>filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff'); /* IE6 - IE9 */</li><li>background: linear-gradient(black, white); /* the standard */</li></ul></section>
+<section>
+<hgroup><h1>Заоблени ъгли</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="nc">.square</span><span class="p">{</span>
+  <span class="nb">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">25px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<p>Възможно е да се изплозва заобляне само на определен ъгъл:</p><ul><li>border-top-left-radius</li><li>border-top-right-radius</li><li>border-bottom-right-radius </li><li>border-bottom-left-radius</li></ul></section>
+<section>
+<hgroup><h1>Shadows</h1></hgroup>
+<p>text-shadow</p><div class="highlight"><pre><span></span><span class="nt">h1</span> <span class="p">{</span>
+  <span class="nb">color</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+  <span class="nb">text-shadow</span><span class="o">:</span> <span class="m">2px</span> <span class="m">2px</span> <span class="m">4px</span> <span class="m">#000000</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<p>box-shadow</p><div class="highlight"><pre><span></span><span class="nt">div</span> <span class="p">{</span>
+  <span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="o">:</span> <span class="m">10px</span> <span class="m">10px</span> <span class="m">5px</span> <span class="n">grey</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Box Sizing</h1></hgroup>
+<p>Възможните стойности са content-box/border-box</p><ul><li>content-box – по подразбиране. Широчината и височината на елемента не включват неговия padding, border или margin</li><li>border-box – широчината и височината на елемента включват padding и border /default box model на стари версии на IE/</li></ul></section>
+<section>
+<hgroup><h1>Responsive design</h1></hgroup>
+<p>Риспонсив дизайна прави страницата да изглежда добре на всички устройства – десктоп, таблет, телефон.</p><p>Риспонсив дизайна вкючва промяна на големината на елементи, скриване на елементи, намаляване, увеличаване или преместване на съдържание с цел страницата да изглежда добре и да е удобна за използване на различните устройства.</p></section>
+<section>
+<hgroup><h1>CSS3 Media Queries</h1></hgroup>
+<p>Чрез Media Queries можем да задаваме правила, които да се изпълняват на различни условия</p><div class="highlight"><pre><span></span><span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">480px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nt">body</span> <span class="p">{</span>
+    <span class="nb">background-color</span><span class="o">:</span> <span class="nb">lightgreen</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>CSS3 Media Queries</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="k">@media</span> <span class="nt">not</span><span class="o">|</span><span class="nt">only</span> <span class="nt">mediatype</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">media</span> <span class="nt">feature</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nt">CSS-Code</span><span class="o">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<p>Mediatypes</p><ul><li>all </li><li>screen – за екрани на компютри, таблети, смартфони и др</li><li>print – за принтиране</li></ul></section>
+<section>
+<hgroup><h1>Media Features</h1></hgroup>
+<ul><li>width – широчината на viewport- a</li><li>height – височината на viewport- a</li><li>max-width</li><li>max-height </li><li>min-width</li><li>min-height</li></ul></section>
+<section>
+<hgroup><h1>CSS3 Media Queries</h1></hgroup>
+<p>Използване на @media за риспонсив дизайн:</p><div class="highlight"><pre><span></span><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">500px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.gridmenu</span> <span class="p">{</span> <span class="nb">width</span><span class="o">:</span><span class="m">100%</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+</div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});
+
+try {
+  mixpanel.track('Landing Page', {
+    referrer: document.referrer,
+    presentation: document.title
+  });
+} catch (e) {};</script></body></html>

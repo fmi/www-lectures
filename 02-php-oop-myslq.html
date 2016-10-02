@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>02. Обектно ориентирано PHP и работа с MySQL</title></head><body><header><h1>02. Обектно ориентирано PHP и работа с MySQL</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>02. Обектно ориентирано PHP и работа с MySQL</h1></hgroup></section><section>
+<hgroup><h1>Релацонна база от данни</h1></hgroup>
+<img src="images/erd.png" /></section>
+<section>
+<hgroup><h1>SQL</h1></hgroup>
+<p>Език за работа с данни.</p><p>Той позволява:</p><ul><li class="action">Вмъкване на данни(Insert)</li><li class="action">Извличане на данни(Select)</li><li class="action">Редактиране на данни(Update)</li><li class="action">Изтриване на данни(Delete)</li><li class="action">Създавне на таблици, вюта, бази и други (Create)</li></ul></section>
+<section>
+<hgroup><h1>Преди всичко UTF-8</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="k">SET</span> <span class="k">NAMES</span> <span class="n">utf8</span><span class="p">;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Извличане на данни(Select)</h1></hgroup>
+<img src="images/erd.png" /><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">MAJORS</span>
+<span class="k">SELECT</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">ACADEMIC_DEGREE</span> <span class="k">FROM</span> <span class="n">MAJORS</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">MAJORS</span> <span class="k">WHERE</span> <span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;Software Engineering&#39;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">MAJORS</span> <span class="k">WHERE</span> <span class="n">START_YEAR</span> <span class="o">=</span> <span class="mi">2011</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Вмъкване на данни(Insert)</h1></hgroup>
+<img src="images/erd.png" /><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">MAJORS</span> <span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">ACADEMIC_DEGREE</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Software Eginnering&#39;</span><span class="p">,</span> <span class="s1">&#39;bachelor&#39;</span><span class="p">)</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>JOIN заявки</h1></hgroup>
+<img src="images/erd.png" /><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span><span class="p">,</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderDate</span>
+<span class="k">FROM</span> <span class="n">Orders</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Customers</span>
+<span class="k">ON</span> <span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span><span class="o">=</span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">;</span>
+</pre>
+</div>
+<p>Типове SQL JOIN:</p><ul><li>INNER JOIN: Връща всички редове за които има поне едно съвпадение и в двете таблици.</li><li>LEFT JOIN:  Връща всички редове от лявата таблица и съвпадащите редове в дясната.</li><li>RIGHT JOIN:  Връща всички редове от дясната таблица и съвпадатещите редове в лявата.</li><li>FULL JOIN:  Връща всички редове когато има съвпадение в една от таблиците.</li></ul></section>
+<section>
+<hgroup><h1>MySQL</h1></hgroup>
+<p>[от Уикипедия, свободната енциклопедия] MySQL SQL система за управление на бази данни (СУБД) с повече от шест милиона инсталации.</p></section>
+<section>
+<hgroup><h1>Изпълняване на SQL заявки през phpMyAdmin</h1></hgroup>
+<img src="images/lecture_3_php-myadmin.png" /></section>
+<section>
+<hgroup><h1>PDO</h1></hgroup>
+<p>В PHP има разширения(Extensions), които надграждат основната функционалност на езика. PHP Data Objects (PDO) е едно такова разширение.</p><p>Дефинира лек, консистентен интерфейс за работа с различни СУБД.</p><p>Предоставя абстрактен слой за работа с данни.</p><p>СУБД която използвате е без значение, защото интерфейса е еднакъв - MS SQL Server, DB2, MySQL, Oracle, PostgreSQL, SQLite....</p></section>
+<section>
+<hgroup><h1>PDO Свързване към база</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="s1">&#39;username&#39;</span><span class="p">;</span>
+<span class="nv">$pass</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+<span class="nv">$dbh</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s1">&#39;mysql:host=localhost;dbname=test&#39;</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">);</span>
+<span class="c1">// use the connection here</span>
+<span class="c1">// and now we&#39;re done; close it</span>
+<span class="nv">$dbh</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>PDO Извличане на данни</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$host</span>   <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span><span class="p">;</span>
+<span class="nv">$db</span>     <span class="o">=</span> <span class="s2">&quot;my_db&quot;</span><span class="p">;</span>
+<span class="nv">$user</span>   <span class="o">=</span> <span class="s2">&quot;root&quot;</span><span class="p">;</span>
+<span class="nv">$pass</span>   <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s2">&quot;mysql:host=</span><span class="si">$host</span><span class="s2">;dbname=</span><span class="si">$db</span><span class="s2">&quot;</span><span class="p">,</span><span class="nv">$user</span><span class="p">,</span><span class="nv">$pass</span><span class="p">);</span>
+<span class="nv">$sql</span>     <span class="o">=</span> <span class="s2">&quot;SELECT * FROM MAJORS&quot;</span><span class="p">;</span>
+<span class="nv">$query</span>   <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span><span class="p">(</span><span class="s2">&quot;failed!&quot;</span><span class="p">);</span>
+<span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">(</span><span class="nx">PDO</span><span class="o">::</span><span class="na">FETCH_ASSOC</span><span class="p">))</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">];</span>
+<span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>PDO Извличане на данни</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="o">....</span>
+<span class="k">echo</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
+<span class="k">while</span><span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">(</span><span class="nx">PDO</span><span class="o">::</span><span class="na">FETCH_ASSOC</span><span class="p">)){</span>
+  <span class="k">echo</span> <span class="s1">&#39;&lt;li&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">echo</span> <span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Prepared statements</h1></hgroup>
+<p>Заявка, записан в базата от данни и която може да се изпълнява многократно с подаване на различни данни.</p></section>
+<section>
+<hgroup><h1>Prepared statements</h1></hgroup>
+<p>Етапи:</p><ul><li class="action">Заявката се съставя от приложението и се изпраща на базата от данни.</li><li class="action">Базата от данни парсва, компилира, оптимизира заявката и я запазва.</li><li class="action">В следващ момент, приложението подава данни към тази заявка и тя се изпълнява, като това се повтаря многократно.</li></ul><p class="action"> Защо да ги ползваме?</p><ul class="action"><li>Повишава се бързодействието.</li><li>Повишава се сигурността.</li></ul></section>
+<section>
+<hgroup><h1>Prepared statements</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;</span>
+<span class="s2">      INSERT INTO MAJORS (NAME, ACADEMIC_DEGREE)</span>
+<span class="s2">      VALUES (:name, :academic_degree)&quot;</span><span class="p">);</span>
+  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:name&#39;</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
+  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:academic_degree&#39;</span><span class="p">,</span> <span class="nv">$academic_degree</span><span class="p">);</span>
+
+  <span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;Biology&#39;</span><span class="p">;</span>
+  <span class="nv">$academic_degree</span> <span class="o">=</span> <span class="s1">&#39;bachelor&#39;</span><span class="p">;</span>
+  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+
+  <span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;Management&#39;</span><span class="p">;</span>
+  <span class="nv">$academic_degree</span> <span class="o">=</span> <span class="s1">&#39;master&#39;</span><span class="p">;</span>
+  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Prepared statements</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">echo</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
+  <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM MAJORS where ACADEMIC_DEGREE = ?&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;bachelor&#39;</span><span class="p">)))</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">echo</span> <span class="s1">&#39;&lt;li&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s2">&quot;NAME&quot;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">echo</span> <span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">;</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Транзакции</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">beginTransaction</span><span class="p">();</span>
+
+  <span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO fruit (name, calories) VALUES (?, ?)&#39;</span><span class="p">;</span>
+  <span class="nv">$sth</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+
+  <span class="k">foreach</span> <span class="p">(</span><span class="nv">$fruits</span> <span class="k">as</span> <span class="nv">$fruit</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nv">$sth</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+          <span class="nv">$fruit</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span>
+          <span class="nv">$fruit</span><span class="o">-&gt;</span><span class="na">calories</span><span class="p">,</span>
+      <span class="p">));</span>
+  <span class="p">}</span>
+  <span class="nv">$dbh</span><span class="o">-&gt;</span><span class="na">commit</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Транзакции</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+   <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">beginTransaction</span><span class="p">();</span>
+
+   <span class="nv">$sth</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">exec</span><span class="p">(</span><span class="s2">&quot;DROP TABLE MAJORS&quot;</span><span class="p">);</span>
+
+   <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">rollBack</span><span class="p">();</span>
+ <span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача 1</h1></hgroup>
+<p>Създайте следните таблици: Student, Course, Comments:</p><p>Students</p><ul><li>id (Primary key, Auto-generated integer)</li><li>name(varchar)</li></ul><p>Course</p><ul><li>id (Primary key, Auto-generated integer)</li><li>title(varchar)</li><li>description(varchar)</li><li>lecturer(varchar)</li></ul><p>Comments</p><ul><li>id (Primary key, Auto-generated integer)</li><li>courseID(integer)</li><li>studentID(integer</li><li>comments(varchar)</li></ul></section>
+<section>
+<hgroup><h1>продължение</h1></hgroup>
+<p>Students</p><ul><li>Добавете 2-ма студенти</li><li>Напишете заявка, който връща броя на записите в таблица "Students"</li></ul><p>Courses</p><ul><li>Добавете курс ("www-tech", "Introduction to the web technologies", "Petrov")</li><li>Добавете курс ("artificial intelligence", "Intro to AI", "Koichev")</li><li>Добавете курс ("Network programming in java", "Intro to network programming", "Petrov")</li><li>Напишете заявка, която да връща имената на преподавателите без повторения</li></ul></section>
+<section>
+<hgroup><h1>Задача 2</h1></hgroup>
+<ul><li>Използвайки таблиците от Задача 1, напишете заявка, която да връща имената(title) на всички курсове, за които има писани коментари подредени по азбучен ред</li><img src="images/lecture_3_dbdiagram.jpg" /></ul></section>
+</div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});
+
+try {
+  mixpanel.track('Landing Page', {
+    referrer: document.referrer,
+    presentation: document.title
+  });
+} catch (e) {};</script></body></html>

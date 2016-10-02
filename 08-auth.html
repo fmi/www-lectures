@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>08. Удостоверяване и автентикация</title></head><body><header><h1>08. Удостоверяване и автентикация</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>08. Удостоверяване и автентикация</h1></hgroup></section><section>
+<hgroup><h1>Или още...</h1></hgroup>
+<p>Authentication and authorization</p></section>
+<section>
+<hgroup><h1>HTTP сесия</h1></hgroup>
+<ul><li class="action">Какво е сесия?
+</li><li class="action">На всеки потребител се дава уникален идентификатор.
+</li><li class="action">Той се записва или в бисквитка или в URL-а на заявката.</li></ul></section>
+<section>
+<hgroup><h1>Стартиране на сесия</h1></hgroup>
+<ul><li class="action">Автоматично(задава се със параметъра session.auto_start)
+</li><li class="action">session_start()</li></ul></section>
+<section>
+<hgroup><h1>Достъп до данни в сесията</h1></hgroup>
+<p>Достъпа до данни в сесията става чрез глобалната променлива $_SESSION.</p><p>Четене на данни от сесията:</p><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;user_name&#39;</span><span class="p">];</span>
+</pre>
+</div>
+<p>Писане на данни в сесията:</p><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span> <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;user_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;admin&#39;</span><span class="p">;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Работа със сесия</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="x">  </span><span class="cp">&lt;?php</span>
+    <span class="nb">session_start</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]))</span> <span class="p">{</span>
+      <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Удостоверяване</h1></hgroup>
+<p>Процес при който потребителя удостоверява своята самоличност.</p><p>Става по три начина:</p><ul><li class="action">Потребителя знае нещо - парола за достъп
+</li><li class="action">Потребителя има нещо - електронен подпис или карта за достъп
+</li><li class="action">Потребителя е нещо - проверка на биометрични данни</li></ul></section>
+<section>
+<hgroup><h1>Удостоверяване</h1></hgroup>
+<p>Ще имплементираме удостоверяване с парола.</p></section>
+<section>
+<hgroup><h1>Таблица за потребители</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Users</span> <span class="p">(</span>
+  <span class="n">user_id</span> <span class="nb">INT</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="n">email</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">password</span> <span class="nb">CHAR</span><span class="p">(</span><span class="mi">41</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">user_id</span><span class="p">),</span>
+  <span class="k">UNIQUE</span> <span class="k">INDEX</span> <span class="p">(</span><span class="n">email</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">INNODB</span><span class="p">;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Форма за регистрация</h1></hgroup>
+<ul><li class="action">Поле за email
+</li><li class="action">Поле за парола
+</li><li class="action">Поле за потвърждаване на паролата</li></ul></section>
+<section>
+<hgroup><h1>Форма за регистрация</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;email&quot;</span><span class="p">&gt;</span>Email<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">required</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;password&quot;</span><span class="p">&gt;</span>Password<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">required</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;password&quot;</span><span class="p">&gt;</span>Password Again<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password_again&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password_again&quot;</span> <span class="na">required</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Sign up&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Валидация</h1></hgroup>
+<ul><li class="action">Винаги трябва да има валидации.
+</li><li class="action">Дали е въведена парола с поне 6 символа.
+</li><li class="action">Дали паролата съвпада с повторената парола.
+</li><li class="action">И още...</li></ul></section>
+<section>
+<hgroup><h1>Валидация</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$_POST</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$email</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">];</span>
+    <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
+    <span class="nv">$password_again</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
+
+    <span class="nv">$errors</span> <span class="o">=</span> <span class="nx">validate_registration_form</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span> <span class="nv">$password</span><span class="p">,</span> <span class="nv">$password_again</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$errors</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">register</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+  <span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача 1</h1></hgroup>
+<p>Имплементирайте функцията validate_registration_form. Тя трябва да валидира аргументите и да връща масив с грешки. Функцията трябва да проверява:</p><ul><li class="action">Email е валиден email и ако не отговаря, да добавя низ към масива с грешки - 'Невалиден email'.
+</li><li class="action">Паролата е дълга поне 6 символа и ако не е, да добави низ към масива с грешки - 'Паролата трябва да бъде поне 6 символа'.
+</li><li class="action">Двете пароли трябва да съвпадат и ако не съвпадат, да добави низ към масива с грешки - 'Паролите трябва да съвпадат точно'.</li></ul></section>
+<section>
+<hgroup><h1>Съхранение на пароли</h1></hgroup>
+<p>Никога не трябва да запазваме паролите на потребителите или да ги изпращаме по мрежата(по email например) в чист вид.</p><p>За целта използваме функцията за хеширане sha1.</p><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="c1">// ...</span>
+  <span class="nv">$hashed_password</span> <span class="o">=</span> <span class="nb">sha1</span><span class="p">(</span><span class="nv">$password</span><span class="p">);</span>
+  <span class="c1">// ...</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Регистрация</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="c1">// ...</span>
+  <span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s2">&quot;mysql:host=localhost;dbname=electives&quot;</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+  <span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO Users (email, password) VALUES (?, ?)&#39;</span><span class="p">;</span>
+  <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+  <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span> <span class="nv">$hashed_password</span><span class="p">));</span>
+  <span class="c1">// ...</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Регистрация</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="c1">// ...</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;You sign up successfully.&#39;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$error</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">errorInfo</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$error</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1062</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">echo</span> <span class="s1">&#39;Email is already registered&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Форма за удостоверяване в системата</h1></hgroup>
+<ul><li class="action">Поле за email.
+</li><li class="action">Поле за парола.</li></ul></section>
+<section>
+<hgroup><h1>Форма за удостоверяване в системата</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;email&quot;</span><span class="p">&gt;</span>Email<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">required</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;password&quot;</span><span class="p">&gt;</span>Password<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Sign in&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Удостоверяване</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="c1">// ...</span>
+  <span class="nb">session_start</span><span class="p">();</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$_POST</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$email</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">];</span>
+    <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
+
+    <span class="nv">$errors</span> <span class="o">=</span> <span class="nx">validate_login_form</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$errors</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">login</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+  <span class="p">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Удостоверяване</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="c1">// ...</span>
+  <span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s1">&#39;mysql:host=localhost;dbname=test1&#39;</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+  <span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM Users WHERE email=? and password = ?&#39;</span><span class="p">;</span>
+  <span class="nv">$hashed_password</span> <span class="o">=</span> <span class="nb">sha1</span><span class="p">(</span><span class="nv">$password</span><span class="p">);</span>
+  <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+  <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span> <span class="nv">$hashed_password</span><span class="p">));</span>
+  <span class="c1">// ...</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Удостоверяване</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="c1">// ...</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">&amp;&amp;</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">rowCount</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$email</span><span class="p">;</span>
+    <span class="nb">header</span><span class="p">(</span><span class="s1">&#39;Location: home.php&#39;</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Wrong email or password.&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">// ...</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Базова авторизация</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span> <span class="c1">// home.php</span>
+  <span class="nb">session_start</span><span class="p">();</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">])</span> <span class="p">{</span>
+    <span class="c1">// user is authenticated</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// user is not authenticated</span>
+    <span class="nb">header</span><span class="p">(</span><span class="s1">&#39;Location: login.php&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// ...</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача 2</h1></hgroup>
+<p>Предайте системата с упълномощяване и авторизация, която създадохме сега. Трябва да предадете архив с 3 файла:</p><ul><li>signin.php - съдържа функциите за валидация и за работа с базата от данни и HTML формата за регистрация в системата</li><li>signup.php - съдържа функциите за валидация и за работа с базата от данни и HTML формата за удостоверяване в системата</li><li>home.php - съдържа начална страница за приложението, което показва Email адреса на потребителя влязал в системата и брояч, който се инкрементира при всяко посещение на потребителя нa home.php, започвайки от 1.</li></ul></section>
+</div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});
+
+try {
+  mixpanel.track('Landing Page', {
+    referrer: document.referrer,
+    presentation: document.title
+  });
+} catch (e) {};</script></body></html>
