@@ -1,0 +1,210 @@
+= slide 'Клинет-сървър' do
+  img src="images/client_net.jpg" style="width: 60%"
+
+= slide 'Какво ще използваме' do
+  img src="images/java.jpg" width=400
+  h2 align='center' +
+  img src="images/spark-java.png" width=400
+
+= slide 'Как изглежда при нас' do
+  img src="images/spark-graph.png" width='600'
+
+= slide 'Какво се случва' do
+  ul
+    li.action Браузърът изпраща HTTP заявка към сървъра.
+    li.action Сървърът я обработва.
+    li.action Той може да прочете информация от база от данни/файлова система/друг сървър.
+    li.action Накрая генерира отговор под определен формат (например HTML).
+
+= slide 'Пример за Java + Spark' do
+  example:
+    [lang:java]
+    // Sparkjava
+    import static spark.Spark.*;
+
+    // основен клас
+    public class HelloWorld {
+
+        // начало на програмата
+        public static void main(String[] args) {
+
+            // http://localhost:4567/hello
+            get("/hello", (req, res) -> "Hello World");
+
+        }
+
+    }
+
+= slide 'HTTP методи' do
+  example:
+    [lang:java]
+    get("/", (request, response) -> {
+      // Покажете нещо
+    });
+
+    post("/", (request, response) -> {
+      // Създайте нещо
+    });
+
+    put("/", (request, response) -> {
+      // Променете нещо
+    });
+
+    delete("/", (request, response) -> {
+      // Изтрийте нещо
+    });
+
+    options("/", (request, response) -> {
+      // Проверете нещо
+    });
+
+= slide 'Смяна на порт' do
+  example:
+    [lang:java]
+    public class NonDefaultPort {
+        public static void main(String[] args) {
+            // По подразбиране на 4567
+            port(5678);          
+            get("/hello", (request, response) -> "Hello World!");
+        }
+    }
+
+= slide 'Използване на параметри в пътя' do
+  example:
+    [lang:java]
+    public class PathParams {
+        public static void main(String[] args) {
+            get("/users/:name", (request, response) -> {
+                return "Selected user: " + request.params(":name")
+            });
+        }
+    }
+  h2 http://localhost:4567/users/foo -> "Selected user: foo"
+
+= slide 'Пренасочване' do
+  example:
+    [lang:java]
+    public class Redirector {
+        public static void main(String[] args) {
+            get("/redirect-from", (request, response) -> {
+                response.redirect("/redirect-to");
+                return null;
+            });
+        }
+    }
+
+=slide 'Връщане на HTML' do
+  example:
+    [lang:java]
+    public class HTMl {
+        public static void main(String[] args) {
+            get("/sample-html", (request, response) -> {
+                // казваме на браузъра, че ще получи HTML
+                response.type("text/html");
+                return "<html><h1>Example</h1></html>"
+            });
+        }
+    }
+
+= slide 'Статични файлове' do
+  example:
+    [lang:java]
+    import static spark.Spark.*;
+
+    public class StaticResources {
+
+        public static void main(String[] args) {
+
+            // Ще сервира всички файлове под пътя /public
+            // Като използваме Maven, /public == /main/resources
+            staticFileLocation("/public");
+
+            get("/hello", (request, response) -> "Hello World!");
+        }
+    }
+
+= slide 'HTTP кодове' do
+  example:
+    [lang:java]
+    import static spark.Spark.*;
+
+    public class NotFound {
+
+        public static void main(String[] args) {
+
+            get("/missing", (request, response) -> {
+                response.status(404);
+                return "This is not the page you are looking for";
+            });
+        }
+    }
+
+= slide 'Помощни линкове' do
+  ul
+    li
+      a href='http://sparkjava.com/documentation.html' target='_blank' SparkJava
+    li
+      a href='https://github.com/perwendel/spark' target='_blank' Spark Github
+    li
+      a href='https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop' target='blank' Postman
+      
+
+= slide 'Демо Проект' do
+  ul
+    li
+      a href='https://goo.gl/cbhMm3'
+        h1 https://goo.gl/cbhMm3
+  p Изпълнете `mvn install`, за да инсталирате зависимостите
+
+= slide 'Задача' do
+  ul
+    li.action Система за събиране на мнения за избираеми дисциплини.
+    li.action Всяка избираема дисциплина си има страница.
+    li.action На страницата има информация за дисциплината и коментари за нея.
+    li.action През семестъра ще създадем такава система от начало до край.
+    li.action Всяко упражнение ще подобрява системата.
+
+= slide 'Задача 1' do
+  p Имплементирайте метода toHTML() на класа Elective, който показва информация за даден курс.
+  p Ще намерите всичко необходимо в демо проекта.
+  example:
+    [lang:java]
+    class Elective {
+        ...
+        public String toHTML() {
+            // TODO: Implement
+            return "<h1>Foo Bar</h1>";
+        }
+    }
+
+= slide 'Задача 1' do
+  p Пример, следното извикване:
+  example:
+    [lang:java]
+    Elective go = new Elective("Програмиране с Go", "...", "Николай Бачийски");
+    return go.toHTML();
+    
+  p Tрябва да върне следния низ:
+  example:
+    [lang:html]
+    <h1>Програмиране с Go</h1>
+    <h2>Николай Бачийски</h2>
+    <p>...</p>
+  p Като в h1 се намира 'title' информацията, в h2 се намира 'lecturer' информацията, а в параграф се показва 'description' информацията за курса.
+  p В предаденото решение не трябва да има нов ред или празно място между html таговете.
+  
+= slide 'Задача 2' do
+  p Имплементирайте route handler, който при извикване на "/electives/:elective" да връща toHTML() на съответния избираем предмет.
+  p Използвайте за примерни данни data HashMap-a от примерния проект.
+  p При повикване с липсващ или несъществуващ параметър трябва да изведе съобщението "Несъществуваща дисциплина" и да върне HTTP код 404
+    
+= slide 'Задача 2' do
+  p Пример: при зареждане на "http://localhost:4567/electives/go" трябва да изведе "toHTML()" на HashMap.get("go");
+  p При зареждане на "http://localhost:4567/electives/missing" трябва да върне 404 и да изведе "Несъществуваща дисциплина"
+
+= slide 'Задача 3' do
+  p Добавете лого(картинка) към изборните дисциплини и го отразете в toHTML()
+  p Пример 
+  example:
+    [lang:java]
+    Elective electiveWithImage = new Elective("Foo", "Bar", "Baz", "/images/elective-logo.png");
