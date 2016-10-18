@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Добавяне на курс</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>Добавяне на курс</h1>
+  <form method="post" action="/add_course">
+    <p>
+      <label for="title">Заглавие</title>
+      <input type="text" name="title" id="title">
+    </p>
+    <p>
+      <label for="decription">Описание</label>
+      <textarea name="description" id="description"></textarea>
+    </p>
+    <p>
+      <label for="lecturer">Лектор</label>
+      <input type="text" name="lecturer" id="lecturer">
+    </p>
+    <input type="submit" value="Добави">
+  </form>
+</body>
+</html>

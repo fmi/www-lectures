@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Добавяне на курс</title>
+  <meta charset="utf-8">
+</head>
+<body>
+<a href="/add_course">Добавяне</a>
+<h1>Всички курсове [{{num_courses}}]</h1>
+{{#each courses}}
+  <h2>{{title}}</h2>
+  <h3>{{lecturer}}</h3>
+  <p>{{description}}</p>
+{{/each}}
+</body>
+</html>
