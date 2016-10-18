@@ -1,0 +1,170 @@
+= slide 'Форми' do
+  p Основния таг е form и има няколко атрибута.
+  example:
+    [lang:html]
+    <form method="get" action="/url_to_handle_the_request">
+      <!--- ... --->
+    </form>
+  p Изпраща GET заявка към http://localhost/url_to_handle_the_request
+= slide 'Пример' do
+  example:
+    [lang:html]
+    <form method="post" action="">
+      <label for="title">Заглавие</label>
+      <input type="text" name="title" id="title">
+      <input type="submit" value="Запази">
+    </form>
+= slide 'Полета' do
+  example:
+    [lang:html]
+    <form type="post" action="/save_course">
+      <input type="text" name="prepopulated" value="Текстово поле">
+      <input type="text" name="title" placeholder="Заглавие">
+      <input type="email" name="email_field">
+      <input type="number" name="number_field">
+      <input type="password" name="password_field">
+      <input type="url" name="url_field">
+      <input type="hidden" value="предварителнозададено" name="hidden_field">
+    </form>
+= slide 'Полета' do
+  example:
+    [lang:html]
+    <form>
+      <label for="group">Група</label>
+      <select name="select" id="group" name="group">
+        <option value="value1">ОКН</option>
+        <option value="value2" selected>ЯКН</option>
+        <option value="value3">ПМ</option>
+      </select>
+      <textarea name="textarea" rows="10" cols="50" name="description">Описнаие</textarea>
+    </form>
+= slide 'Темплейти' do
+  list:
+    Няма да може да напишем големи HTML файлове като низове в Java.
+    Може да ги отделим в отделен файл.
+    Можем и да го популираме с данни.
+    За целта ще използваме темплейтна система.
+    <a href="http://handlebarsjs.com/">Handlebars</a>
+= slide 'Инсталиране' do
+  example:
+    [lang:xml]
+    <dependency>
+      <groupId>com.sparkjava</groupId>
+      <artifactId>spark-template-handlebars</artifactId>
+      <version>2.3</version>
+    </dependency>
+= slide 'Примерен темплейт' do
+  p Файл с име hello.hbs в resources/templates директорията.
+  example:
+    [lang:html]
+    <h1>{{name}}</h1>
+= slide 'Пример за употреба' do
+  example:
+    [lang:java]
+    public class HandlebarsTemplateExample {
+        public static void main(String[] args) {
+            Map map = new HashMap();
+            map.put("name", "Lyubo");
+
+            get("/hello", (rq, rs) -> new ModelAndView(map, "hello.hbs"), new HandlebarsTemplateEngine());
+        }
+    }
+= slide 'Преглед на курсове' do
+  p Създаваме файл resources/templates/list_course.hbs със съдържание:
+  example:
+    [lang:html]
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Добавяне на курс</title>
+      <meta charset="utf-8">
+    </head>
+    <body>
+    <a href="/add_course">Добавяне</a>
+    <h1>Всички курсове [{{num_courses}}]</h1>
+    {{#each courses}}
+      <h2>{{title}}</h2>
+      <h3>{{lecturer}}</h3>
+      <p>{{description}}</p>
+    {{/each}}
+    </body>
+    </html>
+= slide 'Преглед на курсове' do
+  example:
+    [lang:java]
+    public static void main(String[] argv) {
+
+        List<Elective> database = new ArrayList<Elective>();
+
+        get("/", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("courses", database);
+            attributes.put("num_courses", database.size());
+            return new ModelAndView(attributes, "list_course.hbs");
+        }, new HandlebarsTemplateEngine());
+    }
+= slide 'Добавяне на курсове' do
+  p Искаме да направим форма за добавяне на специалност и създаваме файл resources/templates/add_course.hbs
+  example:
+    [lang:html]
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Добавяне на курс</title>
+      <meta charset="utf-8">
+    </head>
+    <body>
+      <h1>Добавяне на курс</h1>
+      <form method="post" action="/add_course">
+        <!--- ... --->
+      </form>
+    </body>
+    </html>
+= slide 'Добавяне на курсове' do
+  example:
+    [lang:html]
+    <label for="title">Заглавие</title>
+    <input type="text" name="title" id="title">
+    <!--- ... --->
+    <input type="submit" value="Добави">
+  p Добавете всички полета които са нужни за описане на курс.
+= slide 'Показване на форма' do
+  example:
+    [lang:java]
+    public class Main {
+
+        public static void main(String[] argv) {
+
+            List<Elective> database = new ArrayList<Elective>();
+
+            get("/add_course", (request, response) -> {
+                return new ModelAndView(null, "add_course.hbs");
+            }, new HandlebarsTemplateEngine());
+        }
+    }
+= slide 'Обработка на заявка' do
+  example:
+    [lang:java]
+    request.params(":name"); // чете именования параметър name
+    request.queryParams("name"); // чете параметъра name
+= slide 'Обработка на заявка' do
+  example:
+    [lang:java]
+    post("/add_course", (request, response) -> {
+        String title = request.queryParams("title");
+        String description = request.queryParams("description");
+        String lecturer = request.queryParams("lecturer");
+        Elective elective = new Elective(title, description, lecturer);
+        database.add(elective);
+        response.redirect("/list_courses");
+        return null;
+    });
+= slide 'Задача' do
+  p Направете форма за добавяне на избираеми дисциплини и сървърна част, която да показва, валидира и записва формата. Тя трябва да съдържа:
+  ul
+    li Име на предмета - задължително, с максимална дължина - 150 символа
+    li Преподавател - задължително, с максимална дължина - 200 символа
+    li Описание - задължително, минимална дължина - 10 символа
+    li Група - една измежду М, ПМ, ОКН и ЯКН
+    li Кредити - цяло положително число
+  p Всяко поле трябва да отговаря на посочения тип и да има валидация по зададените правила.

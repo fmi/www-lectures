@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>02. Форми и Java</title></head><body><header><h1>02. Форми и Java</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>02. Форми и Java</h1></hgroup></section><section>
+<hgroup><h1>Форми</h1></hgroup>
+<p>Основния таг е form и има няколко атрибута.</p><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;get&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/url_to_handle_the_request&quot;</span><span class="p">&gt;</span>
+  <span class="c">&lt;!--- ... ---&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+</div>
+<p>Изпраща GET заявка към http://localhost/url_to_handle_the_request</p></section>
+<section>
+<hgroup><h1>Пример</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;title&quot;</span><span class="p">&gt;</span>Заглавие<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;title&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Запази&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Полета</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/save_course&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;prepopulated&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Текстово поле&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Заглавие&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email_field&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;number_field&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password_field&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;url&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;url_field&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;предварителнозададено&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;hidden_field&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Полета</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;group&quot;</span><span class="p">&gt;</span>Група<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">select</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;select&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;group&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;group&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;value1&quot;</span><span class="p">&gt;</span>ОКН<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;value2&quot;</span> <span class="na">selected</span><span class="p">&gt;</span>ЯКН<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;value3&quot;</span><span class="p">&gt;</span>ПМ<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;textarea&quot;</span> <span class="na">rows</span><span class="o">=</span><span class="s">&quot;10&quot;</span> <span class="na">cols</span><span class="o">=</span><span class="s">&quot;50&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span><span class="p">&gt;</span>Описнаие<span class="p">&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Темплейти</h1></hgroup>
+<ul><li class="action">Няма да може да напишем големи HTML файлове като низове в Java.
+</li><li class="action">Може да ги отделим в отделен файл.
+</li><li class="action">Можем и да го популираме с данни.
+</li><li class="action">За целта ще използваме темплейтна система.
+</li><li class="action"><a href="http://handlebarsjs.com/">Handlebars</a></li></ul></section>
+<section>
+<hgroup><h1>Инсталиране</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.sparkjava<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spark-template-handlebars<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.3<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Примерен темплейт</h1></hgroup>
+<p>Файл с име hello.hbs в resources/templates директорията.</p><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{name}}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Пример за употреба</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HandlebarsTemplateExample</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Map</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+        <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;Lyubo&quot;</span><span class="o">);</span>
+
+        <span class="n">get</span><span class="o">(</span><span class="s">&quot;/hello&quot;</span><span class="o">,</span> <span class="o">(</span><span class="n">rq</span><span class="o">,</span> <span class="n">rs</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="n">map</span><span class="o">,</span> <span class="s">&quot;hello.hbs&quot;</span><span class="o">),</span> <span class="k">new</span> <span class="n">HandlebarsTemplateEngine</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Преглед на курсове</h1></hgroup>
+<p>Създаваме файл resources/templates/list_course.hbs със съдържание:</p><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Добавяне на курс<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/add_course&quot;</span><span class="p">&gt;</span>Добавяне<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Всички курсове [{{num_courses}}]<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+{{#each courses}}
+  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{title}}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>{{lecturer}}<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{description}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+{{/each}}
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Преглед на курсове</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">argv</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Elective</span><span class="o">&gt;</span> <span class="n">database</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Elective</span><span class="o">&gt;();</span>
+
+    <span class="n">get</span><span class="o">(</span><span class="s">&quot;/&quot;</span><span class="o">,</span> <span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">attributes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+        <span class="n">attributes</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;courses&quot;</span><span class="o">,</span> <span class="n">database</span><span class="o">);</span>
+        <span class="n">attributes</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;num_courses&quot;</span><span class="o">,</span> <span class="n">database</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="n">attributes</span><span class="o">,</span> <span class="s">&quot;list_course.hbs&quot;</span><span class="o">);</span>
+    <span class="o">},</span> <span class="k">new</span> <span class="n">HandlebarsTemplateEngine</span><span class="o">());</span>
+<span class="o">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Добавяне на курсове</h1></hgroup>
+<p>Искаме да направим форма за добавяне на специалност и създаваме файл resources/templates/add_course.hbs</p><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Добавяне на курс<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Добавяне на курс<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/add_course&quot;</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--- ... ---&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Добавяне на курсове</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;title&quot;</span><span class="p">&gt;</span>Заглавие<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;title&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!--- ... ---&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Добави&quot;</span><span class="p">&gt;</span>
+</pre>
+</div>
+<p>Добавете всички полета които са нужни за описане на курс.</p></section>
+<section>
+<hgroup><h1>Показване на форма</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">argv</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Elective</span><span class="o">&gt;</span> <span class="n">database</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Elective</span><span class="o">&gt;();</span>
+
+        <span class="n">get</span><span class="o">(</span><span class="s">&quot;/add_course&quot;</span><span class="o">,</span> <span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">&quot;add_course.hbs&quot;</span><span class="o">);</span>
+        <span class="o">},</span> <span class="k">new</span> <span class="n">HandlebarsTemplateEngine</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Обработка на заявка</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="n">request</span><span class="o">.</span><span class="na">params</span><span class="o">(</span><span class="s">&quot;:name&quot;</span><span class="o">);</span> <span class="c1">// чете именования параметър name</span>
+<span class="n">request</span><span class="o">.</span><span class="na">queryParams</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">);</span> <span class="c1">// чете параметъра name</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Обработка на заявка</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="n">post</span><span class="o">(</span><span class="s">&quot;/add_course&quot;</span><span class="o">,</span> <span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">title</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">queryParams</span><span class="o">(</span><span class="s">&quot;title&quot;</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">description</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">queryParams</span><span class="o">(</span><span class="s">&quot;description&quot;</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">lecturer</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">queryParams</span><span class="o">(</span><span class="s">&quot;lecturer&quot;</span><span class="o">);</span>
+    <span class="n">Elective</span> <span class="n">elective</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Elective</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">description</span><span class="o">,</span> <span class="n">lecturer</span><span class="o">);</span>
+    <span class="n">database</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">elective</span><span class="o">);</span>
+    <span class="n">response</span><span class="o">.</span><span class="na">redirect</span><span class="o">(</span><span class="s">&quot;/list_courses&quot;</span><span class="o">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">});</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Задача</h1></hgroup>
+<p>Направете форма за добавяне на избираеми дисциплини и сървърна част, която да показва, валидира и записва формата. Тя трябва да съдържа:</p><ul><li>Име на предмета - задължително, с максимална дължина - 150 символа</li><li>Преподавател - задължително, с максимална дължина - 200 символа</li><li>Описание - задължително, минимална дължина - 10 символа</li><li>Група - една измежду М, ПМ, ОКН и ЯКН</li><li>Кредити - цяло положително число</li></ul><p>Всяко поле трябва да отговаря на посочения тип и да има валидация по зададените правила.</p></section>
+</div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
+  htmlSlides.init({ hideToolbar: true });
+});
+
+var pusher = new Pusher('a2024b659f492cab86cc');
+pusher.subscribe('lectures');
+pusher.bind('refresh', function(data) {
+  location.reload(true);
+});
+
+try {
+  mixpanel.track('Landing Page', {
+    referrer: document.referrer,
+    presentation: document.title
+  });
+} catch (e) {};</script></body></html>
