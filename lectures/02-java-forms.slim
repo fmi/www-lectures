@@ -145,8 +145,8 @@
 = slide 'Обработка на заявка' do
   example:
     [lang:java]
-    request.params(":name"); // чете именования параметър name
-    request.queryParams("name"); // чете параметъра name
+    request.params(":name"); // връща именования параметър name
+    request.queryParams("name"); // връща параметъра name
 = slide 'Обработка на заявка' do
   example:
     [lang:java]
@@ -159,6 +159,35 @@
         response.redirect("/list_courses");
         return null;
     });
+= slide 'Валидация' do
+  example:
+    [lang:java]
+    post("/add_course", (request, response) -> {
+        String title = request.queryParams("title");
+        String description = request.queryParams("description");
+        String lecturer = request.queryParams("lecturer");
+        Elective elective = new Elective(title, description, lecturer);
+        if(elective.isValid()) {
+          database.add(elective);
+          response.redirect("/list_courses");
+        } else {
+          response.status(400);
+          return "Данните които се опитахте да запазите за курса не са валидни";
+        }
+        return null;
+    });
+= slide 'Валидация' do
+  example:
+    [lang:java]
+    class Elective {
+      // ...
+      public boolean isValid() {
+        if (this.title && this.title.length() > 180) {
+          return false;
+        }
+        return true;
+      }
+    }
 = slide 'Задача' do
   p Направете форма за добавяне на избираеми дисциплини и сървърна част, която да показва, валидира и записва формата. Тя трябва да съдържа:
   ul

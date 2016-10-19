@@ -162,8 +162,8 @@
 </section>
 <section>
 <hgroup><h1>Обработка на заявка</h1></hgroup>
-<div class="highlight"><pre><span></span><span class="n">request</span><span class="o">.</span><span class="na">params</span><span class="o">(</span><span class="s">&quot;:name&quot;</span><span class="o">);</span> <span class="c1">// чете именования параметър name</span>
-<span class="n">request</span><span class="o">.</span><span class="na">queryParams</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">);</span> <span class="c1">// чете параметъра name</span>
+<div class="highlight"><pre><span></span><span class="n">request</span><span class="o">.</span><span class="na">params</span><span class="o">(</span><span class="s">&quot;:name&quot;</span><span class="o">);</span> <span class="c1">// връща именования параметър name</span>
+<span class="n">request</span><span class="o">.</span><span class="na">queryParams</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">);</span> <span class="c1">// връща параметъра name</span>
 </pre>
 </div>
 </section>
@@ -178,6 +178,39 @@
     <span class="n">response</span><span class="o">.</span><span class="na">redirect</span><span class="o">(</span><span class="s">&quot;/list_courses&quot;</span><span class="o">);</span>
     <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
 <span class="o">});</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Валидация</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="n">post</span><span class="o">(</span><span class="s">&quot;/add_course&quot;</span><span class="o">,</span> <span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">title</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">queryParams</span><span class="o">(</span><span class="s">&quot;title&quot;</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">description</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">queryParams</span><span class="o">(</span><span class="s">&quot;description&quot;</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">lecturer</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">queryParams</span><span class="o">(</span><span class="s">&quot;lecturer&quot;</span><span class="o">);</span>
+    <span class="n">Elective</span> <span class="n">elective</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Elective</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">description</span><span class="o">,</span> <span class="n">lecturer</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">elective</span><span class="o">.</span><span class="na">isValid</span><span class="o">())</span> <span class="o">{</span>
+      <span class="n">database</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">elective</span><span class="o">);</span>
+      <span class="n">response</span><span class="o">.</span><span class="na">redirect</span><span class="o">(</span><span class="s">&quot;/list_courses&quot;</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="n">response</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="mi">400</span><span class="o">);</span>
+      <span class="k">return</span> <span class="s">&quot;Данните които се опитахте да запазите за курса не са валидни&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">});</span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Валидация</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Elective</span> <span class="o">{</span>
+  <span class="c1">// ...</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isValid</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">title</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="na">title</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </pre>
 </div>
 </section>
