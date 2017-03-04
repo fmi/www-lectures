@@ -6,12 +6,14 @@
       <!--- ... --->
     </form>
   p Изпраща GET заявка към http://localhost/url_to_handle_the_request
+
 = slide 'Method' do
   list:
     GET
     POST
     PUT
     DELETE
+
 = slide 'Пример за форма' do
   example:
     [lang:html]
@@ -20,6 +22,7 @@
       <input type="text" name="title" id="title">
       <input type="submit" value="Запази">
     </form>
+
 = slide 'Полета' do
   example:
     [lang:html]
@@ -32,6 +35,7 @@
       <input type="url" name="url_field">
       <input type="hidden" value="предварителнозададено" name="hidden_field">
     </form>
+
 = slide 'Полета' do
   example:
     [lang:html]
@@ -44,3 +48,126 @@
       </select>
       <textarea name="textarea" rows="10" cols="50" name="description">Описнаие</textarea>
     </form>
+
+= slide 'Полета' do
+  example:
+    [lang:html]
+    <form>
+      <p>
+        <input type="checkbox" id="homeworks" value="homeworks">
+        <label for="homeworks">Домашни</label>
+      </p>
+      <p>
+        <input type="checkbox" id="exam" value="exam" checked="checked">
+        <label for="exam">Устен изпит</label>
+      </p>
+    </form>
+
+= slide 'Обработка на GET заявки' do
+  list:
+    $_GET
+    Глобална променлива в PHP.
+    Асоциативен масив с променливи, предоставени на текущия скрипт посредством метода GET на HTTP.
+
+= slide 'Обработка на GET заявки' do
+  p http://localhost/?name=Misho
+  example:
+    [lang:php]
+    <?php
+    echo 'Welcome '.htmlentities($_GET["name"]).'!';
+    ?>
+  example:
+    GET /index.php?name=Misho HTTP/1.1
+    User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+    Host: 127.0.0.1
+    Accept-Language: en-us
+    Accept-Encoding: gzip, deflate
+    Connection: Keep-Alive
+
+= slide 'Обработка на POST заявки' do
+  list:
+    $_POST
+    Асоциативен масив с променливи, предоставени на текущия скрипт посредством метода POST на HTTP.
+
+= slide 'Обработка на POST заявки' do
+  example:
+    [lang:php]
+    <?php
+    echo 'Welcome '.htmlentities($_POST["name"]).'!';
+    ?>
+  example:
+    POST /index.php HTTP/1.1
+    User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+    Host: 127.0.0.1
+    Content-Type: application/x-www-form-urlencoded
+    Content-Length: 68
+    Accept-Language: en-us
+    Accept-Encoding: gzip, deflate
+    Connection: Keep-Alive
+
+    title=WebGL&credits=6&group=3
+
+= slide 'Добавяне на курсове' do
+  p Искаме да направим форма за добавяне на специалност и създаваме файл resources/templates/add_course.hbs
+  example:
+    [lang:html]
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Добавяне на курс</title>
+      <meta charset="utf-8">
+    </head>
+    <body>
+      <h1>Добавяне на курс</h1>
+      <form method="post" action="/add_course.php">
+        <!--- ... --->
+      </form>
+    </body>
+    </html>
+= slide 'Добавяне на курсове' do
+  example:
+    [lang:html]
+    <label for="title">Заглавие</title>
+    <input type="text" name="title" id="title">
+    <!--- ... --->
+    <input type="submit" value="Добави">
+  p Добавете всички полета които са нужни за описане на курс.
+= slide 'Обаботка на формуляр' do
+  example:
+    <?php
+      $clean_data = array();
+      $errors = array();
+
+      if ($_POST) {
+        $input_title = $_POST['title'];
+        if ($input_title && strlen($input_title) < 150) {
+          $clean_data['title'] = $title;
+        } else {
+          $errors['title'] = 'Името е задължително поле с максимална дължина 150 символа.'
+        }
+      }
+= slide 'Валидация в големи проекти' do
+  example:
+    [lang:php]
+    <?php
+    class Elective extends CActiveRecord {
+      public function rules()
+      {
+        return array(
+          array('title, lecturer, status', 'required'),
+          array('title', 'length', 'max'=>128),
+          array('lecturer', 'length', 'max'=>150),
+          array('status', 'in', 'range'=>array(1,2,3)),
+        );
+      }
+    }
+= slide 'Задача' do
+  p Направете форма за добавяне на избираеми дисциплини и сървърна част, която да показва, валидира и записва формата. Тя трябва да съдържа:
+  ul
+    li Име на предмета - задължително, с максимална дължина - 150 символа
+    li Преподавател - задължително, с максимална дължина - 200 символа
+    li Описание - задължително, минимална дължина - 10 символа
+    li Група - една измежду М, ПМ, ОКН и ЯКН
+    li Кредити - цяло положително число
+  p Всяко поле трябва да отговаря на посочения тип и да има валидация по зададените правила.
+  p Вашето решение трябва да представлява архив на проекта с всички необходими файлове в него.

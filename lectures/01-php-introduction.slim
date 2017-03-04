@@ -235,6 +235,31 @@
       }
     ?>
 
+= slide 'Функции' do
+  example:
+    <?php
+      function foo($arg_1, $arg_2, /* ..., */ $arg_n) {
+        echo "Example function.\n";
+        return $retval;
+      }
+
+      function sum($first, $second) {
+        return $first + $second;
+      }
+    ?>
+
+= slide 'Функции' do
+  example:
+    <?php
+      function makecoffee($type = "cappuccino")
+      {
+        return "Making a cup of $type.\n";
+      }
+      echo makecoffee(); //Making a cup of cappuccino.
+      echo makecoffee(null); //Making a cup of .
+      echo makecoffee("espresso"); //Making a cup of espresso.
+    ?>
+
 = slide 'While' do
   example:
     <?php
@@ -287,39 +312,6 @@
       }
     ?>
 
-= slide 'Функции' do
-  example:
-    <?php
-      function foo($arg_1, $arg_2, /* ..., */ $arg_n) {
-        echo "Example function.\n";
-        return $retval;
-      }
-
-      function sum($first, $second) {
-        return $first + $second;
-      }
-    ?>
-
-= slide 'Функции' do
-  example:
-    <?php
-      function takes_array($input) {
-        echo "$input[0] + $input[1] = ", $input[0] + $input[1];
-      }
-      takes_array(array(1, 2)); // 1 + 2 = 3
-    ?>
-
-= slide 'Функции' do
-  example:
-    <?php
-      function makecoffee($type = "cappuccino")
-      {
-        return "Making a cup of $type.\n";
-      }
-      echo makecoffee(); //Making a cup of cappuccino.
-      echo makecoffee(null); //Making a cup of .
-      echo makecoffee("espresso"); //Making a cup of espresso.
-    ?>
 
 = slide 'ООП в PHP' do
   list:
