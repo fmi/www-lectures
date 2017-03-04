@@ -244,6 +244,35 @@
 </div>
 </section>
 <section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$arg_1</span><span class="p">,</span> <span class="nv">$arg_2</span><span class="p">,</span> <span class="cm">/* ..., */</span> <span class="nv">$arg_n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;Example function.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nv">$retval</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">function</span> <span class="nf">sum</span><span class="p">(</span><span class="nv">$first</span><span class="p">,</span> <span class="nv">$second</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$first</span> <span class="o">+</span> <span class="nv">$second</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
+<hgroup><h1>Функции</h1></hgroup>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+  <span class="k">function</span> <span class="nf">makecoffee</span><span class="p">(</span><span class="nv">$type</span> <span class="o">=</span> <span class="s2">&quot;cappuccino&quot;</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&quot;Making a cup of </span><span class="si">$type</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">();</span> <span class="c1">//Making a cup of cappuccino.</span>
+  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">(</span><span class="k">null</span><span class="p">);</span> <span class="c1">//Making a cup of .</span>
+  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">(</span><span class="s2">&quot;espresso&quot;</span><span class="p">);</span> <span class="c1">//Making a cup of espresso.</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+</section>
+<section>
 <hgroup><h1>While</h1></hgroup>
 <div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
   <span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -299,46 +328,6 @@
   <span class="k">foreach</span> <span class="p">(</span><span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">$key</span><span class="s2"> -&gt; </span><span class="si">$value\n</span><span class="s2">&quot;</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Функции</h1></hgroup>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-  <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$arg_1</span><span class="p">,</span> <span class="nv">$arg_2</span><span class="p">,</span> <span class="cm">/* ..., */</span> <span class="nv">$arg_n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">echo</span> <span class="s2">&quot;Example function.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nv">$retval</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="k">function</span> <span class="nf">sum</span><span class="p">(</span><span class="nv">$first</span><span class="p">,</span> <span class="nv">$second</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nv">$first</span> <span class="o">+</span> <span class="nv">$second</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Функции</h1></hgroup>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-  <span class="k">function</span> <span class="nf">takes_array</span><span class="p">(</span><span class="nv">$input</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">$input[0]</span><span class="s2"> + </span><span class="si">$input[1]</span><span class="s2"> = &quot;</span><span class="p">,</span> <span class="nv">$input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nv">$input</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-  <span class="p">}</span>
-  <span class="nx">takes_array</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// 1 + 2 = 3</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre>
-</div>
-</section>
-<section>
-<hgroup><h1>Функции</h1></hgroup>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-  <span class="k">function</span> <span class="nf">makecoffee</span><span class="p">(</span><span class="nv">$type</span> <span class="o">=</span> <span class="s2">&quot;cappuccino&quot;</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="s2">&quot;Making a cup of </span><span class="si">$type</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">();</span> <span class="c1">//Making a cup of cappuccino.</span>
-  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">(</span><span class="k">null</span><span class="p">);</span> <span class="c1">//Making a cup of .</span>
-  <span class="k">echo</span> <span class="nx">makecoffee</span><span class="p">(</span><span class="s2">&quot;espresso&quot;</span><span class="p">);</span> <span class="c1">//Making a cup of espresso.</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre>
 </div>
