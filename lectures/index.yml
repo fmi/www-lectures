@@ -6,26 +6,14 @@
   title: 01. Динамично генериране на HTML
   date: 2015-10-08
   slug: 01-php-introduction
-10:
-  title: 01. Динамично генериране на HTML
-  date: 2016-10-09
-  slug: 01-java-introduction
-11:
-  title: 02. Форми и Java
-  date: 2016-17-09
-  slug: 02-java-forms
-12:
-  title: 03. SQL и Java
-  date: 2016-10-23
-  slug: 03-java-mysql
 2:
-  title: 02. Обектно ориентирано PHP и работа с MySQL
+  title: 02. Форми
   date: 2015-20-11
-  slug: 02-php-oop-myslq
+  slug: 02-php-forms
 3:
-  title: 03. Форми в PHP
+  title: 03. Обектно ориентирано PHP и работа с MySQL
   date: 2015-20-11
-  slug: 03-php-forms
+  slug: 03-php-oop-myslq
 4:
   title: 04. CSS - част 1
   date: 2015-10-01
