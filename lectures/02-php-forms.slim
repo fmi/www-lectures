@@ -1,0 +1,46 @@
+= slide 'Форми' do
+  p Основния таг е form и има няколко атрибута.
+  example:
+    [lang:html]
+    <form method="get" action="/url_to_handle_the_request">
+      <!--- ... --->
+    </form>
+  p Изпраща GET заявка към http://localhost/url_to_handle_the_request
+= slide 'Method' do
+  list:
+    GET
+    POST
+    PUT
+    DELETE
+= slide 'Пример за форма' do
+  example:
+    [lang:html]
+    <form method="post" action="">
+      <label for="title">Заглавие</label>
+      <input type="text" name="title" id="title">
+      <input type="submit" value="Запази">
+    </form>
+= slide 'Полета' do
+  example:
+    [lang:html]
+    <form type="post" action="/save_course">
+      <input type="text" name="prepopulated" value="Текстово поле">
+      <input type="text" name="title" placeholder="Заглавие">
+      <input type="email" name="email_field">
+      <input type="number" name="number_field">
+      <input type="password" name="password_field">
+      <input type="url" name="url_field">
+      <input type="hidden" value="предварителнозададено" name="hidden_field">
+    </form>
+= slide 'Полета' do
+  example:
+    [lang:html]
+    <form>
+      <label for="group">Група</label>
+      <select name="select" id="group" name="group">
+        <option value="value1">ОКН</option>
+        <option value="value2" selected>ЯКН</option>
+        <option value="value3">ПМ</option>
+      </select>
+      <textarea name="textarea" rows="10" cols="50" name="description">Описнаие</textarea>
+    </form>
