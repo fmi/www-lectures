@@ -92,7 +92,7 @@
 = slide 'PDO Извличане на данни' do
   example:
     <?php
-    ....
+    // ...
     echo '<ul>';
     while($row = $q->fetch(PDO::FETCH_ASSOC)){
       echo '<li>'.$row['NAME'].'</li>';
@@ -117,16 +117,16 @@
   example:
     <?php
       $stmt = $conn->prepare("
-          INSERT INTO MAJORS (NAME, ACADEMIC_DEGREE)
-          VALUES (:name, :academic_degree)");
-      $stmt->bindParam(':name', $name);
+          INSERT INTO electives (title, academic_degree)
+          VALUES (:title, :academic_degree)");
+      $stmt->bindParam(':title', $title);
       $stmt->bindParam(':academic_degree', $academic_degree);
 
-      $name = 'Biology';
+      $title = 'Programming with Go';
       $academic_degree = 'bachelor';
       $stmt->execute();
 
-      $name = 'Management';
+      $title = 'Mining Data from Text';
       $academic_degree = 'master';
       $stmt->execute();
     ?>
@@ -135,7 +135,7 @@
   example:
     <?php
       echo '<ul>';
-      $stmt = $conn->prepare("SELECT * FROM MAJORS where ACADEMIC_DEGREE = ?");
+      $stmt = $conn->prepare("SELECT * FROM electives where academic_degree = ?");
       if ($stmt->execute(array('bachelor'))) {
         while ($row = $stmt->fetch()) {
           echo '<li>'.$row["NAME"].'</li>';
@@ -149,13 +149,13 @@
     <?php
       $conn->beginTransaction();
 
-      $sql = 'INSERT INTO fruit (name, calories) VALUES (?, ?)';
+      $sql = 'INSERT INTO electives (title, academic_degree) VALUES (?, ?)';
       $sth = $conn->prepare($sql);
 
-      foreach ($fruits as $fruit) {
+      foreach ($electives as $elective) {
           $sth->execute(array(
-              $fruit->name,
-              $fruit->calories,
+              $elective->title,
+              $elective->academic_degree,
           ));
       }
       $dbh->commit();
@@ -166,45 +166,37 @@
    <?php
       $conn->beginTransaction();
 
-      $sth = $conn->exec("DROP TABLE MAJORS");
+      $sth = $conn->exec("DROP TABLE electives");
 
       $conn->rollBack();
     ?>
 
 = slide 'Задача 1' do
-  p Създайте следните таблици: Student, Course, Comments:
+  p Имате база от данни със следната таблица и данни:
+  example:
+    [lang:sql]
+    CREATE TABLE electives
+    (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      title VARCHAR(128),
+      description VARCHAR(1024),
+      lecturer VARCHAR(128)
+    );
 
-  p Students
-  ul
-    li id (Primary key, Auto-generated integer)
-    li name(varchar)
-  p Course
-  ul
-    li id (Primary key, Auto-generated integer)
-    li title(varchar)
-    li description(varchar)
-    li lecturer(varchar)
-  p Comments
-  ul
-    li id (Primary key, Auto-generated integer)
-    li courseID(integer)
-    li studentID(integer
-    li comments(varchar)
+    INSERT INTO electives (title, description, lecturer)
+    VALUES ("Programming with Go", "Let's learn Go", "Nikolay Batchiyski");
 
-= slide 'продължение' do
-  p Students
-  ul
-    li Добавете 2-ма студенти
-    li Напишете заявка, който връща броя на записите в таблица "Students"
-  p Courses
-  ul
-    li Добавете курс ("www-tech", "Introduction to the web technologies", "Petrov")
-    li Добавете курс ("artificial intelligence", "Intro to AI", "Koichev")
-    li Добавете курс ("Network programming in java", "Intro to network programming", "Petrov")
-    li Напишете заявка, която да връща имената на преподавателите без повторения
+    INSERT INTO electives (title, description, lecturer)
+    VALUES ("AKDU", "Let's Graduate", "Svetlin Ivanov");
+
+    INSERT INTO electives (title, description, lecturer)
+    VALUES ("Web technologies", "Let's learn the web", "Milen Petrov");
+
+= slide 'Задача 1' do
+  p Имплементирайте php страница с форма и валидация за добавяне на избираема дисциплина.
+  p Добавете колона created_at на таблицата electives.
+  p Трябва по подразбиране да сочи момента на добавяне на реда.
 
 = slide 'Задача 2' do
-  ul
-    li Използвайки таблиците от Задача 1, напишете заявка, която да връща имената(title) на всички курсове, за които има писани коментари подредени по азбучен ред
-    img src="images/lecture_3_dbdiagram.jpg"
-
+  p Добавете функционалност за редактиране на избираема дисциплина.
+  p Например: HTTP PUT на /electives.php/1 със съответните параметри трябва да промени избираемата с id 1.
