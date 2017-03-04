@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>02. Обектно ориентирано PHP и работа с MySQL</title></head><body><header><h1>02. Обектно ориентирано PHP и работа с MySQL</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>02. Обектно ориентирано PHP и работа с MySQL</h1></hgroup></section><section>
+<!DOCTYPE html><html lang="bg"><head><meta charset="utf-8" /><!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]--><link href="css/styles.css" rel="stylesheet" /><link href="css/pygments.css" rel="stylesheet" /><script src="js/analytics.js"></script><title>03. PHP и MySQL</title></head><body><header><h1>03. PHP и MySQL</h1><nav><ul><li><button id="prev-btn" title="Previous slide">Previous Slide</button></li><li><span id="slide-number"></span> / <span id="slide-total"></span></li><li><button id="next-btn" title="Next Slide">Next Slide</button></li></ul></nav></header><div id="deck"><section><hgroup><h1>03. PHP и MySQL</h1></hgroup></section><section>
 <hgroup><h1>Релацонна база от данни</h1></hgroup>
 <img src="images/erd.png" /></section>
 <section>
@@ -76,7 +76,7 @@
 <section>
 <hgroup><h1>PDO Извличане на данни</h1></hgroup>
 <div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-<span class="o">....</span>
+<span class="c1">// ...</span>
 <span class="k">echo</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
 <span class="k">while</span><span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">(</span><span class="nx">PDO</span><span class="o">::</span><span class="na">FETCH_ASSOC</span><span class="p">)){</span>
   <span class="k">echo</span> <span class="s1">&#39;&lt;li&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">;</span>
@@ -95,16 +95,16 @@
 <hgroup><h1>Prepared statements</h1></hgroup>
 <div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
   <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;</span>
-<span class="s2">      INSERT INTO MAJORS (NAME, ACADEMIC_DEGREE)</span>
-<span class="s2">      VALUES (:name, :academic_degree)&quot;</span><span class="p">);</span>
-  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:name&#39;</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
+<span class="s2">      INSERT INTO electives (title, academic_degree)</span>
+<span class="s2">      VALUES (:title, :academic_degree)&quot;</span><span class="p">);</span>
+  <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:title&#39;</span><span class="p">,</span> <span class="nv">$title</span><span class="p">);</span>
   <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="s1">&#39;:academic_degree&#39;</span><span class="p">,</span> <span class="nv">$academic_degree</span><span class="p">);</span>
 
-  <span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;Biology&#39;</span><span class="p">;</span>
+  <span class="nv">$title</span> <span class="o">=</span> <span class="s1">&#39;Programming with Go&#39;</span><span class="p">;</span>
   <span class="nv">$academic_degree</span> <span class="o">=</span> <span class="s1">&#39;bachelor&#39;</span><span class="p">;</span>
   <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
 
-  <span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;Management&#39;</span><span class="p">;</span>
+  <span class="nv">$title</span> <span class="o">=</span> <span class="s1">&#39;Mining Data from Text&#39;</span><span class="p">;</span>
   <span class="nv">$academic_degree</span> <span class="o">=</span> <span class="s1">&#39;master&#39;</span><span class="p">;</span>
   <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
 <span class="cp">?&gt;</span><span class="x"></span>
@@ -115,7 +115,7 @@
 <hgroup><h1>Prepared statements</h1></hgroup>
 <div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
   <span class="k">echo</span> <span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">;</span>
-  <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM MAJORS where ACADEMIC_DEGREE = ?&quot;</span><span class="p">);</span>
+  <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM electives where academic_degree = ?&quot;</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;bachelor&#39;</span><span class="p">)))</span> <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">())</span> <span class="p">{</span>
       <span class="k">echo</span> <span class="s1">&#39;&lt;li&gt;&#39;</span><span class="o">.</span><span class="nv">$row</span><span class="p">[</span><span class="s2">&quot;NAME&quot;</span><span class="p">]</span><span class="o">.</span><span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">;</span>
@@ -131,13 +131,13 @@
 <div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
   <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">beginTransaction</span><span class="p">();</span>
 
-  <span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO fruit (name, calories) VALUES (?, ?)&#39;</span><span class="p">;</span>
+  <span class="nv">$sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO electives (title, academic_degree) VALUES (?, ?)&#39;</span><span class="p">;</span>
   <span class="nv">$sth</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
 
-  <span class="k">foreach</span> <span class="p">(</span><span class="nv">$fruits</span> <span class="k">as</span> <span class="nv">$fruit</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">foreach</span> <span class="p">(</span><span class="nv">$electives</span> <span class="k">as</span> <span class="nv">$elective</span><span class="p">)</span> <span class="p">{</span>
       <span class="nv">$sth</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-          <span class="nv">$fruit</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span>
-          <span class="nv">$fruit</span><span class="o">-&gt;</span><span class="na">calories</span><span class="p">,</span>
+          <span class="nv">$elective</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">,</span>
+          <span class="nv">$elective</span><span class="o">-&gt;</span><span class="na">academic_degree</span><span class="p">,</span>
       <span class="p">));</span>
   <span class="p">}</span>
   <span class="nv">$dbh</span><span class="o">-&gt;</span><span class="na">commit</span><span class="p">();</span>
@@ -150,7 +150,7 @@
 <div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
    <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">beginTransaction</span><span class="p">();</span>
 
-   <span class="nv">$sth</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">exec</span><span class="p">(</span><span class="s2">&quot;DROP TABLE MAJORS&quot;</span><span class="p">);</span>
+   <span class="nv">$sth</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">exec</span><span class="p">(</span><span class="s2">&quot;DROP TABLE electives&quot;</span><span class="p">);</span>
 
    <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">rollBack</span><span class="p">();</span>
  <span class="cp">?&gt;</span><span class="x"></span>
@@ -159,13 +159,31 @@
 </section>
 <section>
 <hgroup><h1>Задача 1</h1></hgroup>
-<p>Създайте следните таблици: Student, Course, Comments:</p><p>Students</p><ul><li>id (Primary key, Auto-generated integer)</li><li>name(varchar)</li></ul><p>Course</p><ul><li>id (Primary key, Auto-generated integer)</li><li>title(varchar)</li><li>description(varchar)</li><li>lecturer(varchar)</li></ul><p>Comments</p><ul><li>id (Primary key, Auto-generated integer)</li><li>courseID(integer)</li><li>studentID(integer</li><li>comments(varchar)</li></ul></section>
+<p>Имате база от данни със следната таблица и данни:</p><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">electives</span>
+<span class="p">(</span>
+  <span class="n">id</span> <span class="nb">INT</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+  <span class="n">title</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">128</span><span class="p">),</span>
+  <span class="n">description</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">1024</span><span class="p">),</span>
+  <span class="n">lecturer</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">electives</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">lecturer</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="ss">&quot;Programming with Go&quot;</span><span class="p">,</span> <span class="ss">&quot;Let&#39;s learn Go&quot;</span><span class="p">,</span> <span class="ss">&quot;Nikolay Batchiyski&quot;</span><span class="p">);</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">electives</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">lecturer</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="ss">&quot;AKDU&quot;</span><span class="p">,</span> <span class="ss">&quot;Let&#39;s Graduate&quot;</span><span class="p">,</span> <span class="ss">&quot;Svetlin Ivanov&quot;</span><span class="p">);</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">electives</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">lecturer</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="ss">&quot;Web technologies&quot;</span><span class="p">,</span> <span class="ss">&quot;Let&#39;s learn the web&quot;</span><span class="p">,</span> <span class="ss">&quot;Milen Petrov&quot;</span><span class="p">);</span>
+</pre>
+</div>
+</section>
 <section>
-<hgroup><h1>продължение</h1></hgroup>
-<p>Students</p><ul><li>Добавете 2-ма студенти</li><li>Напишете заявка, който връща броя на записите в таблица "Students"</li></ul><p>Courses</p><ul><li>Добавете курс ("www-tech", "Introduction to the web technologies", "Petrov")</li><li>Добавете курс ("artificial intelligence", "Intro to AI", "Koichev")</li><li>Добавете курс ("Network programming in java", "Intro to network programming", "Petrov")</li><li>Напишете заявка, която да връща имената на преподавателите без повторения</li></ul></section>
+<hgroup><h1>Задача 1</h1></hgroup>
+<p>Имплементирайте php страница с форма и валидация за добавяне на избираема дисциплина.</p><p>Добавете колона created_at на таблицата electives.</p><p>Трябва по подразбиране да сочи момента на добавяне на реда.</p></section>
 <section>
 <hgroup><h1>Задача 2</h1></hgroup>
-<ul><li>Използвайки таблиците от Задача 1, напишете заявка, която да връща имената(title) на всички курсове, за които има писани коментари подредени по азбучен ред</li><img src="images/lecture_3_dbdiagram.jpg" /></ul></section>
+<p>Добавете функционалност за редактиране на избираема дисциплина.</p><p>Например: HTTP PUT на /electives.php/1 със съответните параметри трябва да промени избираемата с id 1.</p></section>
 </div><script src="js/jquery-1.5.2.min.js"></script><script src="js/jquery.jswipe-0.1.2.js"></script><script src="js/htmlSlides.js"></script><script src="js/pusher.js"></script><script type="text/javascript">$(function() {
   htmlSlides.init({ hideToolbar: true });
 });
